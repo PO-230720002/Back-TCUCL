@@ -10,6 +10,6 @@ public class FakeApi {
 
     @GetMapping("/")
     public String getFakeResource() {
-        return "Fake API";
+        return "tu as accédé à une ressource protégée";
     }
 }
