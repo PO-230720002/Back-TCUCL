@@ -18,8 +18,6 @@ import java.util.function.Function;
 @Component
 public class JwtUtils {
 
-//    private static final String jwtSecret = EnvConfig.get("JWT_SECRET");
-//    private final long jwtExpirationMs = Long.parseLong(EnvConfig.get("JWT_EXPIRATION_MS"));
 
     @Value("${app.JWT_KEY}")
     private String jwtSecret;
