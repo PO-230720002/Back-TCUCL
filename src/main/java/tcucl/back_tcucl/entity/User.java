@@ -12,7 +12,8 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private String role;
+    private boolean isAdmin;
+    private boolean isSuperAdmin;
 
     public long getId() {
         return id;
@@ -46,12 +47,20 @@ public class User {
         this.email = email;
     }
 
-    public String getRole() {
-        return role;
+    public boolean isAdmin() {
+        return isAdmin;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public boolean isSuperAdmin() {
+        return isSuperAdmin;
+    }
+
+    public void setSuperAdmin(boolean superAdmin) {
+        isSuperAdmin = superAdmin;
     }
 
     @Override
@@ -61,7 +70,8 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", isSuperAdmin=" + isSuperAdmin +
                 '}';
     }
 }
