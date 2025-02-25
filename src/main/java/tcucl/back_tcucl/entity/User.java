@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.entity;
 
 import jakarta.persistence.*;
+import tcucl.back_tcucl.entity.entite.Entite;
 
 @Entity
 @Table(name = "users")
@@ -13,6 +14,14 @@ public class User {
     private String password;
     private String email;
     private String role;
+
+    @ManyToOne
+    @JoinColumn(name = "entity_id")
+    private Entite entity;
+
+    @OneToOne
+    @JoinColumn(name = "role_id")
+    private Role role_tableRole;
 
     public long getId() {
         return id;
@@ -52,6 +61,22 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Entite getEntity() {
+        return entity;
+    }
+
+    public void setEntity(Entite entity) {
+        this.entity = entity;
+    }
+
+    public Role getRole_tableRole() {
+        return role_tableRole;
+    }
+
+    public void setRole_tableRole(Role role_tableRole) {
+        this.role_tableRole = role_tableRole;
     }
 
     @Override
