@@ -17,7 +17,6 @@ public class EntretienCourant {
     private Long id;
     private Date dateAjout;
     private String nom_adresse;
-
     private Integer valeurEnumTypeTravaux;
     private LocalDate dateTravaux;
     private Boolean acvRenovationRealisee;
