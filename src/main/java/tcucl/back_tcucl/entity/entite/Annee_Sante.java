@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "entite_logement_restauration")
-public class Entite_LogementRestauration extends Entite {
+@Table(name = "annee_sante")
+public class Annee_Sante extends Annee {
+
+
 }

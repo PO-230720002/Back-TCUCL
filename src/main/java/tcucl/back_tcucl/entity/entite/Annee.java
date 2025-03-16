@@ -5,7 +5,7 @@ import tcucl.back_tcucl.entity.NotesPermanentes;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Entite {
+public class Annee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
