@@ -1,10 +1,6 @@
 package tcucl.back_tcucl.entity;
 
 import jakarta.persistence.*;
-<<<<<<< Updated upstream
-import tcucl.back_tcucl.entity.entite.Annee;
-=======
->>>>>>> Stashed changes
 
 @Entity
 @Table(name = "users")
@@ -19,13 +15,9 @@ public class User {
     private String role;
 
     @ManyToOne
-<<<<<<< Updated upstream
-    @JoinColumn(name = "annee_id")
-    private Annee annee;
-=======
+
     @JoinColumn(name = "entite_id")
     private Entite entite;
->>>>>>> Stashed changes
 
     @OneToOne
     @JoinColumn(name = "role_id")
@@ -71,21 +63,13 @@ public class User {
         this.role = role;
     }
 
-<<<<<<< Updated upstream
-    public Annee getAnnee() {
-        return annee;
-    }
 
-    public void setAnnee(Annee annee) {
-        this.annee = annee;
-=======
     public Entite getEntite() {
         return entite;
     }
 
     public void setEntite(Entite entite) {
         this.entite = entite;
->>>>>>> Stashed changes
     }
 
     public Role getRole_tableRole() {

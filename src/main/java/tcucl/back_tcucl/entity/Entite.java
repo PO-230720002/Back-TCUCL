@@ -6,13 +6,8 @@ import tcucl.back_tcucl.entity.annee.Annee;
 import java.util.List;
 
 @Entity
-<<<<<<<< Updated upstream:src/main/java/tcucl/back_tcucl/entity/Annee.java
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Annee {
-========
-@Table(name = "annee")
+@Table(name = "entite")
 public class Entite {
->>>>>>>> Stashed changes:src/main/java/tcucl/back_tcucl/entity/Entite.java
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
