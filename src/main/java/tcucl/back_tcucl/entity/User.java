@@ -1,7 +1,6 @@
 package tcucl.back_tcucl.entity;
 
 import jakarta.persistence.*;
-import tcucl.back_tcucl.entity.annee.Annee;
 
 @Entity
 @Table(name = "users")
@@ -16,8 +15,9 @@ public class User {
     private String role;
 
     @ManyToOne
-    @JoinColumn(name = "entity_id")
-    private Annee entity;
+
+    @JoinColumn(name = "entite_id")
+    private Entite entite;
 
     @OneToOne
     @JoinColumn(name = "role_id")
@@ -63,12 +63,13 @@ public class User {
         this.role = role;
     }
 
-    public Annee getEntity() {
-        return entity;
+
+    public Entite getEntite() {
+        return entite;
     }
 
-    public void setEntity(Annee entity) {
-        this.entity = entity;
+    public void setEntite(Entite entite) {
+        this.entite = entite;
     }
 
     public Role getRole_tableRole() {

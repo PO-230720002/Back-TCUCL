@@ -1,32 +1,28 @@
 package tcucl.back_tcucl.entity.annee;
 
-import jakarta.persistence.*;
-import tcucl.back_tcucl.entity.NotesPermanentes;
-
-import java.time.Year;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Annee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Year annee;
 
-    public Long getId() {
-        return id;
-    }
+    @OneToOne
+    private EnergieOnglet energieOnglet;
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Year getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Year annee) {
-        this.annee = annee;
+    public Long getId() {
+        return id;
     }
 }
