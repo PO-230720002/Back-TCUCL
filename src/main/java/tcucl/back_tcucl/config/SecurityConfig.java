@@ -12,16 +12,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import tcucl.back_tcucl.filter.JwtFilter;
-import tcucl.back_tcucl.service.CustomUserDetailsService;
+import tcucl.back_tcucl.service.impl.CustomUserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final CustomUserDetailsService customUserDetailsService;
+    private final CustomUserDetailsServiceImpl customUserDetailsService;
     private final JwtUtils jwtUtils;
 
-    public SecurityConfig(CustomUserDetailsService customUserDetailsService, JwtUtils jwtUtils) {
+    public SecurityConfig(CustomUserDetailsServiceImpl customUserDetailsService, JwtUtils jwtUtils) {
         this.customUserDetailsService = customUserDetailsService;
         this.jwtUtils = jwtUtils;
     }

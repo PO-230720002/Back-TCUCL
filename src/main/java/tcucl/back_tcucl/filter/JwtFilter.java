@@ -7,22 +7,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import tcucl.back_tcucl.config.JwtUtils;
-import tcucl.back_tcucl.service.CustomUserDetailsService;
+import tcucl.back_tcucl.service.impl.CustomUserDetailsServiceImpl;
 
 import java.io.IOException;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
-    private final CustomUserDetailsService customUserDetailsService;
+    private final CustomUserDetailsServiceImpl customUserDetailsService;
     private final JwtUtils jwtUtils;
 
-    public JwtFilter(CustomUserDetailsService customUserDetailsService, JwtUtils jwtUtils) {
+    public JwtFilter(CustomUserDetailsServiceImpl customUserDetailsService, JwtUtils jwtUtils) {
         this.customUserDetailsService = customUserDetailsService;
         this.jwtUtils = jwtUtils;
     }

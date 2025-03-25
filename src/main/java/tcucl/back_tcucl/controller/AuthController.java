@@ -44,11 +44,20 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
-        if (userRepository.findByUsername(user.getUsername()) != null) {
+//        if (userRepository.findByUsername(user.getUsername()) != null) {
+//            return ResponseEntity.badRequest().body("Username is already taken");
+//        }
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        return ResponseEntity.ok(userRepository.save(user));
+
+
+        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
             return ResponseEntity.badRequest().body("Username is already taken");
         }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return ResponseEntity.ok(userRepository.save(user));
+
     }
 
     @PostMapping("/login")

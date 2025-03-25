@@ -14,6 +14,15 @@ public class User {
     private String email;
     private String role;
 
+    @ManyToOne
+
+    @JoinColumn(name = "entite_id")
+    private Entite entite;
+
+    @OneToOne
+    @JoinColumn(name = "role_id")
+    private Role role_tableRole;
+
     public long getId() {
         return id;
     }
@@ -52,6 +61,23 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+
+    public Entite getEntite() {
+        return entite;
+    }
+
+    public void setEntite(Entite entite) {
+        this.entite = entite;
+    }
+
+    public Role getRole_tableRole() {
+        return role_tableRole;
+    }
+
+    public void setRole_tableRole(Role role_tableRole) {
+        this.role_tableRole = role_tableRole;
     }
 
     @Override
