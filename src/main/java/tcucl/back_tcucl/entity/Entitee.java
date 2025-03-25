@@ -13,8 +13,8 @@ public class Entitee {
     private Long id;
     private String nom;
 
-    @OneToMany
-    private List<NotesPermanentes> notesPermanentes;
+    @OneToOne
+    private NotesPermanentes notesPermanentes;
 
     @OneToMany
     private List<Annee> annees;
@@ -31,11 +31,11 @@ public class Entitee {
         return nom;
     }
 
-    public List<NotesPermanentes> getNotesPermanentes() {
+    public NotesPermanentes getNotesPermanentes() {
         return notesPermanentes;
     }
 
-    public void setNotesPermanentes(List<NotesPermanentes> notesPermanentes) {
+    public void setNotesPermanentes(NotesPermanentes notesPermanentes) {
         this.notesPermanentes = notesPermanentes;
     }
 
