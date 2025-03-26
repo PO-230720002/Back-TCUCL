@@ -21,15 +21,6 @@ public class ParametreEnergie {
     private Integer valeurEnumEnergieUniteBois;
     private Integer valeurEnumEnergieUniteFioul;
     private Integer valeurEnumEnergieUniteGaz;
-    private boolean useElecSpecifique;
-    private boolean useElecChauffage;
-    private boolean useReseauVille;
-    private boolean useBois;
-    private boolean useFioul;
-    private boolean useGaz;
-
-
-
 
 
     public void setId(Long id) {
@@ -72,51 +63,5 @@ public class ParametreEnergie {
         this.valeurEnumEnergieUniteGaz = valeur.getCode();
     }
 
-    public boolean isUseElecSpecifique() {
-        return useElecSpecifique;
-    }
 
-    public void setUseElecSpecifique(boolean useElecSpecifique) {
-        this.useElecSpecifique = useElecSpecifique;
-    }
-
-    public boolean isUseElecChauffage() {
-        return useElecChauffage;
-    }
-
-    public void setUseElecChauffage(boolean useElecChauffage) {
-        this.useElecChauffage = useElecChauffage;
-    }
-
-    public boolean isUseReseauVille() {
-        return useReseauVille;
-    }
-
-    public void setUseReseauVille(boolean useReseauVille) {
-        this.useReseauVille = useReseauVille;
-    }
-
-    public boolean isUseBois() {
-        return useBois;
-    }
-
-    public void setUseBois(boolean useBois) {
-        this.useBois = useBois;
-    }
-
-    public boolean isUseFioul() {
-        return useFioul;
-    }
-
-    public void setUseFioul(boolean useFioul) {
-        this.useFioul = useFioul;
-    }
-
-    public boolean isUseGaz() {
-        return useGaz;
-    }
-
-    public void setUseGaz(boolean useGaz) {
-        this.useGaz = useGaz;
-    }
 }
