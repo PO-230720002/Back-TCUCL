@@ -12,15 +12,13 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private String role;
     private Boolean isFirstConnection;
+    private String role;
+    private Boolean isAdmin;
+    private Boolean isSuperAdmin;
     @ManyToOne
     @JoinColumn(name = "entite_id")
     private Entite entite;
-
-    @OneToOne
-    @JoinColumn(name = "role_id")
-    private Role role_tableRole;
 
     public long getId() {
         return id;
@@ -62,7 +60,6 @@ public class User {
         this.role = role;
     }
 
-
     public Entite getEntite() {
         return entite;
     }
@@ -70,21 +67,25 @@ public class User {
     public void setEntite(Entite entite) {
         this.entite = entite;
     }
-
-    public Role getRole_tableRole() {
-        return role_tableRole;
-    }
-
-    public void setRole_tableRole(Role role_tableRole) {
-        this.role_tableRole = role_tableRole;
-    }
-
     public Boolean getIsFirstConnection()  {
         return isFirstConnection;
     }
     public void setIsFirstConnection(Boolean isFirstConnection) {
         this.isFirstConnection = isFirstConnection;
     }
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+    public Boolean getIsSuperAdmin() {
+        return isSuperAdmin;
+    }
+    public void setIsSuperAdmin(boolean isSuperAdmin) {
+        this.isSuperAdmin = isSuperAdmin;
+    }
+
 
     @Override
     public String toString() {
@@ -95,6 +96,8 @@ public class User {
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 ", isFirstConnection='" + isFirstConnection + '\'' +
+                ", isAdmin='" + isAdmin + '\'' +
+                ", isSuperAdmin='" + isSuperAdmin + '\'' +
                 '}';
     }
 }
