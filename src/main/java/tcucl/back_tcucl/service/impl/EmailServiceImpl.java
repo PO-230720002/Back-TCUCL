@@ -33,8 +33,9 @@ public class EmailServiceImpl implements EmailService {
                     "Cordialement,\n" +
                     "L'équipe TCUCL");
             emailSender.send(message);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+            System.out.println(" Email envoyé à : " + to);
+        } catch (Exception e) {
+            System.out.println(" Erreur lors de l'envoi de l'email : " + e.getMessage());
         }
     }
 
