@@ -13,7 +13,7 @@ public class User {
     private String password;
     private String email;
     private String role;
-
+    private Boolean isFirstConnection;
     @ManyToOne
     @JoinColumn(name = "entite_id")
     private Entite entite;
@@ -79,6 +79,13 @@ public class User {
         this.role_tableRole = role_tableRole;
     }
 
+    public Boolean getIsFirstConnection()  {
+        return isFirstConnection;
+    }
+    public void setIsFirstConnection(Boolean isFirstConnection) {
+        this.isFirstConnection = isFirstConnection;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -87,6 +94,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
+                ", isFirstConnection='" + isFirstConnection + '\'' +
                 '}';
     }
 }
