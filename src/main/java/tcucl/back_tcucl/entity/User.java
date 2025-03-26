@@ -15,7 +15,6 @@ public class User {
     private String role;
 
     @ManyToOne
-
     @JoinColumn(name = "entite_id")
     private Entite entite;
 
