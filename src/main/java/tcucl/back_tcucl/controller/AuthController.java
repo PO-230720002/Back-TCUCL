@@ -11,9 +11,13 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.config.JwtUtils;
-import tcucl.back_tcucl.entity.User;
+import tcucl.back_tcucl.dto.ChangePasswordDto;
+import tcucl.back_tcucl.dto.ConnexionDto;
+import tcucl.back_tcucl.dto.InscriptionDto;
+import tcucl.back_tcucl.entity.Utilisateur;
 import tcucl.back_tcucl.repository.UserRepository;
 import tcucl.back_tcucl.service.EmailService;
+import tcucl.back_tcucl.service.EntiteService;
 
 import java.security.SecureRandom;
 import java.util.HashMap;
@@ -21,8 +25,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
+import static tcucl.back_tcucl.controller.ControllerConstants.*;
+
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping(AUTH)
 public class AuthController {
 
     Logger logger = LoggerFactory.getLogger(AuthController.class);
@@ -32,87 +38,102 @@ public class AuthController {
     private final JwtUtils jwtUtils;
     private final AuthenticationManager authenticationManager;
     private final EmailService emailService;
+    private final EntiteService entiteService;
 
     public AuthController(UserRepository userRepository,
                           PasswordEncoder passwordEncoder,
                           JwtUtils jwtUtils,
                           AuthenticationManager authenticationManager,
-                          EmailService emailService) {
+                          EmailService emailService, EntiteService entiteService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtils = jwtUtils;
         this.authenticationManager = authenticationManager;
         this.emailService = emailService;
+        this.entiteService = entiteService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody User user) {
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("Username is already taken");
+    @PostMapping(INSCRIPTION)
+    public ResponseEntity<?> register(@RequestParam InscriptionDto inscriptionDto) {
+
+        //Est ce que le mail est déjà pris
+        if (userRepository.findByEmail(inscriptionDto.getEmail()).isPresent()) {
+            return ResponseEntity.badRequest().body(ERREUR_EMAIL_DEJA_PRIS);
         }
-        String randomPassword = generateRandomPassword();
-        user.setPassword(passwordEncoder.encode(randomPassword));
-        logger.info("Generated password: " + randomPassword);  // Log du mot de passe généré
-        user.setIsFirstConnection(true);
-        emailService.sendSimpleEmail(user.getUsername(), user.getEmail(), randomPassword);
-        return ResponseEntity.ok(userRepository.save(user));
+
+        //Génération du mot de passe aléatoire
+        String mdpAleatoire = genererMdpAleatoire();
+        logger.info("Mot de passe généré: " + mdpAleatoire);  // Log du mot de passe généré
+
+        //Création de l'utilisateur
+        Utilisateur nouvelUtilisateur = new Utilisateur(
+                inscriptionDto.getNom(),
+                inscriptionDto.getPrenom(),
+                passwordEncoder.encode(mdpAleatoire),
+                inscriptionDto.getEmail(),
+                PREMIERE_CONNEXION_TRUE,
+                ROLE_USER,
+                inscriptionDto.isEstAdmin(),
+                SUPERADMIN_FALSE,
+                entiteService.getEntiteById(inscriptionDto.getEntiteId()));
+
+        emailService.sendSimpleEmail(inscriptionDto.getPrenom(), inscriptionDto.getEmail(), mdpAleatoire);
+        return ResponseEntity.ok(userRepository.save(nouvelUtilisateur));
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody User user) {
+    @PostMapping(CONNEXION)
+    public ResponseEntity<?> login(@RequestBody ConnexionDto connexionDto) {
         try {
-            Optional<User> optionalUser = userRepository.findByUsername(user.getUsername());
+            Optional<Utilisateur> optionalUser = userRepository.findByUsername(connexionDto.getEmail());
             if (optionalUser.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_EMAIL_OU_MDP_INVALIDE);
             }
-            User authenticatedUser = optionalUser.get();
+            Utilisateur authenticatedUtilisateur = optionalUser.get();
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword())
+                    new UsernamePasswordAuthenticationToken(connexionDto.getEmail(), connexionDto.getMdp())
             );
 
             if (authentication.isAuthenticated()) {
                 Map<String, Object> authData = new HashMap<>();
-                authData.put("token", jwtUtils.generateToken(user.getUsername()));
-                authData.put("type", "Bearer");
+                authData.put(JETON, jwtUtils.generateToken(connexionDto.getEmail()));
+                authData.put(TYPE, BEARER);
 
-                if (authenticatedUser.getIsFirstConnection()) {
-                    authData.put("message", "You must change your password.");
+                if (authenticatedUtilisateur.getEstPremiereConnexion()) {
+                    authData.put(MESSAGE, MESSAGE_PREMIERE_CONNEXION);
                 }
                 return ResponseEntity.ok(authData);
             }
 
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_EMAIL_OU_MDP_INVALIDE);
         } catch (AuthenticationException e) {
             logger.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_EMAIL_OU_MDP_INVALIDE);
         }
     }
-    @PostMapping("/change-password")
-    public ResponseEntity<?> changePassword(@RequestBody Map<String, String> request) {
-        String username = request.get("username");
-        String oldPassword = request.get("oldPassword");
-        String newPassword = request.get("newPassword");
 
-        Optional<User> optionalUser = userRepository.findByUsername(username);
-        if (optionalUser.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+    @PostMapping(CHANGE_PASSWORD)
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto requete) {
+
+        Optional<Utilisateur> optionalUtilisateur = userRepository.findByEmail(requete.getEmail());
+        if (optionalUtilisateur.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ERREUR_UTILISATEUR_NON_TROUVE);
         }
 
-        User user = optionalUser.get();
+        Utilisateur utilisateur = optionalUtilisateur.get();
 
-        if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect old password");
+        if (!passwordEncoder.matches(requete.getAncienMdp(), utilisateur.getMdp())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_MAUVAIS_ANCIEN_MDP);
         }
 
-        user.setPassword(passwordEncoder.encode(newPassword));
-        user.setIsFirstConnection(false);
-        userRepository.save(user);
+        utilisateur.setMdp(passwordEncoder.encode(requete.getNouveauMdp()));
+        utilisateur.setEstPremiereConnexion(false);
+        userRepository.save(utilisateur);
 
-        return ResponseEntity.ok("Password changed successfully.");
+        return ResponseEntity.ok(MDP_BIEN_MIS_A_JOUR);
     }
 
-    private String generateRandomPassword() {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+";
+    private String genererMdpAleatoire() {
+        String characters = CHARACTERE_AUTORISE;
         Random random = new SecureRandom();
         StringBuilder password = new StringBuilder();
 

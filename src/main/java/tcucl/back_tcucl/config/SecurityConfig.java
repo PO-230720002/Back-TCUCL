@@ -14,6 +14,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import tcucl.back_tcucl.filter.JwtFilter;
 import tcucl.back_tcucl.service.impl.CustomUserDetailsServiceImpl;
 
+import static tcucl.back_tcucl.controller.ControllerConstants.*;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -43,7 +45,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/auth/**").permitAll()
+                        auth.requestMatchers(AUTH + CONNEXION).permitAll()
                                 .anyRequest().authenticated())
                 .addFilterBefore(new JwtFilter(customUserDetailsService, jwtUtils), UsernamePasswordAuthenticationFilter.class);
         return http.build();
