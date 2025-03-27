@@ -4,8 +4,16 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
+import tcucl.back_tcucl.entity.parametre.energie.ParametreEnergie;
+import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
+import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteBois;
+import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteFioul;
+import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteGaz;
 import tcucl.back_tcucl.repository.onglet.EnergieOngletRepository;
 import tcucl.back_tcucl.service.EnergieOngletService;
+
+import java.time.Year;
+import java.util.Random;
 
 @Service
 public class EnergieOngletServiceImpl implements EnergieOngletService {
@@ -27,7 +35,34 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
         return energieOngletRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("EnergieOnglet non trouvé avec l'ID : " + id));
     }
 
-    @Override
+    @Transactional
+    public EnergieOnglet createRandomEnergieOnglet() {
+        EnergieOnglet energieOnglet = new EnergieOnglet();
+        Random random = new Random();
+        energieOnglet.setAnnee(Year.of(2025));
+        energieOnglet.setEstTermine(false);
+        energieOnglet.setConsoGaz(random.nextFloat());
+        energieOnglet.setConsoFioul(random.nextFloat());
+        energieOnglet.setConsoBois(random.nextFloat());
+        energieOnglet.setConsoReseauVille(random.nextFloat());
+        energieOnglet.setConsoElecChauffage(random.nextFloat());
+        energieOnglet.setConsoElecSpecifique(random.nextFloat());
+        energieOnglet.setConsoEau(random.nextFloat());
+        energieOnglet.setNote("Note aléatoire (mais du coup non)");
+
+        ParametreEnergie parametreEnergie = new ParametreEnergie();
+        parametreEnergie.setNomReseauVille(EnumEnergie_NomReseauVille.LILLE);
+        parametreEnergie.setUniteBois(EnumEnergie_UniteBois.TONNE);
+        parametreEnergie.setUniteFioul(EnumEnergie_UniteFioul.m3);
+        parametreEnergie.setUniteGaz(EnumEnergie_UniteGaz.m3);
+
+        energieOnglet.setParametreEnergie(parametreEnergie);
+
+        return energieOngletRepository.save(energieOnglet);
+
+    }
+
+    @Transactional
     public EnergieOnglet updateEnergieOnglet(EnergieOnglet energieOnglet) {
         return energieOngletRepository.save(energieOnglet);
     }

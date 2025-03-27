@@ -6,6 +6,8 @@ public interface EnergieOngletService {
 
     public EnergieOnglet getEnergieOngletById(Long id);
 
+    public EnergieOnglet createRandomEnergieOnglet();
+
     public EnergieOnglet updateEnergieOnglet(EnergieOnglet energieOnglet);
 
     public void setEstTermine(Long id, boolean estTermine);

@@ -19,6 +19,11 @@ public class EnergieOngletController {
         return ResponseEntity.ok(energieOngletService.getEnergieOngletById(id));
     }
 
+    @PostMapping("/createRandom")
+    public ResponseEntity<?> createRandomEnergieOnglet() {
+        return ResponseEntity.ok(energieOngletService.createRandomEnergieOnglet());
+    }
+
     @PatchMapping()
     public ResponseEntity<?> updateEnergieOnglet( @RequestBody EnergieOnglet energieOnglet) {
         energieOngletService.updateEnergieOnglet(energieOnglet);

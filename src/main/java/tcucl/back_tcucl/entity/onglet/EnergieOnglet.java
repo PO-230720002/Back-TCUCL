@@ -14,7 +14,7 @@ public class EnergieOnglet {
     private Long id;
     private Year annee;
     private boolean estTermine;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "parametre_energie_id")
     private ParametreEnergie parametreEnergie;
 
