@@ -26,7 +26,7 @@ public class EmailServiceImpl implements EmailService {
             message.setSubject("Création de votre compte sur TCUCL");
             message.setFrom(fromEmail);
             message.setTo(to);
-            message.setText('"' + name + '"' + ",\n\n" +
+            message.setText("Bonjour " + name + ",\n\n" +
                     "Bienvenue sur TCUCL, votre compte a été créé avec succès.\n" +
                     "Pour activer votre compte, connectez-vous avec votre e-mail et ce mot de passe : "+
                     mdp +"\n\n" +
