@@ -2,11 +2,11 @@ package tcucl.back_tcucl.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import tcucl.back_tcucl.entity.User;
+import tcucl.back_tcucl.entity.Utilisateur;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByUsername(String username);
+public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
+    Optional<Utilisateur> findByEmail(String email);
 }
