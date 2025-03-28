@@ -16,7 +16,8 @@ public class ControllerConstants {
     public static final String AUTH = "/auth";
     public static final String CONNEXION = "/connexion";
     public static final String INSCRIPTION = "/inscription";
-    public static final String CHANGE_PASSWORD = "/change-password";
+    public static final String INSCRIPTION2 = "/inscription2";
+    public static final String CHANGE_MDP = "/change-mdp";
     //MESSAGE
     public static final String MDP_BIEN_MIS_A_JOUR = "Le mot de passe a bien été mis à jour.";
     public static final String MESSAGE_PREMIERE_CONNEXION = "Vous devez changer votre mot de passe.";

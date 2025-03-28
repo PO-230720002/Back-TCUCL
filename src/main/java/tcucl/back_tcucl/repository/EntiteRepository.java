@@ -7,5 +7,5 @@ import tcucl.back_tcucl.entity.Entite;
 @Repository
 public interface EntiteRepository extends JpaRepository<Entite, Long> {
 
-    public Entite findEntiteBy(Long id);
+    public Entite findEntiteById(Long id);
 }

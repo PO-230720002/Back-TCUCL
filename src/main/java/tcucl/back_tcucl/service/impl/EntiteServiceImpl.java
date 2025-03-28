@@ -10,8 +10,12 @@ public class EntiteServiceImpl implements EntiteService {
 
     private EntiteRepository entiteRepository;
 
+    public EntiteServiceImpl(EntiteRepository entiteRepository) {
+        this.entiteRepository = entiteRepository;
+    }
+
     @Override
     public Entite getEntiteById(Long id) {
-        return entiteRepository.findEntiteBy(id);
+        return entiteRepository.findEntiteById(id);
     }
 }

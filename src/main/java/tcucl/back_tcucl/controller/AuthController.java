@@ -15,7 +15,7 @@ import tcucl.back_tcucl.dto.ChangePasswordDto;
 import tcucl.back_tcucl.dto.ConnexionDto;
 import tcucl.back_tcucl.dto.InscriptionDto;
 import tcucl.back_tcucl.entity.Utilisateur;
-import tcucl.back_tcucl.repository.UserRepository;
+import tcucl.back_tcucl.repository.UtilisateurRepository;
 import tcucl.back_tcucl.service.EmailService;
 import tcucl.back_tcucl.service.EntiteService;
 
@@ -33,19 +33,19 @@ public class AuthController {
 
     Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-    private final UserRepository userRepository;
+    private final UtilisateurRepository utilisateurRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
     private final AuthenticationManager authenticationManager;
     private final EmailService emailService;
     private final EntiteService entiteService;
 
-    public AuthController(UserRepository userRepository,
+    public AuthController(UtilisateurRepository utilisateurRepository,
                           PasswordEncoder passwordEncoder,
                           JwtUtils jwtUtils,
                           AuthenticationManager authenticationManager,
                           EmailService emailService, EntiteService entiteService) {
-        this.userRepository = userRepository;
+        this.utilisateurRepository = utilisateurRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtils = jwtUtils;
         this.authenticationManager = authenticationManager;
@@ -54,10 +54,10 @@ public class AuthController {
     }
 
     @PostMapping(INSCRIPTION)
-    public ResponseEntity<?> register(@RequestParam InscriptionDto inscriptionDto) {
+    public ResponseEntity<?> register(@RequestBody InscriptionDto inscriptionDto) {
 
         //Est ce que le mail est déjà pris
-        if (userRepository.findByEmail(inscriptionDto.getEmail()).isPresent()) {
+        if (utilisateurRepository.findByEmail(inscriptionDto.getEmail()).isPresent()) {
             return ResponseEntity.badRequest().body(ERREUR_EMAIL_DEJA_PRIS);
         }
 
@@ -78,13 +78,43 @@ public class AuthController {
                 entiteService.getEntiteById(inscriptionDto.getEntiteId()));
 
         emailService.sendSimpleEmail(inscriptionDto.getPrenom(), inscriptionDto.getEmail(), mdpAleatoire);
-        return ResponseEntity.ok(userRepository.save(nouvelUtilisateur));
+        return ResponseEntity.ok(utilisateurRepository.save(nouvelUtilisateur));
+    }
+
+    @PostMapping(INSCRIPTION2)
+    public ResponseEntity<?> register2(@RequestBody InscriptionDto inscriptionDto) {
+
+        //Est ce que le mail est déjà pris
+        if (utilisateurRepository.findByEmail(inscriptionDto.getEmail()).isPresent()) {
+            return ResponseEntity.badRequest().body(ERREUR_EMAIL_DEJA_PRIS);
+        }
+
+        //Génération du mot de passe aléatoire
+        String mdpAleatoire = genererMdpAleatoire();
+        logger.info("Mot de passe généré: " + mdpAleatoire);  // Log du mot de passe généré
+
+        //Création de l'utilisateur
+        Utilisateur nouvelUtilisateur = new Utilisateur(
+                inscriptionDto.getNom(),
+                inscriptionDto.getPrenom(),
+                passwordEncoder.encode(mdpAleatoire),
+                inscriptionDto.getEmail(),
+                PREMIERE_CONNEXION_TRUE,
+                ROLE_USER,
+                inscriptionDto.isEstAdmin(),
+                SUPERADMIN_FALSE,
+                entiteService.getEntiteById(inscriptionDto.getEntiteId()));
+
+        emailService.sendSimpleEmail(inscriptionDto.getPrenom(), inscriptionDto.getEmail(), mdpAleatoire);
+        return ResponseEntity.ok(utilisateurRepository.save(nouvelUtilisateur));
     }
 
     @PostMapping(CONNEXION)
     public ResponseEntity<?> login(@RequestBody ConnexionDto connexionDto) {
+        logger.info("Connexion de l'utilisateur: " + connexionDto.getEmail());
+        logger.info("mdp de l'utilisateur: " + connexionDto.getMdp());
         try {
-            Optional<Utilisateur> optionalUser = userRepository.findByUsername(connexionDto.getEmail());
+            Optional<Utilisateur> optionalUser = utilisateurRepository.findByEmail(connexionDto.getEmail());
             if (optionalUser.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_EMAIL_OU_MDP_INVALIDE);
             }
@@ -111,10 +141,10 @@ public class AuthController {
         }
     }
 
-    @PostMapping(CHANGE_PASSWORD)
+    @PostMapping(CHANGE_MDP)
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto requete) {
 
-        Optional<Utilisateur> optionalUtilisateur = userRepository.findByEmail(requete.getEmail());
+        Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findByEmail(requete.getEmail());
         if (optionalUtilisateur.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ERREUR_UTILISATEUR_NON_TROUVE);
         }
@@ -127,7 +157,7 @@ public class AuthController {
 
         utilisateur.setMdp(passwordEncoder.encode(requete.getNouveauMdp()));
         utilisateur.setEstPremiereConnexion(false);
-        userRepository.save(utilisateur);
+        utilisateurRepository.save(utilisateur);
 
         return ResponseEntity.ok(MDP_BIEN_MIS_A_JOUR);
     }

@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.entity.Utilisateur;
-import tcucl.back_tcucl.repository.UserRepository;
+import tcucl.back_tcucl.repository.UtilisateurRepository;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -15,10 +15,10 @@ import java.util.Optional;
 public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
 
-    private final UserRepository userRepository;
+    private final UtilisateurRepository utilisateurRepository;
 
-    public CustomUserDetailsServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public CustomUserDetailsServiceImpl(UtilisateurRepository utilisateurRepository) {
+        this.utilisateurRepository = utilisateurRepository;
     }
 
     //Ne pas changer le nom de la méthode loadByUsername en loadUserByEmail, sinon l'authentification ne fonctionnera pas
@@ -27,7 +27,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Optional<Utilisateur> userOptional = userRepository.findByEmail(email);
+        Optional<Utilisateur> userOptional = utilisateurRepository.findByEmail(email);
 
         if (userOptional.isEmpty()) {
             throw new UsernameNotFoundException("Utilisateur non trouvé avec le mail : " + email);

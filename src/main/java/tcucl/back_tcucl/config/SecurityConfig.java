@@ -45,9 +45,11 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(AUTH + CONNEXION).permitAll()
-                                .anyRequest().authenticated())
+                        auth.requestMatchers(AUTH + CONNEXION, AUTH + INSCRIPTION2).permitAll()
+                                .anyRequest().authenticated()
+                )
                 .addFilterBefore(new JwtFilter(customUserDetailsService, jwtUtils), UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 }

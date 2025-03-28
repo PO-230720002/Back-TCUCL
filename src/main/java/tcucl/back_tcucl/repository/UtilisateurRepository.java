@@ -7,7 +7,6 @@ import tcucl.back_tcucl.entity.Utilisateur;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<Utilisateur, Long> {
-    Optional<Utilisateur> findByUsername(String username);
+public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
     Optional<Utilisateur> findByEmail(String email);
 }
