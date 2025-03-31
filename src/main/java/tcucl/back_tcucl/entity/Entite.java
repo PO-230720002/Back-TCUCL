@@ -22,6 +22,20 @@ public class Entite {
     @JoinColumn(name = "annee_id")
     private List<Annee> annees;
 
+    private String type;
+
+    public Entite(String nom, String type) {
+        this.nom = nom;
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public Long getId() {
         return id;

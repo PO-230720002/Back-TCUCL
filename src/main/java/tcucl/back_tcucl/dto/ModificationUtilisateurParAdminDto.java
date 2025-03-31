@@ -1,20 +1,17 @@
 package tcucl.back_tcucl.dto;
 
-public class InscriptionDto {
+public class ModificationUtilisateurParAdminDto {
 
     private String nom;
     private String prenom;
     private String email;
     private boolean estAdmin;
-    private Long entiteId;
 
-
-    public InscriptionDto(String nom, String prenom, String email, boolean estAdmin, Long entiteId) {
+    public ModificationUtilisateurParAdminDto(String nom, String prenom, String email, boolean estAdmin) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.estAdmin = estAdmin;
-        this.entiteId = entiteId;
     }
 
     public String getNom() {
@@ -47,13 +44,5 @@ public class InscriptionDto {
 
     public void setEstAdmin(boolean estAdmin) {
         this.estAdmin = estAdmin;
-    }
-
-    public Long getEntiteId() {
-        return entiteId;
-    }
-
-    public void setEntiteId(Long entiteId) {
-        this.entiteId = entiteId;
     }
 }

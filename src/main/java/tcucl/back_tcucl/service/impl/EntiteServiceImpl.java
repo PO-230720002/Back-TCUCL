@@ -5,6 +5,8 @@ import tcucl.back_tcucl.entity.Entite;
 import tcucl.back_tcucl.repository.EntiteRepository;
 import tcucl.back_tcucl.service.EntiteService;
 
+import java.util.List;
+
 @Service
 public class EntiteServiceImpl implements EntiteService {
 
@@ -17,5 +19,15 @@ public class EntiteServiceImpl implements EntiteService {
     @Override
     public Entite getEntiteById(Long id) {
         return entiteRepository.findEntiteById(id);
+    }
+
+    @Override
+    public Entite saveEntite(Entite entite) {
+        return entiteRepository.save(entite);
+    }
+
+    @Override
+    public List<Entite> getAllEntites() {
+        return entiteRepository.findAll();
     }
 }

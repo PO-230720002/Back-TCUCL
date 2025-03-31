@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import tcucl.back_tcucl.filter.JwtFilter;
 import tcucl.back_tcucl.service.impl.CustomUserDetailsServiceImpl;
 
-import static tcucl.back_tcucl.controller.ControllerConstants.*;
+import static tcucl.back_tcucl.Constante.*;
 
 @Configuration
 @EnableWebSecurity

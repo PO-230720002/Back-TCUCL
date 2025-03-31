@@ -5,11 +5,12 @@ import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
 import tcucl.back_tcucl.service.EnergieOngletService;
 
-import static tcucl.back_tcucl.controller.ControllerConstants.*;
+import static tcucl.back_tcucl.Constante.*;
 
 @RestController
 @RequestMapping(ENERGIE_ONGLET)
 public class EnergieOngletController {
+
     private final EnergieOngletService energieOngletService;
 
     public EnergieOngletController(EnergieOngletService energieOngletService) {

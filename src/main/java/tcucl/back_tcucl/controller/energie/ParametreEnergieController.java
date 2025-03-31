@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.service.ParametreEnergieOngletService;
 
-import static tcucl.back_tcucl.controller.ControllerConstants.*;
+import static tcucl.back_tcucl.Constante.*;
 
 @RestController
 @RequestMapping(PARAMETRE_ENERGIE)
