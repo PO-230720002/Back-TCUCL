@@ -1,14 +1,16 @@
 package tcucl.back_tcucl.service;
 
-import org.springframework.http.ResponseEntity;
 import tcucl.back_tcucl.dto.ChangePasswordDto;
 import tcucl.back_tcucl.dto.ConnexionDto;
 import tcucl.back_tcucl.dto.InscriptionDto;
 
+import java.util.Map;
+
 public interface AuthentificationService {
-    ResponseEntity<?> inscription(InscriptionDto inscriptionDto);
+    void inscription(InscriptionDto inscriptionDto);
 
-    ResponseEntity<?> changePassword(ChangePasswordDto requete);
+    void changePassword(ChangePasswordDto requete);
 
-    ResponseEntity<?> connexion(ConnexionDto connexionDto);
+    //TODO transformer map en DTO
+    Map<String, Object> connexion(ConnexionDto connexionDto);
 }

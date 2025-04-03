@@ -2,7 +2,6 @@ package tcucl.back_tcucl.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -41,19 +40,17 @@ public class AuthentificationServiceImpl implements AuthentificationService {
     }
 
     @Override
-    public ResponseEntity<?> inscription(InscriptionDto inscriptionDto) {
+    public void inscription(InscriptionDto inscriptionDto) {
         utilisateurService.inscrireUtilisateur(inscriptionDto);
-        return ResponseEntity.ok(UTILISATEUR_BIEN_ENREGISTRE);
     }
 
     @Override
-    public ResponseEntity<?> changePassword(ChangePasswordDto changePasswordDto) {
+    public void changePassword(ChangePasswordDto changePasswordDto) {
         utilisateurService.changePassword(changePasswordDto);
-        return ResponseEntity.ok(MDP_BIEN_MIS_A_JOUR);
     }
 
     @Override
-    public ResponseEntity<?> connexion(ConnexionDto connexionDto) {
+    public Map<String, Object> connexion(ConnexionDto connexionDto) {
         logger.info("Connexion de l'utilisateur: " + connexionDto.getEmail());
         logger.info("mdp de l'utilisateur: " + connexionDto.getMdp());
 
@@ -75,7 +72,7 @@ public class AuthentificationServiceImpl implements AuthentificationService {
             if (utilisateur.getEstPremiereConnexion()) {
                 authData.put(MESSAGE, MESSAGE_PREMIERE_CONNEXION);
             }
-            return ResponseEntity.ok(authData);
+            return authData;
         }else {
             throw new MauvaisAncienMdpException();
         }

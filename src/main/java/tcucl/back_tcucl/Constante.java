@@ -22,6 +22,9 @@ public class Constante {
     public static final String MODIFIER_UTILISATEUR_UTILISATEUR = "/modifier-utilisateur-utilisateur";
     public static final String MODIFIER_UTILISATEUR_ADMIN = "/modifier-utilisateur-admin";
     public static final String MODIFIER_EST_ADMIN = "/modifier-est-admin";
+    public static final String PARAMETRE = "/parametre";
+    public static final String INSCRIRE_UTILISATEUR = "/inscription-utilisateur";
+    public static final String CREER_ENTITE = "/creer-entite";
 
 
 

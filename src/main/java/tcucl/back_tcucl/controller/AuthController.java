@@ -23,24 +23,25 @@ public class AuthController {
         this.authentificationService = authentificationService;
     }
 
-    @PostMapping(INSCRIPTION)
-    public ResponseEntity<?> inscription(@RequestBody InscriptionDto inscriptionDto) {
-        return authentificationService.inscription(inscriptionDto);
-    }
-
+    //pour les tests
     @PostMapping(INSCRIPTION2)
     public ResponseEntity<?> inscription2(@RequestBody InscriptionDto inscriptionDto) {
-        return authentificationService.inscription(inscriptionDto);
+        authentificationService.inscription(inscriptionDto);
+        return ResponseEntity.ok(UTILISATEUR_BIEN_ENREGISTRE);
     }
 
+    //connexion de base
     @PostMapping(CONNEXION)
     public ResponseEntity<?> connexion(@RequestBody ConnexionDto connexionDto) {
-        return authentificationService.connexion(connexionDto);
+        return ResponseEntity.ok(authentificationService.connexion(connexionDto));
     }
 
+    //processus d'inscription  pour
     @PostMapping(CHANGE_MDP)
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto changePasswordDto) {
-        return authentificationService.changePassword(changePasswordDto);
+        authentificationService.changePassword(changePasswordDto);
+        return ResponseEntity.ok(MDP_BIEN_MIS_A_JOUR);
+
     }
 
 

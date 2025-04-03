@@ -1,10 +1,7 @@
 package tcucl.back_tcucl.service.impl;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import tcucl.back_tcucl.dto.ChangePasswordDto;
-import tcucl.back_tcucl.dto.CreationEntiteDto;
-import tcucl.back_tcucl.dto.InscriptionDto;
+import tcucl.back_tcucl.dto.*;
 import tcucl.back_tcucl.entity.Entite;
 import tcucl.back_tcucl.entity.Utilisateur;
 import tcucl.back_tcucl.service.ParametreService;
@@ -12,8 +9,9 @@ import tcucl.back_tcucl.service.AuthentificationService;
 import tcucl.back_tcucl.service.EntiteService;
 import tcucl.back_tcucl.service.UtilisateurService;
 
+import java.util.List;
+
 import static tcucl.back_tcucl.Constante.ADMIN_TRUE;
-import static tcucl.back_tcucl.Constante.MDP_BIEN_MIS_A_JOUR;
 
 @Service
 public class ParametreServiceImpl implements ParametreService {
@@ -28,9 +26,8 @@ public class ParametreServiceImpl implements ParametreService {
 
 
     @Override
-    public ResponseEntity<?> changePassword(ChangePasswordDto changePasswordDto) {
+    public void changePassword(ChangePasswordDto changePasswordDto) {
         utilisateurService.changePassword(changePasswordDto);
-        return ResponseEntity.ok(MDP_BIEN_MIS_A_JOUR);
     }
 
     @Override
@@ -43,7 +40,7 @@ public class ParametreServiceImpl implements ParametreService {
         ));
 
         //Inscription de l'utilisateur
-        Utilisateur utilisateur = utilisateurService.inscrireUtilisateur(new InscriptionDto(
+        utilisateurService.inscrireUtilisateur(new InscriptionDto(
                         creationEntiteDto.getNomUtilisateur(),
                         creationEntiteDto.getPrenomUtilisateur(),
                         creationEntiteDto.getEmailUtilisateur(),
@@ -53,4 +50,19 @@ public class ParametreServiceImpl implements ParametreService {
     }
 
 
+    @Override
+    public List<UtilisateurDto> getAllUtilisateurParEntiteId(Long idEntite) {
+        return utilisateurService.getAllUtilisateurParEntiteId(idEntite).stream().map(this::utilisateurToUtilisateurDto).toList();
+    }
+
+    private UtilisateurDto utilisateurToUtilisateurDto(Utilisateur utilisateur){
+        return new UtilisateurDto(
+                utilisateur.getId(),
+                utilisateur.getNom(),
+                utilisateur.getPrenom(),
+                utilisateur.getEmail(),
+                utilisateur.getEstAdmin(),
+                utilisateur.getEstSuperAdmin()
+        );
+    }
 }
