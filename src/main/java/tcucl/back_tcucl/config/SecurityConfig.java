@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -16,8 +17,10 @@ import tcucl.back_tcucl.service.impl.CustomUserDetailsServiceImpl;
 
 import static tcucl.back_tcucl.Constante.*;
 
-@Configuration
+
+@EnableMethodSecurity
 @EnableWebSecurity
+@Configuration
 public class SecurityConfig {
 
     private final CustomUserDetailsServiceImpl customUserDetailsService;
@@ -26,11 +29,6 @@ public class SecurityConfig {
     public SecurityConfig(CustomUserDetailsServiceImpl customUserDetailsService, JwtUtils jwtUtils) {
         this.customUserDetailsService = customUserDetailsService;
         this.jwtUtils = jwtUtils;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
     @Bean

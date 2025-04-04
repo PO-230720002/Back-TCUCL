@@ -28,11 +28,20 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         Utilisateur utilisateur = utilisateurService.getUtilisateurParEmail(email);
+        SimpleGrantedAuthority utilisateurAuthority;
+
+        if (utilisateur.getEstSuperAdmin()) {
+            utilisateurAuthority = new SimpleGrantedAuthority("ROLE_SUPERADMIN");
+        } else if (utilisateur.getEstAdmin()) {
+            utilisateurAuthority = new SimpleGrantedAuthority("ROLE_ADMIN");
+        } else {
+            utilisateurAuthority = new SimpleGrantedAuthority("ROLE_USER");
+        }
 
         return new org.springframework.security.core.userdetails.User(
                 utilisateur.getEmail(),
                 utilisateur.getMdp(),
-                Collections.singletonList(new SimpleGrantedAuthority(utilisateur.getRole()))
+                Collections.singletonList(utilisateurAuthority)
         );
     }
 }

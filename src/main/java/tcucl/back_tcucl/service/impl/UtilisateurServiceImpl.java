@@ -45,6 +45,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     @Override
     public void modifierUtilisateurParUtilisateur(Long id, ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto){
+        if(utilisateurManager.emailDejaPris(modificationUtilisateurParUtilisateurDto.getEmail()))
+        {
+            throw new EmailDejaPrisException(modificationUtilisateurParUtilisateurDto.getEmail());
+        }
         Utilisateur utilisateur = utilisateurManager.getUtilisateurParId(id);
         utilisateur.setNom(modificationUtilisateurParUtilisateurDto.getNom());
         utilisateur.setPrenom(modificationUtilisateurParUtilisateurDto.getPrenom());

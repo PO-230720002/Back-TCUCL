@@ -12,6 +12,7 @@ import tcucl.back_tcucl.dto.ConnexionDto;
 import tcucl.back_tcucl.dto.InscriptionDto;
 import tcucl.back_tcucl.entity.Utilisateur;
 import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisAncienMdpException;
+import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisIdentifiantsException;
 import tcucl.back_tcucl.exceptionPersonnalisee.UtilisateurNonTrouveEmailException;
 import tcucl.back_tcucl.service.UtilisateurService;
 import tcucl.back_tcucl.service.AuthentificationService;
@@ -58,7 +59,7 @@ public class AuthentificationServiceImpl implements AuthentificationService {
         try{
             utilisateur = utilisateurService.getUtilisateurParEmail(connexionDto.getEmail());
         }catch (UtilisateurNonTrouveEmailException e){
-            throw new MauvaisAncienMdpException();
+            throw new MauvaisIdentifiantsException();
         }
 
         Authentication authentication = authenticationManager.authenticate(
@@ -74,7 +75,7 @@ public class AuthentificationServiceImpl implements AuthentificationService {
             }
             return authData;
         }else {
-            throw new MauvaisAncienMdpException();
+            throw new MauvaisIdentifiantsException();
         }
 
     }
