@@ -1,6 +1,8 @@
 package tcucl.back_tcucl.entity.parametre.achat;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import tcucl.back_tcucl.entity.parametre.achat.enums.EnumAchatRestauration_Methode;
@@ -8,7 +10,9 @@ import tcucl.back_tcucl.entity.parametre.achat.enums.EnumAchatRestauration_Metho
 @Entity
 @Table(name = "achat_restauration")
 public class AchatRestauration {
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private Integer EnumValeur_Methode;

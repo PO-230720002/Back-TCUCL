@@ -26,9 +26,6 @@ public class MachineEmissionFugitive {
     private Float tauxDeFuite;
     private Integer valeurEnumTypeMachine;
 
-    @ManyToMany(mappedBy = "machinesEmissionFugitive")
-    private List<EmissionFugitiveOnglet> emissionFugitiveOnglets;
-
 
     @AssertTrue(message = "Les règles de validation ne sont pas respectées.")
     public boolean isValid() {

@@ -31,19 +31,19 @@ public class ParametreServiceImpl implements ParametreService {
     }
 
     @Override
-    public void ajouterEntite(CreationEntiteDto creationEntiteDto) {
+    public void creerEntiteEtAdmin(CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
 
         //Creation puis récupération de l'entite
         Entite entite = entiteService.saveEntite(new Entite(
-                creationEntiteDto.getNom(),
-                creationEntiteDto.getType()
+                creationEntiteEtAdminDto.getNom(),
+                creationEntiteEtAdminDto.getType()
         ));
 
         //Inscription de l'utilisateur
         utilisateurService.inscrireUtilisateur(new InscriptionDto(
-                        creationEntiteDto.getNomUtilisateur(),
-                        creationEntiteDto.getPrenomUtilisateur(),
-                        creationEntiteDto.getEmailUtilisateur(),
+                        creationEntiteEtAdminDto.getNomUtilisateur(),
+                        creationEntiteEtAdminDto.getPrenomUtilisateur(),
+                        creationEntiteEtAdminDto.getEmailUtilisateur(),
                         ADMIN_TRUE,
                         entite.getId()
         ));
@@ -61,8 +61,7 @@ public class ParametreServiceImpl implements ParametreService {
                 utilisateur.getNom(),
                 utilisateur.getPrenom(),
                 utilisateur.getEmail(),
-                utilisateur.getEstAdmin(),
-                utilisateur.getEstSuperAdmin()
+                utilisateur.getEstAdmin()
         );
     }
 }

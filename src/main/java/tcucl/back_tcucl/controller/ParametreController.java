@@ -7,10 +7,10 @@ import tcucl.back_tcucl.dto.*;
 import tcucl.back_tcucl.service.ParametreService;
 import tcucl.back_tcucl.service.UtilisateurService;
 
-import static tcucl.back_tcucl.Constante.*;
+import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(PARAMETRE)
+@RequestMapping(REST_PARAMETRE)
 public class ParametreController {
 
     private final UtilisateurService utilisateurService;
@@ -22,61 +22,54 @@ public class ParametreController {
     }
 
     //    Parametre perso
-    //TODO sécurité user authentifié = user modifié
     @PreAuthorize("@permissionService.utilisateurPeutModifierUtilisateur(authentication, #idUtilisateur)")
-    @PatchMapping(MODIFIER_UTILISATEUR_UTILISATEUR + ID)
+    @PatchMapping(REST_MODIFIER_UTILISATEUR_UTILISATEUR + REST_ID)
     public ResponseEntity<?> modifierUtilisateurParUtilisateur(@PathVariable("id") Long idUtilisateur, @RequestBody ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto) {
         utilisateurService.modifierUtilisateurParUtilisateur(idUtilisateur, modificationUtilisateurParUtilisateurDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_MODIFIE);
     }
 
-    //TODO sécurité user authentifié = email dans chnagepasswordDto
+
     @PreAuthorize("@permissionService.utlisateurOuAdminPeutChangerMdp(authentication, #changePasswordDto)")
-    @PostMapping(CHANGE_MDP)
+    @PostMapping(REST_CHANGE_MDP)
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto changePasswordDto) {
         parametreService.changePassword(changePasswordDto);
-        return ResponseEntity.ok(MDP_BIEN_MIS_A_JOUR);
+        return ResponseEntity.ok(REST_MESSAGE_MDP_BIEN_MIS_A_JOUR);
     }
 
-    //TODO sécurité user authentifié admin ou SuperAdmin (admin doit ajouter à SON entité)
     //    Parametre Admin
-    )
-    @PreAuthorize("(hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')) and ")
-    @PostMapping(INSCRIRE_UTILISATEUR)
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutInscrireUtilisateur(authentication, #inscriptionDto))")
+    @PostMapping(REST_INSCRIRE_UTILISATEUR)
     public ResponseEntity<?> inscrireUtilisateur(@RequestBody InscriptionDto inscriptionDto) {
         utilisateurService.inscrireUtilisateur(inscriptionDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT);
     }
 
-    //TODO sécurité user authentifié doit etre ADMIN + utilisateur modifié doit etre dans SON entité
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PatchMapping(MODIFIER_UTILISATEUR_ADMIN + ID)
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutModifierUtilisateur(authentication, modificationUtilisateurParAdminDto))")
+    @PatchMapping(REST_MODIFIER_UTILISATEUR_ADMIN + REST_ID)
     public ResponseEntity<?> modifierUtilisateurParAdmin(@PathVariable("id") Long idUtilisateur, @RequestBody ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto) {
         utilisateurService.modifierUtilisateurParAdmin(idUtilisateur, modificationUtilisateurParAdminDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_MODIFIE);
     }
 
-    //TODO sécurité user authentifié doit etre ADMIN + utilisateur modifié doit etre dans SON entité
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PatchMapping(MODIFIER_EST_ADMIN + ID)
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutModifierEstAdmin(authentication, #idUtilisateur))")
+    @PatchMapping(REST_MODIFIER_EST_ADMIN + REST_ID)
     public ResponseEntity<?> modifierEstAdmin(@PathVariable("id") Long idUtilisateur, @RequestBody boolean estAdmin) {
         utilisateurService.modifierEstAdmin(idUtilisateur, estAdmin);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(REST_MESSAGE_CHANGE_STATUT_ADMIN);
     }
 
     //Parametre Super Admin
-    //TODO sécurité user authentifié doit etre SUPERADMIN
     @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
-    
-    @PostMapping(CREER_ENTITE)
-    public ResponseEntity<?> creerEntite(CreationEntiteDto creationEntiteDto) {
-        parametreService.ajouterEntite(creationEntiteDto);
-        return ResponseEntity.ok().build();
+    @PostMapping(REST_CREER_ENTITE)
+    public ResponseEntity<?> creerEntite(CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
+        parametreService.creerEntiteEtAdmin(creationEntiteEtAdminDto);
+        return ResponseEntity.ok(REST_MESSAGE_ENTITE_CREEE);
     }
 
     //Initialisation
-    //TODO sécurité user authentifié doit etre Admin ou SuperAdmin
-    @GetMapping(UTILISATEUR_ENTITE + ID)
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutAccéderAEntite(authentication, #idEntite))")
+    @GetMapping(REST_UTILISATEUR_ENTITE + REST_ID)
     public ResponseEntity<?> getAllUtilisateurParEntiteId(@PathVariable("id") Long idEntite) {
         return ResponseEntity.ok(parametreService.getAllUtilisateurParEntiteId(idEntite));
     }

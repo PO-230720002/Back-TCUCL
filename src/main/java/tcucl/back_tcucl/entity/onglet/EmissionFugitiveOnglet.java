@@ -7,41 +7,15 @@ import java.time.Year;
 import java.util.List;
 
 @Entity
-@Table(name = "emission_fugitive")
-public class EmissionFugitiveOnglet {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Year annee;
-    private boolean estTermine;
+@Table(name = "emission_fugitive_onglet")
+public class EmissionFugitiveOnglet extends Onglet {
+
 
     private boolean possedeClimatisation;
 
-    @ManyToMany
-    @JoinTable(
-            name = "jointure_EmissionFugitiveOnglet_MachineEmissionFugitive",
-            joinColumns = @JoinColumn(name = "onglet_id"),
-            inverseJoinColumns = @JoinColumn(name = "machine_id")
-    )
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "emission_fugitive_onglet_id")
     private List<MachineEmissionFugitive> machinesEmissionFugitive;
-
-
-
-    public Year getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Year annee) {
-        this.annee = annee;
-    }
-
-    public boolean isEstTermine() {
-        return estTermine;
-    }
-
-    public void setEstTermine(boolean estTermine) {
-        this.estTermine = estTermine;
-    }
 
     public boolean isPossedeClimatisation() {
         return possedeClimatisation;
@@ -59,11 +33,23 @@ public class EmissionFugitiveOnglet {
         this.machinesEmissionFugitive = machinesEmissionFugitive;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public String getNote() {
+        return super.getNote();
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
+    public void setEstTermine(boolean estTermine) {
+        super.setEstTermine(estTermine);
     }
 }

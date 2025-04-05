@@ -5,15 +5,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import tcucl.back_tcucl.exceptionPersonnalisee.EmailDejaPrisException;
-import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisAncienMdpException;
-import tcucl.back_tcucl.exceptionPersonnalisee.UtilisateurNonTrouveEmailException;
-import tcucl.back_tcucl.exceptionPersonnalisee.UtilisateurNonTrouveIdException;
+import tcucl.back_tcucl.exceptionPersonnalisee.*;
 
 import static tcucl.back_tcucl.Constante.*;
 
 @RestControllerAdvice
 public class GestionnaireErreurController {
+
 
     @ExceptionHandler(EmailDejaPrisException.class)
     public ResponseEntity<String> handleEmailDejaPrisException(EmailDejaPrisException ex) {
@@ -39,13 +37,13 @@ public class GestionnaireErreurController {
     //Connexion
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<String> handleAuthenticationException(AuthenticationException ex) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_EMAIL_OU_MDP_INVALIDE);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_AUTHENTIFICATION);
     }
 
-//    @ExceptionHandler(EntiteNonTrouveeException.class)
-//    public ResponseEntity<String> handleEntiteNonTrouveeException(EntiteNonTrouveeException ex) {
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-//    }
+    @ExceptionHandler(EntiteNonTrouveeIdException.class)
+    public ResponseEntity<String> handleEntiteNonTrouveeException(EntiteNonTrouveeIdException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ERREUR_ENTITE_NON_TROUVE);
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {

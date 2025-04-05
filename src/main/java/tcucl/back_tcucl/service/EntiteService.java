@@ -12,5 +12,8 @@ public interface EntiteService {
 
     Entite saveEntite(Entite entite);
 
+    Entite creerEntite(String nom, String type);
+
+
     List<Entite> getAllEntites();
 }

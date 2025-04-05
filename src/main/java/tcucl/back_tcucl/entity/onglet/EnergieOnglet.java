@@ -6,14 +6,9 @@ import tcucl.back_tcucl.entity.parametre.energie.ParametreEnergie;
 import java.time.Year;
 
 @Entity
-@Table(name = "energie")
-public class EnergieOnglet {
+@Table(name = "energie_onglet")
+public class EnergieOnglet extends Onglet {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Year annee;
-    private boolean estTermine;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "parametre_energie_id")
     private ParametreEnergie parametreEnergie;
@@ -25,26 +20,6 @@ public class EnergieOnglet {
     private Float ConsoElecChauffage;
     private Float ConsoElecSpecifique;
     private Float ConsoEau;
-    private String note;
-
-
-
-
-    public boolean isEstTermine() {
-        return estTermine;
-    }
-
-    public void setEstTermine(boolean estTermine) {
-        this.estTermine = estTermine;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
 
     public Float getConsoEau() {
         return ConsoEau;
@@ -102,14 +77,6 @@ public class EnergieOnglet {
         ConsoGaz = consoGaz;
     }
 
-    public Year getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Year annee) {
-        this.annee = annee;
-    }
-
     public ParametreEnergie getParametreEnergie() {
         return parametreEnergie;
     }
@@ -118,12 +85,23 @@ public class EnergieOnglet {
         this.parametreEnergie = parametreEnergie;
     }
 
-
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public String getNote() {
+        return super.getNote();
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
+    public void setEstTermine(boolean estTermine) {
+        super.setEstTermine(estTermine);
     }
 }

@@ -6,14 +6,9 @@ import jakarta.persistence.*;
 import java.time.Year;
 
 @Entity
-@Table(name = "mobilite_dom_trav")
-public class MobiliteDomTravOnglet {
+@Table(name = "mobilite_dom_trav_onglet")
+public class MobiliteDomTravOnglet extends Onglet {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Year annee;
-    private boolean estTermine;
 
     private Integer voitureThermiqueEtudiantKm;
     private Integer voitureElectriqueEtudiantKm;
@@ -41,23 +36,6 @@ public class MobiliteDomTravOnglet {
     private Integer marcheAPiedSalarieKm;
     private Integer nbJoursDeplacementSalarie;
 
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Year getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Year annee) {
-        this.annee = annee;
-    }
 
     public Integer getVoitureThermiqueEtudiantKm() {
         return voitureThermiqueEtudiantKm;
@@ -251,11 +229,23 @@ public class MobiliteDomTravOnglet {
         this.nbJoursDeplacementSalarie = nbJoursDeplacementSalarie;
     }
 
-    public boolean isEstTermine() {
-        return estTermine;
+    @Override
+    public String getNote() {
+        return super.getNote();
     }
 
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
     public void setEstTermine(boolean estTermine) {
-        this.estTermine = estTermine;
+        super.setEstTermine(estTermine);
     }
 }
