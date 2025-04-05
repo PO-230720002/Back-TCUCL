@@ -2,7 +2,6 @@ package tcucl.back_tcucl.controller.administration;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tcucl.back_tcucl.dto.CreationEntiteDto;
 import tcucl.back_tcucl.entity.Entite;
 import tcucl.back_tcucl.service.ParametreService;
 import tcucl.back_tcucl.service.EntiteService;

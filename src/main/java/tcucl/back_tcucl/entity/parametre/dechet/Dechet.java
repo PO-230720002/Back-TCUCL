@@ -8,6 +8,7 @@ import tcucl.back_tcucl.entity.parametre.dechet.enums.EnumDechet_Traitement;
 @Entity
 @Table(name = "dechet")
 public class Dechet {
+
     @Id
     private Long id;
 

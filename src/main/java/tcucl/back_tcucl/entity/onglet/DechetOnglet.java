@@ -8,9 +8,7 @@ import tcucl.back_tcucl.entity.parametre.dechet.Dechet;
 
 @Entity
 @Table(name = "dechet_onglet")
-public class DechetOnglet {
-    @Id
-    private Long id;
+public class DechetOnglet extends Onglet{
 
     @OneToOne
     private Dechet ordures_menageres;
@@ -24,11 +22,4 @@ public class DechetOnglet {
     private Dechet textile;
 
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

@@ -6,13 +6,7 @@ import java.time.Year;
 
 @Entity
 @Table(name = "autre_mob_fr")
-public class AutreMobFrOnglet {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Year annee;
-    private boolean estTermine;
+public class AutreMobFrOnglet extends Onglet {
 
     private Float salarieNbAllerSimple_VoitureThermique;
     private Float salarieNbAllerSimple_VoitureElectrique;
@@ -234,27 +228,4 @@ public class AutreMobFrOnglet {
         this.etudiantDistanceTotale_Autocar = etudiantDistanceTotale_Autocar;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Year getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Year annee) {
-        this.annee = annee;
-    }
-
-    public boolean isEstTermine() {
-        return estTermine;
-    }
-
-    public void setEstTermine(boolean estTermine) {
-        this.estTermine = estTermine;
-    }
 }

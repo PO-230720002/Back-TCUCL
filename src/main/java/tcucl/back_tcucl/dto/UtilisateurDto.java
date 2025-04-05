@@ -7,16 +7,14 @@ public class UtilisateurDto {
     private String prenom;
     private String email;
     private Boolean estAdmin;
-    private Boolean estSuperAdmin;
 
 
-    public UtilisateurDto(long id, String nom, String prenom, String email, Boolean estAdmin, Boolean estSuperAdmin) {
+    public UtilisateurDto(long id, String nom, String prenom, String email, Boolean estAdmin) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.estAdmin = estAdmin;
-        this.estSuperAdmin = estSuperAdmin;
     }
 
     public long getId() {
@@ -59,11 +57,5 @@ public class UtilisateurDto {
         this.estAdmin = estAdmin;
     }
 
-    public Boolean getEstSuperAdmin() {
-        return estSuperAdmin;
-    }
 
-    public void setEstSuperAdmin(Boolean estSuperAdmin) {
-        this.estSuperAdmin = estSuperAdmin;
-    }
 }

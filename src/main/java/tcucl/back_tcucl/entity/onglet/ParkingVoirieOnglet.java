@@ -8,13 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "parking_voirie_Onglet")
-public class ParkingVoirieOnglet {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Year annee;
-    private boolean estTermine;
+public class ParkingVoirieOnglet extends Onglet{
 
     @ManyToMany
     @JoinTable(
@@ -25,21 +19,6 @@ public class ParkingVoirieOnglet {
     private List<ParkingVoirie> parkingVoirieList;
 
 
-    public Year getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Year annee) {
-        this.annee = annee;
-    }
-
-    public boolean isEstTermine() {
-        return estTermine;
-    }
-
-    public void setEstTermine(boolean estTermine) {
-        this.estTermine = estTermine;
-    }
 
     public List<ParkingVoirie> getParkingVoirieList() {
         return parkingVoirieList;
@@ -49,11 +28,4 @@ public class ParkingVoirieOnglet {
         this.parkingVoirieList = parkingVoirieList;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

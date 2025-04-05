@@ -1,7 +1,6 @@
 package tcucl.back_tcucl.entity;
 
 import jakarta.persistence.*;
-import tcucl.back_tcucl.entity.annee.Annee;
 
 import java.util.List;
 
@@ -13,6 +12,7 @@ public class Entite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
+    private String type;
 
     @OneToOne
     @JoinColumn(name = "notes_permanentes_id")
@@ -22,11 +22,13 @@ public class Entite {
     @JoinColumn(name = "annee_id")
     private List<Annee> annees;
 
-    private String type;
 
     public Entite(String nom, String type) {
         this.nom = nom;
         this.type = type;
+    }
+
+    public Entite() {
     }
 
     public String getType() {

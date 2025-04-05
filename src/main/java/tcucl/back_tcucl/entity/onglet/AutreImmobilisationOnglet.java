@@ -8,13 +8,7 @@ import jakarta.validation.constraints.AssertTrue;
 
 @Entity
 @Table(name = "autre_immobilisation_onglet")
-public class AutreImmobilisationOnglet {
-
-    @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-    private Integer annee;
-    private Boolean estTerminee;
+public class AutreImmobilisationOnglet extends Onglet {
 
     private boolean installationComplete_IsEmissionGESConnues;
     private Float installationComplete_EmissionDeGes;
@@ -91,29 +85,6 @@ public class AutreImmobilisationOnglet {
         return autresMachinesEur_IsEmissionConnue || autresMachinesEur_EmissionReelle == null;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Boolean getEstTerminee() {
-        return estTerminee;
-    }
-
-    public void setEstTerminee(Boolean estTerminee) {
-        this.estTerminee = estTerminee;
-    }
-
-    public Integer getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Integer annee) {
-        this.annee = annee;
-    }
 
     public boolean isInstallationComplete_IsEmissionGESConnues() {
         return installationComplete_IsEmissionGESConnues;

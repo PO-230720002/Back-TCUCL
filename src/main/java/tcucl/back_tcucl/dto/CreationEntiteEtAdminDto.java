@@ -1,6 +1,6 @@
 package tcucl.back_tcucl.dto;
 
-public class CreationEntiteDto {
+public class CreationEntiteEtAdminDto {
 
     private String nom;
     private String type;
@@ -8,7 +8,7 @@ public class CreationEntiteDto {
     private String prenomUtilisateur;
     private String emailUtilisateur;
 
-    public CreationEntiteDto(String nom, String type, String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur) {
+    public CreationEntiteEtAdminDto(String nom, String type, String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur) {
         this.nom = nom;
         this.type = type;
         this.nomUtilisateur = nomUtilisateur;

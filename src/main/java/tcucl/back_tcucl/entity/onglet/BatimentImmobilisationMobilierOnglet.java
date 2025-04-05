@@ -10,12 +10,7 @@ import java.util.List;
 
 @Entity
 @TableGenerator(name = "batiment")
-public class BatimentImmobilisationMobilierOnglet {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Year annee;
-    private boolean estTermine;
+public class BatimentImmobilisationMobilierOnglet extends Onglet {
 
     @ManyToMany
     @JoinTable(
@@ -41,30 +36,6 @@ public class BatimentImmobilisationMobilierOnglet {
     )
     private List<MobilierElectromenager> mobilierElectromenagers;
 
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Year getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Year annee) {
-        this.annee = annee;
-    }
-
-    public boolean isEstTermine() {
-        return estTermine;
-    }
-
-    public void setEstTermine(boolean estTermine) {
-        this.estTermine = estTermine;
-    }
 
     public List<BatimentExistantOuNeufConstruit> getBatimentExistantOuNeufConstruits() {
         return batimentExistantOuNeufConstruits;

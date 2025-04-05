@@ -7,17 +7,11 @@ import java.time.Year;
 
 @Entity
 @Table(name = "energie")
-public class EnergieOnglet {
+public class EnergieOnglet extends Onglet {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Year annee;
-    private boolean estTermine;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "parametre_energie_id")
     private ParametreEnergie parametreEnergie;
-
     private Float ConsoGaz;
     private Float ConsoFioul;
     private Float ConsoBois;
@@ -27,16 +21,6 @@ public class EnergieOnglet {
     private Float ConsoEau;
     private String note;
 
-
-
-
-    public boolean isEstTermine() {
-        return estTermine;
-    }
-
-    public void setEstTermine(boolean estTermine) {
-        this.estTermine = estTermine;
-    }
 
     public String getNote() {
         return note;
@@ -102,14 +86,6 @@ public class EnergieOnglet {
         ConsoGaz = consoGaz;
     }
 
-    public Year getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Year annee) {
-        this.annee = annee;
-    }
-
     public ParametreEnergie getParametreEnergie() {
         return parametreEnergie;
     }
@@ -119,11 +95,4 @@ public class EnergieOnglet {
     }
 
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

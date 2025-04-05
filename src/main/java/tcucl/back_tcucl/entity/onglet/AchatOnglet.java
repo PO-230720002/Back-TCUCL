@@ -12,12 +12,8 @@ import java.time.Year;
 
 @Entity
 @Table(name = "achat_onglet")
-public class AchatOnglet {
+public class AchatOnglet extends Onglet{
 
-    @Id
-    private Long id;
-    private Year annee;
-    private boolean estTermine;
 
     @OneToOne
     private AchatConsommable achatConsommable;
@@ -26,30 +22,6 @@ public class AchatOnglet {
     @OneToOne
     private AchatTextile achatTextile;
 
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Year getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Year annee) {
-        this.annee = annee;
-    }
-
-    public boolean isEstTermine() {
-        return estTermine;
-    }
-
-    public void setEstTermine(boolean estTermine) {
-        this.estTermine = estTermine;
-    }
 
     public AchatConsommable getAchatConsommable() {
         return achatConsommable;
