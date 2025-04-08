@@ -22,7 +22,7 @@ public class MachineEmissionFugitive {
     private String descriptionMachine;
     private Integer valeurEnumTypeFluide;
     private Float quantiteFluideKg;
-    private boolean tauxDeFuiteConnu;
+    private Boolean tauxDeFuiteConnu;
     private Float tauxDeFuite;
     private Integer valeurEnumTypeMachine;
 
@@ -98,6 +98,10 @@ public class MachineEmissionFugitive {
 
     public boolean isTauxDeFuiteConnu() {
         return tauxDeFuiteConnu;
+    }
+
+    public void setTauxDeFuiteConnu(Boolean tauxDeFuiteConnu) {
+        this.tauxDeFuiteConnu = tauxDeFuiteConnu;
     }
 
     public void setTauxDeFuiteConnu(boolean tauxDeFuiteConnu) {

@@ -22,7 +22,7 @@ public class MobilierElectromenager {
     private Integer quantite;
     private Float poidsDuProduit;
     private Integer dureeAmortissement;
-    private boolean emissionGesPrecisesConnues;
+    private Boolean emissionGesPrecisesConnues;
     private Float emissionsGesReelleskgCO2;
 
 

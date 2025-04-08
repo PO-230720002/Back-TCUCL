@@ -17,6 +17,7 @@ public class Utilisateur {
     private String role;
     private Boolean estAdmin;
     private Boolean estSuperAdmin;
+
     @ManyToOne
     @JoinColumn(name = "entite_id")
     private Entite entite;
