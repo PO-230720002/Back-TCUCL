@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
 import tcucl.back_tcucl.service.EnergieOngletService;
 
-import static tcucl.back_tcucl.Constante.*;
+import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
 @RequestMapping(ENERGIE_ONGLET)
@@ -17,7 +17,7 @@ public class EnergieOngletController {
         this.energieOngletService = energieOngletService;
     }
 
-    @GetMapping(ID)
+    @GetMapping(REST_ID)
     public ResponseEntity<?> getEnergieOngletById(@PathVariable Long id) {
         return ResponseEntity.ok(energieOngletService.getEnergieOngletById(id));
     }
@@ -33,56 +33,56 @@ public class EnergieOngletController {
     }
 
 
-    @PatchMapping(ID + EST_TERMINE)
+    @PatchMapping(REST_ID + EST_TERMINE)
     public ResponseEntity<Void> updateEstTermine(@PathVariable Long id, @RequestBody boolean estTermine) {
         energieOngletService.setEstTermine(id, estTermine);
         return ResponseEntity.ok().build();
     }
 
 
-    @PatchMapping(ID + CONSO_GAZ)
+    @PatchMapping(REST_ID + CONSO_GAZ)
     public ResponseEntity<Void> updateConsoGaz(@PathVariable Long id, @RequestBody Float consoGaz) {
         energieOngletService.setConsoGaz(id, consoGaz);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping(ID + CONSO_FIOUL)
+    @PatchMapping(REST_ID + CONSO_FIOUL)
     public ResponseEntity<Void> updateConsoFioul(@PathVariable Long id, @RequestBody Float consoFioul) {
         energieOngletService.setConsoFioul(id, consoFioul);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping(ID + CONSO_BOIS)
+    @PatchMapping(REST_ID + CONSO_BOIS)
     public ResponseEntity<Void> updateConsoBois(@PathVariable Long id, @RequestBody Float consoBois) {
         energieOngletService.setConsoBois(id, consoBois);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping(ID + CONSO_RESEAU_VILLE)
+    @PatchMapping(REST_ID + CONSO_RESEAU_VILLE)
     public ResponseEntity<Void> updateConsoReseauVille(@PathVariable Long id, @RequestBody Float consoReseauVille) {
         energieOngletService.setConsoReseauVille(id, consoReseauVille);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping(ID + CONSO_ELEC_CHAUFFAGE)
+    @PatchMapping(REST_ID + CONSO_ELEC_CHAUFFAGE)
     public ResponseEntity<Void> updateConsoElecChauffage(@PathVariable Long id, @RequestBody Float consoElecChauffage) {
         energieOngletService.setConsoElecChauffage(id, consoElecChauffage);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping(ID +CONSO_ELEC_SPECIFIQUE)
+    @PatchMapping(REST_ID +CONSO_ELEC_SPECIFIQUE)
     public ResponseEntity<Void> updateConsoElecSpecifique(@PathVariable Long id, @RequestBody Float consoElecSpecifique) {
         energieOngletService.setConsoElecSpecifique(id, consoElecSpecifique);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping(ID + CONSO_EAU)
+    @PatchMapping(REST_ID + CONSO_EAU)
     public ResponseEntity<Void> updateConsoEau(@PathVariable Long id, @RequestBody Float consoEau) {
         energieOngletService.setConsoEau(id, consoEau);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping(ID + NOTE)
+    @PatchMapping(REST_ID + NOTE)
     public ResponseEntity<Void> updateNote(@PathVariable Long id, @RequestBody String note) {
         energieOngletService.setNote(id, note);
         return ResponseEntity.ok().build();

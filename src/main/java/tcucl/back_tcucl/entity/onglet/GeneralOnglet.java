@@ -11,7 +11,7 @@ public class GeneralOnglet extends Onglet{
     private Integer nbSalarie;
     private Integer nbEtudiant;
 
-    public GeneralOnglet(){;
+    public GeneralOnglet(){
     }
 
     public Integer getNbSalarie() {
@@ -28,5 +28,25 @@ public class GeneralOnglet extends Onglet{
 
     public void setNbEtudiant(Integer nbEtudiant) {
         this.nbEtudiant = nbEtudiant;
+    }
+
+    @Override
+    public String getNote() {
+        return super.getNote();
+    }
+
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
+    public void setEstTermine(boolean estTermine) {
+        super.setEstTermine(estTermine);
     }
 }

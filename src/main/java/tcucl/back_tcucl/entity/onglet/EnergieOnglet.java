@@ -6,12 +6,13 @@ import tcucl.back_tcucl.entity.parametre.energie.ParametreEnergie;
 import java.time.Year;
 
 @Entity
-@Table(name = "energie")
+@Table(name = "energie_onglet")
 public class EnergieOnglet extends Onglet {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "parametre_energie_id")
     private ParametreEnergie parametreEnergie;
+
     private Float ConsoGaz;
     private Float ConsoFioul;
     private Float ConsoBois;
@@ -19,16 +20,6 @@ public class EnergieOnglet extends Onglet {
     private Float ConsoElecChauffage;
     private Float ConsoElecSpecifique;
     private Float ConsoEau;
-    private String note;
-
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
 
     public Float getConsoEau() {
         return ConsoEau;
@@ -94,5 +85,23 @@ public class EnergieOnglet extends Onglet {
         this.parametreEnergie = parametreEnergie;
     }
 
+    @Override
+    public String getNote() {
+        return super.getNote();
+    }
 
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
+    public void setEstTermine(boolean estTermine) {
+        super.setEstTermine(estTermine);
+    }
 }

@@ -6,35 +6,24 @@ import tcucl.back_tcucl.entity.parametre.batiment.EntretienCourant;
 import tcucl.back_tcucl.entity.parametre.batiment.MobilierElectromenager;
 
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@TableGenerator(name = "batiment")
+@Table(name = "batiment_onglet")
 public class BatimentImmobilisationMobilierOnglet extends Onglet {
 
-    @ManyToMany
-    @JoinTable(
-            name = "jointure_BatimentImmobilisationMobilierOnglet_BatimentExistantOuNeufConstruit",
-            joinColumns = @JoinColumn(name = "onglet_id"),
-            inverseJoinColumns = @JoinColumn(name = "batiment_id")
-    )
-    private List<BatimentExistantOuNeufConstruit> batimentExistantOuNeufConstruits;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "batiment_onglet_id")
+    private List<BatimentExistantOuNeufConstruit> batimentExistantOuNeufConstruits = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "jointure_BatimentImmobilisationMobilierOnglet_EntretienCourant",
-            joinColumns = @JoinColumn(name = "onglet_id"),
-            inverseJoinColumns = @JoinColumn(name = "entretien_id")
-    )
-    private List<EntretienCourant> entretienCourants;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "batiment_onglet_id")
+    private List<EntretienCourant> entretienCourants = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "jointure_BatimentImmobilisationMobilierOnglet_MobilierElectromenager",
-            joinColumns = @JoinColumn(name = "onglet_id"),
-            inverseJoinColumns = @JoinColumn(name = "mobilier_id")
-    )
-    private List<MobilierElectromenager> mobilierElectromenagers;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "batiment_onglet_id")
+    private List<MobilierElectromenager> mobilierElectromenagers = new ArrayList<>();
 
 
     public List<BatimentExistantOuNeufConstruit> getBatimentExistantOuNeufConstruits() {
@@ -59,5 +48,25 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
 
     public void setMobilierElectromenagers(List<MobilierElectromenager> mobilierElectromenagers) {
         this.mobilierElectromenagers = mobilierElectromenagers;
+    }
+
+    @Override
+    public String getNote() {
+        return super.getNote();
+    }
+
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
+    public void setEstTermine(boolean estTermine) {
+        super.setEstTermine(estTermine);
     }
 }

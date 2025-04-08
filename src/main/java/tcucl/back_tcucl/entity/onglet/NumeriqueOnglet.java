@@ -12,7 +12,7 @@ import java.util.List;
 public class NumeriqueOnglet extends Onglet{
 
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "equipement_numerique_id")
     List<EquipementNumerique> equipementNumeriqueList;
 
@@ -57,5 +57,25 @@ public class NumeriqueOnglet extends Onglet{
 
     public void setEquipementNumeriqueList(List<EquipementNumerique> equipementNumeriqueList) {
         this.equipementNumeriqueList = equipementNumeriqueList;
+    }
+
+    @Override
+    public String getNote() {
+        return super.getNote();
+    }
+
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
+    public void setEstTermine(boolean estTermine) {
+        super.setEstTermine(estTermine);
     }
 }

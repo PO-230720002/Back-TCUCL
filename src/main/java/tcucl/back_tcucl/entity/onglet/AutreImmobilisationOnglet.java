@@ -325,4 +325,24 @@ public class AutreImmobilisationOnglet extends Onglet {
     public void setAutresMachinesEur_EmissionReelle(Float autresMachinesEur_EmissionReelle) {
         this.autresMachinesEur_EmissionReelle = autresMachinesEur_EmissionReelle;
     }
+
+    @Override
+    public String getNote() {
+        return super.getNote();
+    }
+
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
+    public void setEstTermine(boolean estTermine) {
+        super.setEstTermine(estTermine);
+    }
 }

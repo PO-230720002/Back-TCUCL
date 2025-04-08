@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.Year;
 
 @Entity
-@Table(name = "autre_mob_fr")
+@Table(name = "autre_mob_fr_onglet")
 public class AutreMobFrOnglet extends Onglet {
 
     private Float salarieNbAllerSimple_VoitureThermique;
@@ -228,4 +228,23 @@ public class AutreMobFrOnglet extends Onglet {
         this.etudiantDistanceTotale_Autocar = etudiantDistanceTotale_Autocar;
     }
 
+    @Override
+    public String getNote() {
+        return super.getNote();
+    }
+
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
+    public void setEstTermine(boolean estTermine) {
+        super.setEstTermine(estTermine);
+    }
 }

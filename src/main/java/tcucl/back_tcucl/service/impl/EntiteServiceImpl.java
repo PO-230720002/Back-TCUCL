@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.service.impl;
 
 import org.springframework.stereotype.Service;
+import tcucl.back_tcucl.entity.Annee;
 import tcucl.back_tcucl.entity.Entite;
 import tcucl.back_tcucl.entity.NotesPermanentes;
 import tcucl.back_tcucl.manager.EntiteManager;
@@ -30,9 +31,7 @@ public class EntiteServiceImpl implements EntiteService {
 
     @Override
     public Entite creerEntite(String nom, String type) {
-        Entite entite = new Entite(nom, type);
-        entite.setNotesPermanentes(new NotesPermanentes());
-        entite.setAnnees();
+        return new Entite(nom, type);
     }
 
     @Override

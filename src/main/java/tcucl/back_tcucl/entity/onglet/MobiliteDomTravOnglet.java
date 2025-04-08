@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.time.Year;
 
 @Entity
-@Table(name = "mobilite_dom_trav")
+@Table(name = "mobilite_dom_trav_onglet")
 public class MobiliteDomTravOnglet extends Onglet {
 
 
@@ -229,5 +229,23 @@ public class MobiliteDomTravOnglet extends Onglet {
         this.nbJoursDeplacementSalarie = nbJoursDeplacementSalarie;
     }
 
+    @Override
+    public String getNote() {
+        return super.getNote();
+    }
 
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
+    public void setEstTermine(boolean estTermine) {
+        super.setEstTermine(estTermine);
+    }
 }

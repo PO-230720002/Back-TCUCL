@@ -6,73 +6,70 @@ import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.dto.*;
 import tcucl.back_tcucl.service.ParametreService;
 import tcucl.back_tcucl.service.UtilisateurService;
-import tcucl.back_tcucl.service.impl.PermissionServiceImpl;
 
-import static tcucl.back_tcucl.Constante.*;
+import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(PARAMETRE)
+@RequestMapping(REST_PARAMETRE)
 public class ParametreController {
 
     private final UtilisateurService utilisateurService;
     private final ParametreService parametreService;
-    private final PermissionServiceImpl permissionService;
 
-    public ParametreController(UtilisateurService utilisateurService, ParametreService parametreService, PermissionServiceImpl permissionService) {
+    public ParametreController(UtilisateurService utilisateurService, ParametreService parametreService) {
         this.utilisateurService = utilisateurService;
         this.parametreService = parametreService;
-        this.permissionService = permissionService;
     }
 
     //    Parametre perso
     @PreAuthorize("@permissionService.utilisateurPeutModifierUtilisateur(authentication, #idUtilisateur)")
-    @PatchMapping(MODIFIER_UTILISATEUR_UTILISATEUR + ID)
+    @PatchMapping(REST_MODIFIER_UTILISATEUR_UTILISATEUR + REST_ID)
     public ResponseEntity<?> modifierUtilisateurParUtilisateur(@PathVariable("id") Long idUtilisateur, @RequestBody ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto) {
         utilisateurService.modifierUtilisateurParUtilisateur(idUtilisateur, modificationUtilisateurParUtilisateurDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_MODIFIE);
     }
 
 
     @PreAuthorize("@permissionService.utlisateurOuAdminPeutChangerMdp(authentication, #changePasswordDto)")
-    @PostMapping(CHANGE_MDP)
+    @PostMapping(REST_CHANGE_MDP)
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto changePasswordDto) {
         parametreService.changePassword(changePasswordDto);
-        return ResponseEntity.ok(MDP_BIEN_MIS_A_JOUR);
+        return ResponseEntity.ok(REST_MESSAGE_MDP_BIEN_MIS_A_JOUR);
     }
 
     //    Parametre Admin
     @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutInscrireUtilisateur(authentication, #inscriptionDto))")
-    @PostMapping(INSCRIRE_UTILISATEUR)
+    @PostMapping(REST_INSCRIRE_UTILISATEUR)
     public ResponseEntity<?> inscrireUtilisateur(@RequestBody InscriptionDto inscriptionDto) {
         utilisateurService.inscrireUtilisateur(inscriptionDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT);
     }
 
     @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutModifierUtilisateur(authentication, modificationUtilisateurParAdminDto))")
-    @PatchMapping(MODIFIER_UTILISATEUR_ADMIN + ID)
+    @PatchMapping(REST_MODIFIER_UTILISATEUR_ADMIN + REST_ID)
     public ResponseEntity<?> modifierUtilisateurParAdmin(@PathVariable("id") Long idUtilisateur, @RequestBody ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto) {
         utilisateurService.modifierUtilisateurParAdmin(idUtilisateur, modificationUtilisateurParAdminDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_MODIFIE);
     }
 
     @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutModifierEstAdmin(authentication, #idUtilisateur))")
-    @PatchMapping(MODIFIER_EST_ADMIN + ID)
+    @PatchMapping(REST_MODIFIER_EST_ADMIN + REST_ID)
     public ResponseEntity<?> modifierEstAdmin(@PathVariable("id") Long idUtilisateur, @RequestBody boolean estAdmin) {
         utilisateurService.modifierEstAdmin(idUtilisateur, estAdmin);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(REST_MESSAGE_CHANGE_STATUT_ADMIN);
     }
 
     //Parametre Super Admin
     @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
-    @PostMapping(CREER_ENTITE)
+    @PostMapping(REST_CREER_ENTITE)
     public ResponseEntity<?> creerEntite(CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
         parametreService.creerEntiteEtAdmin(creationEntiteEtAdminDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(REST_MESSAGE_ENTITE_CREEE);
     }
 
     //Initialisation
     @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutAccéderAEntite(authentication, #idEntite))")
-    @GetMapping(UTILISATEUR_ENTITE + ID)
+    @GetMapping(REST_UTILISATEUR_ENTITE + REST_ID)
     public ResponseEntity<?> getAllUtilisateurParEntiteId(@PathVariable("id") Long idEntite) {
         return ResponseEntity.ok(parametreService.getAllUtilisateurParEntiteId(idEntite));
     }

@@ -12,6 +12,7 @@ import static tcucl.back_tcucl.Constante.*;
 @RestControllerAdvice
 public class GestionnaireErreurController {
 
+
     @ExceptionHandler(EmailDejaPrisException.class)
     public ResponseEntity<String> handleEmailDejaPrisException(EmailDejaPrisException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
@@ -36,7 +37,7 @@ public class GestionnaireErreurController {
     //Connexion
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<String> handleAuthenticationException(AuthenticationException ex) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_EMAIL_OU_MDP_INVALIDE);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_AUTHENTIFICATION);
     }
 
     @ExceptionHandler(EntiteNonTrouveeIdException.class)

@@ -8,14 +8,13 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import tcucl.back_tcucl.filter.JwtFilter;
 import tcucl.back_tcucl.service.impl.CustomUserDetailsServiceImpl;
 
-import static tcucl.back_tcucl.Constante.*;
+import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 
 @EnableMethodSecurity
@@ -43,7 +42,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(AUTH + CONNEXION, AUTH + INSCRIPTION2).permitAll()
+                        auth.requestMatchers(REST_AUTH + REST_CONNEXION, REST_AUTH + REST_INSCRIPTION2, "test/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtFilter(customUserDetailsService, jwtUtils), UsernamePasswordAuthenticationFilter.class);

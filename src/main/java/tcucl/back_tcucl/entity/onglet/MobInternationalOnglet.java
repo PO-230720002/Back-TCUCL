@@ -7,10 +7,10 @@ import java.time.Year;
 import java.util.List;
 
 @Entity
-@Table(name = "mob_international")
+@Table(name = "mob_international_onglet")
 public class MobInternationalOnglet extends Onglet {
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "voyage_mob_internationale_id")
     private List<VoyageVersUneDestinationMobInternationale> voyageVersUneDestinationMobInternationale;
 
@@ -21,5 +21,25 @@ public class MobInternationalOnglet extends Onglet {
 
     public void setVoyageVersUneDestinationMobInternationale(List<VoyageVersUneDestinationMobInternationale> voyageVersUneDestinationMobInternationale) {
         this.voyageVersUneDestinationMobInternationale = voyageVersUneDestinationMobInternationale;
+    }
+
+    @Override
+    public String getNote() {
+        return super.getNote();
+    }
+
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
+    public void setEstTermine(boolean estTermine) {
+        super.setEstTermine(estTermine);
     }
 }

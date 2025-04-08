@@ -25,8 +25,6 @@ public class EntretienCourant {
     private Float surfaceConcernee;
     private Integer dureeAmortissement;
 
-    @ManyToMany(mappedBy = "entretienCourants")
-    private List<BatimentImmobilisationMobilierOnglet> batimentOnglets;
 
     // Getters et Setters
 

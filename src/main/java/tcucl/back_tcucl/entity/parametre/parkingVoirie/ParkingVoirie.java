@@ -1,21 +1,22 @@
 package tcucl.back_tcucl.entity.parametre.parkingVoirie;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.AssertTrue;
-import tcucl.back_tcucl.entity.onglet.ParkingVoirieOnglet;
 import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_TypeBatiment;
 import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_TypeStructure;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "parking_voirie")
 public class ParkingVoirie {
     @Id
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String nomOuAdresse;
@@ -26,8 +27,6 @@ public class ParkingVoirie {
     private Float nombreM2;
     private Integer valeurEnumTypeStructure;
 
-    @ManyToMany(mappedBy = "parkingVoirieList")
-    private List<ParkingVoirieOnglet> parkingVoirieOnglets;
 
     @AssertTrue(message = "Incohérence dans les émissions de GES et les types")
     public boolean isValidEmissionsAndTypes() {
@@ -64,4 +63,43 @@ public class ParkingVoirie {
         return EnumBatiment_TypeStructure.fromCode(this.valeurEnumTypeStructure);
     }
 
+    public String getNomOuAdresse() {
+        return nomOuAdresse;
+    }
+
+    public void setNomOuAdresse(String nomOuAdresse) {
+        this.nomOuAdresse = nomOuAdresse;
+    }
+
+    public Date getDateConstruction() {
+        return dateConstruction;
+    }
+
+    public void setDateConstruction(Date dateConstruction) {
+        this.dateConstruction = dateConstruction;
+    }
+
+    public Boolean getEmissionsGesConnues() {
+        return emissionsGesConnues;
+    }
+
+    public void setEmissionsGesConnues(Boolean emissionsGesConnues) {
+        this.emissionsGesConnues = emissionsGesConnues;
+    }
+
+    public Float getEmissionsGesReelles() {
+        return emissionsGesReelles;
+    }
+
+    public void setEmissionsGesReelles(Float emissionsGesReelles) {
+        this.emissionsGesReelles = emissionsGesReelles;
+    }
+
+    public Float getNombreM2() {
+        return nombreM2;
+    }
+
+    public void setNombreM2(Float nombreM2) {
+        this.nombreM2 = nombreM2;
+    }
 }

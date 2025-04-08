@@ -1,7 +1,17 @@
 package tcucl.back_tcucl.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -14,7 +24,7 @@ public class Entite {
     private String nom;
     private String type;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "notes_permanentes_id")
     private NotesPermanentes notesPermanentes;
 
@@ -26,6 +36,8 @@ public class Entite {
     public Entite(String nom, String type) {
         this.nom = nom;
         this.type = type;
+        this.notesPermanentes = new NotesPermanentes();
+        this.annees = new ArrayList<>(Collections.singletonList(new Annee()));
     }
 
     public Entite() {
@@ -53,6 +65,13 @@ public class Entite {
 
     public void setAnnees(List<Annee> annees) {
         this.annees = annees;
+    }
+
+    public void addAnnee(Annee annee) {
+        if (annee == null) {
+            this.annees = new ArrayList<>();
+        }
+        this.annees.add(annee);
     }
 
     public String getNom() {
