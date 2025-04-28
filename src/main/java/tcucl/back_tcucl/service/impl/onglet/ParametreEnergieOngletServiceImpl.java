@@ -1,4 +1,4 @@
-package tcucl.back_tcucl.service.impl;
+package tcucl.back_tcucl.service.impl.onglet;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

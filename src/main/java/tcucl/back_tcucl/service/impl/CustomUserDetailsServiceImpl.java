@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.entity.Utilisateur;
-import tcucl.back_tcucl.repository.UtilisateurRepository;
+import tcucl.back_tcucl.service.UtilisateurService;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -15,10 +15,10 @@ import java.util.Optional;
 public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
 
-    private final UtilisateurRepository utilisateurRepository;
+    private final UtilisateurService utilisateurService;
 
-    public CustomUserDetailsServiceImpl(UtilisateurRepository utilisateurRepository) {
-        this.utilisateurRepository = utilisateurRepository;
+    public CustomUserDetailsServiceImpl(UtilisateurService utilisateurService) {
+        this.utilisateurService = utilisateurService;
     }
 
     //Ne pas changer le nom de la méthode loadByUsername en loadUserByEmail, sinon l'authentification ne fonctionnera pas
@@ -27,17 +27,21 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Optional<Utilisateur> userOptional = utilisateurRepository.findByEmail(email);
+        Utilisateur utilisateur = utilisateurService.getUtilisateurParEmail(email);
+        SimpleGrantedAuthority utilisateurAuthority;
 
-        if (userOptional.isEmpty()) {
-            throw new UsernameNotFoundException("Utilisateur non trouvé avec le mail : " + email);
+        if (utilisateur.getEstSuperAdmin()) {
+            utilisateurAuthority = new SimpleGrantedAuthority("ROLE_SUPERADMIN");
+        } else if (utilisateur.getEstAdmin()) {
+            utilisateurAuthority = new SimpleGrantedAuthority("ROLE_ADMIN");
+        } else {
+            utilisateurAuthority = new SimpleGrantedAuthority("ROLE_USER");
         }
 
-        Utilisateur utilisateur = userOptional.get();
         return new org.springframework.security.core.userdetails.User(
                 utilisateur.getEmail(),
                 utilisateur.getMdp(),
-                Collections.singletonList(new SimpleGrantedAuthority(utilisateur.getRole()))
+                Collections.singletonList(utilisateurAuthority)
         );
     }
 }

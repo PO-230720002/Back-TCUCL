@@ -8,4 +8,6 @@ import tcucl.back_tcucl.entity.Entite;
 public interface EntiteRepository extends JpaRepository<Entite, Long> {
 
     public Entite findEntiteById(Long id);
+
+    public boolean existsByNomAndType(String nom, String type);
 }

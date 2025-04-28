@@ -1,13 +1,19 @@
 package tcucl.back_tcucl.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.service.EmailService;
 
+import static tcucl.back_tcucl.Constante.*;
+
 @Service
 public class EmailServiceImpl implements EmailService {
+
+    Logger logger = LoggerFactory.getLogger(EmailServiceImpl.class);
 
     @Value("${spring.mail.verify.host}")
     private String host;
@@ -20,23 +26,25 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendSimpleEmail(String name, String to, String mdp) {
+    public void sendSimpleEmail(String prenom, String to, String mdp) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setSubject("Création de votre compte sur TCUCL");
+            message.setSubject(MAIL_SUJET_INSCRIPTION_DEBUT);
             message.setFrom(fromEmail);
             message.setTo(to);
-            message.setText("Bonjour " + name + ",\n\n" +
-                    "Bienvenue sur TCUCL, votre compte a été créé avec succès.\n" +
-                    "Pour activer votre compte, connectez-vous avec votre e-mail et ce mot de passe : "+
-                    mdp +"\n\n" +
-                    "Cordialement,\n" +
-                    "L'équipe TCUCL");
+            message.setText(ecrireMail(prenom, mdp));
             emailSender.send(message);
-            System.out.println(" Email envoyé à : " + to);
+            logger.info(" Email envoyé à : " + to);
         } catch (Exception e) {
-            System.out.println(" Erreur lors de l'envoi de l'email : " + e.getMessage());
+            logger.error(" Erreur lors de l'envoi de l'email à :  " + to + "\n" + e.getMessage());
         }
+    }
+
+
+    private String ecrireMail(String nom, String mdp){
+
+        return MAIL_MESSAGE_INSCRIPTION_DEBUT + nom + MAIL_MESSAGE_INSCRIPTION_MILIEU + mdp + MAIL_MESSAGE_INSCRIPTION_FIN;
+
     }
 
 

@@ -6,65 +6,25 @@ import tcucl.back_tcucl.entity.parametre.batiment.EntretienCourant;
 import tcucl.back_tcucl.entity.parametre.batiment.MobilierElectromenager;
 
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@TableGenerator(name = "batiment")
-public class BatimentImmobilisationMobilierOnglet {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Year annee;
-    private boolean estTermine;
+@Table(name = "batiment_onglet")
+public class BatimentImmobilisationMobilierOnglet extends Onglet {
 
-    @ManyToMany
-    @JoinTable(
-            name = "jointure_BatimentImmobilisationMobilierOnglet_BatimentExistantOuNeufConstruit",
-            joinColumns = @JoinColumn(name = "onglet_id"),
-            inverseJoinColumns = @JoinColumn(name = "batiment_id")
-    )
-    private List<BatimentExistantOuNeufConstruit> batimentExistantOuNeufConstruits;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "batiment_onglet_id")
+    private List<BatimentExistantOuNeufConstruit> batimentExistantOuNeufConstruits = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "jointure_BatimentImmobilisationMobilierOnglet_EntretienCourant",
-            joinColumns = @JoinColumn(name = "onglet_id"),
-            inverseJoinColumns = @JoinColumn(name = "entretien_id")
-    )
-    private List<EntretienCourant> entretienCourants;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "batiment_onglet_id")
+    private List<EntretienCourant> entretienCourants = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "jointure_BatimentImmobilisationMobilierOnglet_MobilierElectromenager",
-            joinColumns = @JoinColumn(name = "onglet_id"),
-            inverseJoinColumns = @JoinColumn(name = "mobilier_id")
-    )
-    private List<MobilierElectromenager> mobilierElectromenagers;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "batiment_onglet_id")
+    private List<MobilierElectromenager> mobilierElectromenagers = new ArrayList<>();
 
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Year getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Year annee) {
-        this.annee = annee;
-    }
-
-    public boolean isEstTermine() {
-        return estTermine;
-    }
-
-    public void setEstTermine(boolean estTermine) {
-        this.estTermine = estTermine;
-    }
 
     public List<BatimentExistantOuNeufConstruit> getBatimentExistantOuNeufConstruits() {
         return batimentExistantOuNeufConstruits;
@@ -88,5 +48,25 @@ public class BatimentImmobilisationMobilierOnglet {
 
     public void setMobilierElectromenagers(List<MobilierElectromenager> mobilierElectromenagers) {
         this.mobilierElectromenagers = mobilierElectromenagers;
+    }
+
+    @Override
+    public String getNote() {
+        return super.getNote();
+    }
+
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
+    public void setEstTermine(boolean estTermine) {
+        super.setEstTermine(estTermine);
     }
 }

@@ -11,8 +11,6 @@ import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
 @Repository
 public interface EnergieOngletRepository extends JpaRepository<EnergieOnglet, Long> {
 
-
-
     @Modifying
     @Transactional
     @Query("UPDATE EnergieOnglet e SET e.estTermine = :estTermine WHERE e.id = :id")
