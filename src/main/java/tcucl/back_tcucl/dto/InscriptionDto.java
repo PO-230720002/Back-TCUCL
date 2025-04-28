@@ -8,6 +8,15 @@ public class InscriptionDto {
     private boolean estAdmin;
     private Long entiteId;
 
+
+    public InscriptionDto(String nom, String prenom, String email, boolean estAdmin, Long entiteId) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.estAdmin = estAdmin;
+        this.entiteId = entiteId;
+    }
+
     public String getNom() {
         return nom;
     }

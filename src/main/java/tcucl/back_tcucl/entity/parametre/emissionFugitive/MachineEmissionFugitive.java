@@ -22,12 +22,9 @@ public class MachineEmissionFugitive {
     private String descriptionMachine;
     private Integer valeurEnumTypeFluide;
     private Float quantiteFluideKg;
-    private boolean tauxDeFuiteConnu;
+    private Boolean tauxDeFuiteConnu;
     private Float tauxDeFuite;
     private Integer valeurEnumTypeMachine;
-
-    @ManyToMany(mappedBy = "machinesEmissionFugitive")
-    private List<EmissionFugitiveOnglet> emissionFugitiveOnglets;
 
 
     @AssertTrue(message = "Les règles de validation ne sont pas respectées.")
@@ -101,6 +98,10 @@ public class MachineEmissionFugitive {
 
     public boolean isTauxDeFuiteConnu() {
         return tauxDeFuiteConnu;
+    }
+
+    public void setTauxDeFuiteConnu(Boolean tauxDeFuiteConnu) {
+        this.tauxDeFuiteConnu = tauxDeFuiteConnu;
     }
 
     public void setTauxDeFuiteConnu(boolean tauxDeFuiteConnu) {

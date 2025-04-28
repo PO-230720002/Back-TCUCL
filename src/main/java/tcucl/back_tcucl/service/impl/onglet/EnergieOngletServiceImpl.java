@@ -1,4 +1,4 @@
-package tcucl.back_tcucl.service.impl;
+package tcucl.back_tcucl.service.impl.onglet;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -39,7 +39,6 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
     public EnergieOnglet createRandomEnergieOnglet() {
         EnergieOnglet energieOnglet = new EnergieOnglet();
         Random random = new Random();
-        energieOnglet.setAnnee(Year.of(2025));
         energieOnglet.setEstTermine(false);
         energieOnglet.setConsoGaz(random.nextFloat());
         energieOnglet.setConsoFioul(random.nextFloat());

@@ -5,14 +5,8 @@ import jakarta.persistence.*;
 import java.time.Year;
 
 @Entity
-@Table(name = "autre_mob_fr")
-public class AutreMobFrOnglet {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Year annee;
-    private boolean estTermine;
+@Table(name = "autre_mob_fr_onglet")
+public class AutreMobFrOnglet extends Onglet {
 
     private Float salarieNbAllerSimple_VoitureThermique;
     private Float salarieNbAllerSimple_VoitureElectrique;
@@ -234,27 +228,23 @@ public class AutreMobFrOnglet {
         this.etudiantDistanceTotale_Autocar = etudiantDistanceTotale_Autocar;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public String getNote() {
+        return super.getNote();
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
     }
 
-    public Year getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Year annee) {
-        this.annee = annee;
-    }
-
+    @Override
     public boolean isEstTermine() {
-        return estTermine;
+        return super.isEstTermine();
     }
 
+    @Override
     public void setEstTermine(boolean estTermine) {
-        this.estTermine = estTermine;
+        super.setEstTermine(estTermine);
     }
 }

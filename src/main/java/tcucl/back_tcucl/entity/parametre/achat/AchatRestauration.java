@@ -1,6 +1,8 @@
 package tcucl.back_tcucl.entity.parametre.achat;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import tcucl.back_tcucl.entity.parametre.achat.enums.EnumAchatRestauration_Methode;
@@ -8,10 +10,12 @@ import tcucl.back_tcucl.entity.parametre.achat.enums.EnumAchatRestauration_Metho
 @Entity
 @Table(name = "achat_restauration")
 public class AchatRestauration {
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Integer EnumValeur_Methode;
+    private Integer enumValeur_Methode;
     private Integer methodeRapideNombrePersonnesServiesRegimeClassique;
     private Integer methodeRapideNombrePersonnesServiesRegimeFlexitarien;
 
@@ -51,11 +55,11 @@ public class AchatRestauration {
     }
 
     public void setMethodeCalcul(EnumAchatRestauration_Methode valeur) {
-        this.EnumValeur_Methode = valeur.getCode();
+        this.enumValeur_Methode = valeur.getCode();
     }
 
     public EnumAchatRestauration_Methode getMethodeCalcul() {
-        return EnumAchatRestauration_Methode.fromCode(this.EnumValeur_Methode);
+        return EnumAchatRestauration_Methode.fromCode(this.enumValeur_Methode);
     }
 
     public Integer getMethodeRapideNombrePersonnesServiesRegimeClassique() {

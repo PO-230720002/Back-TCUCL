@@ -17,6 +17,7 @@ public class Utilisateur {
     private String role;
     private Boolean estAdmin;
     private Boolean estSuperAdmin;
+
     @ManyToOne
     @JoinColumn(name = "entite_id")
     private Entite entite;
@@ -37,7 +38,13 @@ public class Utilisateur {
 
     }
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getNom() {
         return nom;

@@ -1,13 +1,14 @@
 package tcucl.back_tcucl.entity.parametre.batiment;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.AssertTrue;
-import tcucl.back_tcucl.entity.onglet.BatimentImmobilisationMobilierOnglet;
 import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_Mobilier;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,12 +22,8 @@ public class MobilierElectromenager {
     private Integer quantite;
     private Float poidsDuProduit;
     private Integer dureeAmortissement;
-    private boolean emissionGesPrecisesConnues;
+    private Boolean emissionGesPrecisesConnues;
     private Float emissionsGesReelleskgCO2;
-
-    @ManyToMany(mappedBy = "mobilierElectromenagers")
-    private List<BatimentImmobilisationMobilierOnglet> batimentOnglets;
-
 
 
     @AssertTrue(message = "Si 'emissionGesPrecisesConnues' est false, 'emissionsGesReelleskgCO2' doit être nul ou indéfini.")
@@ -49,22 +46,23 @@ public class MobilierElectromenager {
         // Si le produit n'est pas dans la liste, aucune contrainte sur poidsDuProduit
         return true;
     }
-  @AssertTrue(message = "Si le produit est 'Autre mobilier en €', les émissions réelles doivent rester vides.")
-        public boolean isEmissionsGesReellesValide() {
-            if (EnumBatiment_Mobilier.AUTRE_MOBILIER_EN_EUROS.equals(valeurEnumMobilier)) {
-                return emissionsGesReelleskgCO2 == 0.0f; // Vérifie si les émissions réelles sont vides
-            }
-            return true; // Si le produit n'est pas "Autre mobilier en €", aucune contrainte
-        }
 
- @AssertTrue(message = "Si le produit est 'Autre mobilier en Tonnes', les émissions réelles et les émissions de GES précises doivent rester vides.")
-        public boolean isEmissionsGesPrecisesEtReellesValides() {
-            if (EnumBatiment_Mobilier.AUTRE_MOBILIER_EN_TONNES.equals(valeurEnumMobilier)) {
-                // Vérifie que les deux champs sont vides
-                return emissionsGesReelleskgCO2 == 0.0f && !emissionGesPrecisesConnues;
-            }
-            return true; // Si le produit n'est pas "Autre mobilier en Tonnes", aucune contrainte
+    @AssertTrue(message = "Si le produit est 'Autre mobilier en €', les émissions réelles doivent rester vides.")
+    public boolean isEmissionsGesReellesValide() {
+        if (EnumBatiment_Mobilier.AUTRE_MOBILIER_EN_EUROS.equals(valeurEnumMobilier)) {
+            return emissionsGesReelleskgCO2 == 0.0f; // Vérifie si les émissions réelles sont vides
         }
+        return true; // Si le produit n'est pas "Autre mobilier en €", aucune contrainte
+    }
+
+    @AssertTrue(message = "Si le produit est 'Autre mobilier en Tonnes', les émissions réelles et les émissions de GES précises doivent rester vides.")
+    public boolean isEmissionsGesPrecisesEtReellesValides() {
+        if (EnumBatiment_Mobilier.AUTRE_MOBILIER_EN_TONNES.equals(valeurEnumMobilier)) {
+            // Vérifie que les deux champs sont vides
+            return emissionsGesReelleskgCO2 == 0.0f && !emissionGesPrecisesConnues;
+        }
+        return true; // Si le produit n'est pas "Autre mobilier en Tonnes", aucune contrainte
+    }
 
 
     public void setMobilier(EnumBatiment_Mobilier valeur) {
