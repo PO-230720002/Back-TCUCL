@@ -37,4 +37,9 @@ public class EntiteManagerImpl implements EntiteManager {
     public List<Entite> getAll() {
         return entiteRepository.findAll();
     }
+
+    @Override
+    public boolean existsEntiteByNomAndType(String nom, String type) {
+        return entiteRepository.existsByNomAndType(nom, type);
+    }
 }

@@ -14,6 +14,7 @@ public interface EntiteService {
 
     Entite creerEntite(String nom, String type);
 
+    Entite ajouterAnneeEntite(Long entiteId, Integer anneeUniversitaire);
 
     List<Entite> getAllEntites();
 }

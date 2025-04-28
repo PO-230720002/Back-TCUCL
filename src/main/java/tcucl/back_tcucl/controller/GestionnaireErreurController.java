@@ -28,7 +28,9 @@ public class GestionnaireErreurController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ERREUR_UTILISATEUR_NON_TROUVE);
     }
 
-    //Connexion
+
+
+    //
     @ExceptionHandler(MauvaisAncienMdpException.class)
     public ResponseEntity<String> handleMauvaisAncienMdpException(MauvaisAncienMdpException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_MAUVAIS_ANCIEN_MDP);
@@ -45,6 +47,7 @@ public class GestionnaireErreurController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ERREUR_ENTITE_NON_TROUVE);
     }
 
+    //Tout le reste
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ERREUR_INTERNE);

@@ -10,7 +10,7 @@ import tcucl.back_tcucl.manager.UtilisateurManager;
 import tcucl.back_tcucl.service.EntiteService;
 import tcucl.back_tcucl.service.PermissionService;
 
-@Service("permissionService") // Le nom ici doit correspondre à ce qu'on utilise dans SpEL
+@Service("permissionService")
 public class PermissionServiceImpl implements PermissionService {
 
     private final UtilisateurManager utilisateurManager;
@@ -52,7 +52,15 @@ public class PermissionServiceImpl implements PermissionService {
         return estAdminDeEntite(authentication.getName(), idEntite);
     }
 
+    @Override
+    public boolean adminPeutSupprimerUtilisateur(Authentication authentication, Long idUtilisateur){
+        return estAdminDe(authentication.getName(), idUtilisateur);
+    }
 
+    @Override
+    public boolean adminPeutAjouterAnneeEntite(Authentication authentication, Long idEntite) {
+        return estAdminDeEntite(authentication.getName(), idEntite);
+    }
 
     private boolean estAdminDe(String adminEmail, String utilisateurEmail) {
         Entite entiteAdmin = utilisateurManager.getUtilisateurParEmail(adminEmail).getEntite();

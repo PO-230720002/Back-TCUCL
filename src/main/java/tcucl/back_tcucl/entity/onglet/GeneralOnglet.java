@@ -1,17 +1,18 @@
 package tcucl.back_tcucl.entity.onglet;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "general_onglet")
 public class GeneralOnglet extends Onglet{
 
     private Integer nbSalarie;
     private Integer nbEtudiant;
 
     public GeneralOnglet(){
+        super();
+        this.nbSalarie = 0;
+        this.nbEtudiant = 0;
     }
 
     public Integer getNbSalarie() {

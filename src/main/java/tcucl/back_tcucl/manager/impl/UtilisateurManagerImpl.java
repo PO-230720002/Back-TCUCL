@@ -52,4 +52,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
     public Utilisateur save(Utilisateur utilisateur){
         return utilisateurRepository.save(utilisateur);
     }
+
+    @Override
+    public void supprimerUtilisateur(Long id) {
+        utilisateurRepository.deleteById(id);
+    }
 }

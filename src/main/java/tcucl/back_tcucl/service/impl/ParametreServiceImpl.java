@@ -24,20 +24,42 @@ public class ParametreServiceImpl implements ParametreService {
         this.utilisateurService = utilisateurService;
     }
 
+    @Override
+    public void inscrireUtilisateur(InscriptionDto inscriptionDto) {
+        utilisateurService.inscrireUtilisateur(inscriptionDto);
+    }
+
+    @Override
+    public void modifierEstAdmin(Long id, Boolean estAdmin) {
+        utilisateurService.modifierEstAdmin(id, estAdmin);
+    }
+
+    @Override
+    public void supprimerUtilisateur(Long id) {
+        utilisateurService.supprimerUtilisateur(id);
+    }
+
+    @Override
+    public void modifierUtilisateurParAdmin(Long id, ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto) {
+        utilisateurService.modifierUtilisateurParAdmin(id, modificationUtilisateurParAdminDto);
+    }
 
     @Override
     public void changePassword(ChangePasswordDto changePasswordDto) {
         utilisateurService.changePassword(changePasswordDto);
     }
 
+
+    @Override
+    public void ajouterAnneeEntite(Long entiteId, Integer anneeUniversitaire) {
+        entiteService.ajouterAnneeEntite(entiteId, anneeUniversitaire);
+    }
+
     @Override
     public void creerEntiteEtAdmin(CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
 
         //Creation puis récupération de l'entite
-        Entite entite = entiteService.saveEntite(new Entite(
-                creationEntiteEtAdminDto.getNom(),
-                creationEntiteEtAdminDto.getType()
-        ));
+        Entite entite = entiteService.creerEntite(creationEntiteEtAdminDto.getNom(), creationEntiteEtAdminDto.getType());
 
         //Inscription de l'utilisateur
         utilisateurService.inscrireUtilisateur(new InscriptionDto(
@@ -53,6 +75,11 @@ public class ParametreServiceImpl implements ParametreService {
     @Override
     public List<UtilisateurDto> getAllUtilisateurParEntiteId(Long idEntite) {
         return utilisateurService.getAllUtilisateurParEntiteId(idEntite).stream().map(this::utilisateurToUtilisateurDto).toList();
+    }
+
+    @Override
+    public void modifierUtilisateurParUtilisateur(Long id, ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto) {
+        utilisateurService.modifierUtilisateurParUtilisateur(id, modificationUtilisateurParUtilisateurDto);
     }
 
     private UtilisateurDto utilisateurToUtilisateurDto(Utilisateur utilisateur){

@@ -11,6 +11,5 @@ public interface AuthentificationService {
 
     void changePassword(ChangePasswordDto requete);
 
-    //TODO transformer map en DTO
     Map<String, Object> connexion(ConnexionDto connexionDto);
 }

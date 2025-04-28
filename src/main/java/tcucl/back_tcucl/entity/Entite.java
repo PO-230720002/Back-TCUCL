@@ -28,7 +28,7 @@ public class Entite {
     @JoinColumn(name = "notes_permanentes_id")
     private NotesPermanentes notesPermanentes;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "annee_id")
     private List<Annee> annees;
 

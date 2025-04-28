@@ -8,4 +8,6 @@ public interface EntiteManager {
     Entite getEntitebyId(Long id);
     Entite save(Entite entite);
     List<Entite> getAll();
+
+    boolean existsEntiteByNomAndType(String nom, String type);
 }

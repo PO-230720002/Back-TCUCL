@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.entity.Annee;
 import tcucl.back_tcucl.entity.Entite;
 import tcucl.back_tcucl.entity.NotesPermanentes;
+import tcucl.back_tcucl.exceptionPersonnalisee.EntiteDejaExistantAvecNomType;
+import tcucl.back_tcucl.exceptionPersonnalisee.EntiteNonTrouveeIdException;
 import tcucl.back_tcucl.manager.EntiteManager;
 import tcucl.back_tcucl.repository.EntiteRepository;
 import tcucl.back_tcucl.service.EntiteService;
@@ -31,11 +33,25 @@ public class EntiteServiceImpl implements EntiteService {
 
     @Override
     public Entite creerEntite(String nom, String type) {
-        return new Entite(nom, type);
+        if (!entiteManager.existsEntiteByNomAndType(nom, type)) {
+            return entiteManager.save(new Entite(nom, type));
+        } else {
+            throw new EntiteDejaExistantAvecNomType(nom, type);
+        }
+    }
+
+    @Override
+    public Entite ajouterAnneeEntite(Long entiteId, Integer anneeUniversitaire) {
+        Entite entite = entiteManager.getEntitebyId(entiteId);
+        Annee annee = new Annee(anneeUniversitaire);
+        entite.getAnnees().add(annee);
+        return entiteManager.save(entite);
     }
 
     @Override
     public List<Entite> getAllEntites() {
         return entiteManager.getAll();
     }
+
+
 }

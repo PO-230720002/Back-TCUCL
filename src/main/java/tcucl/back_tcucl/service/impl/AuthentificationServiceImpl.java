@@ -42,7 +42,7 @@ public class AuthentificationServiceImpl implements AuthentificationService {
 
     @Override
     public void inscription(InscriptionDto inscriptionDto) {
-        utilisateurService.inscrireUtilisateur(inscriptionDto);
+        utilisateurService.inscrireUtilisateur2(inscriptionDto);
     }
 
     @Override

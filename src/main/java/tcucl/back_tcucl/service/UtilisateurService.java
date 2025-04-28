@@ -20,6 +20,10 @@ public interface UtilisateurService {
 
     void inscrireUtilisateur(InscriptionDto inscriptionDto);
 
+    void inscrireUtilisateur2(InscriptionDto inscriptionDto);
+
+    void supprimerUtilisateur(Long id);
+
     Utilisateur getUtilisateurParEmail(String email);
 
     Utilisateur getUtilisateurParId(Long id);

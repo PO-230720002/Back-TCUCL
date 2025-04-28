@@ -106,6 +106,35 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
+    public void inscrireUtilisateur2(InscriptionDto inscriptionDto) {
+        //Est ce que le mail est déjà pris
+        String email = inscriptionDto.getEmail();
+        if (utilisateurManager.emailDejaPris(email)){
+            throw new EmailDejaPrisException(email);
+        }
+
+        //Génération du mot de passe aléatoire
+        String mdpAleatoire = genererMdpAleatoire();
+        logger.info("Mot de passe généré: " + mdpAleatoire);  // Log du mot de passe généré
+
+        //Création de l'utilisateur
+        Utilisateur nouvelUtilisateur = new Utilisateur(
+                inscriptionDto.getNom(),
+                inscriptionDto.getPrenom(),
+                passwordEncoder.encode(mdpAleatoire),
+                email,
+                PREMIERE_CONNEXION_TRUE,
+                ROLE_USER,
+                inscriptionDto.isEstAdmin(),
+                SUPERADMIN_FALSE,
+                null);
+
+        //envoi du mail
+        emailService.sendSimpleEmail(inscriptionDto.getPrenom(), email, mdpAleatoire);
+        utilisateurManager.save(nouvelUtilisateur);
+    }
+
+    @Override
     public void modifierEstAdmin(Long id, Boolean estAdmin) {
         Utilisateur utilisateur = utilisateurManager.getUtilisateurParId(id);
         utilisateur.setEstAdmin(estAdmin);
@@ -135,8 +164,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     }
 
-
-
+    @Override
+    public void supprimerUtilisateur(Long id) {
+        utilisateurManager.supprimerUtilisateur(id);
+    }
 
     private String genererMdpAleatoire() {
         String characters = CHARACTERE_AUTORISE;

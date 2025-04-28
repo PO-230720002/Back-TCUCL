@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface UtilisateurManager {
 
+    void supprimerUtilisateur(Long id);
+
     List<Utilisateur> getAllUtilisateurParEntiteId(Long entiteId);
 
     boolean emailDejaPris(String email);

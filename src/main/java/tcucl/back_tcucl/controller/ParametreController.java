@@ -13,11 +13,9 @@ import static tcucl.back_tcucl.controller.ControllerConstante.*;
 @RequestMapping(REST_PARAMETRE)
 public class ParametreController {
 
-    private final UtilisateurService utilisateurService;
     private final ParametreService parametreService;
 
-    public ParametreController(UtilisateurService utilisateurService, ParametreService parametreService) {
-        this.utilisateurService = utilisateurService;
+    public ParametreController(ParametreService parametreService) {
         this.parametreService = parametreService;
     }
 
@@ -25,7 +23,7 @@ public class ParametreController {
     @PreAuthorize("@permissionService.utilisateurPeutModifierUtilisateur(authentication, #idUtilisateur)")
     @PatchMapping(REST_MODIFIER_UTILISATEUR_UTILISATEUR + REST_ID)
     public ResponseEntity<?> modifierUtilisateurParUtilisateur(@PathVariable("id") Long idUtilisateur, @RequestBody ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto) {
-        utilisateurService.modifierUtilisateurParUtilisateur(idUtilisateur, modificationUtilisateurParUtilisateurDto);
+        parametreService.modifierUtilisateurParUtilisateur(idUtilisateur, modificationUtilisateurParUtilisateurDto);
         return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_MODIFIE);
     }
 
@@ -41,22 +39,35 @@ public class ParametreController {
     @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutInscrireUtilisateur(authentication, #inscriptionDto))")
     @PostMapping(REST_INSCRIRE_UTILISATEUR)
     public ResponseEntity<?> inscrireUtilisateur(@RequestBody InscriptionDto inscriptionDto) {
-        utilisateurService.inscrireUtilisateur(inscriptionDto);
+        parametreService.inscrireUtilisateur(inscriptionDto);
         return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT);
     }
 
     @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutModifierUtilisateur(authentication, modificationUtilisateurParAdminDto))")
     @PatchMapping(REST_MODIFIER_UTILISATEUR_ADMIN + REST_ID)
     public ResponseEntity<?> modifierUtilisateurParAdmin(@PathVariable("id") Long idUtilisateur, @RequestBody ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto) {
-        utilisateurService.modifierUtilisateurParAdmin(idUtilisateur, modificationUtilisateurParAdminDto);
+        parametreService.modifierUtilisateurParAdmin(idUtilisateur, modificationUtilisateurParAdminDto);
         return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_MODIFIE);
     }
 
     @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutModifierEstAdmin(authentication, #idUtilisateur))")
     @PatchMapping(REST_MODIFIER_EST_ADMIN + REST_ID)
     public ResponseEntity<?> modifierEstAdmin(@PathVariable("id") Long idUtilisateur, @RequestBody boolean estAdmin) {
-        utilisateurService.modifierEstAdmin(idUtilisateur, estAdmin);
+        parametreService.modifierEstAdmin(idUtilisateur, estAdmin);
         return ResponseEntity.ok(REST_MESSAGE_CHANGE_STATUT_ADMIN);
+    }
+
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutSupprimerUtilisateur(authentication, #idUtilisateur))")
+    @DeleteMapping(REST_SUPPRIMER_UTILISATEUR + REST_ID)
+    public ResponseEntity<?> supprimerUtilisateur(@PathVariable("id") Long idUtilisateur) {
+        parametreService.supprimerUtilisateur(idUtilisateur);
+        return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_SUPPRIME);
+    }
+
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutAjouterAnneeEntite(authentication, #idEntite))")
+    public ResponseEntity<?> ajouterAnneeEntite(@PathVariable("id") Long idEntite, @RequestBody Integer anneeDto) {
+        parametreService.ajouterAnneeEntite(idEntite, anneeDto);
+        return ResponseEntity.ok(REST_MESSAGE_ANNEE_ENTITE_AJOUTEE);
     }
 
     //Parametre Super Admin
@@ -73,7 +84,5 @@ public class ParametreController {
     public ResponseEntity<?> getAllUtilisateurParEntiteId(@PathVariable("id") Long idEntite) {
         return ResponseEntity.ok(parametreService.getAllUtilisateurParEntiteId(idEntite));
     }
-
-
 
 }

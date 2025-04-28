@@ -22,6 +22,7 @@ public class Constante {
     public static final String ERREUR_UTILISATEUR_NON_TROUVE_ID = "Utilisateur introuvable avec l'ID : ";
     public static final String ERREUR_UTILISATEUR_NON_TROUVE_MAIL = "Utilisateur introuvable avec le mail : ";
     public static final String ERREUR_ENTITE_NON_TROUVE_ID = "Entite introuvable avec l'ID : ";
+    public static final String ERREUR_ENTITE_EXISTE_DEJA = "L'entité existe déjà avec ce nom et ce type.";
     public static final String ERREUR_ENTITE_NON_TROUVE = "Entite non trouvée en base";
     public static final String ERREUR_INTERNE = "Une erreur interne s'est produite.";
     //AUTRE

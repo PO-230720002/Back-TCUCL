@@ -13,8 +13,6 @@ public class VehiculeOnglet extends Onglet{
     @JoinColumn(name = "vehicule_onglet_id")
     private List<Vehicule> vehiculeList;
 
-
-
     public List<Vehicule> getVehiculeList() {
         return vehiculeList;
     }

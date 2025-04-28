@@ -18,6 +18,11 @@ public class Onglet {
     private String note;
     private boolean estTermine;
 
+    public Onglet() {
+        this.note = "";
+        this.estTermine = false;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
