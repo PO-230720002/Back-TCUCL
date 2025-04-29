@@ -88,7 +88,8 @@ public class ParametreServiceImpl implements ParametreService {
                 utilisateur.getNom(),
                 utilisateur.getPrenom(),
                 utilisateur.getEmail(),
-                utilisateur.getEstAdmin()
+                utilisateur.getEstAdmin(),
+                utilisateur.getEntite().getNom()
         );
     }
 }

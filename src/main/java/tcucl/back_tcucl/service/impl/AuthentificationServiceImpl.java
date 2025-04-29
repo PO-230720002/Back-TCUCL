@@ -10,8 +10,8 @@ import tcucl.back_tcucl.config.JwtUtils;
 import tcucl.back_tcucl.dto.ChangePasswordDto;
 import tcucl.back_tcucl.dto.ConnexionDto;
 import tcucl.back_tcucl.dto.InscriptionDto;
+import tcucl.back_tcucl.dto.UtilisateurDto;
 import tcucl.back_tcucl.entity.Utilisateur;
-import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisAncienMdpException;
 import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisIdentifiantsException;
 import tcucl.back_tcucl.exceptionPersonnalisee.UtilisateurNonTrouveEmailException;
 import tcucl.back_tcucl.service.UtilisateurService;
@@ -56,29 +56,51 @@ public class AuthentificationServiceImpl implements AuthentificationService {
         logger.info("mdp de l'utilisateur: " + connexionDto.getMdp());
 
         Utilisateur utilisateur;
-        try{
+        try {
             utilisateur = utilisateurService.getUtilisateurParEmail(connexionDto.getEmail());
-        }catch (UtilisateurNonTrouveEmailException e){
+            logger.info("Utilisateur récupéré avec succès: " + utilisateur.getEmail());
+        } catch (Exception e) {
+            logger.error("Erreur lors de la récupération de l'utilisateur", e);
             throw new MauvaisIdentifiantsException();
         }
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(connexionDto.getEmail(), connexionDto.getMdp())
-        );
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(connexionDto.getEmail(), connexionDto.getMdp())
+            );
+            logger.info("Authentification Spring Security réussie");
 
-        if (authentication.isAuthenticated()) {
-            Map<String, Object> authData = new HashMap<>();
-            authData.put(JETON, jwtUtils.generateToken(connexionDto.getEmail()));
-            authData.put(TYPE, BEARER);
-            if (utilisateur.getEstPremiereConnexion()) {
-                authData.put(MESSAGE, MESSAGE_PREMIERE_CONNEXION);
+            if (authentication.isAuthenticated()) {
+                Map<String, Object> authData = new HashMap<>();
+                authData.put(JETON, jwtUtils.generateToken(connexionDto.getEmail()));
+                logger.info("Token JWT généré");
+
+                UtilisateurDto utilisateurDto = new UtilisateurDto(
+                        utilisateur.getId(),
+                        utilisateur.getNom(),
+                        utilisateur.getPrenom(),
+                        utilisateur.getEmail(),
+                        utilisateur.getEstAdmin(),
+                        utilisateur.getEntite().getNom()
+                );
+
+                authData.put("user", utilisateurDto);
+
+                if (utilisateur.getEstPremiereConnexion()) {
+                    authData.put(MESSAGE, MESSAGE_PREMIERE_CONNEXION);
+                }
+
+                return authData;
+            } else {
+                logger.error("Échec d'authentification");
+                throw new MauvaisIdentifiantsException();
             }
-            return authData;
-        }else {
+        } catch (Exception e) {
+            logger.error("Erreur lors de l'authentification", e);
             throw new MauvaisIdentifiantsException();
         }
-
     }
+
 
 
 }
