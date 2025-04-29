@@ -21,6 +21,7 @@ import java.util.Arrays;
 
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
+
 @EnableMethodSecurity
 @EnableWebSecurity
 @Configuration
@@ -47,7 +48,7 @@ public class SecurityConfig {
                 .cors(cors -> {}) // ✅ Ajout obligatoire pour que CORS fonctionne avec Spring Security
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(REST_AUTH + REST_CONNEXION, REST_AUTH + REST_INSCRIPTION2, REST_AUTH + REST_CHANGE_MDP_PREMIERE_CONNEXION).permitAll()
+                        auth.requestMatchers(REST_AUTH + REST_CONNEXION, REST_AUTH + REST_INSCRIPTION2, REST_AUTH + REST_CHANGE_MDP_PREMIERE_CONNEXION,REST_AUTH+REST_CREER_ENTITE, "/test/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtFilter(customUserDetailsService, jwtUtils), UsernamePasswordAuthenticationFilter.class);
@@ -59,7 +60,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT","PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

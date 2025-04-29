@@ -28,8 +28,7 @@ public class Entite {
     @JoinColumn(name = "notes_permanentes_id")
     private NotesPermanentes notesPermanentes;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "annee_id")
+    @OneToMany(mappedBy = "entite", cascade = CascadeType.ALL)
     private List<Annee> annees;
 
 
@@ -37,7 +36,10 @@ public class Entite {
         this.nom = nom;
         this.type = type;
         this.notesPermanentes = new NotesPermanentes();
-        this.annees = new ArrayList<>(Collections.singletonList(new Annee()));
+
+        Annee annee = new Annee();
+        annee.setEntite(this); // Liaison bidirectionnelle
+        this.annees = new ArrayList<>(Collections.singletonList(annee));
     }
 
     public Entite() {
@@ -63,16 +65,16 @@ public class Entite {
         return annees;
     }
 
-    public void setAnnees(List<Annee> annees) {
-        this.annees = annees;
+    public void addAnnee(Annee annee) {
+        annees.add(annee);
+        annee.setEntite(this);
     }
 
-    public void addAnnee(Annee annee) {
-        if (annee == null) {
-            this.annees = new ArrayList<>();
-        }
-        this.annees.add(annee);
+    public void removeAnnee(Annee annee) {
+        annees.remove(annee);
+        annee.setEntite(null);
     }
+
 
     public String getNom() {
         return nom;

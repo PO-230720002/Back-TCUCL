@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.entity.onglet;
 
 import jakarta.persistence.*;
+import tcucl.back_tcucl.dto.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.entity.parametre.emissionFugitive.MachineEmissionFugitive;
 
 import java.time.Year;
@@ -13,9 +14,10 @@ public class EmissionFugitiveOnglet extends Onglet {
 
     private boolean possedeClimatisation;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "emission_fugitive_onglet_id")
     private List<MachineEmissionFugitive> machinesEmissionFugitive;
+
 
     public boolean isPossedeClimatisation() {
         return possedeClimatisation;
@@ -31,6 +33,20 @@ public class EmissionFugitiveOnglet extends Onglet {
 
     public void setMachinesEmissionFugitive(List<MachineEmissionFugitive> machinesEmissionFugitive) {
         this.machinesEmissionFugitive = machinesEmissionFugitive;
+    }
+
+    public void ajouterMachineViaDto(MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
+        MachineEmissionFugitive machineEmissionFugitive = new MachineEmissionFugitive();
+
+        machineEmissionFugitive.setNomMachine(machineEmissionFugitiveDto.getNomMachine());
+        machineEmissionFugitive.setDescriptionMachine(machineEmissionFugitiveDto.getDescriptionMachine());
+        machineEmissionFugitive.setQuantiteFluideKg(machineEmissionFugitiveDto.getQuantiteFluideKg());
+        machineEmissionFugitive.setTauxDeFuiteConnu(machineEmissionFugitiveDto.getTauxDeFuiteConnu());
+        machineEmissionFugitive.setTauxDeFuite(machineEmissionFugitiveDto.getTauxDeFuite());
+        machineEmissionFugitive.setTypeFluide(machineEmissionFugitiveDto.getTypeFluide());
+        machineEmissionFugitive.setTypeMachine(machineEmissionFugitiveDto.getTypeMachine());
+
+        this.machinesEmissionFugitive.add(machineEmissionFugitive);
     }
 
     @Override

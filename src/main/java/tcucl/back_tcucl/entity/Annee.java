@@ -14,7 +14,7 @@ public class Annee {
     private int anneeValeur;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private GeneralOnglet  generalOnglet;
+    private GeneralOnglet generalOnglet;
     @OneToOne(cascade = CascadeType.ALL)
     private EnergieOnglet energieOnglet;
     @OneToOne(cascade = CascadeType.ALL)
@@ -39,6 +39,10 @@ public class Annee {
     private ParkingVoirieOnglet parkingVoirieOnglet;
     @OneToOne(cascade = CascadeType.ALL)
     private VehiculeOnglet vehiculeOnglet;
+
+    @ManyToOne
+    @JoinColumn(name = "entite_id")
+    private Entite entite;
 
     public Annee() {
         this.anneeValeur = AnneeConfig.getAnneeCourante();
@@ -192,5 +196,13 @@ public class Annee {
 
     public void setVehiculeOnglet(VehiculeOnglet vehiculeOnglet) {
         this.vehiculeOnglet = vehiculeOnglet;
+    }
+
+    public Entite getEntite() {
+        return entite;
+    }
+
+    public void setEntite(Entite entite) {
+        this.entite = entite;
     }
 }

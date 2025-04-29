@@ -6,8 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.dto.ChangePasswordDto;
 import tcucl.back_tcucl.dto.ConnexionDto;
+import tcucl.back_tcucl.dto.CreationEntiteEtAdminDto;
 import tcucl.back_tcucl.dto.InscriptionDto;
 import tcucl.back_tcucl.service.AuthentificationService;
+import tcucl.back_tcucl.service.ParametreService;
+
+import java.net.CacheRequest;
 
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
@@ -18,9 +22,11 @@ public class AuthController {
     Logger logger = LoggerFactory.getLogger(AuthController.class);
 
    private final AuthentificationService authentificationService;
+   private final ParametreService parametreService;
 
-    public AuthController(AuthentificationService authentificationService){
+    public AuthController(AuthentificationService authentificationService, ParametreService parametreService){
         this.authentificationService = authentificationService;
+        this.parametreService = parametreService;
     }
 
     //pour les tests
@@ -29,6 +35,12 @@ public class AuthController {
     public ResponseEntity<?> inscription2(@RequestBody InscriptionDto inscriptionDto) {
         authentificationService.inscription(inscriptionDto);
         return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT);
+    }
+
+    @PostMapping(REST_CREER_ENTITE)
+    public ResponseEntity<?> creerEntite(@RequestBody CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
+        parametreService.creerEntiteEtAdmin(creationEntiteEtAdminDto);
+        return ResponseEntity.ok(REST_MESSAGE_ANNEE_ENTITE_AJOUTEE);
     }
 
     //connexion de base

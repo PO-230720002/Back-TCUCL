@@ -1,8 +1,10 @@
 package tcucl.back_tcucl.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import tcucl.back_tcucl.entity.Entite;
+import tcucl.back_tcucl.dto.securite.UtilisateurSecuriteDto;
 import tcucl.back_tcucl.entity.Utilisateur;
 
 import java.util.List;
@@ -18,4 +20,22 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> 
     Optional<Utilisateur> findById(Long id);
 
     List<Utilisateur> findAllByEntiteId(Long entiteId);
+
+    @Query("""
+            SELECT new tcucl.back_tcucl.dto.securite.UtilisateurSecuriteDto(
+                u.id,
+                u.email,
+                u.mdp,
+                u.estSuperAdmin,
+                u.estAdmin,
+                e.id,
+                np.id
+            )
+            FROM Utilisateur u
+            LEFT JOIN u.entite e
+            LEFT JOIN e.notesPermanentes np
+            WHERE u.email = :email
+            """)
+    Optional<UtilisateurSecuriteDto> findUtilisateurSecurityDTOByEmail(@Param("email") String email);
+
 }
