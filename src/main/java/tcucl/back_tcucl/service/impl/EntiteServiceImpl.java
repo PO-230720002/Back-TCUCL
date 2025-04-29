@@ -34,7 +34,11 @@ public class EntiteServiceImpl implements EntiteService {
     @Override
     public Entite creerEntite(String nom, String type) {
         if (!entiteManager.existsEntiteByNomAndType(nom, type)) {
-            return entiteManager.save(new Entite(nom, type));
+            Entite entite = new Entite(nom, type);
+            Annee annee = new Annee();
+            annee.setEntite(entite);
+            entite.addAnnee(annee);
+            return entiteManager.save(entite);
         } else {
             throw new EntiteDejaExistantAvecNomType(nom, type);
         }
@@ -44,6 +48,7 @@ public class EntiteServiceImpl implements EntiteService {
     public Entite ajouterAnneeEntite(Long entiteId, Integer anneeUniversitaire) {
         Entite entite = entiteManager.getEntitebyId(entiteId);
         Annee annee = new Annee(anneeUniversitaire);
+        annee.setEntite(entite);
         entite.getAnnees().add(annee);
         return entiteManager.save(entite);
     }

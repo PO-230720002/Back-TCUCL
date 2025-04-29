@@ -1,140 +1,108 @@
 package tcucl.back_tcucl.service.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import tcucl.back_tcucl.dto.onglet.EnergieOngletUpdateDto;
 import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
-import tcucl.back_tcucl.entity.parametre.energie.ParametreEnergie;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteBois;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteFioul;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteGaz;
-import tcucl.back_tcucl.repository.onglet.EnergieOngletRepository;
+import tcucl.back_tcucl.manager.EnergieOngletManager;
 import tcucl.back_tcucl.service.EnergieOngletService;
-
-import java.time.Year;
-import java.util.Random;
 
 @Service
 public class EnergieOngletServiceImpl implements EnergieOngletService {
 
-    private final EnergieOngletRepository energieOngletRepository;
+    private final EnergieOngletManager energieOngletManager;
 
-
-    public EnergieOngletServiceImpl(EnergieOngletRepository energieOngletRepository) {
-        this.energieOngletRepository = energieOngletRepository;
+    public EnergieOngletServiceImpl(EnergieOngletManager energieOngletManager) {
+        this.energieOngletManager = energieOngletManager;
     }
 
-    @Transactional
-    public EnergieOnglet create(EnergieOnglet energieOnglet) {
-        return energieOngletRepository.save(energieOnglet);
-    }
 
-    @Transactional
+    @Override
     public EnergieOnglet getEnergieOngletById(Long id) {
-        return energieOngletRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("EnergieOnglet non trouvé avec l'ID : " + id));
+        return energieOngletManager.getEnergieOngletById(id);
     }
 
-    @Transactional
+    @Override
     public EnergieOnglet createRandomEnergieOnglet() {
-        EnergieOnglet energieOnglet = new EnergieOnglet();
-        Random random = new Random();
-        energieOnglet.setEstTermine(false);
-        energieOnglet.setConsoGaz(random.nextFloat());
-        energieOnglet.setConsoFioul(random.nextFloat());
-        energieOnglet.setConsoBois(random.nextFloat());
-        energieOnglet.setConsoReseauVille(random.nextFloat());
-        energieOnglet.setConsoElecChauffage(random.nextFloat());
-        energieOnglet.setConsoElecSpecifique(random.nextFloat());
-        energieOnglet.setConsoEau(random.nextFloat());
-        energieOnglet.setNote("Note aléatoire (mais du coup non)");
-
-        ParametreEnergie parametreEnergie = new ParametreEnergie();
-        parametreEnergie.setNomReseauVille(EnumEnergie_NomReseauVille.LILLE);
-        parametreEnergie.setUniteBois(EnumEnergie_UniteBois.TONNE);
-        parametreEnergie.setUniteFioul(EnumEnergie_UniteFioul.m3);
-        parametreEnergie.setUniteGaz(EnumEnergie_UniteGaz.m3);
-
-        energieOnglet.setParametreEnergie(parametreEnergie);
-
-        return energieOngletRepository.save(energieOnglet);
-
+        return energieOngletManager.createRandomEnergieOnglet();
     }
 
-    @Transactional
+    @Override
     public EnergieOnglet updateEnergieOnglet(EnergieOnglet energieOnglet) {
-        return energieOngletRepository.save(energieOnglet);
+        return energieOngletManager.updateEnergieOnglet(energieOnglet);
     }
 
-    @Transactional
+    @Override
+    public void updateEnergieOngletPartiel(Long id, EnergieOngletUpdateDto dto) {
+        return energieOngletManager.updateEnergieOngletPartiel(id, dto);
+    }
+
+    @Override
     public void setEstTermine(Long id, boolean estTermine) {
-        int updated = energieOngletRepository.updateEstTermine(id, estTermine);
-        if (updated == 0) {
-            throw new EntityNotFoundException("EnergieOnglet non trouvé avec l'ID : " + id);
-        }
+        energieOngletManager.setEstTermine(id, estTermine);
     }
 
-    @Transactional
+    @Override
     public void setConsoGaz(Long id, Float consoGaz) {
-        int updated = energieOngletRepository.updateConsoGaz(id, consoGaz);
-        if (updated == 0) {
-            throw new EntityNotFoundException("EnergieOnglet non trouvé avec l'ID : " + id);
-        }
+        energieOngletManager.setConsoGaz(id, consoGaz);
     }
-    
-    @Transactional
+
+    @Override
     public void setConsoFioul(Long id, Float consoFioul) {
-        int updated = energieOngletRepository.updateConsoFioul(id, consoFioul);
-        if (updated == 0) {
-            throw new EntityNotFoundException("EnergieOnglet non trouvé avec l'ID : " + id);
-        }
+        energieOngletManager.setConsoFioul(id, consoFioul);
     }
 
-    @Transactional
+    @Override
     public void setConsoBois(Long id, Float consoBois) {
-        int updated = energieOngletRepository.updateConsoBois(id, consoBois);
-        if (updated == 0) {
-            throw new EntityNotFoundException("EnergieOnglet non trouvé avec l'ID : " + id);
-        }
+        energieOngletManager.setConsoBois(id, consoBois);
     }
 
-    @Transactional
+    @Override
     public void setConsoReseauVille(Long id, Float consoReseauVille) {
-        int updated = energieOngletRepository.updateConsoReseauVille(id, consoReseauVille);
-        if (updated == 0) {
-            throw new EntityNotFoundException("EnergieOnglet non trouvé avec l'ID : " + id);
-        }
+        energieOngletManager.setConsoReseauVille(id, consoReseauVille);
     }
 
-    @Transactional
+    @Override
     public void setConsoElecChauffage(Long id, Float consoElecChauffage) {
-        int updated = energieOngletRepository.updateConsoElecChauffage(id, consoElecChauffage);
-        if (updated == 0) {
-            throw new EntityNotFoundException("EnergieOnglet non trouvé avec l'ID : " + id);
-        }
+        energieOngletManager.setConsoElecChauffage(id, consoElecChauffage);
     }
 
-    @Transactional
+    @Override
     public void setConsoElecSpecifique(Long id, Float consoElecSpecifique) {
-        int updated = energieOngletRepository.updateConsoElecSpecifique(id, consoElecSpecifique);
-        if (updated == 0) {
-            throw new EntityNotFoundException("EnergieOnglet non trouvé avec l'ID : " + id);
-        }
+        energieOngletManager.setConsoElecSpecifique(id, consoElecSpecifique);
     }
 
-    @Transactional
+    @Override
     public void setConsoEau(Long id, Float consoEau) {
-        int updated = energieOngletRepository.updateConsoEau(id, consoEau);
-        if (updated == 0) {
-            throw new EntityNotFoundException("EnergieOnglet non trouvé avec l'ID : " + id);
-        }
+        energieOngletManager.setConsoEau(id, consoEau);
     }
 
-    @Transactional
+    @Override
     public void setNote(Long id, String note) {
-        int updated = energieOngletRepository.updateNote(id, note);
-        if (updated == 0) {
-            throw new EntityNotFoundException("EnergieOnglet non trouvé avec l'ID : " + id);
-        }
+        energieOngletManager.setNote(id, note);
     }
+
+    @Override
+    public void setNomReseauVille(Long id, EnumEnergie_NomReseauVille nomReseauVille) {
+        energieOngletManager.setNomReseauVille(id, nomReseauVille);
+    }
+
+    @Override
+    public void setUniteBois(Long id, EnumEnergie_UniteBois uniteBois) {
+        energieOngletManager.setUniteBois(id, uniteBois);
+    }
+
+    @Override
+    public void setUniteFioul(Long id, EnumEnergie_UniteFioul uniteFioul) {
+        energieOngletManager.setUniteFioul(id, uniteFioul);
+    }
+
+    @Override
+    public void setUniteGaz(Long id, EnumEnergie_UniteGaz uniteGaz) {
+       energieOngletManager.setUniteGaz(id, uniteGaz);
+    }
+
 }

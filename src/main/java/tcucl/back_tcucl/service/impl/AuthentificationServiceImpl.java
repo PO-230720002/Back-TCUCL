@@ -70,6 +70,8 @@ public class AuthentificationServiceImpl implements AuthentificationService {
             );
             logger.info("Authentification Spring Security réussie");
 
+            // TODO
+            // ne pas connecter l'utilisateur pour le forcer à changer le mdp
             if (authentication.isAuthenticated()) {
                 Map<String, Object> authData = new HashMap<>();
                 authData.put(JETON, jwtUtils.generateToken(connexionDto.getEmail()));

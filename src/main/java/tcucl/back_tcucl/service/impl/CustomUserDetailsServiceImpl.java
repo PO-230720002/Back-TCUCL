@@ -5,10 +5,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import tcucl.back_tcucl.dto.securite.AnneeSecuriteDto;
+import tcucl.back_tcucl.dto.securite.UtilisateurSecuriteDto;
 import tcucl.back_tcucl.entity.Utilisateur;
+import tcucl.back_tcucl.exceptionPersonnalisee.UtilisateurNonTrouveEmailException;
+import tcucl.back_tcucl.service.AnneeService;
 import tcucl.back_tcucl.service.UtilisateurService;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,9 +22,11 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
 
     private final UtilisateurService utilisateurService;
+    private final AnneeService anneeService;
 
-    public CustomUserDetailsServiceImpl(UtilisateurService utilisateurService) {
+    public CustomUserDetailsServiceImpl(UtilisateurService utilisateurService, AnneeService anneeService) {
         this.utilisateurService = utilisateurService;
+        this.anneeService = anneeService;
     }
 
     //Ne pas changer le nom de la méthode loadByUsername en loadUserByEmail, sinon l'authentification ne fonctionnera pas
@@ -27,21 +35,56 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Utilisateur utilisateur = utilisateurService.getUtilisateurParEmail(email);
+        UtilisateurSecuriteDto utilisateurSecuriteDto = utilisateurService.findUtilisateurSecuriteDtoByEmail(email);
+        List<AnneeSecuriteDto> anneesSecuriteDto = anneeService.getAnneeSecuriteDtoByEntiteId(utilisateurSecuriteDto.entiteId());
+
+        if (anneesSecuriteDto.isEmpty()) {
+            throw new UtilisateurNonTrouveEmailException("Utilisateur non trouvé avec l'email : " + email);
+        }
+
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         SimpleGrantedAuthority utilisateurAuthority;
 
-        if (utilisateur.getEstSuperAdmin()) {
+        if (utilisateurSecuriteDto.estSuperAdmin()) {
             utilisateurAuthority = new SimpleGrantedAuthority("ROLE_SUPERADMIN");
-        } else if (utilisateur.getEstAdmin()) {
+        } else if (utilisateurSecuriteDto.estAdmin()) {
             utilisateurAuthority = new SimpleGrantedAuthority("ROLE_ADMIN");
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN_" + utilisateurSecuriteDto.entiteId()));
         } else {
             utilisateurAuthority = new SimpleGrantedAuthority("ROLE_USER");
         }
+        authorities.add(utilisateurAuthority);
+
+        if(!utilisateurSecuriteDto.estSuperAdmin()){
+            authorities.add(new SimpleGrantedAuthority("ROLE_ENTITE_" + utilisateurSecuriteDto.entiteId()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_NOTES_PERMANENTES_" + utilisateurSecuriteDto.notesPermanentesId()));
+
+            anneesSecuriteDto.forEach(annee -> {
+                //année
+                authorities.add(new SimpleGrantedAuthority("ROLE_ANNEE_" + annee.anneeId()));
+
+                //onglet
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.achatOngletId()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.autreImmobilisationOngletId()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.autreMobFrOngletId()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.batimentImmobilisationMobilierOngletId()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.dechetOngletId()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.emissionFugitiveOngletId()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.energieOngletId()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.generalOngletId()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.mobiliteDomTravOngletId()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.mobInternationalOngletId()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.numeriqueOngletId()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.parkingVoirieOngletId()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ONGLET_" + annee.vehiculeOngletId()));
+            });
+
+        }
 
         return new org.springframework.security.core.userdetails.User(
-                utilisateur.getEmail(),
-                utilisateur.getMdp(),
-                Collections.singletonList(utilisateurAuthority)
+                utilisateurSecuriteDto.email(),
+                utilisateurSecuriteDto.mdp(),
+                authorities
         );
     }
 }

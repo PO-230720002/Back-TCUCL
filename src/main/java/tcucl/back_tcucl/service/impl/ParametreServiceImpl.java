@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.service.impl;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tcucl.back_tcucl.dto.*;
 import tcucl.back_tcucl.entity.Entite;
 import tcucl.back_tcucl.entity.Utilisateur;
@@ -55,9 +56,10 @@ public class ParametreServiceImpl implements ParametreService {
         entiteService.ajouterAnneeEntite(entiteId, anneeUniversitaire);
     }
 
+    @Transactional
     @Override
     public void creerEntiteEtAdmin(CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
-
+//todo check dto pas null + faire transactionnal de tout le proccessus
         //Creation puis récupération de l'entite
         Entite entite = entiteService.creerEntite(creationEntiteEtAdminDto.getNom(), creationEntiteEtAdminDto.getType());
 
