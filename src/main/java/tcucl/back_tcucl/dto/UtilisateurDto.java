@@ -7,14 +7,16 @@ public class UtilisateurDto {
     private String prenom;
     private String email;
     private Boolean estAdmin;
+    private String entiteNom;
 
 
-    public UtilisateurDto(long id, String nom, String prenom, String email, Boolean estAdmin) {
+    public UtilisateurDto(long id, String nom, String prenom, String email, Boolean estAdmin, String entiteNom) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.estAdmin = estAdmin;
+        this.entiteNom = entiteNom;
     }
 
     public long getId() {
@@ -57,5 +59,12 @@ public class UtilisateurDto {
         this.estAdmin = estAdmin;
     }
 
+    public String getEntiteNom() {
+        return entiteNom;
+    }
+
+    public void setEntiteNom(String entiteNom) {
+        this.entiteNom = entiteNom;
+    }
 
 }
