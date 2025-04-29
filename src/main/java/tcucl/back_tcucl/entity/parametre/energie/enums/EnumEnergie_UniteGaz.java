@@ -2,7 +2,7 @@ package tcucl.back_tcucl.entity.parametre.energie.enums;
 
 public enum EnumEnergie_UniteGaz {
     MWH_PCS(0),
-    m3(1);
+    M3(1);
 
     private final int code;
 

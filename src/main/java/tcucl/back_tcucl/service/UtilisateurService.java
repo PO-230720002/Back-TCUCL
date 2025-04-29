@@ -2,6 +2,7 @@ package tcucl.back_tcucl.service;
 
 
 import tcucl.back_tcucl.dto.*;
+import tcucl.back_tcucl.dto.securite.UtilisateurSecuriteDto;
 import tcucl.back_tcucl.entity.Utilisateur;
 
 import java.util.List;
@@ -29,6 +30,8 @@ public interface UtilisateurService {
     Utilisateur getUtilisateurParId(Long id);
 
     List<Utilisateur> getAllUtilisateurParEntiteId(Long entiteId);
+
+    UtilisateurSecuriteDto findUtilisateurSecuriteDtoByEmail(String email);
 
     Boolean emailDejaPris(String email);
 

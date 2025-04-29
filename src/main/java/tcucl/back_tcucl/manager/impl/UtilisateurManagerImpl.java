@@ -1,7 +1,8 @@
 package tcucl.back_tcucl.manager.impl;
 
+import org.springframework.stereotype.Component;
+import tcucl.back_tcucl.dto.securite.UtilisateurSecuriteDto;
 import tcucl.back_tcucl.manager.UtilisateurManager;
-import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.entity.Utilisateur;
 import tcucl.back_tcucl.exceptionPersonnalisee.UtilisateurNonTrouveIdException;
 import tcucl.back_tcucl.exceptionPersonnalisee.UtilisateurNonTrouveEmailException;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Service
+@Component
 public class UtilisateurManagerImpl implements UtilisateurManager {
 
     UtilisateurRepository utilisateurRepository;
@@ -56,5 +57,14 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
     @Override
     public void supprimerUtilisateur(Long id) {
         utilisateurRepository.deleteById(id);
+    }
+
+    @Override
+    public UtilisateurSecuriteDto findUtilisateurSecurityDTOByEmail(String email) {
+        Optional<UtilisateurSecuriteDto> utilisateur = utilisateurRepository.findUtilisateurSecurityDTOByEmail(email);
+        if(utilisateur.isEmpty()){
+            throw new UtilisateurNonTrouveEmailException(email);
+        }
+        return utilisateur.get();
     }
 }

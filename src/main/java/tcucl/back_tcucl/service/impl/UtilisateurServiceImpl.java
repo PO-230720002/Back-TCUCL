@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import tcucl.back_tcucl.dto.*;
+import tcucl.back_tcucl.dto.securite.UtilisateurSecuriteDto;
 import tcucl.back_tcucl.exceptionPersonnalisee.EmailDejaPrisException;
 import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisAncienMdpException;
 import tcucl.back_tcucl.manager.UtilisateurManager;
@@ -162,6 +163,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         utilisateur.setEstPremiereConnexion(PREMIERE_CONNEXION_FALSE);
         utilisateurManager.save(utilisateur);
 
+    }
+
+    @Override
+    public UtilisateurSecuriteDto findUtilisateurSecuriteDtoByEmail(String email) {
+        return utilisateurManager.findUtilisateurSecurityDTOByEmail(email);
     }
 
     @Override

@@ -5,7 +5,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.dto.*;
 import tcucl.back_tcucl.service.ParametreService;
-import tcucl.back_tcucl.service.UtilisateurService;
 
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
@@ -73,13 +72,14 @@ public class ParametreController {
     //Parametre Super Admin
     @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
     @PostMapping(REST_CREER_ENTITE)
-    public ResponseEntity<?> creerEntite(CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
+    public ResponseEntity<?> creerEntite(@RequestBody CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
         parametreService.creerEntiteEtAdmin(creationEntiteEtAdminDto);
         return ResponseEntity.ok(REST_MESSAGE_ENTITE_CREEE);
     }
 
     //Initialisation
     @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutAccéderAEntite(authentication, #idEntite))")
+//    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN_' + '#idEntite')")
     @GetMapping(REST_UTILISATEUR_ENTITE + REST_ID)
     public ResponseEntity<?> getAllUtilisateurParEntiteId(@PathVariable("id") Long idEntite) {
         return ResponseEntity.ok(parametreService.getAllUtilisateurParEntiteId(idEntite));

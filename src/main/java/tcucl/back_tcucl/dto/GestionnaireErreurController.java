@@ -1,4 +1,4 @@
-package tcucl.back_tcucl.controller;
+package tcucl.back_tcucl.dto;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
