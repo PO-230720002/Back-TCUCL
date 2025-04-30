@@ -82,6 +82,18 @@ public class EnergieOngletManagerImpl implements EnergieOngletManager {
         if (dto.getNote() != null) {
             onglet.setNote(dto.getNote());
         }
+        if (dto.getNomReseauVille() != null) {
+            onglet.setNomReseauVille(dto.getNomReseauVille());
+        }
+        if (dto.getUniteBois() != null) {
+            onglet.setUniteBois(dto.getUniteBois());
+        }
+        if (dto.getUniteFioul() != null) {
+            onglet.setUniteFioul(dto.getUniteFioul());
+        }
+        if (dto.getUniteGaz() != null) {
+            onglet.setUniteGaz(dto.getUniteGaz());
+        }
         energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
     }
 

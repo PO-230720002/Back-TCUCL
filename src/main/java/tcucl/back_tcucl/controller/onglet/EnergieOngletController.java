@@ -1,8 +1,11 @@
 package tcucl.back_tcucl.controller.onglet;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.annotationPersonnalisee.checkRoleOnglet;
+import tcucl.back_tcucl.dto.onglet.EnergieOngletDto;
+import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
 import tcucl.back_tcucl.dto.onglet.EnergieOngletUpdateDto;
 import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
@@ -25,8 +28,11 @@ public class EnergieOngletController {
 
     @GetMapping()
     @checkRoleOnglet
-    public ResponseEntity<?> getEnergieOngletById(@PathVariable Long id) {
-        return ResponseEntity.ok(energieOngletService.getEnergieOngletById(id));
+    public ResponseEntity<?> getEnergieOngletById(@PathVariable(value = "id") Long id) {
+
+        EnergieOnglet energieOngletById = energieOngletService.getEnergieOngletById(id);
+        EnergieOngletDto body = new EnergieOngletDto(energieOngletById);
+        return ResponseEntity.ok(body);
     }
 
     @PatchMapping()

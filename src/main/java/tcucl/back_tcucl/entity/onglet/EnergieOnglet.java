@@ -81,36 +81,41 @@ public class EnergieOnglet extends Onglet {
         ConsoGaz = consoGaz;
     }
 
-    public EnumEnergie_NomReseauVille getNomReseauVille() {
-        return EnumEnergie_NomReseauVille.fromCode(this.valeurEnumEnergieReseauVille);
-    }
 
     public void setNomReseauVille(EnumEnergie_NomReseauVille valeur) {
         this.valeurEnumEnergieReseauVille = valeur.getCode();
     }
 
-    public EnumEnergie_UniteBois getUniteBois() {
-        return EnumEnergie_UniteBois.fromCode(valeurEnumEnergieUniteBois);
-    }
 
     public void setUniteBois(EnumEnergie_UniteBois valeur) {
         this.valeurEnumEnergieUniteBois = valeur.getCode();
     }
 
-    public EnumEnergie_UniteFioul getUniteFioul() {
-        return EnumEnergie_UniteFioul.fromCode(valeurEnumEnergieUniteFioul);
-    }
 
     public void setUniteFioul(EnumEnergie_UniteFioul valeur) {
         this.valeurEnumEnergieUniteFioul = valeur.getCode();
     }
 
-    public EnumEnergie_UniteGaz getUniteGaz() {
-        return EnumEnergie_UniteGaz.fromCode(valeurEnumEnergieUniteGaz);
-    }
 
     public void setUniteGaz(EnumEnergie_UniteGaz valeur) {
         this.valeurEnumEnergieUniteGaz = valeur.getCode();
+    }
+
+    public EnumEnergie_UniteGaz getUniteGaz() {
+        return valeurEnumEnergieUniteGaz != null ? EnumEnergie_UniteGaz.fromCode(valeurEnumEnergieUniteGaz) : null;
+    }
+
+
+    public EnumEnergie_UniteFioul getUniteFioul() {
+        return valeurEnumEnergieUniteFioul != null ? EnumEnergie_UniteFioul.fromCode(valeurEnumEnergieUniteFioul) : null;
+    }
+
+    public EnumEnergie_UniteBois getUniteBois() {
+        return valeurEnumEnergieUniteBois != null ? EnumEnergie_UniteBois.fromCode(valeurEnumEnergieUniteBois) : null;
+    }
+
+    public EnumEnergie_NomReseauVille getNomReseauVille() {
+        return valeurEnumEnergieReseauVille != null ? EnumEnergie_NomReseauVille.fromCode(valeurEnumEnergieReseauVille) : null;
     }
 
 
