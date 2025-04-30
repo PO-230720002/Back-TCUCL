@@ -29,7 +29,7 @@ public class EnergieOngletController {
 
     @PatchMapping()
     @checkRoleOnglet
-    public ResponseEntity<Void> updateEnergieOngletPartiel(@PathVariable Long id,
+    public ResponseEntity<Void> updateEnergieOngletPartiel(@PathVariable(value = "id") Long id,
                                                            @RequestBody EnergieOngletDto dto) {
         energieOngletService.updateEnergieOngletPartiel(id, dto);
         return ResponseEntity.ok().build();

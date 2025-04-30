@@ -3,10 +3,6 @@ package tcucl.back_tcucl.service.impl.onglet;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.EnergieOngletDto;
 import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteBois;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteFioul;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteGaz;
 import tcucl.back_tcucl.manager.EnergieOngletManager;
 import tcucl.back_tcucl.service.EnergieOngletService;
 

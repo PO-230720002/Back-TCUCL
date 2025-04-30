@@ -18,6 +18,10 @@ public class MachineEmissionFugitiveDto {
     private Float tauxDeFuite;
     private EnumEmissionFugitive_TypeMachine typeMachine;
 
+
+    public MachineEmissionFugitiveDto() {
+    }
+
     public MachineEmissionFugitiveDto(MachineEmissionFugitive entity) {
         this.id = entity.getId();
         this.nomMachine = entity.getNomMachine();

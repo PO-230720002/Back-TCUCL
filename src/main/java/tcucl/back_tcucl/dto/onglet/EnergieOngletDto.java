@@ -1,5 +1,6 @@
 package tcucl.back_tcucl.dto.onglet;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
@@ -8,6 +9,7 @@ import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteFioul;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteGaz;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EnergieOngletDto {
     private Long id;
     private Boolean estTermine;
@@ -25,6 +27,8 @@ public class EnergieOngletDto {
     private EnumEnergie_UniteFioul uniteFioul;
     private EnumEnergie_UniteGaz uniteGaz;
 
+    public EnergieOngletDto() {
+    }
 
     public EnergieOngletDto(EnergieOnglet entity) {
         this.id = entity.getId();
