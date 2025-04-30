@@ -3,7 +3,9 @@ package tcucl.back_tcucl.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import tcucl.back_tcucl.dto.*;
+import tcucl.back_tcucl.service.FacteurEmissionService;
 import tcucl.back_tcucl.service.ParametreService;
 
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
@@ -13,9 +15,11 @@ import static tcucl.back_tcucl.controller.ControllerConstante.*;
 public class ParametreController {
 
     private final ParametreService parametreService;
+    private final FacteurEmissionService facteurEmissionService;
 
-    public ParametreController(ParametreService parametreService) {
+    public ParametreController(ParametreService parametreService, FacteurEmissionService facteurEmissionService) {
         this.parametreService = parametreService;
+        this.facteurEmissionService = facteurEmissionService;
     }
 
     //    Parametre perso
@@ -75,6 +79,12 @@ public class ParametreController {
     public ResponseEntity<?> creerEntite(@RequestBody CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
         parametreService.creerEntiteEtAdmin(creationEntiteEtAdminDto);
         return ResponseEntity.ok(REST_MESSAGE_ENTITE_CREEE);
+    }
+
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
+    @PostMapping(REST_IMPORT_FACTEURS_EMISSION)
+    public String triggerImport(@RequestParam("file") MultipartFile file) {
+        return facteurEmissionService.importFromExcel(file);
     }
 
     //Initialisation

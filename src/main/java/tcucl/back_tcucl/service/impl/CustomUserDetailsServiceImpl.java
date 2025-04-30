@@ -7,15 +7,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.securite.AnneeSecuriteDto;
 import tcucl.back_tcucl.dto.securite.UtilisateurSecuriteDto;
-import tcucl.back_tcucl.entity.Utilisateur;
-import tcucl.back_tcucl.exceptionPersonnalisee.UtilisateurNonTrouveEmailException;
 import tcucl.back_tcucl.service.AnneeService;
 import tcucl.back_tcucl.service.UtilisateurService;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomUserDetailsServiceImpl implements UserDetailsService {
@@ -39,7 +35,11 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
         List<AnneeSecuriteDto> anneesSecuriteDto = anneeService.getAnneeSecuriteDtoByEntiteId(utilisateurSecuriteDto.entiteId());
 
         if (anneesSecuriteDto.isEmpty()) {
-            throw new UtilisateurNonTrouveEmailException("Utilisateur non trouvé avec l'email : " + email);
+            try {
+                throw new Exception();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();

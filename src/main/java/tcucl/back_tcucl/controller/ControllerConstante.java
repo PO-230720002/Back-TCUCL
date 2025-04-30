@@ -28,6 +28,7 @@ public class ControllerConstante {
     public static final String REST_MODIFIER_UTILISATEUR_ADMIN = "/modifier-utilisateur-admin";
     public static final String REST_MODIFIER_EST_ADMIN = "/modifier-est-admin";
     public static final String REST_CREER_ENTITE = "/creer-entite";
+    public static final String REST_IMPORT_FACTEURS_EMISSION = "/import-facteurs-emission";
     public static final String REST_UTILISATEUR_ENTITE = "/utilisateur-entite";
     //messages
     public static final String REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT = "Le compte utilisateur a bien créé.";

@@ -37,7 +37,7 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
 
     @Override
     public void updateEnergieOngletPartiel(Long id, EnergieOngletUpdateDto dto) {
-        return energieOngletManager.updateEnergieOngletPartiel(id, dto);
+        energieOngletManager.updateEnergieOngletPartiel(id, dto);
     }
 
     @Override
