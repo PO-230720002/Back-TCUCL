@@ -46,34 +46,14 @@ public class ControllerConstante {
 
     //   ------------       Energie       ------------
     public static final String REST_ENERGIE_ONGLET = "/energieonglet";
-    public static final String REST_EST_TERMINE = "/estTermine";
-    public static final String REST_CREATE_RANDOM = "/createRandom";
-    public static final String REST_CONSO_GAZ = "/consoGaz";
-    public static final String REST_CONSO_FIOUL = "/consoFioul";
-    public static final String REST_CONSO_BOIS = "/consoBois";
-    public static final String REST_CONSO_RESEAU_VILLE = "/consoReseauVille";
-    public static final String REST_CONSO_ELEC_CHAUFFAGE = "/consoElecChauffage";
-    public static final String REST_CONSO_ELEC_SPECIFIQUE = "/consoElecSpecifique";
-    public static final String REST_CONSO_EAU = "/consoEau";
-    public static final String REST_NOTE = "/note";
-    public static final String RESEAU_VILLE = "/reseauVille";
-    public static final String REST_UNITE_GAZ = "/uniteGaz";
-    public static final String REST_UNITE_FIOUL = "/uniteFioul";
-    public static final String REST_UNITE_BOIS = "/uniteBois";
 
     //   ---------    Emission Fugitive   ----------
     public static final String REST_EMISSION_FUGITIVE_ONGLET = "/emissionFugitive";
     public static final String REST_MACHINE_ID = "/machineId";
     public static final String REST_MACHINE = "/machine";
-    public static final String REST_AJOUTER_MACHINE = "/ajouter-machine";
-    public static final String REST_SUPPRIMER_MACHINE = "/supprimer-machine";
-    public static final String REST_MODIFIER_NOM_MACHINE = "/modifier-nom-machine";
-    public static final String REST_MODIFIER_DESCRIPTION_MACHINE = "/modifier-description-machine";
-    public static final String REST_MODIFIER_TYPE_FLUIDE_MACHINE = "/modifier-type-fluide-machine";
-    public static final String REST_MODIFIER_QUANTITE_FLUIDE_MACHINE = "/modifier-quantite-fluide-machine";
-    public static final String REST_MODIFIER_TAUX_DE_FUITE_CONNU_MACHINE = "/modifier-taux-de-fuite-connu-machine";
-    public static final String REST_MODIFIER_TAUX_DE_FUITE_MACHINE = "/modifier-taux-de-fuite-machine";
-    public static final String REST_MODIFIER_TYPE_MACHINE_MACHINE = "/modifier-type-machine-machine";
 
+
+    //   ---------    Autre Mobilité FR   ----------
+    public static final String REST_AUTRE_MOB_FR = "/autreMobFr";
 
 }

@@ -1,11 +1,13 @@
 package tcucl.back_tcucl.dto.onglet;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import tcucl.back_tcucl.entity.parametre.emissionFugitive.MachineEmissionFugitive;
 import tcucl.back_tcucl.entity.parametre.emissionFugitive.enums.EnumEmissionFugitive_TypeFluide;
 import tcucl.back_tcucl.entity.parametre.emissionFugitive.enums.EnumEmissionFugitive_TypeMachine;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MachineEmissionFugitiveDto {
 
     private Long id;
