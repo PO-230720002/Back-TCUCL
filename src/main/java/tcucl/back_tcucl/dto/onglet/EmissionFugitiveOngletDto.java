@@ -1,5 +1,6 @@
 package tcucl.back_tcucl.dto.onglet;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
 
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EmissionFugitiveOngletDto {
     private Long id;
     private Boolean estTermine;
