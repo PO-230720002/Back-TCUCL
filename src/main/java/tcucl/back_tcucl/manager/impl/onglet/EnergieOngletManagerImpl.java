@@ -2,7 +2,7 @@ package tcucl.back_tcucl.manager.impl.onglet;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
-import tcucl.back_tcucl.dto.onglet.EnergieOngletUpdateDto;
+import tcucl.back_tcucl.dto.onglet.EnergieOngletDto;
 import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteBois;
@@ -56,7 +56,7 @@ public class EnergieOngletManagerImpl implements EnergieOngletManager {
     }
 
     @Override
-    public void updateEnergieOngletPartiel(Long id, EnergieOngletUpdateDto dto) {
+    public void updateEnergieOngletPartiel(Long id, EnergieOngletDto dto) {
         EnergieOnglet onglet = getEnergieOngletById(id);
         if (dto.getConsoGaz() != null) {
             onglet.setConsoGaz(dto.getConsoGaz());
@@ -96,98 +96,5 @@ public class EnergieOngletManagerImpl implements EnergieOngletManager {
         }
         energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
     }
-
-    @Override
-    public void setEstTermine(Long id, boolean estTermine) {
-        EnergieOnglet onglet = getEnergieOngletById(id);
-        onglet.setEstTermine(estTermine);
-        energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
-    }
-
-    @Override
-    public void setConsoGaz(Long id, Float consoGaz) {
-        EnergieOnglet onglet = getEnergieOngletById(id);
-        onglet.setConsoGaz(consoGaz);
-        energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
-    }
-
-    @Override
-    public void setConsoFioul(Long id, Float consoFioul) {
-        EnergieOnglet onglet = getEnergieOngletById(id);
-        onglet.setConsoFioul(consoFioul);
-        energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
-    }
-
-    @Override
-    public void setConsoBois(Long id, Float consoBois) {
-        EnergieOnglet onglet = getEnergieOngletById(id);
-        onglet.setConsoBois(consoBois);
-        energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
-    }
-
-    @Override
-    public void setConsoReseauVille(Long id, Float consoReseauVille) {
-        EnergieOnglet onglet = getEnergieOngletById(id);
-        onglet.setConsoReseauVille(consoReseauVille);
-        energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
-    }
-
-    @Override
-    public void setConsoElecChauffage(Long id, Float consoElecChauffage) {
-        EnergieOnglet onglet = getEnergieOngletById(id);
-        onglet.setConsoElecChauffage(consoElecChauffage);
-        energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
-    }
-
-    @Override
-    public void setConsoElecSpecifique(Long id, Float consoElecSpecifique) {
-        EnergieOnglet onglet = getEnergieOngletById(id);
-        onglet.setConsoElecSpecifique(consoElecSpecifique);
-        energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
-    }
-
-    @Override
-    public void setConsoEau(Long id, Float consoEau) {
-        EnergieOnglet onglet = getEnergieOngletById(id);
-        onglet.setConsoEau(consoEau);
-        energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
-    }
-
-    @Override
-    public void setNote(Long id, String note) {
-        EnergieOnglet onglet = getEnergieOngletById(id);
-        onglet.setNote(note);
-        energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
-    }
-
-    @Override
-    public void setNomReseauVille(Long id, EnumEnergie_NomReseauVille nomReseauVille) {
-        EnergieOnglet parametreEnergie = getEnergieOngletById(id); // Récupère l'entité
-        parametreEnergie.setNomReseauVille(nomReseauVille); // Modifie le champ
-        updateEnergieOnglet(parametreEnergie); // Sauvegarde l'entité modifiée
-    }
-
-    @Override
-    public void setUniteBois(Long id, EnumEnergie_UniteBois uniteBois) {
-        EnergieOnglet parametreEnergie = getEnergieOngletById(id); // Récupère l'entité
-        parametreEnergie.setUniteBois(uniteBois); // Modifie le champ
-        updateEnergieOnglet(parametreEnergie); // Sauvegarde l'entité modifiée
-    }
-
-    @Override
-    public void setUniteFioul(Long id, EnumEnergie_UniteFioul uniteFioul) {
-        EnergieOnglet parametreEnergie = getEnergieOngletById(id); // Récupère l'entité
-        parametreEnergie.setUniteFioul(uniteFioul); // Modifie le champ
-        updateEnergieOnglet(parametreEnergie); // Sauvegarde l'entité modifiée
-    }
-
-
-    @Override
-    public void setUniteGaz(Long id, EnumEnergie_UniteGaz uniteGaz) {
-        EnergieOnglet parametreEnergie = getEnergieOngletById(id); // Récupère l'entité
-        parametreEnergie.setUniteGaz(uniteGaz); // Modifie le champ
-        updateEnergieOnglet(parametreEnergie); // Sauvegarde l'entité modifiée
-    }
-
 
 }

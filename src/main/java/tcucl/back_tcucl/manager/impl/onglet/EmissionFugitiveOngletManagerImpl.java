@@ -2,12 +2,10 @@ package tcucl.back_tcucl.manager.impl.onglet;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-import tcucl.back_tcucl.dto.MachineEmissionFugitiveDto;
+import tcucl.back_tcucl.dto.onglet.MachineEmissionFugitiveDto;
+import tcucl.back_tcucl.dto.onglet.EmissionFugitiveOngletDto;
 import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.entity.parametre.emissionFugitive.MachineEmissionFugitive;
-import tcucl.back_tcucl.entity.parametre.emissionFugitive.enums.EnumEmissionFugitive_TypeFluide;
-import tcucl.back_tcucl.entity.parametre.emissionFugitive.enums.EnumEmissionFugitive_TypeMachine;
 import tcucl.back_tcucl.manager.EmissionFugitiveOngletManager;
 import tcucl.back_tcucl.repository.onglet.EmissionFugitiveOngletRepository;
 
@@ -33,6 +31,54 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
                 .filter(m -> m.getId().equals(machineId))
                 .findFirst()
                 .orElseThrow(() -> new EntityNotFoundException("Machine not found with ID: " + machineId));
+    }
+
+    @Override
+    public void updateEmissionFugitiveOnglet(Long id, EmissionFugitiveOngletDto emissionFugitiveOngletDto) {
+        EmissionFugitiveOnglet onglet = getEmissionFugitiveOngletById(id);
+        if (emissionFugitiveOngletDto.getEstTermine() != null) {
+            onglet.setEstTermine(emissionFugitiveOngletDto.getEstTermine());
+        }
+
+        if (emissionFugitiveOngletDto.getNote() != null) {
+            onglet.setNote(emissionFugitiveOngletDto.getNote());
+        }
+
+        if (emissionFugitiveOngletDto.getMachinesEmissionFugitive() != null) {
+            for (MachineEmissionFugitiveDto machineDto : emissionFugitiveOngletDto.getMachinesEmissionFugitive()) {
+                if (machineDto.getId() != null) {
+                    MachineEmissionFugitive machine = onglet.getMachinesEmissionFugitive()
+                            .stream()
+                            .filter(m -> m.getId().equals(machineDto.getId()))
+                            .findFirst()
+                            .orElseThrow(() -> new EntityNotFoundException("Machine with ID " + machineDto.getId() + " not found"));
+
+                    if (machineDto.getNomMachine() != null) {
+                        machine.setNomMachine(machineDto.getNomMachine());
+                    }
+                    if (machineDto.getDescriptionMachine() != null) {
+                        machine.setDescriptionMachine(machineDto.getDescriptionMachine());
+                    }
+                    if (machineDto.getTypeFluide() != null) {
+                        machine.setTypeFluide(machineDto.getTypeFluide());
+                    }
+                    if (machineDto.getQuantiteFluideKg() != null) {
+                        machine.setQuantiteFluideKg(machineDto.getQuantiteFluideKg());
+                    }
+                    if (machineDto.getTauxDeFuiteConnu() != null) {
+                        machine.setTauxDeFuiteConnu(machineDto.getTauxDeFuiteConnu());
+                    }
+                    if (machineDto.getTauxDeFuite() != null) {
+                        machine.setTauxDeFuite(machineDto.getTauxDeFuite());
+                    }
+                    if (machineDto.getTypeMachine() != null) {
+                        machine.setTypeMachine(machineDto.getTypeMachine());
+                    }
+                }
+            }
+        }
+
+        emissionFugitiveOngletRepository.save(onglet);
     }
 
     @Override
@@ -62,57 +108,33 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
     }
 
     @Override
-    public void setNomMachine(Long ongletId, Long machineId, String nomMachine) {
+    public void updateMachinePartiel(Long ongletId, Long machineId, MachineEmissionFugitiveDto dto) {
         MachineEmissionFugitive machine = getMachineById(ongletId, machineId);
-        machine.setNomMachine(nomMachine);
-        emissionFugitiveOngletRepository.save(getEmissionFugitiveOngletById(ongletId)); 
-    }
 
-    @Override
-    public void setDescriptionMachine(Long ongletId, Long machineId, String descriptionMachine) {
-        MachineEmissionFugitive machine = getMachineById(ongletId, machineId);
-        machine.setDescriptionMachine(descriptionMachine);
-        emissionFugitiveOngletRepository.save(getEmissionFugitiveOngletById(ongletId)); 
-    }
-
-    @Override
-    public void setValeurEnumTypeFluide(Long ongletId, Long machineId, EnumEmissionFugitive_TypeFluide typeFluide) {
-        MachineEmissionFugitive machine = getMachineById(ongletId, machineId);
-        machine.setTypeFluide(typeFluide);
-        emissionFugitiveOngletRepository.save(getEmissionFugitiveOngletById(ongletId)); 
-    }
-
-    @Override
-    public void setQuantiteFluideKg(Long ongletId, Long machineId, Float quantiteFluideKg) {
-        MachineEmissionFugitive machine = getMachineById(ongletId, machineId);
-        machine.setQuantiteFluideKg(quantiteFluideKg);
-        emissionFugitiveOngletRepository.save(getEmissionFugitiveOngletById(ongletId)); 
-    }
-
-    @Override
-    public void setTauxDeFuiteConnu(Long ongletId, Long machineId, Boolean tauxDeFuiteConnu) {
-        MachineEmissionFugitive machine = getMachineById(ongletId, machineId);
-        machine.setTauxDeFuiteConnu(tauxDeFuiteConnu);
-        if(tauxDeFuiteConnu){
-            machine.setTauxDeFuite(null);
-        }else{
-            machine.setTypeMachine(null);
+        if (dto.getNomMachine() != null) {
+            machine.setNomMachine(dto.getNomMachine());
         }
-        emissionFugitiveOngletRepository.save(getEmissionFugitiveOngletById(ongletId)); 
+        if (dto.getDescriptionMachine() != null) {
+            machine.setDescriptionMachine(dto.getDescriptionMachine());
+        }
+        if (dto.getTypeFluide() != null) {
+            machine.setTypeFluide(dto.getTypeFluide());
+        }
+        if (dto.getQuantiteFluideKg() != null) {
+            machine.setQuantiteFluideKg(dto.getQuantiteFluideKg());
+        }
+        if (dto.getTauxDeFuiteConnu() != null) {
+            machine.setTauxDeFuiteConnu(dto.getTauxDeFuiteConnu());
+        }
+        if (dto.getTauxDeFuite() != null) {
+            machine.setTauxDeFuite(dto.getTauxDeFuite());
+        }
+        if (dto.getTypeMachine() != null) {
+            machine.setTypeMachine(dto.getTypeMachine());
+        }
+
+        emissionFugitiveOngletRepository.save(getEmissionFugitiveOngletById(ongletId)); // Hibernate met à jour via cascade
     }
 
-    @Override
-    public void setTauxDeFuite(Long ongletId, Long machineId, Float tauxDeFuite) {
-        MachineEmissionFugitive machine = getMachineById(ongletId, machineId);
-        machine.setTauxDeFuite(tauxDeFuite);
-        emissionFugitiveOngletRepository.save(getEmissionFugitiveOngletById(ongletId)); 
-    }
 
-    @Override
-    public void setValeurEnumTypeMachine(Long ongletId, Long machineId, EnumEmissionFugitive_TypeMachine typeMachine) {
-        MachineEmissionFugitive machine = getMachineById(ongletId, machineId);
-        machine.setTypeMachine(typeMachine);
-
-        emissionFugitiveOngletRepository.save(getEmissionFugitiveOngletById(ongletId)); 
-    }
 }
