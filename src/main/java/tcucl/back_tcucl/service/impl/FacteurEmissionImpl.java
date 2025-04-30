@@ -24,7 +24,7 @@ public class FacteurEmissionImpl implements FacteurEmissionService {
     }
 
     @Override
-    public String importFromExcel(MultipartFile file) {
+    public void importFromExcel(MultipartFile file) {
         try (Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
             Sheet sheet = workbook.getSheetAt(0);
 
@@ -60,11 +60,8 @@ public class FacteurEmissionImpl implements FacteurEmissionService {
                 }
             }
 
-            return "Importation réussie.";
-
         } catch (Exception e) {
             e.printStackTrace();
-            return "Erreur : " + e.getMessage();
         }
     }
 

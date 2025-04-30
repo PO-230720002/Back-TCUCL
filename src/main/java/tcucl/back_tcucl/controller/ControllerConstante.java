@@ -38,7 +38,7 @@ public class ControllerConstante {
     public static final String REST_MESSAGE_CHANGE_STATUT_ADMIN = "Le statut administrateur de l'utilisateur a bien été mis à jour.";
     public static final String REST_MESSAGE_ENTITE_CREEE = "L'entité a bien été créé.";
     public static final String REST_MESSAGE_ANNEE_ENTITE_AJOUTEE = "L'année a bien été ajoutée à l'entité.";
-
+    public static final String REST_MESSAGE_IMPORT_FACTEURS_EMISSION = "Importation réussie.";
 
     //   *******************************************
     //   ------------      ONGLET       ------------

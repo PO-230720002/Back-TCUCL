@@ -83,8 +83,9 @@ public class ParametreController {
 
     @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
     @PostMapping(REST_IMPORT_FACTEURS_EMISSION)
-    public String triggerImport(@RequestParam("file") MultipartFile file) {
-        return facteurEmissionService.importFromExcel(file);
+    public ResponseEntity<?> triggerImport(@RequestParam("file") MultipartFile file) {
+        facteurEmissionService.importFromExcel(file);
+        return ResponseEntity.ok(REST_MESSAGE_IMPORT_FACTEURS_EMISSION);
     }
 
     //Initialisation
