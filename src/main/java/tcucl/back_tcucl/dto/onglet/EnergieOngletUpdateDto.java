@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.dto.onglet;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteBois;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteFioul;
@@ -22,6 +23,33 @@ public class EnergieOngletUpdateDto {
     private EnumEnergie_UniteFioul uniteFioul;
     private EnumEnergie_UniteGaz uniteGaz;
 
+
+    public EnergieOngletDto(EnergieOnglet entity) {
+        this.id = entity.getId();
+        this.estTermine = entity.isEstTermine();
+        this.note = entity.getNote();
+
+        this.consoGaz = entity.getConsoGaz();
+        this.consoFioul = entity.getConsoFioul();
+        this.consoBois = entity.getConsoBois();
+        this.consoReseauVille = entity.getConsoReseauVille();
+        this.consoElecChauffage = entity.getConsoElecChauffage();
+        this.consoElecSpecifique = entity.getConsoElecSpecifique();
+        this.consoEau = entity.getConsoEau();
+
+        this.nomReseauVille = entity.getNomReseauVille();
+        this.uniteBois = entity.getUniteBois();
+        this.uniteFioul = entity.getUniteFioul();
+        this.uniteGaz = entity.getUniteGaz();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Boolean getEstTermine() {
         return estTermine;
@@ -126,4 +154,5 @@ public class EnergieOngletUpdateDto {
     public void setUniteGaz(EnumEnergie_UniteGaz uniteGaz) {
         this.uniteGaz = uniteGaz;
     }
+
 }
