@@ -1,6 +1,6 @@
 package tcucl.back_tcucl.service;
 
-import tcucl.back_tcucl.dto.onglet.EnergieOngletUpdateDto;
+import tcucl.back_tcucl.dto.onglet.EnergieOngletDto;
 import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteBois;
@@ -13,33 +13,5 @@ public interface EnergieOngletService {
 
     public EnergieOnglet createRandomEnergieOnglet();
 
-    public void updateEnergieOngletPartiel(Long id, EnergieOngletUpdateDto dto);
-
-    public EnergieOnglet updateEnergieOnglet(EnergieOnglet energieOnglet);
-
-    public void setEstTermine(Long id, boolean estTermine);
-
-    public void setConsoGaz(Long id, Float consoGaz);
-
-    public void setConsoFioul(Long id, Float consoFioul);
-
-    public void setConsoBois(Long id, Float consoBois);
-
-    public void setConsoReseauVille(Long id, Float consoReseauVille);
-
-    public void setConsoElecChauffage(Long id, Float consoElecChauffage);
-
-    public void setConsoElecSpecifique(Long id, Float consoElecSpecifique);
-
-    public void setConsoEau(Long id, Float consoEau);
-
-    public void setNote(Long id, String note);
-
-    void setNomReseauVille(Long id, EnumEnergie_NomReseauVille nomReseauVille);
-
-    void setUniteBois(Long id, EnumEnergie_UniteBois uniteBois);
-
-    void setUniteFioul(Long id, EnumEnergie_UniteFioul uniteFioul);
-
-    void setUniteGaz(Long id, EnumEnergie_UniteGaz uniteGaz);
+    public void updateEnergieOngletPartiel(Long id, EnergieOngletDto dto);
 }

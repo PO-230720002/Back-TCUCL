@@ -8,8 +8,11 @@ import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteFioul;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteGaz;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EnergieOngletUpdateDto {
+public class EnergieOngletDto {
+    private Long id;
     private Boolean estTermine;
+    private String note;
+
     private Float consoGaz;
     private Float consoFioul;
     private Float consoBois;
@@ -17,7 +20,6 @@ public class EnergieOngletUpdateDto {
     private Float consoElecChauffage;
     private Float consoElecSpecifique;
     private Float consoEau;
-    private String note;
     private EnumEnergie_NomReseauVille nomReseauVille;
     private EnumEnergie_UniteBois uniteBois;
     private EnumEnergie_UniteFioul uniteFioul;
