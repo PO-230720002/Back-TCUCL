@@ -3,7 +3,8 @@ package tcucl.back_tcucl.entity.parametre.achat.enums;
 public enum EnumAchatRestauration_Methode {
     METHODE_RAPIDE(0),
     METHODE_INTERMEDIAIRE(1),
-    METHODE_DETAILLE(2);
+    METHODE_DETAILLE(2),
+    NAN(3);
 
     private final int code;
 
