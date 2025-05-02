@@ -82,7 +82,9 @@ public class ControllerConstante {
     public static final String REST_MOBILIER_ELECTROMENAGER_ID = "/{mobilierElectromenagerId}";
     public static final String REST_MOBILIER_ELECTROMENAGER = "/mobilierElectromenager";
 
-
     //   ---------    Achat   ----------
     public static final String REST_ACHAT_ONGLET = "/achatOnglet";
+
+    //   ---------    Autre Immobilisation   ----------
+    public static final String REST_AUTRE_IMMOBILISATION = "/autreImmobilisationOnglet";
 }

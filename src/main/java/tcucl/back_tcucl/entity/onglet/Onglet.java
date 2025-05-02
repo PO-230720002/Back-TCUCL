@@ -39,7 +39,7 @@ public class Onglet {
         this.note = note;
     }
 
-    public Boolean isEstTermine() {
+    public Boolean getEstTermine() {
         return estTermine;
     }
 

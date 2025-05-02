@@ -25,7 +25,7 @@ public class AchatOngletDto {
     }
     public AchatOngletDto(AchatOnglet entite) {
         this.id = entite.getId();
-        this.estTermine = entite.isEstTermine();
+        this.estTermine = entite.getEstTermine();
         this.note = entite.getNote();
         this.achatConsommable = new AchatConsommableDto(entite.getAchatConsommable());
         this.achatRestauration = new AchatRestaurationDto(entite.getAchatRestauration());

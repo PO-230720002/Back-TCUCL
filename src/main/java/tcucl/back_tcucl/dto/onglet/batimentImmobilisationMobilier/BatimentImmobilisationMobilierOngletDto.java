@@ -20,7 +20,7 @@ public class BatimentImmobilisationMobilierOngletDto {
 
     public BatimentImmobilisationMobilierOngletDto(BatimentImmobilisationMobilierOnglet entity) {
         this.id = entity.getId();
-        this.estTermine = entity.isEstTermine();
+        this.estTermine = entity.getEstTermine();
         this.note = entity.getNote();
 
         if (entity.getBatimentExistantOuNeufConstruits() != null) {

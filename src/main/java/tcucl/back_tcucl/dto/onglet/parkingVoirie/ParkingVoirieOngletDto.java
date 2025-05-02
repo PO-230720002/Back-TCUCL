@@ -16,7 +16,7 @@ public class ParkingVoirieOngletDto {
 
     public ParkingVoirieOngletDto(ParkingVoirieOnglet entity) {
         this.id = entity.getId();
-        this.estTermine = entity.isEstTermine();
+        this.estTermine = entity.getEstTermine();
         this.note = entity.getNote();
 
         if (entity.getParkingVoirieList() != null) {

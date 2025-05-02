@@ -23,7 +23,7 @@ public class NumeriqueOngletDto {
 
     public NumeriqueOngletDto(NumeriqueOnglet numeriqueOnglet) {
         this.id = numeriqueOnglet.getId();
-        this.estTermine = numeriqueOnglet.isEstTermine();
+        this.estTermine = numeriqueOnglet.getEstTermine();
         this.note = numeriqueOnglet.getNote();
 
         if (numeriqueOnglet.getEquipementNumeriqueList() != null) {

@@ -239,8 +239,8 @@ public class AutreMobFrOnglet extends Onglet {
     }
 
     @Override
-    public Boolean isEstTermine() {
-        return super.isEstTermine();
+    public Boolean getEstTermine() {
+        return super.getEstTermine();
     }
 
     @Override
