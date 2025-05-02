@@ -4,7 +4,8 @@ import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteGaz;
 
 public enum EnumParkingVoirie_Type {
     PARKING(0),
-    VOIRIE(1);
+    VOIRIE(1),
+    NA(2);
 
     private final int code;
 

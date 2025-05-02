@@ -15,8 +15,8 @@ public class Dechet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int valeurEnumTraitement;
-    private int quantiteTonne;
+    private Integer valeurEnumTraitement;
+    private Integer quantiteTonne;
 
     public int getQuantiteTonne() {
         return quantiteTonne;
@@ -31,7 +31,7 @@ public class Dechet {
     }
 
     public EnumDechet_Traitement getTraitement() {
-        return EnumDechet_Traitement.fromCode(this.valeurEnumTraitement);
+        return this.valeurEnumTraitement != null ? EnumDechet_Traitement.fromCode(this.valeurEnumTraitement) : null;
     }
 
 

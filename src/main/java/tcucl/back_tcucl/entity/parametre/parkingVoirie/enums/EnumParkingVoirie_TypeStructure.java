@@ -3,7 +3,8 @@ package tcucl.back_tcucl.entity.parametre.parkingVoirie.enums;
 public enum EnumParkingVoirie_TypeStructure {
     BETON_ARME(0),
     BITUME(1),
-    SEMI_RIGIDE(2);
+    SEMI_RIGIDE(2),
+    NA(3);
 
     private final int code;
 
