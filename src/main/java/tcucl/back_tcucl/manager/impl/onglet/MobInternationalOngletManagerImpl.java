@@ -21,7 +21,7 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
     @Override
     public MobInternationalOnglet getMobInternationalOngletById(Long id) {
         return mobInternationalOngletRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("MobInternationalOnglet non trouvé avec l'ID : " + id));
+                () -> new EntityNotFoundException("MobInternationalOnglet non trouvé avec l'Id: " + id));
     }
 
     @Override
@@ -30,7 +30,7 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
         return onglet.getVoyageVersUneDestinationMobInternationale().stream()
                 .filter(m -> m.getId().equals(voyageId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Voyage non trouvé avec l'ID: " + voyageId));
+                .orElseThrow(() -> new EntityNotFoundException("Voyage non trouvé avec l'Id: " + voyageId));
     }
 
     @Override

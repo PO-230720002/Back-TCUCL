@@ -24,7 +24,7 @@ public class EnergieOngletManagerImpl implements EnergieOngletManager {
 
     @Override
     public EnergieOnglet getEnergieOngletById(Long id) {
-        return energieOngletRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("EnergieOnglet non trouvé avec l'ID : " + id));
+        return energieOngletRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("EnergieOnglet non trouvé avec l'Id: " + id));
     }
 
     @Override

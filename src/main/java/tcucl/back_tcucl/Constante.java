@@ -19,9 +19,9 @@ public class Constante {
     public static final String ERREUR_EMAIL_DEJA_PRIS = "L'adresse e-mail est déjà utilisé pour un compte : ";
     public static final String ERREUR_UTILISATEUR_NON_TROUVE = "Utilisateur non trouvé en base.";
     public static final String ERREUR_MAUVAIS_ANCIEN_MDP = "Ancien mot de passe incorrect.";
-    public static final String ERREUR_UTILISATEUR_NON_TROUVE_ID = "Utilisateur introuvable avec l'ID : ";
+    public static final String ERREUR_UTILISATEUR_NON_TROUVE_ID = "Utilisateur introuvable avec l'Id: ";
     public static final String ERREUR_UTILISATEUR_NON_TROUVE_MAIL = "Utilisateur introuvable avec le mail : ";
-    public static final String ERREUR_ENTITE_NON_TROUVE_ID = "Entite introuvable avec l'ID : ";
+    public static final String ERREUR_ENTITE_NON_TROUVE_ID = "Entite introuvable avec l'Id: ";
     public static final String ERREUR_ENTITE_EXISTE_DEJA = "L'entité existe déjà avec ce nom et ce type.";
     public static final String ERREUR_ENTITE_NON_TROUVE = "Entite non trouvée en base";
     public static final String ERREUR_INTERNE = "Une erreur interne s'est produite.";

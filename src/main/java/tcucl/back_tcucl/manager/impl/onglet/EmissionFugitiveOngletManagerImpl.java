@@ -35,24 +35,24 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
 
     @Override
     public void updateEmissionFugitiveOnglet(Long id, EmissionFugitiveOngletDto emissionFugitiveOngletDto) {
-        EmissionFugitiveOnglet onglet = getEmissionFugitiveOngletById(id);
+        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(id);
 
         if (emissionFugitiveOngletDto.getEstTermine() != null) {
-            onglet.setEstTermine(emissionFugitiveOngletDto.getEstTermine());
+            emissionFugitiveOnglet.setEstTermine(emissionFugitiveOngletDto.getEstTermine());
         }
 
         if (emissionFugitiveOngletDto.getNote() != null) {
-            onglet.setNote(emissionFugitiveOngletDto.getNote());
+            emissionFugitiveOnglet.setNote(emissionFugitiveOngletDto.getNote());
         }
 
         if (emissionFugitiveOngletDto.getMachinesEmissionFugitive() != null) {
             emissionFugitiveOngletDto.getMachinesEmissionFugitive().clear();
             for (MachineEmissionFugitiveDto machineDto : emissionFugitiveOngletDto.getMachinesEmissionFugitive()) {
-                onglet.ajouterMachineViaDto(machineDto);
+                emissionFugitiveOnglet.ajouterMachineViaDto(machineDto);
             }
         }
 
-        emissionFugitiveOngletRepository.save(onglet);
+        emissionFugitiveOngletRepository.save(emissionFugitiveOnglet);
     }
 
     @Override

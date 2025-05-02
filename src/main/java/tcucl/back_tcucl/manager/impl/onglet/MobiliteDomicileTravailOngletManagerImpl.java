@@ -19,40 +19,43 @@ public class MobiliteDomicileTravailOngletManagerImpl implements MobiliteDomicil
     @Override
     public MobiliteDomicileTravailOnglet getMobiliteDomicileTravailOngletById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("MobiliteDomicileTravailOnglet non trouvé avec l'ID : " + id));
+                .orElseThrow(() -> new EntityNotFoundException("MobiliteDomicileTravailOnglet non trouvé avec l'Id: " + id));
     }
 
 
     @Override
     public void updateMobiliteDomicileTravailOngletPartiel(Long id, MobiliteDomicileTravailOngletDto dto) {
-        MobiliteDomicileTravailOnglet onglet = getMobiliteDomicileTravailOngletById(id);
+        MobiliteDomicileTravailOnglet mobiliteDomicileTravailOnglet = getMobiliteDomicileTravailOngletById(id);
 
-        if (dto.getVoitureThermiqueEtudiantKm() != null) onglet.setVoitureThermiqueEtudiantKm(dto.getVoitureThermiqueEtudiantKm());
-        if (dto.getVoitureElectriqueEtudiantKm() != null) onglet.setVoitureElectriqueEtudiantKm(dto.getVoitureElectriqueEtudiantKm());
-        if (dto.getVoitureHybrideEtudiantKm() != null) onglet.setVoitureHybrideEtudiantKm(dto.getVoitureHybrideEtudiantKm());
-        if (dto.getMotoEtudiantKm() != null) onglet.setMotoEtudiantKm(dto.getMotoEtudiantKm());
-        if (dto.getTrainRegionalEtudiantKm() != null) onglet.setTrainRegionalEtudiantKm(dto.getTrainRegionalEtudiantKm());
-        if (dto.getBusEtudiantKm() != null) onglet.setBusEtudiantKm(dto.getBusEtudiantKm());
-        if (dto.getMetroTramwayEtudiantKm() != null) onglet.setMetroTramwayEtudiantKm(dto.getMetroTramwayEtudiantKm());
-        if (dto.getVeloEtudiantKm() != null) onglet.setVeloEtudiantKm(dto.getVeloEtudiantKm());
-        if (dto.getTrotinetteElectriqueEtudiantKm() != null) onglet.setTrotinetteElectriqueEtudiantKm(dto.getTrotinetteElectriqueEtudiantKm());
-        if (dto.getVeloElectriqueEtudiantKm() != null) onglet.setVeloElectriqueEtudiantKm(dto.getVeloElectriqueEtudiantKm());
-        if (dto.getMarcheAPiedEtudiantKm() != null) onglet.setMarcheAPiedEtudiantKm(dto.getMarcheAPiedEtudiantKm());
-        if (dto.getNbJoursDeplacementEtudiant() != null) onglet.setNbJoursDeplacementEtudiant(dto.getNbJoursDeplacementEtudiant());
+        if (dto.getEstTermine() != null) mobiliteDomicileTravailOnglet.setEstTermine(dto.getEstTermine());
+        if (dto.getNote() != null) mobiliteDomicileTravailOnglet.setNote(dto.getNote());
 
-        if (dto.getVoitureThermiqueSalarieKm() != null) onglet.setVoitureThermiqueSalarieKm(dto.getVoitureThermiqueSalarieKm());
-        if (dto.getVoitureElectriqueSalarieKm() != null) onglet.setVoitureElectriqueSalarieKm(dto.getVoitureElectriqueSalarieKm());
-        if (dto.getVoitureHybrideSalarieKm() != null) onglet.setVoitureHybrideSalarieKm(dto.getVoitureHybrideSalarieKm());
-        if (dto.getMotoSalarieKm() != null) onglet.setMotoSalarieKm(dto.getMotoSalarieKm());
-        if (dto.getTrainRegionalSalarieKm() != null) onglet.setTrainRegionalSalarieKm(dto.getTrainRegionalSalarieKm());
-        if (dto.getBusSalarieKm() != null) onglet.setBusSalarieKm(dto.getBusSalarieKm());
-        if (dto.getMetroTramwaySalarieKm() != null) onglet.setMetroTramwaySalarieKm(dto.getMetroTramwaySalarieKm());
-        if (dto.getVeloSalarieKm() != null) onglet.setVeloSalarieKm(dto.getVeloSalarieKm());
-        if (dto.getTrotinetteElectriqueSalarieKm() != null) onglet.setTrotinetteElectriqueSalarieKm(dto.getTrotinetteElectriqueSalarieKm());
-        if (dto.getVeloElectriqueSalarieKm() != null) onglet.setVeloElectriqueSalarieKm(dto.getVeloElectriqueSalarieKm());
-        if (dto.getMarcheAPiedSalarieKm() != null) onglet.setMarcheAPiedSalarieKm(dto.getMarcheAPiedSalarieKm());
-        if (dto.getNbJoursDeplacementSalarie() != null) onglet.setNbJoursDeplacementSalarie(dto.getNbJoursDeplacementSalarie());
+        if (dto.getVoitureThermiqueEtudiantKm() != null) mobiliteDomicileTravailOnglet.setVoitureThermiqueEtudiantKm(dto.getVoitureThermiqueEtudiantKm());
+        if (dto.getVoitureElectriqueEtudiantKm() != null) mobiliteDomicileTravailOnglet.setVoitureElectriqueEtudiantKm(dto.getVoitureElectriqueEtudiantKm());
+        if (dto.getVoitureHybrideEtudiantKm() != null) mobiliteDomicileTravailOnglet.setVoitureHybrideEtudiantKm(dto.getVoitureHybrideEtudiantKm());
+        if (dto.getMotoEtudiantKm() != null) mobiliteDomicileTravailOnglet.setMotoEtudiantKm(dto.getMotoEtudiantKm());
+        if (dto.getTrainRegionalEtudiantKm() != null) mobiliteDomicileTravailOnglet.setTrainRegionalEtudiantKm(dto.getTrainRegionalEtudiantKm());
+        if (dto.getBusEtudiantKm() != null) mobiliteDomicileTravailOnglet.setBusEtudiantKm(dto.getBusEtudiantKm());
+        if (dto.getMetroTramwayEtudiantKm() != null) mobiliteDomicileTravailOnglet.setMetroTramwayEtudiantKm(dto.getMetroTramwayEtudiantKm());
+        if (dto.getVeloEtudiantKm() != null) mobiliteDomicileTravailOnglet.setVeloEtudiantKm(dto.getVeloEtudiantKm());
+        if (dto.getTrottinetteElectriqueEtudiantKm() != null) mobiliteDomicileTravailOnglet.setTrottinetteElectriqueEtudiantKm(dto.getTrottinetteElectriqueEtudiantKm());
+        if (dto.getVeloElectriqueEtudiantKm() != null) mobiliteDomicileTravailOnglet.setVeloElectriqueEtudiantKm(dto.getVeloElectriqueEtudiantKm());
+        if (dto.getMarcheAPiedEtudiantKm() != null) mobiliteDomicileTravailOnglet.setMarcheAPiedEtudiantKm(dto.getMarcheAPiedEtudiantKm());
+        if (dto.getNbJoursDeplacementEtudiant() != null) mobiliteDomicileTravailOnglet.setNbJoursDeplacementEtudiant(dto.getNbJoursDeplacementEtudiant());
 
-        repository.save(onglet);
+        if (dto.getVoitureThermiqueSalarieKm() != null) mobiliteDomicileTravailOnglet.setVoitureThermiqueSalarieKm(dto.getVoitureThermiqueSalarieKm());
+        if (dto.getVoitureElectriqueSalarieKm() != null) mobiliteDomicileTravailOnglet.setVoitureElectriqueSalarieKm(dto.getVoitureElectriqueSalarieKm());
+        if (dto.getVoitureHybrideSalarieKm() != null) mobiliteDomicileTravailOnglet.setVoitureHybrideSalarieKm(dto.getVoitureHybrideSalarieKm());
+        if (dto.getMotoSalarieKm() != null) mobiliteDomicileTravailOnglet.setMotoSalarieKm(dto.getMotoSalarieKm());
+        if (dto.getTrainRegionalSalarieKm() != null) mobiliteDomicileTravailOnglet.setTrainRegionalSalarieKm(dto.getTrainRegionalSalarieKm());
+        if (dto.getBusSalarieKm() != null) mobiliteDomicileTravailOnglet.setBusSalarieKm(dto.getBusSalarieKm());
+        if (dto.getMetroTramwaySalarieKm() != null) mobiliteDomicileTravailOnglet.setMetroTramwaySalarieKm(dto.getMetroTramwaySalarieKm());
+        if (dto.getVeloSalarieKm() != null) mobiliteDomicileTravailOnglet.setVeloSalarieKm(dto.getVeloSalarieKm());
+        if (dto.getTrottinetteElectriqueSalarieKm() != null) mobiliteDomicileTravailOnglet.setTrottinetteElectriqueSalarieKm(dto.getTrottinetteElectriqueSalarieKm());
+        if (dto.getVeloElectriqueSalarieKm() != null) mobiliteDomicileTravailOnglet.setVeloElectriqueSalarieKm(dto.getVeloElectriqueSalarieKm());
+        if (dto.getMarcheAPiedSalarieKm() != null) mobiliteDomicileTravailOnglet.setMarcheAPiedSalarieKm(dto.getMarcheAPiedSalarieKm());
+        if (dto.getNbJoursDeplacementSalarie() != null) mobiliteDomicileTravailOnglet.setNbJoursDeplacementSalarie(dto.getNbJoursDeplacementSalarie());
+
+        repository.save(mobiliteDomicileTravailOnglet);
     }
 }
