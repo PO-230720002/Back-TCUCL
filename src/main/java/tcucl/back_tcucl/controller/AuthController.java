@@ -41,7 +41,7 @@ public class AuthController {
     @PostMapping(REST_CREER_ENTITE)
     public ResponseEntity<?> creerEntite(@RequestBody CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
         parametreService.creerEntiteEtAdmin(creationEntiteEtAdminDto);
-        return ResponseEntity.ok(REST_MESSAGE_ANNEE_ENTITE_AJOUTEE);
+        return ResponseEntity.ok(REST_MESSAGE_ENTITE_CREEE);
     }
 
     //connexion de base
