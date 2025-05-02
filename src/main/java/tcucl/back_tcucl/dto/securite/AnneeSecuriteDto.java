@@ -10,7 +10,7 @@ public record AnneeSecuriteDto(
         Long emissionFugitiveOngletId,
         Long energieOngletId,
         Long generalOngletId,
-        Long mobiliteDomTravOngletId,
+        Long mobiliteDomicileTravailOngletId,
         Long mobInternationalOngletId,
         Long numeriqueOngletId,
         Long parkingVoirieOngletId,

@@ -1,14 +1,14 @@
-package tcucl.back_tcucl.entity.onglet;
+package tcucl.back_tcucl.dto.onglet;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
+import tcucl.back_tcucl.entity.onglet.MobiliteDomicileTravailOnglet;
 
-import jakarta.persistence.*;
-
-import java.time.Year;
-
-@Entity
-@Table(name = "mobilite_dom_trav_onglet")
-public class MobiliteDomTravOnglet extends Onglet {
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class MobiliteDomicileTravailOngletDto {
+    private Long id;
 
     private Integer voitureThermiqueEtudiantKm;
     private Integer voitureElectriqueEtudiantKm;
@@ -36,6 +36,20 @@ public class MobiliteDomTravOnglet extends Onglet {
     private Integer marcheAPiedSalarieKm;
     private Integer nbJoursDeplacementSalarie;
 
+
+    public MobiliteDomicileTravailOngletDto() {
+    }
+    public MobiliteDomicileTravailOngletDto(MobiliteDomicileTravailOnglet entity) {
+        this.id = entity.getId();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Integer getVoitureThermiqueEtudiantKm() {
         return voitureThermiqueEtudiantKm;
@@ -229,23 +243,4 @@ public class MobiliteDomTravOnglet extends Onglet {
         this.nbJoursDeplacementSalarie = nbJoursDeplacementSalarie;
     }
 
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public boolean isEstTermine() {
-        return super.isEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
 }

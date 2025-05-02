@@ -38,7 +38,7 @@ public interface AnneeRepository extends JpaRepository<Annee, Long> {
             LEFT JOIN a.emissionFugitiveOnglet efo
             LEFT JOIN a.energieOnglet eno
             LEFT JOIN a.generalOnglet go
-            LEFT JOIN a.mobiliteDomTravOnglet mdto
+            LEFT JOIN a.mobiliteDomicileTravailOnglet mdto
             LEFT JOIN a.mobInternationalOnglet mio
             LEFT JOIN a.numeriqueOnglet no
             LEFT JOIN a.parkingVoirieOnglet pvo
