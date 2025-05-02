@@ -3,8 +3,7 @@ package tcucl.back_tcucl.entity.parametre.batiment.enums;
 public enum EnumBatiment_TypeStructure{
         BETON(0),
         MIXTE(1),
-        BOIS(2),
-        NA(3);
+        BOIS(2);
 
         private final int code;
 

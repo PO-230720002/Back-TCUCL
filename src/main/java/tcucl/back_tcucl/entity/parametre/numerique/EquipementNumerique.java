@@ -12,9 +12,9 @@ public class EquipementNumerique {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer valeurEnumEquipement;
-    private Integer nombre;
-    private Integer dureeAmortissement;
+    private int valeurEnumEquipement;
+    private int nombre;
+    private int dureeAmortissement;
     private boolean emissionsGesPrecisesConnues;
     private Float emissionsReellesParProduitKgCO2e;
 
@@ -69,6 +69,6 @@ public class EquipementNumerique {
     }
 
     public EnumNumerique_Equipement getEquipement() {
-        return this.valeurEnumEquipement != null ? EnumNumerique_Equipement.fromCode(this.valeurEnumEquipement) : null;
+        return EnumNumerique_Equipement.fromCode(this.valeurEnumEquipement);
     }
 }

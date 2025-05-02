@@ -24,22 +24,6 @@ public class NotesPermanentes {
     private String NoteAchat;
     private String NoteDechet;
 
-
-    public NotesPermanentes() {
-        NoteEnergie = "";
-        NoteEnergieFugitive = "";
-        NoteMobiliteDomicileTravail = "";
-        NoteAutreMobiliteFr = "";
-        NoteMobiliteInternationale = "";
-        NoteBatiment = "";
-        NoteParkings = "";
-        NoteAutomobile = "";
-        NoteNumerique = "";
-        NoteImmobilisation = "";
-        NoteAchat = "";
-        NoteDechet = "";
-    }
-
     public Long getId() {
         return id;
     }

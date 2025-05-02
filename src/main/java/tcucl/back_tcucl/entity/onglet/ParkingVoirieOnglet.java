@@ -1,22 +1,44 @@
 package tcucl.back_tcucl.entity.onglet;
 
 import jakarta.persistence.*;
-import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieDto;
 import tcucl.back_tcucl.entity.parametre.parkingVoirie.ParkingVoirie;
 
-import java.util.ArrayList;
+import java.time.Year;
 import java.util.List;
 
 @Entity
-@Table(name = "parking_voirie_onglet")
-public class ParkingVoirieOnglet extends Onglet{
+@Table(name = "parking_voirie_Onglet")
+public class ParkingVoirieOnglet {
 
-    @OneToMany
-    @JoinColumn(name = "parking_voirie_onglet_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Year annee;
+    private boolean estTermine;
+
+    @ManyToMany
+    @JoinTable(
+            name = "jointure_ParkingVoirieOnglet_ParkingVoirie",
+            joinColumns = @JoinColumn(name = "onglet_id"),
+            inverseJoinColumns = @JoinColumn(name = "parking_id")
+    )
     private List<ParkingVoirie> parkingVoirieList;
 
-    public ParkingVoirieOnglet() {
-        this.parkingVoirieList = new ArrayList<>();
+
+    public Year getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(Year annee) {
+        this.annee = annee;
+    }
+
+    public boolean isEstTermine() {
+        return estTermine;
+    }
+
+    public void setEstTermine(boolean estTermine) {
+        this.estTermine = estTermine;
     }
 
     public List<ParkingVoirie> getParkingVoirieList() {
@@ -27,37 +49,11 @@ public class ParkingVoirieOnglet extends Onglet{
         this.parkingVoirieList = parkingVoirieList;
     }
 
-    @Override
-    public String getNote() {
-        return super.getNote();
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public boolean isEstTermine() {
-        return super.isEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
-
-    public void ajouterParkingVoirieViaDto(ParkingVoirieDto parkingVoirieDto) {
-        ParkingVoirie parkingVoirie = new ParkingVoirie();
-        parkingVoirie.setNomOuAdresse(parkingVoirieDto.getNomOuAdresse());
-        parkingVoirie.setDateConstruction(parkingVoirieDto.getDateConstruction());
-        parkingVoirie.setEmissionsGesConnues(parkingVoirieDto.getEmissionsGesConnues());
-        parkingVoirie.setEmissionsGesReelles(parkingVoirieDto.getEmissionsGesReelles());
-        parkingVoirie.setType(parkingVoirieDto.getType());
-        parkingVoirie.setNombreM2(parkingVoirieDto.getNombreM2());
-        parkingVoirie.setTypeStructure(parkingVoirieDto.getTypeStructure());
-        parkingVoirie.setDateAjoutEnBase(parkingVoirieDto.getDateAjoutEnBase());
-
-        this.parkingVoirieList.add(parkingVoirie);
+    public Long getId() {
+        return id;
     }
 }

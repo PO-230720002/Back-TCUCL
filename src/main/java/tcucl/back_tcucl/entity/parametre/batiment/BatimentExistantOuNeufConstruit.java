@@ -2,10 +2,12 @@ package tcucl.back_tcucl.entity.parametre.batiment;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.AssertTrue;
+import tcucl.back_tcucl.entity.onglet.BatimentImmobilisationMobilierOnglet;
 import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_TypeBatiment;
 import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_TypeStructure;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "batiment_existant_ou_neuf_construit")
@@ -19,23 +21,26 @@ public class BatimentExistantOuNeufConstruit {
     private LocalDate dateConstruction;
     private LocalDate dateDerniereGrosseRenovation;
     private Boolean aCompleter;
-    private Boolean acvBatimentRealisee;
+    private Boolean acvBâtimentRealisee;
     private Float emissionsGesReellesTCO2;
     private Integer valeurEnumTypeBatiment;
     private Float surfaceEnM2;
     private Integer valeurEnumTypeStructure;
+
+    @ManyToMany(mappedBy = "batimentExistantOuNeufConstruits")
+    private List<BatimentImmobilisationMobilierOnglet> batimentOnglets;
 
     // Getters et Setters
 
     @AssertTrue(message = "Les règles de validation pour les attributs ne sont pas respectées")
     public boolean isValid() {
         // Si acvBâtimentRealisee est true, valeurEnumTypeBatiment et valeurEnumTypeStructure doivent être null ou vides (0)
-        if (Boolean.TRUE.equals(acvBatimentRealisee)) {
+        if (Boolean.TRUE.equals(acvBâtimentRealisee)) {
             return (valeurEnumTypeBatiment == null || valeurEnumTypeBatiment == 0) &&
                     (valeurEnumTypeStructure == null || valeurEnumTypeStructure == 0);
         }
         // Si acvBâtimentRealisee est false, emissionsGesReelles doit être null ou vide (0.0)
-        if (Boolean.FALSE.equals(acvBatimentRealisee)) {
+        if (Boolean.FALSE.equals(acvBâtimentRealisee)) {
             return emissionsGesReellesTCO2 == null || emissionsGesReellesTCO2 == 0.0f;
         }
         return true; // Si aucune des conditions ne s'applique, la validation est réussie
@@ -85,12 +90,12 @@ public class BatimentExistantOuNeufConstruit {
         this.aCompleter = aCompleter;
     }
 
-    public Boolean getAcvBatimentRealisee() {
-        return acvBatimentRealisee;
+    public Boolean getAcvBâtimentRealisee() {
+        return acvBâtimentRealisee;
     }
 
-    public void setAcvBatimentRealisee(Boolean acvBatimentRealisee) {
-        this.acvBatimentRealisee = acvBatimentRealisee;
+    public void setAcvBâtimentRealisee(Boolean acvBâtimentRealisee) {
+        this.acvBâtimentRealisee = acvBâtimentRealisee;
     }
 
     public Float getEmissionsGesReellesTCO2() {
@@ -107,7 +112,7 @@ public class BatimentExistantOuNeufConstruit {
     }
 
     public EnumBatiment_TypeBatiment getTypeBatiment() {
-        return this.valeurEnumTypeBatiment != null ? EnumBatiment_TypeBatiment.fromCode(this.valeurEnumTypeBatiment) : null;
+        return EnumBatiment_TypeBatiment.fromCode(this.valeurEnumTypeBatiment);
     }
 
     public Float getSurfaceEnM2() {
@@ -123,7 +128,7 @@ public class BatimentExistantOuNeufConstruit {
     }
 
     public EnumBatiment_TypeStructure getTypeStructure() {
-        return this.valeurEnumTypeStructure != null ? EnumBatiment_TypeStructure.fromCode(this.valeurEnumTypeStructure) : null;
+        return EnumBatiment_TypeStructure.fromCode(this.valeurEnumTypeStructure);
     }
 
 }

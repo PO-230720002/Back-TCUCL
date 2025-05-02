@@ -1,8 +1,6 @@
 package tcucl.back_tcucl.entity.parametre.dechet;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import tcucl.back_tcucl.entity.parametre.dechet.enums.EnumDechet_Traitement;
@@ -10,20 +8,19 @@ import tcucl.back_tcucl.entity.parametre.dechet.enums.EnumDechet_Traitement;
 @Entity
 @Table(name = "dechet")
 public class Dechet {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Integer valeurEnumTraitement;
-    private Integer quantiteTonne;
+    private int valeurEnumTraitement;
+    private int QuantiteTonne;
 
     public int getQuantiteTonne() {
-        return quantiteTonne;
+
+        return QuantiteTonne;
     }
 
     public void setQuantiteTonne(int quantiteTonne) {
-        this.quantiteTonne = quantiteTonne;
+        QuantiteTonne = quantiteTonne;
     }
 
     public void setTraitement(EnumDechet_Traitement valeur) {
@@ -31,7 +28,7 @@ public class Dechet {
     }
 
     public EnumDechet_Traitement getTraitement() {
-        return this.valeurEnumTraitement != null ? EnumDechet_Traitement.fromCode(this.valeurEnumTraitement) : null;
+        return EnumDechet_Traitement.fromCode(this.valeurEnumTraitement);
     }
 
 

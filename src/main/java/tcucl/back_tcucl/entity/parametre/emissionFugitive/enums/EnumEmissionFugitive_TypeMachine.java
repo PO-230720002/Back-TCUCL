@@ -5,8 +5,7 @@ public enum EnumEmissionFugitive_TypeMachine {
     DRV(1),
     EAU_GLACEE_MOINS_50KW(2),
     EAU_GLACEE_PLUS_50KW(3),
-    INCONNU(4),
-    NA(5);
+    INCONNU(4);
 
     private final int code;
 
