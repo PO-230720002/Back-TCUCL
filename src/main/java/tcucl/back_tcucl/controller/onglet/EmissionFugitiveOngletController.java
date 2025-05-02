@@ -44,7 +44,7 @@ public class EmissionFugitiveOngletController {
 
     @DeleteMapping(REST_MACHINE + REST_MACHINE_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> supprimerMachine(@PathVariable(name = "id") Long ongletId, @RequestParam(name = "machineId") Long machineId) {
+    public ResponseEntity<Void> supprimerMachine(@PathVariable(name = "id") Long ongletId, @PathVariable(name = "machineId") Long machineId) {
         emissionFugitiveOngletService.supprimerMachine(ongletId, machineId);
         return ResponseEntity.ok().build();
 
@@ -52,7 +52,7 @@ public class EmissionFugitiveOngletController {
 
     @PatchMapping(REST_MACHINE + REST_MACHINE_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> updateMachinePartiel(@PathVariable(name = "id") Long ongletId, @RequestParam(name = "machineId") Long machineId, MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
+    public ResponseEntity<Void> updateMachinePartiel(@PathVariable(name = "id") Long ongletId, @PathVariable(name = "machineId") Long machineId, MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
         emissionFugitiveOngletService.updateMachinePartiel(ongletId, machineId, machineEmissionFugitiveDto);
         return ResponseEntity.ok().build();
     }

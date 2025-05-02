@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.entity.parametre.emissionFugitive.MachineEmissionFugitive;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,6 +16,9 @@ public class EmissionFugitiveOnglet extends Onglet {
     @JoinColumn(name = "emission_fugitive_onglet_id")
     private List<MachineEmissionFugitive> machinesEmissionFugitive;
 
+    public EmissionFugitiveOnglet() {
+        this.machinesEmissionFugitive = new ArrayList<>();
+    }
 
     public List<MachineEmissionFugitive> getMachinesEmissionFugitive() {
         return machinesEmissionFugitive;

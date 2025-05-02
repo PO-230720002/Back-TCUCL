@@ -47,7 +47,7 @@ public class MobInternationalOngletController {
     @DeleteMapping(REST_VOYAGE + REST_VOYAGE_ID)
     @checkRoleOnglet
     public ResponseEntity<Void> supprimerVoyage(@PathVariable(name = "id") Long ongletId,
-                                                @RequestParam(name = "voyageId") Long voyageId) {
+                                                @PathVariable(name = "voyageId") Long voyageId) {
         mobInternationalOngletService.supprimerVoyage(ongletId, voyageId);
         return ResponseEntity.ok().build();
     }
@@ -55,7 +55,7 @@ public class MobInternationalOngletController {
     @PatchMapping(REST_VOYAGE + REST_VOYAGE_ID)
     @checkRoleOnglet
     public ResponseEntity<Void> updateVoyagePartiel(@PathVariable(name = "id") Long ongletId,
-                                                    @RequestParam(name = "voyageId") Long voyageId,
+                                                    @PathVariable(name = "voyageId") Long voyageId,
                                                     @RequestBody VoyageVersUneDestinationMobInternationaleDto dto) {
         mobInternationalOngletService.updateVoyagePartiel(ongletId, voyageId, dto);
         return ResponseEntity.ok().build();

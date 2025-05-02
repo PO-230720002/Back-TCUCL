@@ -1,9 +1,10 @@
 package tcucl.back_tcucl.entity.onglet;
 
 import jakarta.persistence.*;
+import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieDto;
 import tcucl.back_tcucl.entity.parametre.parkingVoirie.ParkingVoirie;
 
-import java.time.Year;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,9 @@ public class ParkingVoirieOnglet extends Onglet{
     @JoinColumn(name = "parking_voirie_onglet_id")
     private List<ParkingVoirie> parkingVoirieList;
 
-
+    public ParkingVoirieOnglet() {
+        this.parkingVoirieList = new ArrayList<>();
+    }
 
     public List<ParkingVoirie> getParkingVoirieList() {
         return parkingVoirieList;
@@ -42,5 +45,19 @@ public class ParkingVoirieOnglet extends Onglet{
     @Override
     public void setEstTermine(boolean estTermine) {
         super.setEstTermine(estTermine);
+    }
+
+    public void ajouterParkingVoirieViaDto(ParkingVoirieDto parkingVoirieDto) {
+        ParkingVoirie parkingVoirie = new ParkingVoirie();
+        parkingVoirie.setNomOuAdresse(parkingVoirieDto.getNomOuAdresse());
+        parkingVoirie.setDateConstruction(parkingVoirieDto.getDateConstruction());
+        parkingVoirie.setEmissionsGesConnues(parkingVoirieDto.getEmissionsGesConnues());
+        parkingVoirie.setEmissionsGesReelles(parkingVoirieDto.getEmissionsGesReelles());
+        parkingVoirie.setType(parkingVoirieDto.getType());
+        parkingVoirie.setNombreM2(parkingVoirieDto.getNombreM2());
+        parkingVoirie.setTypeStructure(parkingVoirieDto.getTypeStructure());
+        parkingVoirie.setDateAjoutEnBase(parkingVoirieDto.getDateAjoutEnBase());
+
+        this.parkingVoirieList.add(parkingVoirie);
     }
 }

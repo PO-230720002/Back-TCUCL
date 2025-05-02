@@ -8,14 +8,16 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.AssertTrue;
 import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_TypeBatiment;
 import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_TypeStructure;
+import tcucl.back_tcucl.entity.parametre.parkingVoirie.enums.EnumParkingVoirie_Type;
+import tcucl.back_tcucl.entity.parametre.parkingVoirie.enums.EnumParkingVoirie_TypeStructure;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "parking_voirie")
 public class ParkingVoirie {
-    @Id
 
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -26,6 +28,7 @@ public class ParkingVoirie {
     private Integer valeurEnumType; // Enum correspondant au type de bâtiment
     private Float nombreM2;
     private Integer valeurEnumTypeStructure;
+    private Date dateAjoutEnBase;
 
 
     @AssertTrue(message = "Incohérence dans les émissions de GES et les types")
@@ -47,20 +50,20 @@ public class ParkingVoirie {
         return id;
     }
 
-    public void setType(EnumBatiment_TypeBatiment valeur) {
+    public void setType(EnumParkingVoirie_Type valeur) {
         this.valeurEnumType = valeur.getCode();
     }
 
-    public EnumBatiment_TypeBatiment getType() {
-        return EnumBatiment_TypeBatiment.fromCode(this.valeurEnumType);
+    public EnumParkingVoirie_Type getType() {
+        return this.valeurEnumType != null ? EnumParkingVoirie_Type.fromCode(this.valeurEnumType) : null;
     }
 
-    public void setTypeStructure(EnumBatiment_TypeStructure valeur) {
+    public void setTypeStructure(EnumParkingVoirie_TypeStructure valeur) {
         this.valeurEnumTypeStructure = valeur.getCode();
     }
 
-    public EnumBatiment_TypeStructure getTypeStructure() {
-        return EnumBatiment_TypeStructure.fromCode(this.valeurEnumTypeStructure);
+    public EnumParkingVoirie_TypeStructure getTypeStructure() {
+        return this.valeurEnumTypeStructure != null ? EnumParkingVoirie_TypeStructure.fromCode(this.valeurEnumTypeStructure) : null;
     }
 
     public String getNomOuAdresse() {
@@ -101,5 +104,13 @@ public class ParkingVoirie {
 
     public void setNombreM2(Float nombreM2) {
         this.nombreM2 = nombreM2;
+    }
+
+    public Date getDateAjoutEnBase() {
+        return dateAjoutEnBase;
+    }
+
+    public void setDateAjoutEnBase(Date dateAjoutEnBase) {
+        this.dateAjoutEnBase = dateAjoutEnBase;
     }
 }
