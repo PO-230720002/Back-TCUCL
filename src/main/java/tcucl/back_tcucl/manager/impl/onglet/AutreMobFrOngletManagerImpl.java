@@ -2,7 +2,7 @@ package tcucl.back_tcucl.manager.impl.onglet;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
-import tcucl.back_tcucl.dto.onglet.AutreMobFrOngletDto;
+import tcucl.back_tcucl.dto.onglet.autreMobFr.AutreMobFrOngletDto;
 import tcucl.back_tcucl.entity.onglet.AutreMobFrOnglet;
 import tcucl.back_tcucl.manager.AutreMobFrOngletManager;
 import tcucl.back_tcucl.repository.onglet.AutreMobFrOngletRepository;
@@ -25,6 +25,7 @@ public class AutreMobFrOngletManagerImpl implements AutreMobFrOngletManager {
     @Override
     public void updateAutreMobFrOngletPartiel(Long id, AutreMobFrOngletDto autreMobFrOngletDto) {
         AutreMobFrOnglet autreMobFrOnglet = autreMobFrOngletRepository.getReferenceById(id);
+
         if (autreMobFrOngletDto.getSalarieNbAllerSimple_VoitureThermique() != null)
             autreMobFrOnglet.setSalarieNbAllerSimple_VoitureThermique(autreMobFrOngletDto.getSalarieNbAllerSimple_VoitureThermique());
 

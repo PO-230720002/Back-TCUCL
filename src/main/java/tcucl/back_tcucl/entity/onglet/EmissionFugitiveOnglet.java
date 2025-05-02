@@ -1,7 +1,7 @@
 package tcucl.back_tcucl.entity.onglet;
 
 import jakarta.persistence.*;
-import tcucl.back_tcucl.dto.onglet.MachineEmissionFugitiveDto;
+import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.entity.parametre.emissionFugitive.MachineEmissionFugitive;
 
 import java.util.List;
@@ -27,7 +27,6 @@ public class EmissionFugitiveOnglet extends Onglet {
     public void ajouterMachineViaDto(MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
         MachineEmissionFugitive machineEmissionFugitive = new MachineEmissionFugitive();
 
-        machineEmissionFugitive.setNomMachine(machineEmissionFugitiveDto.getNomMachine());
         machineEmissionFugitive.setDescriptionMachine(machineEmissionFugitiveDto.getDescriptionMachine());
         machineEmissionFugitive.setQuantiteFluideKg(machineEmissionFugitiveDto.getQuantiteFluideKg());
         machineEmissionFugitive.setTauxDeFuiteConnu(machineEmissionFugitiveDto.getTauxDeFuiteConnu());

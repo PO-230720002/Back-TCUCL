@@ -37,6 +37,7 @@ public class AuthController {
         return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT);
     }
 
+    // TODO supprimer cette méthode en fin de dev
     @PostMapping(REST_CREER_ENTITE)
     public ResponseEntity<?> creerEntite(@RequestBody CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
         parametreService.creerEntiteEtAdmin(creationEntiteEtAdminDto);

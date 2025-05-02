@@ -56,6 +56,10 @@ public class ControllerConstante {
     public static final String REST_MOBILITE_DOMICILE_TRAVAIL_ONGLET = "/mobiliteDomicileTravailOnglet";
 
     //   ---------    Autre Mobilité FR   ----------
-    public static final String REST_AUTRE_MOB_FR = "/autreMobFr";
+    public static final String REST_AUTRE_MOB_FR = "/autreMobFrOnglet";
 
+    //   ---------    Mob Internationale   ----------
+    public static final String REST_MOB_INTERNATIONALE_ONGLET = "/mobInternationaleOnglet";
+    public static final String REST_VOYAGE = "/voyage";
+    public static final String REST_VOYAGE_ID = "/voyageId";
 }

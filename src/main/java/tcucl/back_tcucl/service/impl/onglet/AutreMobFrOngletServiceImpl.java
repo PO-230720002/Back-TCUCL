@@ -1,7 +1,7 @@
 package tcucl.back_tcucl.service.impl.onglet;
 
 import org.springframework.stereotype.Service;
-import tcucl.back_tcucl.dto.onglet.AutreMobFrOngletDto;
+import tcucl.back_tcucl.dto.onglet.autreMobFr.AutreMobFrOngletDto;
 import tcucl.back_tcucl.entity.onglet.AutreMobFrOnglet;
 import tcucl.back_tcucl.manager.AutreMobFrOngletManager;
 import tcucl.back_tcucl.service.AutreMobFrOngletService;

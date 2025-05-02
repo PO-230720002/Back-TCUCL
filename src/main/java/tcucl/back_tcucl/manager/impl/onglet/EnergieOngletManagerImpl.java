@@ -2,7 +2,7 @@ package tcucl.back_tcucl.manager.impl.onglet;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
-import tcucl.back_tcucl.dto.onglet.EnergieOngletDto;
+import tcucl.back_tcucl.dto.onglet.energie.EnergieOngletDto;
 import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
 import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteBois;

@@ -1,4 +1,4 @@
-package tcucl.back_tcucl.dto.onglet;
+package tcucl.back_tcucl.dto.onglet.emissionFugitive;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
