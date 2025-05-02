@@ -1,14 +1,12 @@
-package tcucl.back_tcucl.entity.onglet;
+package tcucl.back_tcucl.dto.onglet.autreImmobilisation;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.AssertTrue;
+import tcucl.back_tcucl.entity.onglet.AutreImmobilisationOnglet;
 
-@Entity
-@Table(name = "autre_immobilisation_onglet")
-public class AutreImmobilisationOnglet extends Onglet {
+public class AutreImmobilisationOngletDto {
+
+    private Long id;
+    private Boolean estTermine;
+    private String note;
 
     private Boolean installationComplete_IsEmissionGESConnues;
     private Float installationComplete_EmissionDeGes;
@@ -22,24 +20,6 @@ public class AutreImmobilisationOnglet extends Onglet {
     private Integer onduleur_DureeDeVie;
     private Boolean onduleur_IsEmissionGESConnues;
     private Float onduleur_EmissionDeGes;
-
-    //TODO
-    //cablage et structure ??
-
-    @AssertTrue(message = "Si installationComplete_IsEmissionGESConnues est faux, installationComplete_EmissionDeGes doit être null")
-    public Boolean isInstallationEmissionGesValid() {
-        return installationComplete_IsEmissionGESConnues || installationComplete_EmissionDeGes == null;
-    }
-
-    @AssertTrue(message = "Si panneaux_IsEmissionGESConnues est faux, panneaux_EmissionDeGes doit être null")
-    public Boolean isPanneauxEmissionGesValid() {
-        return panneaux_IsEmissionGESConnues || panneaux_EmissionDeGes == null;
-    }
-
-    @AssertTrue(message = "Si onduleur_IsEmissionGESConnues est faux, onduleur_EmissionDeGes doit être null")
-    public Boolean isOnduleurEmissionGesValid() {
-        return onduleur_IsEmissionGESConnues || onduleur_EmissionDeGes == null;
-    }
 
     private Integer groupesElectrogenes_Nombre;
     private Float groupesElectrogenes_PoidsDuProduit;
@@ -65,26 +45,77 @@ public class AutreImmobilisationOnglet extends Onglet {
     private Boolean autresMachinesEur_IsEmissionConnue;
     private Float autresMachinesEur_EmissionReelle;
 
-    @AssertTrue(message = "Si groupesElectrogenes_IsEmissionConnue est faux, groupesElectrogenes_EmissionReelle doit être null")
-    public Boolean isGroupesElectrogenesEmissionValid() {
-        return groupesElectrogenes_IsEmissionConnue || groupesElectrogenes_EmissionReelle == null;
+    public AutreImmobilisationOngletDto() {
     }
 
-    @AssertTrue(message = "Si moteurElectrique_IsEmissionConnue est faux, moteurElectrique_EmissionReelle doit être null")
-    public Boolean isMoteurElectriqueEmissionValid() {
-        return moteurElectrique_IsEmissionConnue || moteurElectrique_EmissionReelle == null;
+    public AutreImmobilisationOngletDto(AutreImmobilisationOnglet entite) {
+        this.id = entite.getId();
+        this.estTermine = entite.getEstTermine();
+        this.note = entite.getNote();
+
+        this.installationComplete_IsEmissionGESConnues = entite.getInstallationComplete_IsEmissionGESConnues();
+        this.installationComplete_EmissionDeGes = entite.getInstallationComplete_EmissionDeGes();
+
+        this.panneaux_PuissanceTotale = entite.getPanneaux_PuissanceTotale();
+        this.panneaux_DureeDeVie = entite.getPanneaux_DureeDeVie();
+        this.panneaux_IsEmissionGESConnues = entite.getPanneaux_IsEmissionGESConnues();
+        this.panneaux_EmissionDeGes = entite.getPanneaux_EmissionDeGes();
+
+        this.onduleur_PuissanceTotale = entite.getOnduleur_PuissanceTotale();
+        this.onduleur_DureeDeVie = entite.getOnduleur_DureeDeVie();
+        this.onduleur_IsEmissionGESConnues = entite.getOnduleur_IsEmissionGESConnues();
+        this.onduleur_EmissionDeGes = entite.getOnduleur_EmissionDeGes();
+
+        this.groupesElectrogenes_Nombre = entite.getGroupesElectrogenes_Nombre();
+        this.groupesElectrogenes_PoidsDuProduit = entite.getGroupesElectrogenes_PoidsDuProduit();
+        this.groupesElectrogenes_DureeAmortissement = entite.getGroupesElectrogenes_DureeAmortissement();
+        this.groupesElectrogenes_IsEmissionConnue = entite.getGroupesElectrogenes_IsEmissionConnue();
+        this.groupesElectrogenes_EmissionReelle = entite.getGroupesElectrogenes_EmissionReelle();
+
+        this.moteurElectrique_Nombre = entite.getMoteurElectrique_Nombre();
+        this.moteurElectrique_PoidsDuProduit = entite.getMoteurElectrique_PoidsDuProduit();
+        this.moteurElectrique_DureeAmortissement = entite.getMoteurElectrique_DureeAmortissement();
+        this.moteurElectrique_IsEmissionConnue = entite.getMoteurElectrique_IsEmissionConnue();
+        this.moteurElectrique_EmissionReelle = entite.getMoteurElectrique_EmissionReelle();
+
+        this.autresMachinesKg_Nombre = entite.getAutresMachinesKg_Nombre();
+        this.autresMachinesKg_PoidsDuProduit = entite.getAutresMachinesKg_PoidsDuProduit();
+        this.autresMachinesKg_DureeAmortissement = entite.getAutresMachinesKg_DureeAmortissement();
+        this.autresMachinesKg_IsEmissionConnue = entite.getAutresMachinesKg_IsEmissionConnue();
+        this.autresMachinesKg_EmissionReelle = entite.getAutresMachinesKg_EmissionReelle();
+
+        this.autresMachinesEur_Nombre = entite.getAutresMachinesEur_Nombre();
+        this.autresMachinesEur_PoidsDuProduit = entite.getAutresMachinesEur_PoidsDuProduit();
+        this.autresMachinesEur_DureeAmortissement = entite.getAutresMachinesEur_DureeAmortissement();
+        this.autresMachinesEur_IsEmissionConnue = entite.getAutresMachinesEur_IsEmissionConnue();
+        this.autresMachinesEur_EmissionReelle = entite.getAutresMachinesEur_EmissionReelle();
+
     }
 
-    @AssertTrue(message = "Si autresMachinesKg_IsEmissionConnue est faux, autresMachinesKg_EmissionReelle doit être null")
-    public Boolean isAutresMachinesKgEmissionValid() {
-        return autresMachinesKg_IsEmissionConnue || autresMachinesKg_EmissionReelle == null;
+
+    public Long getId() {
+        return id;
     }
 
-    @AssertTrue(message = "Si autresMachinesEur_IsEmissionConnue est faux, autresMachinesEur_EmissionReelle doit être null")
-    public Boolean isAutresMachinesEurEmissionValid() {
-        return autresMachinesEur_IsEmissionConnue || autresMachinesEur_EmissionReelle == null;
+    public void setId(Long id) {
+        this.id = id;
     }
 
+    public Boolean getEstTermine() {
+        return estTermine;
+    }
+
+    public void setEstTermine(Boolean estTermine) {
+        this.estTermine = estTermine;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 
     public Boolean getInstallationComplete_IsEmissionGESConnues() {
         return installationComplete_IsEmissionGESConnues;
@@ -324,25 +355,5 @@ public class AutreImmobilisationOnglet extends Onglet {
 
     public void setAutresMachinesEur_EmissionReelle(Float autresMachinesEur_EmissionReelle) {
         this.autresMachinesEur_EmissionReelle = autresMachinesEur_EmissionReelle;
-    }
-
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public Boolean getEstTermine() {
-        return super.getEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(Boolean estTermine) {
-        super.setEstTermine(estTermine);
     }
 }

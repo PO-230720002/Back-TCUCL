@@ -46,7 +46,7 @@ public class AutreMobFrOngletDto {
 
     public AutreMobFrOngletDto(AutreMobFrOnglet autreMobFrOnglet) {
         this.id = autreMobFrOnglet.getId();
-        this.estTermine = autreMobFrOnglet.isEstTermine();
+        this.estTermine = autreMobFrOnglet.getEstTermine();
         this.note = autreMobFrOnglet.getNote();
 
         this.salarieNbAllerSimple_VoitureThermique = autreMobFrOnglet.getSalarieNbAllerSimple_VoitureThermique();

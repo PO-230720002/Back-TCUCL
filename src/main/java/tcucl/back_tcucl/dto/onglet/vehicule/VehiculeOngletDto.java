@@ -18,7 +18,7 @@ public class VehiculeOngletDto {
     public VehiculeOngletDto(VehiculeOnglet entity) {
         this.id = entity.getId();
         this.note = entity.getNote();
-        this.estTermine = entity.isEstTermine();
+        this.estTermine = entity.getEstTermine();
         if (entity.getVehiculeList() != null) {
             this.vehiculeList = entity.getVehiculeList().stream()
                     .map(VehiculeDto::new)

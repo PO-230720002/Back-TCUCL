@@ -44,7 +44,7 @@ public class MobiliteDomicileTravailOngletDto {
 
     public MobiliteDomicileTravailOngletDto(MobiliteDomicileTravailOnglet entity) {
         this.id = entity.getId();
-        this.estTermine = entity.isEstTermine();
+        this.estTermine = entity.getEstTermine();
         this.note = entity.getNote();
         this.voitureThermiqueEtudiantKm = entity.getVoitureThermiqueEtudiantKm();
         this.voitureElectriqueEtudiantKm = entity.getVoitureElectriqueEtudiantKm();

@@ -32,7 +32,7 @@ public class EnergieOngletDto {
 
     public EnergieOngletDto(EnergieOnglet entity) {
         this.id = entity.getId();
-        this.estTermine = entity.isEstTermine();
+        this.estTermine = entity.getEstTermine();
         this.note = entity.getNote();
 
         this.consoGaz = entity.getConsoGaz();
