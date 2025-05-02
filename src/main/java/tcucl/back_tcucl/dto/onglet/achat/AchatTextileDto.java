@@ -1,16 +1,12 @@
-package tcucl.back_tcucl.entity.parametre.achat;
+package tcucl.back_tcucl.dto.onglet.achat;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import tcucl.back_tcucl.entity.parametre.achat.AchatTextile;
 
-@Entity
-@Table(name = "achat_textile")
-public class AchatTextile {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class AchatTextileDto {
     private Long id;
     private Integer Chemise_nb;
     private Integer Polaire_nb;
@@ -23,12 +19,29 @@ public class AchatTextile {
     private Integer Manteau_nb;
     private Integer Chaussure_nb;
 
-    public void setId(Long id) {
-        this.id = id;
+    public AchatTextileDto() {
+    }
+
+    public AchatTextileDto(AchatTextile entity) {
+        this.id = entity.getId();
+        this.Chemise_nb = entity.getChemise_nb();
+        this.Polaire_nb = entity.getPolaire_nb();
+        this.Pull_Acrylique_nb = entity.getPull_Acrylique_nb();
+        this.Pull_Coton_nb = entity.getPull_Coton_nb();
+        this.T_shirt_polyester_nb = entity.getT_shirt_polyester_nb();
+        this.Jean_nb = entity.getJean_nb();
+        this.Sweat_nb = entity.getSweat_nb();
+        this.Veste_Anorak_nb = entity.getVeste_Anorak_nb();
+        this.Manteau_nb = entity.getManteau_nb();
+        this.Chaussure_nb = entity.getChaussure_nb();
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getChemise_nb() {
