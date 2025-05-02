@@ -9,10 +9,15 @@ import java.util.List;
 
 @Entity
 @Table(name = "numerique_onglet")
-public class NumeriqueOnglet extends Onglet{
+public class NumeriqueOnglet {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Year annee;
+    private boolean estTermine;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "equipement_numerique_id")
     List<EquipementNumerique> equipementNumeriqueList;
 
@@ -24,58 +29,9 @@ public class NumeriqueOnglet extends Onglet{
 
     @AssertTrue(message = "Si useMethodSimplifiee est true, les autres champs doivent être null ou vides.")
     private boolean isUseMethodSimplifieeValid() {
-        return useMethodSimplifiee || (TraficCloudUtilisateur == null && TraficTipUtilisateur == null && PartTraficFranceEtranger == null);
+        return !useMethodSimplifiee || (TraficCloudUtilisateur == null && TraficTipUtilisateur == null && PartTraficFranceEtranger == null);
     }
 
-    public Float getTraficCloudUtilisateur() {
-        return TraficCloudUtilisateur;
-    }
 
-    public void setTraficCloudUtilisateur(Float traficCloudUtilisateur) {
-        TraficCloudUtilisateur = traficCloudUtilisateur;
-    }
 
-    public Float getTraficTipUtilisateur() {
-        return TraficTipUtilisateur;
-    }
-
-    public void setTraficTipUtilisateur(Float traficTipUtilisateur) {
-        TraficTipUtilisateur = traficTipUtilisateur;
-    }
-
-    public Integer getPartTraficFranceEtranger() {
-        return PartTraficFranceEtranger;
-    }
-
-    public void setPartTraficFranceEtranger(Integer partTraficFranceEtranger) {
-        PartTraficFranceEtranger = partTraficFranceEtranger;
-    }
-
-    public List<EquipementNumerique> getEquipementNumeriqueList() {
-        return equipementNumeriqueList;
-    }
-
-    public void setEquipementNumeriqueList(List<EquipementNumerique> equipementNumeriqueList) {
-        this.equipementNumeriqueList = equipementNumeriqueList;
-    }
-
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public boolean isEstTermine() {
-        return super.isEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
 }

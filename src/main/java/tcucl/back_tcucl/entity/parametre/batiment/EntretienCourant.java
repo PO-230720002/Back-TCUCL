@@ -25,6 +25,8 @@ public class EntretienCourant {
     private Float surfaceConcernee;
     private Integer dureeAmortissement;
 
+    @ManyToMany(mappedBy = "entretienCourants")
+    private List<BatimentImmobilisationMobilierOnglet> batimentOnglets;
 
     // Getters et Setters
 
@@ -99,7 +101,7 @@ public class EntretienCourant {
     }
 
     public EnumBatiment_TypeTravaux getTypeTravaux() {
-        return this.valeurEnumTypeTravaux != null ? EnumBatiment_TypeTravaux.fromCode(this.valeurEnumTypeTravaux) : null;
+        return EnumBatiment_TypeTravaux.fromCode(this.valeurEnumTypeTravaux);
     }
 
     public void setTypeBatiment(EnumBatiment_TypeBatiment valeur) {
@@ -107,7 +109,7 @@ public class EntretienCourant {
     }
 
     public EnumBatiment_TypeBatiment getTypeBatiment() {
-        return this.valeurEnumTypeBatiment != null ? EnumBatiment_TypeBatiment.fromCode(this.valeurEnumTypeBatiment) : null;
+        return EnumBatiment_TypeBatiment.fromCode(this.valeurEnumTypeBatiment);
     }
 
 }

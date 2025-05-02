@@ -3,7 +3,7 @@ package tcucl.back_tcucl.entity.parametre.energie.enums;
 public enum EnumEnergie_UniteFioul {
     TONNE(0),
     MWH_PCS(1),
-    M3(2);
+    m3(2);
 
     private final int code;
 

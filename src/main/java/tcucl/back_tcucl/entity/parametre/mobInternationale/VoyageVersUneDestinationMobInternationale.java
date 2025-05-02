@@ -30,7 +30,7 @@ public class VoyageVersUneDestinationMobInternationale {
     }
 
     public EnumMobInternationale_NomPays getNomPays() {
-        return this.valeurEnumMobInternationale_NomPays != null ? EnumMobInternationale_NomPays.fromCode(this.valeurEnumMobInternationale_NomPays) : null;
+        return EnumMobInternationale_NomPays.fromCode(this.valeurEnumMobInternationale_NomPays);
     }
 
     public void setNomPays(EnumMobInternationale_NomPays valeur) {

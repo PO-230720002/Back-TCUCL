@@ -1,6 +1,5 @@
 package tcucl.back_tcucl.entity.onglet;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
@@ -9,37 +8,27 @@ import tcucl.back_tcucl.entity.parametre.dechet.Dechet;
 
 @Entity
 @Table(name = "dechet_onglet")
-public class DechetOnglet extends Onglet {
+public class DechetOnglet {
+    @Id
+    private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Dechet ordures_menageres;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Dechet cartons;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Dechet verre;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Dechet metaux;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Dechet textile;
 
 
-    @Override
-    public String getNote() {
-        return super.getNote();
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public boolean isEstTermine() {
-        return super.isEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(boolean estTermine) {
-        super.setEstTermine(estTermine);
+    public Long getId() {
+        return id;
     }
 }

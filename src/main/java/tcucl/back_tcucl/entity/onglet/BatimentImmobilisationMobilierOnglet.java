@@ -1,119 +1,92 @@
 package tcucl.back_tcucl.entity.onglet;
 
 import jakarta.persistence.*;
-import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentExistantOuNeufConstruitDto;
-import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.EntretienCourantDto;
-import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.MobilierElectromenagerDto;
 import tcucl.back_tcucl.entity.parametre.batiment.BatimentExistantOuNeufConstruit;
 import tcucl.back_tcucl.entity.parametre.batiment.EntretienCourant;
 import tcucl.back_tcucl.entity.parametre.batiment.MobilierElectromenager;
 
-import java.util.ArrayList;
+import java.time.Year;
 import java.util.List;
 
 @Entity
-@Table(name = "batiment_onglet")
-public class BatimentImmobilisationMobilierOnglet extends Onglet {
+@TableGenerator(name = "batiment")
+public class BatimentImmobilisationMobilierOnglet {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Year annee;
+    private boolean estTermine;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "batiment_onglet_id")
-    private List<BatimentExistantOuNeufConstruit> batimentsExistantOuNeufConstruits = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "jointure_BatimentImmobilisationMobilierOnglet_BatimentExistantOuNeufConstruit",
+            joinColumns = @JoinColumn(name = "onglet_id"),
+            inverseJoinColumns = @JoinColumn(name = "batiment_id")
+    )
+    private List<BatimentExistantOuNeufConstruit> batimentExistantOuNeufConstruits;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "batiment_onglet_id")
-    private List<EntretienCourant> entretiensCourants = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "jointure_BatimentImmobilisationMobilierOnglet_EntretienCourant",
+            joinColumns = @JoinColumn(name = "onglet_id"),
+            inverseJoinColumns = @JoinColumn(name = "entretien_id")
+    )
+    private List<EntretienCourant> entretienCourants;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "batiment_onglet_id")
-    private List<MobilierElectromenager> mobiliersElectromenagers = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "jointure_BatimentImmobilisationMobilierOnglet_MobilierElectromenager",
+            joinColumns = @JoinColumn(name = "onglet_id"),
+            inverseJoinColumns = @JoinColumn(name = "mobilier_id")
+    )
+    private List<MobilierElectromenager> mobilierElectromenagers;
 
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Year getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(Year annee) {
+        this.annee = annee;
+    }
+
+    public boolean isEstTermine() {
+        return estTermine;
+    }
+
+    public void setEstTermine(boolean estTermine) {
+        this.estTermine = estTermine;
+    }
 
     public List<BatimentExistantOuNeufConstruit> getBatimentExistantOuNeufConstruits() {
-        return batimentsExistantOuNeufConstruits;
+        return batimentExistantOuNeufConstruits;
     }
 
     public void setBatimentExistantOuNeufConstruits(List<BatimentExistantOuNeufConstruit> batimentExistantOuNeufConstruits) {
-        this.batimentsExistantOuNeufConstruits = batimentExistantOuNeufConstruits;
+        this.batimentExistantOuNeufConstruits = batimentExistantOuNeufConstruits;
     }
 
     public List<EntretienCourant> getEntretienCourants() {
-        return entretiensCourants;
+        return entretienCourants;
     }
 
     public void setEntretienCourants(List<EntretienCourant> entretienCourants) {
-        this.entretiensCourants = entretienCourants;
+        this.entretienCourants = entretienCourants;
     }
 
     public List<MobilierElectromenager> getMobilierElectromenagers() {
-        return mobiliersElectromenagers;
+        return mobilierElectromenagers;
     }
 
     public void setMobilierElectromenagers(List<MobilierElectromenager> mobilierElectromenagers) {
-        this.mobiliersElectromenagers = mobilierElectromenagers;
-    }
-
-    public void ajouterBatimentViaDto(BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
-        BatimentExistantOuNeufConstruit batimentExistantOuNeufConstruit = new BatimentExistantOuNeufConstruit();
-
-        batimentExistantOuNeufConstruit.setNom_ou_adresse(batimentExistantOuNeufConstruitDto.getNom_ou_adresse());
-        batimentExistantOuNeufConstruit.setDateConstruction(batimentExistantOuNeufConstruitDto.getDateConstruction());
-        batimentExistantOuNeufConstruit.setDateDerniereGrosseRenovation(batimentExistantOuNeufConstruitDto.getDateDerniereGrosseRenovation());
-        batimentExistantOuNeufConstruit.setACompleter(batimentExistantOuNeufConstruitDto.getACompleter());
-        batimentExistantOuNeufConstruit.setAcvBatimentRealisee(batimentExistantOuNeufConstruitDto.getAcvBatimentRealisee());
-        batimentExistantOuNeufConstruit.setEmissionsGesReellesTCO2(batimentExistantOuNeufConstruitDto.getEmissionsGesReellesTCO2());
-        batimentExistantOuNeufConstruit.setTypeBatiment(batimentExistantOuNeufConstruitDto.getTypeBatiment());
-        batimentExistantOuNeufConstruit.setSurfaceEnM2(batimentExistantOuNeufConstruitDto.getSurfaceEnM2());
-        batimentExistantOuNeufConstruit.setTypeStructure(batimentExistantOuNeufConstruitDto.getTypeStructure());
-
-        this.batimentsExistantOuNeufConstruits.add(batimentExistantOuNeufConstruit);
-    }
-
-    public void ajouterEntretienCourantViaDto(EntretienCourantDto entretienCourantDto) {
-        EntretienCourant entretienCourant = new EntretienCourant();
-
-        entretienCourant.setDateAjout(entretienCourantDto.getDateAjout());
-        entretienCourant.setNom_adresse(entretienCourantDto.getNom_adresse());
-        entretienCourant.setTypeTravaux(entretienCourantDto.getTypeTravaux());
-        entretienCourant.setDateTravaux(entretienCourantDto.getDateTravaux());
-        entretienCourant.setAcvRenovationRealisee(entretienCourantDto.getAcvRenovationRealisee());
-        entretienCourant.setEmissionsGesReellesTCO2(entretienCourantDto.getEmissionsGesReellesTCO2());
-        entretienCourant.setTypeBatiment(entretienCourantDto.getTypeBatiment());
-        entretienCourant.setSurfaceConcernee(entretienCourantDto.getSurfaceConcernee());
-        entretienCourant.setDureeAmortissement(entretienCourantDto.getDureeAmortissement());
-
-        this.entretiensCourants.add(entretienCourant);
-    }
-    public void ajouterMobilierElectromenagerViaDto(MobilierElectromenagerDto mobilierElectromenagerDto) {
-        MobilierElectromenager mobilierElectromenager = new MobilierElectromenager();
-
-        mobilierElectromenager.setDateAjout(mobilierElectromenagerDto.getDateAjout());
-        mobilierElectromenager.setMobilier(mobilierElectromenagerDto.getMobilier());
-        mobilierElectromenager.setQuantite(mobilierElectromenagerDto.getQuantite());
-        mobilierElectromenager.setPoidsDuProduit(mobilierElectromenagerDto.getPoidsDuProduit());
-        mobilierElectromenager.setDureeAmortissement(mobilierElectromenagerDto.getDureeAmortissement());
-        mobilierElectromenager.setEmissionGesPrecisesConnues(mobilierElectromenagerDto.getEmissionGesPrecisesConnues());
-        mobilierElectromenager.setEmissionsGesReelleskgCO2(mobilierElectromenagerDto.getEmissionsGesReelleskgCO2());
-
-        this.mobiliersElectromenagers.add(mobilierElectromenager);
-    }
-
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public boolean isEstTermine() {
-        return super.isEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(boolean estTermine) {
-        super.setEstTermine(estTermine);
+        this.mobilierElectromenagers = mobilierElectromenagers;
     }
 }
