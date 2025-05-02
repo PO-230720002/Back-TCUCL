@@ -25,6 +25,11 @@ public class AutreMobFrOngletManagerImpl implements AutreMobFrOngletManager {
     @Override
     public void updateAutreMobFrOngletPartiel(Long id, AutreMobFrOngletDto autreMobFrOngletDto) {
         AutreMobFrOnglet autreMobFrOnglet = autreMobFrOngletRepository.getReferenceById(id);
+        if (autreMobFrOngletDto.getEstTermine() != null){
+            autreMobFrOnglet.setEstTermine(autreMobFrOngletDto.getEstTermine());
+        }
+        if (autreMobFrOngletDto.getNote() != null)
+            autreMobFrOnglet.setNote(autreMobFrOngletDto.getNote());
 
         if (autreMobFrOngletDto.getSalarieNbAllerSimple_VoitureThermique() != null)
             autreMobFrOnglet.setSalarieNbAllerSimple_VoitureThermique(autreMobFrOngletDto.getSalarieNbAllerSimple_VoitureThermique());

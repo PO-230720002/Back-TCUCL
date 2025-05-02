@@ -30,25 +30,25 @@ public class ParkingVoirieOngletManagerImpl implements ParkingVoirieOngletManage
         return onglet.getParkingVoirieList().stream()
                 .filter(p -> p.getId().equals(idParking))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Parking non trouvé avec l'ID: " + idParking));
+                .orElseThrow(() -> new EntityNotFoundException("Parking non trouvé avec l'Id: " + idParking));
 
     }
 
     @Override
     public void updateParkingVoirieOngletPartiel(Long id, ParkingVoirieOngletDto dto) {
-        ParkingVoirieOnglet parkingVoirieOngletById = getParkingVoirieOngletById(id);
+        ParkingVoirieOnglet parkingVoirieOnglet = getParkingVoirieOngletById(id);
 
-        if (dto.getEstTermine() != null) parkingVoirieOngletById.setEstTermine(dto.getEstTermine());
-        if (dto.getNote() != null) parkingVoirieOngletById.setNote(dto.getNote());
+        if (dto.getEstTermine() != null) parkingVoirieOnglet.setEstTermine(dto.getEstTermine());
+        if (dto.getNote() != null) parkingVoirieOnglet.setNote(dto.getNote());
 
         if (dto.getParkingVoirieList() != null) {
             // On supprime les voyages existants et on les remplace par les nouveaux
-            parkingVoirieOngletById.getParkingVoirieList().clear();
+            parkingVoirieOnglet.getParkingVoirieList().clear();
             for (ParkingVoirieDto parkingVoirieDto : dto.getParkingVoirieList()) {
-                parkingVoirieOngletById.ajouterParkingVoirieViaDto(parkingVoirieDto);
+                parkingVoirieOnglet.ajouterParkingVoirieViaDto(parkingVoirieDto);
             }
         }
-        parkingVoirieOngletRepository.save(parkingVoirieOngletById);
+        parkingVoirieOngletRepository.save(parkingVoirieOnglet);
     }
 
     @Override

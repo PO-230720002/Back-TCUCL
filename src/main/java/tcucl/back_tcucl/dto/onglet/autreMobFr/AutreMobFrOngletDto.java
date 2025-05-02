@@ -8,6 +8,11 @@ import tcucl.back_tcucl.entity.onglet.AutreMobFrOnglet;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AutreMobFrOngletDto {
 
+    private Long id;
+    private Boolean estTermine;
+    private String note;
+
+
     private Float salarieNbAllerSimple_VoitureThermique;
     private Float salarieNbAllerSimple_VoitureElectrique;
     private Float salarieNbAllerSimple_Avion;
@@ -40,6 +45,10 @@ public class AutreMobFrOngletDto {
     }
 
     public AutreMobFrOngletDto(AutreMobFrOnglet autreMobFrOnglet) {
+        this.id = autreMobFrOnglet.getId();
+        this.estTermine = autreMobFrOnglet.isEstTermine();
+        this.note = autreMobFrOnglet.getNote();
+
         this.salarieNbAllerSimple_VoitureThermique = autreMobFrOnglet.getSalarieNbAllerSimple_VoitureThermique();
         this.salarieNbAllerSimple_VoitureElectrique = autreMobFrOnglet.getSalarieNbAllerSimple_VoitureElectrique();
         this.salarieNbAllerSimple_Avion = autreMobFrOnglet.getSalarieNbAllerSimple_Avion();
@@ -68,6 +77,30 @@ public class AutreMobFrOngletDto {
         this.etudiantDistanceTotale_France_TrainGrandesLignes = autreMobFrOnglet.getEtudiantDistanceTotale_France_TrainGrandesLignes();
         this.etudiantDistanceTotale_Autocar = autreMobFrOnglet.getEtudiantDistanceTotale_Autocar();
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getEstTermine() {
+        return estTermine;
+    }
+
+    public void setEstTermine(Boolean estTermine) {
+        this.estTermine = estTermine;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public Float getSalarieNbAllerSimple_VoitureThermique() {

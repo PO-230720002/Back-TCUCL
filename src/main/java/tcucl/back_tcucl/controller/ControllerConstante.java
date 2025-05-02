@@ -68,6 +68,11 @@ public class ControllerConstante {
     public static final String REST_PARKING_VOIRIE = "/parkingVoirie";
     public static final String REST_PARKING_VOIRIE_ID = "/{parkingVoirieId}";
 
+    //   ---------    Numerique   ----------
+    public static final String REST_NUMERIQUE_ONGLET = "/numeriqueOnglet";
+    public static final String REST_EQUIPEMENT_NUMERIQUE = "/equipementNumerique";
+    public static final String REST_EQUIPEMENT_NUMERIQUE_ID = "/{equipementNumeriqueId}";
+
     //   ---------    Batiment Immobilisation Mobilier   ----------
     public static final String REST_BATIMENT_IMMOBILISATION_MOBILIER_ONGLET = "/batimentImmobilisationMobilierOnglet";
     public static final String REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT_ID = "/{batimentExistantOuNeufConstruitId}";

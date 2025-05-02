@@ -16,7 +16,7 @@ public class MobiliteDomicileTravailOnglet extends Onglet {
     private Integer busEtudiantKm;
     private Integer metroTramwayEtudiantKm;
     private Integer veloEtudiantKm;
-    private Integer trotinetteElectriqueEtudiantKm;
+    private Integer trottinetteElectriqueEtudiantKm;
     private Integer veloElectriqueEtudiantKm;
     private Integer marcheAPiedEtudiantKm;
     private Integer nbJoursDeplacementEtudiant;
@@ -29,7 +29,7 @@ public class MobiliteDomicileTravailOnglet extends Onglet {
     private Integer busSalarieKm;
     private Integer metroTramwaySalarieKm;
     private Integer veloSalarieKm;
-    private Integer trotinetteElectriqueSalarieKm;
+    private Integer trottinetteElectriqueSalarieKm;
     private Integer veloElectriqueSalarieKm;
     private Integer marcheAPiedSalarieKm;
     private Integer nbJoursDeplacementSalarie;
@@ -99,12 +99,12 @@ public class MobiliteDomicileTravailOnglet extends Onglet {
         this.veloEtudiantKm = veloEtudiantKm;
     }
 
-    public Integer getTrotinetteElectriqueEtudiantKm() {
-        return trotinetteElectriqueEtudiantKm;
+    public Integer getTrottinetteElectriqueEtudiantKm() {
+        return trottinetteElectriqueEtudiantKm;
     }
 
-    public void setTrotinetteElectriqueEtudiantKm(int trotinetteElectriqueEtudiantKm) {
-        this.trotinetteElectriqueEtudiantKm = trotinetteElectriqueEtudiantKm;
+    public void setTrottinetteElectriqueEtudiantKm(int trotinetteElectriqueEtudiantKm) {
+        this.trottinetteElectriqueEtudiantKm = trotinetteElectriqueEtudiantKm;
     }
 
     public Integer getVeloElectriqueEtudiantKm() {
@@ -187,12 +187,12 @@ public class MobiliteDomicileTravailOnglet extends Onglet {
         this.veloSalarieKm = veloSalarieKm;
     }
 
-    public Integer getTrotinetteElectriqueSalarieKm() {
-        return trotinetteElectriqueSalarieKm;
+    public Integer getTrottinetteElectriqueSalarieKm() {
+        return trottinetteElectriqueSalarieKm;
     }
 
-    public void setTrotinetteElectriqueSalarieKm(int trotinetteElectriqueSalarieKm) {
-        this.trotinetteElectriqueSalarieKm = trotinetteElectriqueSalarieKm;
+    public void setTrottinetteElectriqueSalarieKm(int trotinetteElectriqueSalarieKm) {
+        this.trottinetteElectriqueSalarieKm = trotinetteElectriqueSalarieKm;
     }
 
     public Integer getVeloElectriqueSalarieKm() {
@@ -238,12 +238,12 @@ public class MobiliteDomicileTravailOnglet extends Onglet {
     }
 
     @Override
-    public boolean isEstTermine() {
+    public Boolean isEstTermine() {
         return super.isEstTermine();
     }
 
     @Override
-    public void setEstTermine(boolean estTermine) {
+    public void setEstTermine(Boolean estTermine) {
         super.setEstTermine(estTermine);
     }
 }

@@ -32,12 +32,12 @@ public class VehiculeOnglet extends Onglet{
     }
 
     @Override
-    public boolean isEstTermine() {
+    public Boolean isEstTermine() {
         return super.isEstTermine();
     }
 
     @Override
-    public void setEstTermine(boolean estTermine) {
+    public void setEstTermine(Boolean estTermine) {
         super.setEstTermine(estTermine);
     }
 }

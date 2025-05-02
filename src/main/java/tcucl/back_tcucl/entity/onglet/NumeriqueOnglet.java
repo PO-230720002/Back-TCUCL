@@ -2,9 +2,9 @@ package tcucl.back_tcucl.entity.onglet;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.AssertTrue;
+import tcucl.back_tcucl.dto.onglet.numerique.EquipementNumeriqueDto;
 import tcucl.back_tcucl.entity.parametre.numerique.EquipementNumerique;
 
-import java.time.Year;
 import java.util.List;
 
 @Entity
@@ -16,15 +16,23 @@ public class NumeriqueOnglet extends Onglet{
     @JoinColumn(name = "equipement_numerique_id")
     List<EquipementNumerique> equipementNumeriqueList;
 
-    private boolean useMethodSimplifiee;
+    private Boolean useMethodSimplifiee;
     private Float TraficCloudUtilisateur;
     private Float TraficTipUtilisateur;
     private Integer PartTraficFranceEtranger;
 
 
     @AssertTrue(message = "Si useMethodSimplifiee est true, les autres champs doivent être null ou vides.")
-    private boolean isUseMethodSimplifieeValid() {
+    private Boolean isUseMethodSimplifieeValid() {
         return useMethodSimplifiee || (TraficCloudUtilisateur == null && TraficTipUtilisateur == null && PartTraficFranceEtranger == null);
+    }
+
+    public Boolean getUseMethodSimplifiee() {
+        return useMethodSimplifiee;
+    }
+
+    public void setUseMethodSimplifiee(Boolean useMethodSimplifiee) {
+        this.useMethodSimplifiee = useMethodSimplifiee;
     }
 
     public Float getTraficCloudUtilisateur() {
@@ -70,12 +78,24 @@ public class NumeriqueOnglet extends Onglet{
     }
 
     @Override
-    public boolean isEstTermine() {
+    public Boolean isEstTermine() {
         return super.isEstTermine();
     }
 
     @Override
-    public void setEstTermine(boolean estTermine) {
+    public void setEstTermine(Boolean estTermine) {
         super.setEstTermine(estTermine);
+    }
+
+    public void ajouterEquipementNumeriqueViaDto(EquipementNumeriqueDto equipementNumeriqueDto  ) {
+        EquipementNumerique equipementNumerique = new EquipementNumerique();
+
+        equipementNumerique.setEquipement(equipementNumeriqueDto.getEquipement());
+        equipementNumerique.setNombre(equipementNumeriqueDto.getNombre());
+        equipementNumerique.setDureeAmortissement(equipementNumeriqueDto.getDureeAmortissement());
+        equipementNumerique.setEmissionsGesPrecisesConnues(equipementNumeriqueDto.getEmissionsGesPrecisesConnues());
+        equipementNumerique.setEmissionsReellesParProduitKgCO2e(equipementNumeriqueDto.getEmissionsReellesParProduitKgCO2e());
+
+        this.equipementNumeriqueList.add(equipementNumerique);
     }
 }

@@ -16,7 +16,7 @@ public class Onglet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String note;
-    private boolean estTermine;
+    private Boolean estTermine;
 
     public Onglet() {
         this.note = "";
@@ -39,11 +39,11 @@ public class Onglet {
         this.note = note;
     }
 
-    public boolean isEstTermine() {
+    public Boolean isEstTermine() {
         return estTermine;
     }
 
-    public void setEstTermine(boolean estTermine) {
+    public void setEstTermine(Boolean estTermine) {
         this.estTermine = estTermine;
     }
 }
