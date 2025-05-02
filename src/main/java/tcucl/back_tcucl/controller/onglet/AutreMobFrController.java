@@ -3,7 +3,7 @@ package tcucl.back_tcucl.controller.onglet;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.annotationPersonnalisee.checkRoleOnglet;
-import tcucl.back_tcucl.dto.onglet.AutreMobFrOngletDto;
+import tcucl.back_tcucl.dto.onglet.autreMobFr.AutreMobFrOngletDto;
 import tcucl.back_tcucl.entity.onglet.AutreMobFrOnglet;
 import tcucl.back_tcucl.service.AutreMobFrOngletService;
 

@@ -3,8 +3,8 @@ package tcucl.back_tcucl.controller.onglet;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.annotationPersonnalisee.checkRoleOnglet;
-import tcucl.back_tcucl.dto.onglet.MachineEmissionFugitiveDto;
-import tcucl.back_tcucl.dto.onglet.EmissionFugitiveOngletDto;
+import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
+import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveOngletDto;
 import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.service.EmissionFugitiveOngletService;
 
@@ -34,8 +34,6 @@ public class EmissionFugitiveOngletController {
         emissionFugitiveOngletService.updateEmissionFugitiveOnglet(id, emissionFugitiveOngletDto);
         return ResponseEntity.ok().build();
     }
-
-
 
     @PostMapping(REST_MACHINE)
     @checkRoleOnglet

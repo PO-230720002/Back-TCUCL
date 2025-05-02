@@ -2,8 +2,8 @@ package tcucl.back_tcucl.manager.impl.onglet;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
-import tcucl.back_tcucl.dto.onglet.MachineEmissionFugitiveDto;
-import tcucl.back_tcucl.dto.onglet.EmissionFugitiveOngletDto;
+import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
+import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveOngletDto;
 import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.entity.parametre.emissionFugitive.MachineEmissionFugitive;
 import tcucl.back_tcucl.manager.EmissionFugitiveOngletManager;
@@ -21,7 +21,7 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
     @Override
     public EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long id) {
         return emissionFugitiveOngletRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("EmissionFugitiveOnglet non trouvé avec l'ID : " + id));
+                .orElseThrow(() -> new EntityNotFoundException("EmissionFugitiveOnglet non trouvé avec l'Id : " + id));
     }
 
     @Override
@@ -30,12 +30,13 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
         return onglet.getMachinesEmissionFugitive().stream()
                 .filter(m -> m.getId().equals(machineId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Machine not found with ID: " + machineId));
+                .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'Id: " + machineId));
     }
 
     @Override
     public void updateEmissionFugitiveOnglet(Long id, EmissionFugitiveOngletDto emissionFugitiveOngletDto) {
         EmissionFugitiveOnglet onglet = getEmissionFugitiveOngletById(id);
+
         if (emissionFugitiveOngletDto.getEstTermine() != null) {
             onglet.setEstTermine(emissionFugitiveOngletDto.getEstTermine());
         }
@@ -45,36 +46,9 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
         }
 
         if (emissionFugitiveOngletDto.getMachinesEmissionFugitive() != null) {
+            emissionFugitiveOngletDto.getMachinesEmissionFugitive().clear();
             for (MachineEmissionFugitiveDto machineDto : emissionFugitiveOngletDto.getMachinesEmissionFugitive()) {
-                if (machineDto.getId() != null) {
-                    MachineEmissionFugitive machine = onglet.getMachinesEmissionFugitive()
-                            .stream()
-                            .filter(m -> m.getId().equals(machineDto.getId()))
-                            .findFirst()
-                            .orElseThrow(() -> new EntityNotFoundException("Machine with ID " + machineDto.getId() + " not found"));
-
-                    if (machineDto.getNomMachine() != null) {
-                        machine.setNomMachine(machineDto.getNomMachine());
-                    }
-                    if (machineDto.getDescriptionMachine() != null) {
-                        machine.setDescriptionMachine(machineDto.getDescriptionMachine());
-                    }
-                    if (machineDto.getTypeFluide() != null) {
-                        machine.setTypeFluide(machineDto.getTypeFluide());
-                    }
-                    if (machineDto.getQuantiteFluideKg() != null) {
-                        machine.setQuantiteFluideKg(machineDto.getQuantiteFluideKg());
-                    }
-                    if (machineDto.getTauxDeFuiteConnu() != null) {
-                        machine.setTauxDeFuiteConnu(machineDto.getTauxDeFuiteConnu());
-                    }
-                    if (machineDto.getTauxDeFuite() != null) {
-                        machine.setTauxDeFuite(machineDto.getTauxDeFuite());
-                    }
-                    if (machineDto.getTypeMachine() != null) {
-                        machine.setTypeMachine(machineDto.getTypeMachine());
-                    }
-                }
+                onglet.ajouterMachineViaDto(machineDto);
             }
         }
 
@@ -88,32 +62,39 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
             emissionFugitiveOnglet.ajouterMachineViaDto(machineEmissionFugitiveDto);
             emissionFugitiveOngletRepository.save(emissionFugitiveOnglet);
         } else {
-            throw new IllegalArgumentException("Emission Fugitive Onglet not found with id: " + id);
+            throw new EntityNotFoundException("EmissionFugitiveOnglet non trouvé avec l'Id: " + id);
         }
     }
 
 
     @Override
     public void supprimerMachineFromOnglet(Long ongletId, Long machineId) {
-        EmissionFugitiveOnglet onglet = getEmissionFugitiveOngletById(ongletId);
+        EmissionFugitiveOnglet ongletById = getEmissionFugitiveOngletById(ongletId);
 
         // Trouver la machine à supprimer
-        MachineEmissionFugitive machineASupprimer = getMachineById(ongletId, machineId);
+        MachineEmissionFugitive machineASupprimer = ongletById.getMachinesEmissionFugitive()
+                .stream()
+                .filter(v -> v.getId().equals(machineId))
+                .findFirst()
+                .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'id : " + machineId));
 
         // Retirer de la liste
-        onglet.getMachinesEmissionFugitive().remove(machineASupprimer);
+        ongletById.getMachinesEmissionFugitive().remove(machineASupprimer);
 
         // Sauvegarder l'onglet
-        emissionFugitiveOngletRepository.save(onglet);
+        emissionFugitiveOngletRepository.save(ongletById);
     }
 
     @Override
     public void updateMachinePartiel(Long ongletId, Long machineId, MachineEmissionFugitiveDto dto) {
-        MachineEmissionFugitive machine = getMachineById(ongletId, machineId);
+        EmissionFugitiveOnglet onglet = getEmissionFugitiveOngletById(ongletId);
+        
+        MachineEmissionFugitive machine = onglet.getMachinesEmissionFugitive().stream()
+                .filter(m -> m.getId().equals(machineId))
+                .findFirst()
+                .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'Id: " + machineId));
+        
 
-        if (dto.getNomMachine() != null) {
-            machine.setNomMachine(dto.getNomMachine());
-        }
         if (dto.getDescriptionMachine() != null) {
             machine.setDescriptionMachine(dto.getDescriptionMachine());
         }

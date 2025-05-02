@@ -14,7 +14,6 @@ public class MachineEmissionFugitive {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomMachine;
     private String descriptionMachine;
     private Integer valeurEnumTypeFluide;
     private Float quantiteFluideKg;
@@ -58,8 +57,6 @@ public class MachineEmissionFugitive {
     }
 
 
-
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -76,13 +73,6 @@ public class MachineEmissionFugitive {
         this.descriptionMachine = descriptionMachine;
     }
 
-    public String getNomMachine() {
-        return nomMachine;
-    }
-
-    public void setNomMachine(String nomMachine) {
-        this.nomMachine = nomMachine;
-    }
 
     public Float getQuantiteFluideKg() {
         return quantiteFluideKg;

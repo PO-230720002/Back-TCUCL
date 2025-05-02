@@ -1,7 +1,7 @@
 package tcucl.back_tcucl.service;
 
-import tcucl.back_tcucl.dto.onglet.MachineEmissionFugitiveDto;
-import tcucl.back_tcucl.dto.onglet.EmissionFugitiveOngletDto;
+import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
+import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveOngletDto;
 import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
 
 public interface EmissionFugitiveOngletService {

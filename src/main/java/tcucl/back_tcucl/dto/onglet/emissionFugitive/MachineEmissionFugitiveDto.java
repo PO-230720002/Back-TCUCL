@@ -1,4 +1,4 @@
-package tcucl.back_tcucl.dto.onglet;
+package tcucl.back_tcucl.dto.onglet.emissionFugitive;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -12,7 +12,6 @@ public class MachineEmissionFugitiveDto {
 
     private Long id;
 
-    private String nomMachine;
     private String descriptionMachine;
     private EnumEmissionFugitive_TypeFluide typeFluide;
     private Float quantiteFluideKg;
@@ -26,7 +25,6 @@ public class MachineEmissionFugitiveDto {
 
     public MachineEmissionFugitiveDto(MachineEmissionFugitive entity) {
         this.id = entity.getId();
-        this.nomMachine = entity.getNomMachine();
         this.descriptionMachine = entity.getDescriptionMachine();
         this.typeFluide = entity.getTypeFluide();
         this.quantiteFluideKg = entity.getQuantiteFluideKg();
@@ -44,13 +42,6 @@ public class MachineEmissionFugitiveDto {
         this.id = id;
     }
 
-    public String getNomMachine() {
-        return nomMachine;
-    }
-
-    public void setNomMachine(String nomMachine) {
-        this.nomMachine = nomMachine;
-    }
 
     public String getDescriptionMachine() {
         return descriptionMachine;

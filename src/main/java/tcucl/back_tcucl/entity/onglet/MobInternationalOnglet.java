@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.entity.onglet;
 
 import jakarta.persistence.*;
+import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageVersUneDestinationMobInternationaleDto;
 import tcucl.back_tcucl.entity.parametre.mobInternationale.VoyageVersUneDestinationMobInternationale;
 
 import java.time.Year;
@@ -41,5 +42,19 @@ public class MobInternationalOnglet extends Onglet {
     @Override
     public void setEstTermine(boolean estTermine) {
         super.setEstTermine(estTermine);
+    }
+
+    public void ajouterVoyageViaDto(VoyageVersUneDestinationMobInternationaleDto voyageDto) {
+
+        VoyageVersUneDestinationMobInternationale voyage = new VoyageVersUneDestinationMobInternationale();
+        voyage.setNomPays(voyageDto.getNomPays());
+        voyage.setProsAvion(voyageDto.getProsAvion());
+        voyage.setProsTrain(voyageDto.getProsTrain());
+        voyage.setStagesEtudiantsAvion(voyageDto.getStagesEtudiantsAvion());
+        voyage.setStagesEtudiantsTrain(voyageDto.getStagesEtudiantsTrain());
+        voyage.setSemestresEtudiantsAvion(voyageDto.getSemestresEtudiantsAvion());
+        voyage.setSemestresEtudiantsTrain(voyageDto.getSemestresEtudiantsTrain());
+
+        this.voyageVersUneDestinationMobInternationale.add(voyage);
     }
 }
