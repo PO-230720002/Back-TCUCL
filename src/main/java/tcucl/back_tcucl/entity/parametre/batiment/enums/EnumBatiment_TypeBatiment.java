@@ -7,7 +7,8 @@ public enum EnumBatiment_TypeBatiment {
         HOPITAL(3),
         LOGEMENT_COLLECTIF(4),
         RESTAURATION(5),
-        AUTRE(6);
+        AUTRE(6),
+        NA(7);
 
         private final int code;
 
