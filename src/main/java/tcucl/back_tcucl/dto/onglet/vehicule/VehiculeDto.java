@@ -1,35 +1,38 @@
-package tcucl.back_tcucl.entity.parametre.vehicule;
+package tcucl.back_tcucl.dto.onglet.vehicule;
 
-import jakarta.persistence.*;
-import tcucl.back_tcucl.entity.onglet.VehiculeOnglet;
+import tcucl.back_tcucl.entity.parametre.vehicule.Vehicule;
 import tcucl.back_tcucl.entity.parametre.vehicule.enums.EnumVehicule_Type;
 
 import java.util.Date;
-import java.util.List;
 
+public class VehiculeDto {
 
-@Entity
-@Table(name = "vehicule")
-public class Vehicule {
-
-
-    @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
     private String modeleOuImmatriculation;
-    private Integer valeurEnumTypeVehicule;
+    private EnumVehicule_Type typeVehicule;
     private Integer nombreVehiculesIdentiques;
     private Float nombreKilometresParVoitureMoyen;
     private Date dateAjoutEnBase;
 
-    public void setId(Long id) {
-        this.id = id;
+    public VehiculeDto() {
+    }
+
+    public VehiculeDto(Vehicule entity) {
+        this.id = entity.getId();
+        this.modeleOuImmatriculation = entity.getModeleOuImmatriculation();
+        this.typeVehicule = entity.getTypeVehicule();
+        this.nombreVehiculesIdentiques = entity.getNombreVehiculesIdentiques();
+        this.nombreKilometresParVoitureMoyen = entity.getNombreKilometresParVoitureMoyen();
+        this.dateAjoutEnBase = entity.getDateAjoutEnBase();
     }
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getModeleOuImmatriculation() {
         return modeleOuImmatriculation;
@@ -37,6 +40,14 @@ public class Vehicule {
 
     public void setModeleOuImmatriculation(String modeleOuImmatriculation) {
         this.modeleOuImmatriculation = modeleOuImmatriculation;
+    }
+
+    public EnumVehicule_Type getTypeVehicule() {
+        return typeVehicule;
+    }
+
+    public void setTypeVehicule(EnumVehicule_Type typeVehicule) {
+        this.typeVehicule = typeVehicule;
     }
 
     public Integer getNombreVehiculesIdentiques() {
@@ -53,15 +64,6 @@ public class Vehicule {
 
     public void setNombreKilometresParVoitureMoyen(Float nombreKilometresParVoitureMoyen) {
         this.nombreKilometresParVoitureMoyen = nombreKilometresParVoitureMoyen;
-    }
-
-    // Getter et Setter pour EnumVehicule_Type
-    public void setTypeVehicule(EnumVehicule_Type valeur) {
-        this.valeurEnumTypeVehicule = (valeur != null) ? valeur.getCode() : null;
-    }
-
-    public EnumVehicule_Type getTypeVehicule() {
-        return (valeurEnumTypeVehicule != null) ? EnumVehicule_Type.fromCode(valeurEnumTypeVehicule) : null;
     }
 
     public Date getDateAjoutEnBase() {

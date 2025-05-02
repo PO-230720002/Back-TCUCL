@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.entity.onglet;
 
 import jakarta.persistence.*;
+import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeDto;
 import tcucl.back_tcucl.entity.parametre.vehicule.Vehicule;
 
 import java.util.List;
@@ -39,5 +40,16 @@ public class VehiculeOnglet extends Onglet{
     @Override
     public void setEstTermine(Boolean estTermine) {
         super.setEstTermine(estTermine);
+    }
+
+    public void ajouterVehiculeViaDto(VehiculeDto vehiculeDto) {
+        Vehicule vehicule = new Vehicule();
+        vehicule.setModeleOuImmatriculation(vehiculeDto.getModeleOuImmatriculation());
+        vehicule.setTypeVehicule(vehiculeDto.getTypeVehicule());
+        vehicule.setNombreKilometresParVoitureMoyen(vehiculeDto.getNombreKilometresParVoitureMoyen());
+        vehicule.setNombreVehiculesIdentiques(vehiculeDto.getNombreVehiculesIdentiques());
+        vehicule.setDateAjoutEnBase(vehiculeDto.getDateAjoutEnBase());
+        this.vehiculeList.add(vehicule);
+
     }
 }
