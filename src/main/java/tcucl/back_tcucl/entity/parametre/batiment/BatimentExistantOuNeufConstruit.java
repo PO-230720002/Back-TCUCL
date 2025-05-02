@@ -107,7 +107,7 @@ public class BatimentExistantOuNeufConstruit {
     }
 
     public EnumBatiment_TypeBatiment getTypeBatiment() {
-        return EnumBatiment_TypeBatiment.fromCode(this.valeurEnumTypeBatiment);
+        return this.valeurEnumTypeBatiment != null ? EnumBatiment_TypeBatiment.fromCode(this.valeurEnumTypeBatiment) : null;
     }
 
     public Float getSurfaceEnM2() {
@@ -123,7 +123,7 @@ public class BatimentExistantOuNeufConstruit {
     }
 
     public EnumBatiment_TypeStructure getTypeStructure() {
-        return EnumBatiment_TypeStructure.fromCode(this.valeurEnumTypeStructure);
+        return this.valeurEnumTypeStructure != null ? EnumBatiment_TypeStructure.fromCode(this.valeurEnumTypeStructure) : null;
     }
 
 }

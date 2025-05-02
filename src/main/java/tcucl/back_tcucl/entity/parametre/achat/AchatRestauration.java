@@ -59,7 +59,7 @@ public class AchatRestauration {
     }
 
     public EnumAchatRestauration_Methode getMethodeCalcul() {
-        return EnumAchatRestauration_Methode.fromCode(this.enumValeur_Methode);
+        return this.enumValeur_Methode != null ? EnumAchatRestauration_Methode.fromCode(this.enumValeur_Methode) :null;
     }
 
     public Integer getMethodeRapideNombrePersonnesServiesRegimeClassique() {

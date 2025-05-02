@@ -70,7 +70,7 @@ public class MobilierElectromenager {
     }
 
     public EnumBatiment_Mobilier getMobilier() {
-        return EnumBatiment_Mobilier.fromCode(this.valeurEnumMobilier);
+        return this.valeurEnumMobilier != null ?EnumBatiment_Mobilier.fromCode(this.valeurEnumMobilier) : null;
     }
 
     public Long getId() {

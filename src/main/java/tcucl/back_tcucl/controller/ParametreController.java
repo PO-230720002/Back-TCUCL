@@ -89,8 +89,7 @@ public class ParametreController {
     }
 
     //Initialisation
-    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN') and @permissionService.adminPeutAccéderAEntite(authentication, #idEntite))")
-//    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ADMIN_' + '#idEntite')")
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ENTITE_' + #idEntite))")
     @GetMapping(REST_UTILISATEUR_ENTITE + REST_ID)
     public ResponseEntity<?> getAllUtilisateurParEntiteId(@PathVariable("id") Long idEntite) {
         return ResponseEntity.ok(parametreService.getAllUtilisateurParEntiteId(idEntite));
