@@ -1,0 +1,10 @@
+package tcucl.back_tcucl.manager;
+
+import tcucl.back_tcucl.dto.onglet.achat.AchatOngletDto;
+import tcucl.back_tcucl.entity.onglet.AchatOnglet;
+
+public interface AchatOngletManager {
+    AchatOnglet getAchatOngletById(Long id);
+
+    void updateAchatOngletPartiel(Long id, AchatOngletDto dto);
+}

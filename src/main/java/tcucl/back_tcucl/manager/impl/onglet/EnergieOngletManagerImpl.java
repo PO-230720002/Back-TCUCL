@@ -28,34 +28,6 @@ public class EnergieOngletManagerImpl implements EnergieOngletManager {
     }
 
     @Override
-    public EnergieOnglet createRandomEnergieOnglet() {
-        EnergieOnglet energieOnglet = new EnergieOnglet();
-        Random random = new Random();
-        energieOnglet.setEstTermine(false);
-        energieOnglet.setConsoGaz(random.nextFloat());
-        energieOnglet.setConsoFioul(random.nextFloat());
-        energieOnglet.setConsoBois(random.nextFloat());
-        energieOnglet.setConsoReseauVille(random.nextFloat());
-        energieOnglet.setConsoElecChauffage(random.nextFloat());
-        energieOnglet.setConsoElecSpecifique(random.nextFloat());
-        energieOnglet.setConsoEau(random.nextFloat());
-        energieOnglet.setNote("Note aléatoire (mais du coup non)");
-
-        energieOnglet.setNomReseauVille(EnumEnergie_NomReseauVille.LILLE);
-        energieOnglet.setUniteBois(EnumEnergie_UniteBois.TONNE);
-        energieOnglet.setUniteFioul(EnumEnergie_UniteFioul.M3);
-        energieOnglet.setUniteGaz(EnumEnergie_UniteGaz.M3);
-
-        return energieOngletRepository.save(energieOnglet);
-
-    }
-
-    @Override
-    public EnergieOnglet updateEnergieOnglet(EnergieOnglet energieOnglet) {
-        return energieOngletRepository.save(energieOnglet);
-    }
-
-    @Override
     public void updateEnergieOngletPartiel(Long id, EnergieOngletDto dto) {
         EnergieOnglet onglet = getEnergieOngletById(id);
         if (dto.getConsoGaz() != null) {
