@@ -90,4 +90,7 @@ public class ControllerConstante {
 
     //   ---------    Dechet   ----------
     public static final String REST_DECHET_ONGLET = "/dechetOnglet";
+
+    // ---------    General   ----------
+    public static final String REST_GENERAL_ONGLET = "/generalOnglet";
 }

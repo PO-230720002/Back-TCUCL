@@ -30,6 +30,14 @@ public class EnergieOngletManagerImpl implements EnergieOngletManager {
     @Override
     public void updateEnergieOngletPartiel(Long id, EnergieOngletDto dto) {
         EnergieOnglet onglet = getEnergieOngletById(id);
+
+        if (dto.getEstTermine()){
+            onglet.setEstTermine(dto.getEstTermine());
+        }
+        if (dto.getNote() != null) {
+            onglet.setNote(dto.getNote());
+        }
+
         if (dto.getConsoGaz() != null) {
             onglet.setConsoGaz(dto.getConsoGaz());
         }

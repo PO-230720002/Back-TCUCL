@@ -27,6 +27,13 @@ public class DechetOngletManagerImpl implements DechetOngletManager {
     public void updateDechetOngletPartiel(Long id, DechetOngletDto dto) {
         DechetOnglet onglet = getDechetOngletById(id);
 
+        if (dto.getEstTermine() != null) {
+            onglet.setEstTermine(dto.getEstTermine());
+        }
+        if (dto.getNote() != null) {
+            onglet.setNote(dto.getNote());
+        }
+
         // Ordures ménagères
         if (dto.getOrdures_menageres() != null) {
             Dechet ordures = onglet.getOrdures_menageres();

@@ -1,8 +1,12 @@
 package tcucl.back_tcucl.dto.onglet.numerique;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import tcucl.back_tcucl.entity.parametre.numerique.EquipementNumerique;
 import tcucl.back_tcucl.entity.parametre.numerique.enums.EnumNumerique_Equipement;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EquipementNumeriqueDto {
 
     private Long id;

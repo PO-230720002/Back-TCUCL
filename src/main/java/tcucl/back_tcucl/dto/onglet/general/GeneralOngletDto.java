@@ -1,33 +1,28 @@
-package tcucl.back_tcucl.dto.onglet.vehicule;
+package tcucl.back_tcucl.dto.onglet.general;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieDto;
-import tcucl.back_tcucl.entity.onglet.VehiculeOnglet;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import tcucl.back_tcucl.entity.onglet.GeneralOnglet;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class VehiculeOngletDto {
+public class GeneralOngletDto {
+
     private Long id;
     private String note;
     private Boolean estTermine;
-    private List<VehiculeDto> vehiculeList;
 
-    public VehiculeOngletDto() {
+    private Integer nbSalarie;
+    private Integer nbEtudiant;
+
+    public GeneralOngletDto() {
     }
-
-    public VehiculeOngletDto(VehiculeOnglet entity) {
+    public GeneralOngletDto(GeneralOnglet entity) {
         this.id = entity.getId();
         this.note = entity.getNote();
         this.estTermine = entity.getEstTermine();
-        if (entity.getVehiculeList() != null) {
-            this.vehiculeList = entity.getVehiculeList().stream()
-                    .map(VehiculeDto::new)
-                    .collect(Collectors.toList());
-        }
+        this.nbSalarie = entity.getNbSalarie();
+        this.nbEtudiant = entity.getNbEtudiant();
     }
 
     public Long getId() {
@@ -54,11 +49,19 @@ public class VehiculeOngletDto {
         this.estTermine = estTermine;
     }
 
-    public List<VehiculeDto> getVehiculeList() {
-        return vehiculeList;
+    public Integer getNbSalarie() {
+        return nbSalarie;
     }
 
-    public void setVehiculeList(List<VehiculeDto> vehiculeList) {
-        this.vehiculeList = vehiculeList;
+    public void setNbSalarie(Integer nbSalarie) {
+        this.nbSalarie = nbSalarie;
+    }
+
+    public Integer getNbEtudiant() {
+        return nbEtudiant;
+    }
+
+    public void setNbEtudiant(Integer nbEtudiant) {
+        this.nbEtudiant = nbEtudiant;
     }
 }

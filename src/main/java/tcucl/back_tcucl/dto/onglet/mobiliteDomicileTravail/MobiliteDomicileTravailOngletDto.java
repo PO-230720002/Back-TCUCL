@@ -1,4 +1,4 @@
-package tcucl.back_tcucl.dto.onglet;
+package tcucl.back_tcucl.dto.onglet.mobiliteDomicileTravail;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -7,8 +7,8 @@ import tcucl.back_tcucl.entity.onglet.MobiliteDomicileTravailOnglet;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MobiliteDomicileTravailOngletDto {
-    private Long id;
 
+    private Long id;
     private Boolean estTermine;
     private String note;
 
