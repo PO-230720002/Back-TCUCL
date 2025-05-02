@@ -1,7 +1,11 @@
 package tcucl.back_tcucl.dto.onglet.autreImmobilisation;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import tcucl.back_tcucl.entity.onglet.AutreImmobilisationOnglet;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AutreImmobilisationOngletDto {
 
     private Long id;

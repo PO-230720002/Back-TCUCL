@@ -25,6 +25,13 @@ public class AutreImmobilisationOngletManagerImpl implements AutreImmobilisation
     public void updateAutreImmobilisationOngletPartiel(Long id, AutreImmobilisationOngletDto dto) {
         AutreImmobilisationOnglet onglet = getAutreImmobilisationOngletById(id);
 
+        if (dto.getNote() != null) {
+            onglet.setNote(dto.getNote());
+        }
+        if (dto.getEstTermine() != null) {
+            onglet.setEstTermine(dto.getEstTermine());
+        }
+
         // Installation complète
         if (dto.getInstallationComplete_IsEmissionGESConnues() != null)
             onglet.setInstallationComplete_IsEmissionGESConnues(dto.getInstallationComplete_IsEmissionGESConnues());

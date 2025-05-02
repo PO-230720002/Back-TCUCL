@@ -1,10 +1,14 @@
 package tcucl.back_tcucl.dto.onglet.vehicule;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import tcucl.back_tcucl.entity.parametre.vehicule.Vehicule;
 import tcucl.back_tcucl.entity.parametre.vehicule.enums.EnumVehicule_Type;
 
 import java.util.Date;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class VehiculeDto {
 
     private Long id;

@@ -1,6 +1,6 @@
 package tcucl.back_tcucl.manager;
 
-import tcucl.back_tcucl.dto.onglet.MobiliteDomicileTravailOngletDto;
+import tcucl.back_tcucl.dto.onglet.mobiliteDomicileTravail.MobiliteDomicileTravailOngletDto;
 import tcucl.back_tcucl.entity.onglet.MobiliteDomicileTravailOnglet;
 
 public interface MobiliteDomicileTravailOngletManager {

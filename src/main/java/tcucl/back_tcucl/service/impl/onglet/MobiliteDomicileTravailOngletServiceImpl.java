@@ -1,7 +1,7 @@
 package tcucl.back_tcucl.service.impl.onglet;
 
 import org.springframework.stereotype.Service;
-import tcucl.back_tcucl.dto.onglet.MobiliteDomicileTravailOngletDto;
+import tcucl.back_tcucl.dto.onglet.mobiliteDomicileTravail.MobiliteDomicileTravailOngletDto;
 import tcucl.back_tcucl.entity.onglet.MobiliteDomicileTravailOnglet;
 import tcucl.back_tcucl.manager.MobiliteDomicileTravailOngletManager;
 import tcucl.back_tcucl.service.MobiliteDomicileTravailOngletService;

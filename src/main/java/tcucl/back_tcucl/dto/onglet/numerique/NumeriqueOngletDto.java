@@ -1,10 +1,14 @@
 package tcucl.back_tcucl.dto.onglet.numerique;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import tcucl.back_tcucl.entity.onglet.NumeriqueOnglet;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NumeriqueOngletDto {
 
     private Long id;

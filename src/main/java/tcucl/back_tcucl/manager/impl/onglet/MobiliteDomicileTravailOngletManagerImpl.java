@@ -2,7 +2,7 @@ package tcucl.back_tcucl.manager.impl.onglet;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
-import tcucl.back_tcucl.dto.onglet.MobiliteDomicileTravailOngletDto;
+import tcucl.back_tcucl.dto.onglet.mobiliteDomicileTravail.MobiliteDomicileTravailOngletDto;
 import tcucl.back_tcucl.entity.onglet.MobiliteDomicileTravailOnglet;
 import tcucl.back_tcucl.repository.onglet.MobiliteDomicileTravailOngletRepository;
 import tcucl.back_tcucl.manager.MobiliteDomicileTravailOngletManager;
