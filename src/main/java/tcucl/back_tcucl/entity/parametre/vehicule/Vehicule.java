@@ -20,10 +20,6 @@ public class Vehicule {
     private Integer nombreVehiculesIdentiques;
     private Float nombreKilometresParVoitureMoyen;
 
-    @ManyToMany(mappedBy = "vehiculeList")
-    private List<VehiculeOnglet> vehiculeOnglets;
-
-
     public void setId(Long id) {
         this.id = id;
     }

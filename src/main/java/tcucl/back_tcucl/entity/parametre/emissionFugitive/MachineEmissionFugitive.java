@@ -2,12 +2,8 @@ package tcucl.back_tcucl.entity.parametre.emissionFugitive;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.AssertTrue;
-import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.entity.parametre.emissionFugitive.enums.EnumEmissionFugitive_TypeFluide;
 import tcucl.back_tcucl.entity.parametre.emissionFugitive.enums.EnumEmissionFugitive_TypeMachine;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
-
-import java.util.List;
 
 @Entity
 @Table(name = "machine_emission_fugitive")
@@ -18,16 +14,12 @@ public class MachineEmissionFugitive {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomMachine;
     private String descriptionMachine;
     private Integer valeurEnumTypeFluide;
     private Float quantiteFluideKg;
-    private boolean tauxDeFuiteConnu;
+    private Boolean tauxDeFuiteConnu;
     private Float tauxDeFuite;
     private Integer valeurEnumTypeMachine;
-
-    @ManyToMany(mappedBy = "machinesEmissionFugitive")
-    private List<EmissionFugitiveOnglet> emissionFugitiveOnglets;
 
 
     @AssertTrue(message = "Les règles de validation ne sont pas respectées.")
@@ -48,7 +40,7 @@ public class MachineEmissionFugitive {
 
 
     public EnumEmissionFugitive_TypeMachine getTypeMachine() {
-        return EnumEmissionFugitive_TypeMachine.fromCode(this.valeurEnumTypeMachine);
+        return this.valeurEnumTypeMachine != null ? EnumEmissionFugitive_TypeMachine.fromCode(this.valeurEnumTypeMachine) : null;
     }
 
     public void setTypeMachine(EnumEmissionFugitive_TypeMachine valeur) {
@@ -57,14 +49,12 @@ public class MachineEmissionFugitive {
 
 
     public EnumEmissionFugitive_TypeFluide getTypeFluide() {
-        return EnumEmissionFugitive_TypeFluide.fromCode(this.valeurEnumTypeFluide);
+        return this.valeurEnumTypeFluide != null ? EnumEmissionFugitive_TypeFluide.fromCode(this.valeurEnumTypeFluide) : null ;
     }
 
     public void setTypeFluide(EnumEmissionFugitive_TypeFluide valeur) {
         this.valeurEnumTypeFluide = valeur.getCode();
     }
-
-
 
 
     public void setId(Long id) {
@@ -83,13 +73,6 @@ public class MachineEmissionFugitive {
         this.descriptionMachine = descriptionMachine;
     }
 
-    public String getNomMachine() {
-        return nomMachine;
-    }
-
-    public void setNomMachine(String nomMachine) {
-        this.nomMachine = nomMachine;
-    }
 
     public Float getQuantiteFluideKg() {
         return quantiteFluideKg;
@@ -99,8 +82,12 @@ public class MachineEmissionFugitive {
         this.quantiteFluideKg = quantiteFluideKg;
     }
 
-    public boolean isTauxDeFuiteConnu() {
+    public boolean getTauxDeFuiteConnu() {
         return tauxDeFuiteConnu;
+    }
+
+    public void setTauxDeFuiteConnu(Boolean tauxDeFuiteConnu) {
+        this.tauxDeFuiteConnu = tauxDeFuiteConnu;
     }
 
     public void setTauxDeFuiteConnu(boolean tauxDeFuiteConnu) {

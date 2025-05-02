@@ -1,22 +1,14 @@
 package tcucl.back_tcucl.entity.onglet;
 
 import jakarta.persistence.*;
-import tcucl.back_tcucl.entity.parametre.energie.ParametreEnergie;
-
-import java.time.Year;
+import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
+import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteBois;
+import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteFioul;
+import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteGaz;
 
 @Entity
-@Table(name = "energie")
-public class EnergieOnglet {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Year annee;
-    private boolean estTermine;
-    @OneToOne
-    @JoinColumn(name = "parametre_energie_id")
-    private ParametreEnergie parametreEnergie;
+@Table(name = "energie_onglet")
+public class EnergieOnglet extends Onglet {
 
     private Float ConsoGaz;
     private Float ConsoFioul;
@@ -25,26 +17,13 @@ public class EnergieOnglet {
     private Float ConsoElecChauffage;
     private Float ConsoElecSpecifique;
     private Float ConsoEau;
-    private String note;
-
-
-
-
-    public boolean isEstTermine() {
-        return estTermine;
-    }
-
-    public void setEstTermine(boolean estTermine) {
-        this.estTermine = estTermine;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
+    // valeur stockée en base = code de l'enum,
+    // valeur affichée par get = 1 valeur de l'enum
+    // valeur à setter = 1 valeur de l'enum
+    private Integer valeurEnumEnergieReseauVille;
+    private Integer valeurEnumEnergieUniteBois;
+    private Integer valeurEnumEnergieUniteFioul;
+    private Integer valeurEnumEnergieUniteGaz;
 
     public Float getConsoEau() {
         return ConsoEau;
@@ -102,28 +81,61 @@ public class EnergieOnglet {
         ConsoGaz = consoGaz;
     }
 
-    public Year getAnnee() {
-        return annee;
-    }
 
-    public void setAnnee(Year annee) {
-        this.annee = annee;
-    }
-
-    public ParametreEnergie getParametreEnergie() {
-        return parametreEnergie;
-    }
-
-    public void setParametreEnergie(ParametreEnergie parametreEnergie) {
-        this.parametreEnergie = parametreEnergie;
+    public void setNomReseauVille(EnumEnergie_NomReseauVille valeur) {
+        this.valeurEnumEnergieReseauVille = valeur.getCode();
     }
 
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUniteBois(EnumEnergie_UniteBois valeur) {
+        this.valeurEnumEnergieUniteBois = valeur.getCode();
     }
 
-    public Long getId() {
-        return id;
+
+    public void setUniteFioul(EnumEnergie_UniteFioul valeur) {
+        this.valeurEnumEnergieUniteFioul = valeur.getCode();
+    }
+
+
+    public void setUniteGaz(EnumEnergie_UniteGaz valeur) {
+        this.valeurEnumEnergieUniteGaz = valeur.getCode();
+    }
+
+    public EnumEnergie_UniteGaz getUniteGaz() {
+        return valeurEnumEnergieUniteGaz != null ? EnumEnergie_UniteGaz.fromCode(valeurEnumEnergieUniteGaz) : null;
+    }
+
+
+    public EnumEnergie_UniteFioul getUniteFioul() {
+        return valeurEnumEnergieUniteFioul != null ? EnumEnergie_UniteFioul.fromCode(valeurEnumEnergieUniteFioul) : null;
+    }
+
+    public EnumEnergie_UniteBois getUniteBois() {
+        return valeurEnumEnergieUniteBois != null ? EnumEnergie_UniteBois.fromCode(valeurEnumEnergieUniteBois) : null;
+    }
+
+    public EnumEnergie_NomReseauVille getNomReseauVille() {
+        return valeurEnumEnergieReseauVille != null ? EnumEnergie_NomReseauVille.fromCode(valeurEnumEnergieReseauVille) : null;
+    }
+
+
+    @Override
+    public String getNote() {
+        return super.getNote();
+    }
+
+    @Override
+    public void setNote(String note) {
+        super.setNote(note);
+    }
+
+    @Override
+    public boolean isEstTermine() {
+        return super.isEstTermine();
+    }
+
+    @Override
+    public void setEstTermine(boolean estTermine) {
+        super.setEstTermine(estTermine);
     }
 }
