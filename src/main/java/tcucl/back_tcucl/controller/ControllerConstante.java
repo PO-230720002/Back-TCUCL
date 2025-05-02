@@ -49,8 +49,8 @@ public class ControllerConstante {
 
     //   ---------    Emission Fugitive   ----------
     public static final String REST_EMISSION_FUGITIVE_ONGLET = "/emissionFugitiveOnglet";
-    public static final String REST_MACHINE_ID = "/machineId";
     public static final String REST_MACHINE = "/machine";
+    public static final String REST_MACHINE_ID = "/{machineId}";
 
     //   ------------       Mobilite domicile travail       ------------
     public static final String REST_MOBILITE_DOMICILE_TRAVAIL_ONGLET = "/mobiliteDomicileTravailOnglet";
@@ -61,5 +61,10 @@ public class ControllerConstante {
     //   ---------    Mob Internationale   ----------
     public static final String REST_MOB_INTERNATIONALE_ONGLET = "/mobInternationaleOnglet";
     public static final String REST_VOYAGE = "/voyage";
-    public static final String REST_VOYAGE_ID = "/voyageId";
+    public static final String REST_VOYAGE_ID = "/{voyageId}";
+
+    //   ---------    Parking   ----------
+    public static final String REST_PARKING_VOIRIE_ONGLET = "parkingVoirieOnglet";
+    public static final String REST_PARKING_VOIRIE = "/parkingVoirie";
+    public static final String REST_PARKING_VOIRIE_ID = "/{parkingVoirieId}";
 }
