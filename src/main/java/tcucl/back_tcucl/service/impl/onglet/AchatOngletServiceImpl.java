@@ -2,7 +2,7 @@ package tcucl.back_tcucl.service.impl.onglet;
 
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.achat.AchatOngletDto;
-import tcucl.back_tcucl.entity.onglet.AchatOnglet;
+import tcucl.back_tcucl.entity.onglet.achat.AchatOnglet;
 import tcucl.back_tcucl.manager.AchatOngletManager;
 import tcucl.back_tcucl.service.AchatOngletService;
 

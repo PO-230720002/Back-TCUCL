@@ -2,7 +2,7 @@ package tcucl.back_tcucl.dto.onglet.numerique;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.onglet.NumeriqueOnglet;
+import tcucl.back_tcucl.entity.onglet.numerique.NumeriqueOnglet;
 
 import java.util.List;
 import java.util.stream.Collectors;

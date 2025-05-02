@@ -2,7 +2,7 @@ package tcucl.back_tcucl.service.impl.onglet;
 
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.energie.EnergieOngletDto;
-import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
+import tcucl.back_tcucl.entity.onglet.energie.EnergieOnglet;
 import tcucl.back_tcucl.manager.EnergieOngletManager;
 import tcucl.back_tcucl.service.EnergieOngletService;
 

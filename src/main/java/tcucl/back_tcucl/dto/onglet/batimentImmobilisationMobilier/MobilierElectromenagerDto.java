@@ -2,8 +2,8 @@ package tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.parametre.batiment.MobilierElectromenager;
-import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_Mobilier;
+import tcucl.back_tcucl.entity.onglet.batiment.MobilierElectromenager;
+import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_Mobilier;
 
 import java.util.Date;
 

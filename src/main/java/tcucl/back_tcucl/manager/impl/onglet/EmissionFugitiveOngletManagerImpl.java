@@ -4,8 +4,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveOngletDto;
-import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
-import tcucl.back_tcucl.entity.parametre.emissionFugitive.MachineEmissionFugitive;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.MachineEmissionFugitive;
 import tcucl.back_tcucl.manager.EmissionFugitiveOngletManager;
 import tcucl.back_tcucl.repository.onglet.EmissionFugitiveOngletRepository;
 

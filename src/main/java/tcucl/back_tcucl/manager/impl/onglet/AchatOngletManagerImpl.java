@@ -6,10 +6,10 @@ import tcucl.back_tcucl.dto.onglet.achat.AchatConsommableDto;
 import tcucl.back_tcucl.dto.onglet.achat.AchatOngletDto;
 import tcucl.back_tcucl.dto.onglet.achat.AchatRestaurationDto;
 import tcucl.back_tcucl.dto.onglet.achat.AchatTextileDto;
-import tcucl.back_tcucl.entity.onglet.AchatOnglet;
-import tcucl.back_tcucl.entity.parametre.achat.AchatConsommable;
-import tcucl.back_tcucl.entity.parametre.achat.AchatRestauration;
-import tcucl.back_tcucl.entity.parametre.achat.AchatTextile;
+import tcucl.back_tcucl.entity.onglet.achat.AchatOnglet;
+import tcucl.back_tcucl.entity.onglet.achat.AchatConsommable;
+import tcucl.back_tcucl.entity.onglet.achat.AchatRestauration;
+import tcucl.back_tcucl.entity.onglet.achat.AchatTextile;
 import tcucl.back_tcucl.manager.AchatOngletManager;
 import tcucl.back_tcucl.repository.onglet.AchatOngletRepository;
 

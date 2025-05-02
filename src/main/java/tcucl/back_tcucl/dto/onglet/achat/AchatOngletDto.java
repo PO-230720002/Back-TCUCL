@@ -2,12 +2,7 @@ package tcucl.back_tcucl.dto.onglet.achat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToOne;
-import tcucl.back_tcucl.entity.onglet.AchatOnglet;
-import tcucl.back_tcucl.entity.parametre.achat.AchatConsommable;
-import tcucl.back_tcucl.entity.parametre.achat.AchatRestauration;
-import tcucl.back_tcucl.entity.parametre.achat.AchatTextile;
+import tcucl.back_tcucl.entity.onglet.achat.AchatOnglet;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

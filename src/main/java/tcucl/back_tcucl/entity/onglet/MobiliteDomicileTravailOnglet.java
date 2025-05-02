@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 @Table(name = "mobilite_domicile_travail_onglet")
 public class MobiliteDomicileTravailOnglet extends Onglet {
 
-
     private Integer voitureThermiqueEtudiantKm;
     private Integer voitureElectriqueEtudiantKm;
     private Integer voitureHybrideEtudiantKm;

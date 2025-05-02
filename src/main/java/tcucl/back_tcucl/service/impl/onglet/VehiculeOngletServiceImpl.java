@@ -3,8 +3,8 @@ package tcucl.back_tcucl.service.impl.onglet;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeDto;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeOngletDto;
-import tcucl.back_tcucl.entity.onglet.VehiculeOnglet;
-import tcucl.back_tcucl.entity.parametre.vehicule.Vehicule;
+import tcucl.back_tcucl.entity.onglet.vehicule.VehiculeOnglet;
+import tcucl.back_tcucl.entity.onglet.vehicule.Vehicule;
 import tcucl.back_tcucl.manager.VehiculeOngletManager;
 import tcucl.back_tcucl.service.VehiculeOngletService;
 

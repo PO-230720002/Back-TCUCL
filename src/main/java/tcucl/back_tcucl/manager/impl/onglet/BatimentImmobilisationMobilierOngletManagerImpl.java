@@ -6,10 +6,10 @@ import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentExista
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentImmobilisationMobilierOngletDto;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.EntretienCourantDto;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.MobilierElectromenagerDto;
-import tcucl.back_tcucl.entity.onglet.BatimentImmobilisationMobilierOnglet;
-import tcucl.back_tcucl.entity.parametre.batiment.BatimentExistantOuNeufConstruit;
-import tcucl.back_tcucl.entity.parametre.batiment.EntretienCourant;
-import tcucl.back_tcucl.entity.parametre.batiment.MobilierElectromenager;
+import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOnglet;
+import tcucl.back_tcucl.entity.onglet.batiment.BatimentExistantOuNeufConstruit;
+import tcucl.back_tcucl.entity.onglet.batiment.EntretienCourant;
+import tcucl.back_tcucl.entity.onglet.batiment.MobilierElectromenager;
 import tcucl.back_tcucl.manager.BatimentImmobilisationMobilierOngletManager;
 import tcucl.back_tcucl.repository.onglet.BatimentImmobilisationMobilierOngletRepository;
 

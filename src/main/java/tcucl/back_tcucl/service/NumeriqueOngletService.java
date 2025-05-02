@@ -2,8 +2,8 @@ package tcucl.back_tcucl.service;
 
 import tcucl.back_tcucl.dto.onglet.numerique.EquipementNumeriqueDto;
 import tcucl.back_tcucl.dto.onglet.numerique.NumeriqueOngletDto;
-import tcucl.back_tcucl.entity.onglet.NumeriqueOnglet;
-import tcucl.back_tcucl.entity.parametre.numerique.EquipementNumerique;
+import tcucl.back_tcucl.entity.onglet.numerique.NumeriqueOnglet;
+import tcucl.back_tcucl.entity.onglet.numerique.EquipementNumerique;
 
 public interface NumeriqueOngletService {
     NumeriqueOnglet getNumeriqueOngletById(Long id);

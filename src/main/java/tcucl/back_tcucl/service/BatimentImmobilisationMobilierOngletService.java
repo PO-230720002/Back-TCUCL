@@ -4,7 +4,7 @@ import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentExista
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentImmobilisationMobilierOngletDto;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.EntretienCourantDto;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.MobilierElectromenagerDto;
-import tcucl.back_tcucl.entity.onglet.BatimentImmobilisationMobilierOnglet;
+import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOnglet;
 
 public interface BatimentImmobilisationMobilierOngletService {
 

@@ -3,15 +3,9 @@ package tcucl.back_tcucl.manager.impl.onglet;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.energie.EnergieOngletDto;
-import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteBois;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteFioul;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteGaz;
+import tcucl.back_tcucl.entity.onglet.energie.EnergieOnglet;
 import tcucl.back_tcucl.repository.onglet.EnergieOngletRepository;
 import tcucl.back_tcucl.manager.EnergieOngletManager;
-
-import java.util.Random;
 
 @Component
 public class EnergieOngletManagerImpl implements EnergieOngletManager {

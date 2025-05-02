@@ -2,8 +2,6 @@ package tcucl.back_tcucl.entity.onglet;
 
 import jakarta.persistence.*;
 
-import java.time.Year;
-
 @Entity
 @Table(name = "autre_mob_fr_onglet")
 public class AutreMobFrOnglet extends Onglet {

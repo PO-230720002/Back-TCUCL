@@ -2,7 +2,7 @@ package tcucl.back_tcucl.service;
 
 import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
 import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageVersUneDestinationMobInternationaleDto;
-import tcucl.back_tcucl.entity.onglet.MobInternationalOnglet;
+import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
 
 public interface MobInternationalOngletService {
 

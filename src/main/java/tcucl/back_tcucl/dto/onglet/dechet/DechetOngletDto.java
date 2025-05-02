@@ -3,7 +3,7 @@ package tcucl.back_tcucl.dto.onglet.dechet;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.onglet.DechetOnglet;
+import tcucl.back_tcucl.entity.onglet.dechet.DechetOnglet;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

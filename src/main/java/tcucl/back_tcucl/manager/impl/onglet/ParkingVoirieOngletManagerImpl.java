@@ -4,8 +4,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieDto;
 import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieOngletDto;
-import tcucl.back_tcucl.entity.onglet.ParkingVoirieOnglet;
-import tcucl.back_tcucl.entity.parametre.parkingVoirie.ParkingVoirie;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirieOnglet;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirie;
 import tcucl.back_tcucl.manager.ParkingVoirieOngletManager;
 import tcucl.back_tcucl.repository.onglet.ParkingVoirieOngletRepository;
 

@@ -2,7 +2,7 @@ package tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.onglet.BatimentImmobilisationMobilierOnglet;
+import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOnglet;
 
 import java.util.List;
 import java.util.stream.Collectors;

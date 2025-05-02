@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.annotationPersonnalisee.checkRoleOnglet;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveOngletDto;
-import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.service.EmissionFugitiveOngletService;
 
 import static tcucl.back_tcucl.controller.ControllerConstante.*;

@@ -2,8 +2,8 @@ package tcucl.back_tcucl.manager;
 
 import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieDto;
 import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieOngletDto;
-import tcucl.back_tcucl.entity.onglet.ParkingVoirieOnglet;
-import tcucl.back_tcucl.entity.parametre.parkingVoirie.ParkingVoirie;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirieOnglet;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirie;
 
 public interface ParkingVoirieOngletManager {
     ParkingVoirieOnglet getParkingVoirieOngletById(Long id);

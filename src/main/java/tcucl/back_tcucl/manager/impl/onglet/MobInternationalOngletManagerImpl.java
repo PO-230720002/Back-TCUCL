@@ -4,8 +4,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
 import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageVersUneDestinationMobInternationaleDto;
-import tcucl.back_tcucl.entity.onglet.MobInternationalOnglet;
-import tcucl.back_tcucl.entity.parametre.mobInternationale.VoyageVersUneDestinationMobInternationale;
+import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
+import tcucl.back_tcucl.entity.onglet.mobInternationale.VoyageVersUneDestinationMobInternationale;
 import tcucl.back_tcucl.manager.MobInternationalOngletManager;
 import tcucl.back_tcucl.repository.onglet.MobInternationalOngletRepository;
 

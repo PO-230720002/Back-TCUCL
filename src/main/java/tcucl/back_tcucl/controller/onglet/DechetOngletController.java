@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.annotationPersonnalisee.checkRoleOnglet;
 import tcucl.back_tcucl.dto.onglet.dechet.DechetOngletDto;
-import tcucl.back_tcucl.entity.onglet.DechetOnglet;
+import tcucl.back_tcucl.entity.onglet.dechet.DechetOnglet;
 import tcucl.back_tcucl.service.DechetOngletService;
 
 import static tcucl.back_tcucl.controller.ControllerConstante.*;

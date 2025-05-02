@@ -2,8 +2,8 @@ package tcucl.back_tcucl.dto.onglet.achat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.parametre.achat.AchatRestauration;
-import tcucl.back_tcucl.entity.parametre.achat.enums.EnumAchatRestauration_Methode;
+import tcucl.back_tcucl.entity.onglet.achat.AchatRestauration;
+import tcucl.back_tcucl.entity.onglet.achat.enums.EnumAchatRestauration_Methode;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

@@ -2,8 +2,8 @@ package tcucl.back_tcucl.manager;
 
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveOngletDto;
-import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
-import tcucl.back_tcucl.entity.parametre.emissionFugitive.MachineEmissionFugitive;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.MachineEmissionFugitive;
 
 public interface EmissionFugitiveOngletManager {
 

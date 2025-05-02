@@ -2,9 +2,9 @@ package tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.parametre.batiment.EntretienCourant;
-import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_TypeBatiment;
-import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_TypeTravaux;
+import tcucl.back_tcucl.entity.onglet.batiment.EntretienCourant;
+import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeBatiment;
+import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeTravaux;
 
 import java.time.LocalDate;
 import java.util.Date;

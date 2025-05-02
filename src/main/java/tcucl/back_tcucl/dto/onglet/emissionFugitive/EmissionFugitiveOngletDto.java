@@ -2,7 +2,7 @@ package tcucl.back_tcucl.dto.onglet.emissionFugitive;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
 
 import java.util.List;
 import java.util.stream.Collectors;

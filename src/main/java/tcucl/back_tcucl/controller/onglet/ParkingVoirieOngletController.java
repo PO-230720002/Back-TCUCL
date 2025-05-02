@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.annotationPersonnalisee.checkRoleOnglet;
 import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieOngletDto;
 import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieDto;
-import tcucl.back_tcucl.entity.onglet.ParkingVoirieOnglet;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirieOnglet;
 import tcucl.back_tcucl.service.ParkingVoirieOngletService;
 
 import static tcucl.back_tcucl.controller.ControllerConstante.*;

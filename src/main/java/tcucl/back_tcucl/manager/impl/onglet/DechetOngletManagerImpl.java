@@ -4,8 +4,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.dechet.DechetDto;
 import tcucl.back_tcucl.dto.onglet.dechet.DechetOngletDto;
-import tcucl.back_tcucl.entity.onglet.DechetOnglet;
-import tcucl.back_tcucl.entity.parametre.dechet.Dechet;
+import tcucl.back_tcucl.entity.onglet.dechet.DechetOnglet;
+import tcucl.back_tcucl.entity.onglet.dechet.Dechet;
 import tcucl.back_tcucl.manager.DechetOngletManager;
 import tcucl.back_tcucl.repository.onglet.DechetOngletRepository;
 

@@ -3,7 +3,7 @@ package tcucl.back_tcucl.service.impl.onglet;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveOngletDto;
-import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.manager.EmissionFugitiveOngletManager;
 import tcucl.back_tcucl.service.EmissionFugitiveOngletService;
 

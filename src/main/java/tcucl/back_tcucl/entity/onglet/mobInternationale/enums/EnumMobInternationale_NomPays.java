@@ -1,0 +1,141 @@
+package tcucl.back_tcucl.entity.onglet.mobInternationale.enums;
+
+public enum EnumMobInternationale_NomPays {
+    ALBANIE(1),
+    ALLEMAGNE(2),
+    AUTRICHE(3),
+    BELGIQUE(4),
+    BULGARIE(5),
+    CROATIE(6),
+    DANEMARK(7),
+    ECOSSE(8),
+    ESPAGNE(9),
+    ESTONIE(10),
+    FINLANDE(11),
+    GRECE(12),
+    HONGRIE(13),
+    IRLANDE(14),
+    ISLANDE(15),
+    ITALIE(16),
+    LETTONIE(17),
+    LITUANIE(18),
+    LUXEMBOURG(19),
+    MACEDOINE(20),
+    MONACO(21),
+    NORVEGE(22),
+    EnumMobInternationale_NomPays_BAS(23),
+    POLOGNE(24),
+    PORTUGAL(25),
+    ROUMANIE(26),
+    ROYAUME_UNI(27),
+    SLOVAQUIE(28),
+    SLOVENIE(29),
+    SUEDE(30),
+    SUISSE(31),
+
+    AFRIQUE_DU_SUD(32),
+    ALGERIE(33),
+    ANGOLA(34),
+    ARABIE_SAOUDITE(35),
+    ARGENTINE(36),
+    AUSTRALIE(37),
+    AZERBAIDJAN(38),
+    BAHREIN(39),
+    BANGLADESH(40),
+    BENIN(41),
+    BOLIVIE(42),
+    BRESIL(43),
+    BURKINA_FASO(44),
+    CAMBODGE(45),
+    CAMEROUN(46),
+    CANADA(47),
+    CHILI(48),
+    CHINE(49),
+    CHYPRE(50),
+    COLOMBIE(51),
+    CONGO(52),
+    COMORES(53),
+    COREE_DU_SUD(54),
+    COSTA_RICA(55),
+    COTE_DIVOIRE(56),
+    EGYPTE(57),
+    EMIRATS_ARABES_UNIS(58),
+    EQUATEUR(59),
+    ETATS_UNIS(60),
+    ETHIOPIE(61),
+    GUATEMALA(62),
+    FIDJI(63),
+    GABON(64),
+    GEORGIE(65),
+    GHANA(66),
+    HONG_KONG(67),
+    INDE(68),
+    INDONESIE(69),
+    ISRAEL(70),
+    JAPON(71),
+    JORDANIE(72),
+    KAZAKHSTAN(73),
+    KIRGHIZISTAN(74),
+    KENYA(75),
+    LAOS(76),
+    KOSOVO(77),
+    LIBAN(78),
+    MADAGASCAR(79),
+    MALAISIE(80),
+    MALI(81),
+    MALTE(82),
+    MAROC(83),
+    MAURICE(84),
+    MAURITANIE(85),
+    MEXIQUE(86),
+    MONGOLIE(87),
+    MOZAMBIQUE(88),
+    NAMIBIE(89),
+    NEPAL(90),
+    NICARAGUA(91),
+    NIGERIA(92),
+    NOUVELLE_ZELANDE(93),
+    PANAMA(94),
+    PEROU(95),
+    PHILIPPINES(96),
+    POLYNESIE_FRANCAISE(97),
+    QATAR(98),
+    REPUBLIQUE_DOMINICAINE(99),
+    REPUBLIQUE_CENTRAFRICAINE(100),
+    REPUBLIQUE_TCHEQUE(101),
+    RWANDA(102),
+    RUSSIE(103),
+    SENEGAL(104),
+    SINGAPOUR(105),
+    SRI_LANKA(106),
+    TAIWAN(107),
+    THAILANDE(108),
+    TOGO(109),
+    TUNISIE(110),
+    TURQUIE(111),
+    UKRAINE(112),
+    URUGUAY(113),
+    VIETNAM(114),
+    ZIMBABWE(115);
+
+    private final int code;
+
+    EnumMobInternationale_NomPays(int code) {
+        this.code = code;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public static EnumMobInternationale_NomPays fromCode(int code) {
+        for (EnumMobInternationale_NomPays EnumMobInternationale_NomPays : EnumMobInternationale_NomPays.values()) {
+            if (EnumMobInternationale_NomPays.getCode() == code) {
+                return EnumMobInternationale_NomPays;
+            }
+        }
+        throw new IllegalArgumentException("Code invalide : " + code);
+    }
+}
+
+

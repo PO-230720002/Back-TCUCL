@@ -2,7 +2,19 @@ package tcucl.back_tcucl.entity;
 
 import jakarta.persistence.*;
 import tcucl.back_tcucl.config.AnneeConfig;
-import tcucl.back_tcucl.entity.onglet.*;
+import tcucl.back_tcucl.entity.onglet.GeneralOnglet;
+import tcucl.back_tcucl.entity.onglet.MobiliteDomicileTravailOnglet;
+import tcucl.back_tcucl.entity.onglet.achat.AchatOnglet;
+import tcucl.back_tcucl.entity.onglet.AutreImmobilisationOnglet;
+import tcucl.back_tcucl.entity.onglet.AutreMobFrOnglet;
+import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOnglet;
+import tcucl.back_tcucl.entity.onglet.dechet.DechetOnglet;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
+import tcucl.back_tcucl.entity.onglet.energie.EnergieOnglet;
+import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
+import tcucl.back_tcucl.entity.onglet.numerique.NumeriqueOnglet;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirieOnglet;
+import tcucl.back_tcucl.entity.onglet.vehicule.VehiculeOnglet;
 
 @Entity
 @Table(name = "annee")

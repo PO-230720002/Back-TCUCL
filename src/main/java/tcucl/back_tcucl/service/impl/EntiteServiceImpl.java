@@ -35,9 +35,6 @@ public class EntiteServiceImpl implements EntiteService {
     public Entite creerEntite(String nom, String type) {
         if (!entiteManager.existsEntiteByNomAndType(nom, type)) {
             Entite entite = new Entite(nom, type);
-            Annee annee = new Annee();
-            annee.setEntite(entite);
-            entite.addAnnee(annee);
             return entiteManager.save(entite);
         } else {
             throw new EntiteDejaExistantAvecNomType(nom, type);

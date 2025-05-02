@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "general_onglet")
-public class GeneralOnglet extends Onglet{
+public class GeneralOnglet extends Onglet {
 
     private Integer nbSalarie;
     private Integer nbEtudiant;

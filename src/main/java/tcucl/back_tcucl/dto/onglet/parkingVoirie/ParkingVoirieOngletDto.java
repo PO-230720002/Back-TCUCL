@@ -2,7 +2,7 @@ package tcucl.back_tcucl.dto.onglet.parkingVoirie;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.onglet.ParkingVoirieOnglet;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirieOnglet;
 
 import java.util.List;
 import java.util.stream.Collectors;

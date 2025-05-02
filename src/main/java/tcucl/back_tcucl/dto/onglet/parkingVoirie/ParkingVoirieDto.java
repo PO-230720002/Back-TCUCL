@@ -2,9 +2,9 @@ package tcucl.back_tcucl.dto.onglet.parkingVoirie;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.parametre.parkingVoirie.ParkingVoirie;
-import tcucl.back_tcucl.entity.parametre.parkingVoirie.enums.EnumParkingVoirie_Type;
-import tcucl.back_tcucl.entity.parametre.parkingVoirie.enums.EnumParkingVoirie_TypeStructure;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirie;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.enums.EnumParkingVoirie_Type;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.enums.EnumParkingVoirie_TypeStructure;
 
 import java.util.Date;
 

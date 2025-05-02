@@ -3,8 +3,8 @@ package tcucl.back_tcucl.service.impl.onglet;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.numerique.EquipementNumeriqueDto;
 import tcucl.back_tcucl.dto.onglet.numerique.NumeriqueOngletDto;
-import tcucl.back_tcucl.entity.onglet.NumeriqueOnglet;
-import tcucl.back_tcucl.entity.parametre.numerique.EquipementNumerique;
+import tcucl.back_tcucl.entity.onglet.numerique.NumeriqueOnglet;
+import tcucl.back_tcucl.entity.onglet.numerique.EquipementNumerique;
 import tcucl.back_tcucl.manager.NumeriqueOngletManager;
 import tcucl.back_tcucl.service.NumeriqueOngletService;
 

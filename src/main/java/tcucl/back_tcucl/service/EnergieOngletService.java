@@ -1,7 +1,7 @@
 package tcucl.back_tcucl.service;
 
 import tcucl.back_tcucl.dto.onglet.energie.EnergieOngletDto;
-import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
+import tcucl.back_tcucl.entity.onglet.energie.EnergieOnglet;
 
 public interface EnergieOngletService {
 

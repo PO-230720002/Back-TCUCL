@@ -2,11 +2,11 @@ package tcucl.back_tcucl.dto.onglet.energie;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteBois;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteFioul;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteGaz;
+import tcucl.back_tcucl.entity.onglet.energie.EnergieOnglet;
+import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_NomReseauVille;
+import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_UniteBois;
+import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_UniteFioul;
+import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_UniteGaz;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

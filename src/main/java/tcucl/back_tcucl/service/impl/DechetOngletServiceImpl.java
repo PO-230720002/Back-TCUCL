@@ -2,7 +2,7 @@ package tcucl.back_tcucl.service.impl;
 
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.dechet.DechetOngletDto;
-import tcucl.back_tcucl.entity.onglet.DechetOnglet;
+import tcucl.back_tcucl.entity.onglet.dechet.DechetOnglet;
 import tcucl.back_tcucl.manager.DechetOngletManager;
 import tcucl.back_tcucl.service.DechetOngletService;
 
