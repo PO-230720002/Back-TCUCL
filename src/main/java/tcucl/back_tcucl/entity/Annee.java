@@ -30,7 +30,7 @@ public class Annee {
     @OneToOne(cascade = CascadeType.ALL)
     private EmissionFugitiveOnglet emissionFugitiveOnglet;
     @OneToOne(cascade = CascadeType.ALL)
-    private MobiliteDomTravOnglet mobiliteDomTravOnglet;
+    private MobiliteDomicileTravailOnglet mobiliteDomicileTravailOnglet;
     @OneToOne(cascade = CascadeType.ALL)
     private MobInternationalOnglet mobInternationalOnglet;
     @OneToOne(cascade = CascadeType.ALL)
@@ -54,7 +54,7 @@ public class Annee {
         this.batimentImmobilisationMobilierOnglet = new BatimentImmobilisationMobilierOnglet();
         this.dechetOnglet = new DechetOnglet();
         this.emissionFugitiveOnglet = new EmissionFugitiveOnglet();
-        this.mobiliteDomTravOnglet = new MobiliteDomTravOnglet();
+        this.mobiliteDomicileTravailOnglet = new MobiliteDomicileTravailOnglet();
         this.mobInternationalOnglet = new MobInternationalOnglet();
         this.numeriqueOnglet = new NumeriqueOnglet();
         this.parkingVoirieOnglet = new ParkingVoirieOnglet();
@@ -71,7 +71,7 @@ public class Annee {
         this.batimentImmobilisationMobilierOnglet = new BatimentImmobilisationMobilierOnglet();
         this.dechetOnglet = new DechetOnglet();
         this.emissionFugitiveOnglet = new EmissionFugitiveOnglet();
-        this.mobiliteDomTravOnglet = new MobiliteDomTravOnglet();
+        this.mobiliteDomicileTravailOnglet = new MobiliteDomicileTravailOnglet();
         this.mobInternationalOnglet = new MobInternationalOnglet();
         this.numeriqueOnglet = new NumeriqueOnglet();
         this.parkingVoirieOnglet = new ParkingVoirieOnglet();
@@ -158,12 +158,12 @@ public class Annee {
         this.emissionFugitiveOnglet = emissionFugitiveOnglet;
     }
 
-    public MobiliteDomTravOnglet getMobiliteDomTravOnglet() {
-        return mobiliteDomTravOnglet;
+    public MobiliteDomicileTravailOnglet getMobiliteDomicileTravailOnglet() {
+        return mobiliteDomicileTravailOnglet;
     }
 
-    public void setMobiliteDomTravOnglet(MobiliteDomTravOnglet mobiliteDomTravOnglet) {
-        this.mobiliteDomTravOnglet = mobiliteDomTravOnglet;
+    public void setMobiliteDomicileTravailOnglet(MobiliteDomicileTravailOnglet mobiliteDomicileTravailOnglet) {
+        this.mobiliteDomicileTravailOnglet = mobiliteDomicileTravailOnglet;
     }
 
     public MobInternationalOnglet getMobInternationalOnglet() {

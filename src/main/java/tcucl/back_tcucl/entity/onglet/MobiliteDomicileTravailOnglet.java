@@ -3,11 +3,9 @@ package tcucl.back_tcucl.entity.onglet;
 
 import jakarta.persistence.*;
 
-import java.time.Year;
-
 @Entity
-@Table(name = "mobilite_dom_trav_onglet")
-public class MobiliteDomTravOnglet extends Onglet {
+@Table(name = "mobilite_domicile_travail_onglet")
+public class MobiliteDomicileTravailOnglet extends Onglet {
 
 
     private Integer voitureThermiqueEtudiantKm;

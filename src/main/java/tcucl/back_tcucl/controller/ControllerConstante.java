@@ -45,7 +45,7 @@ public class ControllerConstante {
     //   *******************************************
 
     //   ------------       Energie       ------------
-    public static final String REST_ENERGIE_ONGLET = "/energieonglet";
+    public static final String REST_ENERGIE_ONGLET = "/energieOnglet";
     public static final String REST_EST_TERMINE = "/estTermine";
     public static final String REST_CREATE_RANDOM = "/createRandom";
     public static final String REST_CONSO_GAZ = "/consoGaz";
@@ -62,7 +62,7 @@ public class ControllerConstante {
     public static final String REST_UNITE_BOIS = "/uniteBois";
 
     //   ---------    Emission Fugitive   ----------
-    public static final String REST_EMISSION_FUGITIVE_ONGLET = "/emissionFugitive";
+    public static final String REST_EMISSION_FUGITIVE_ONGLET = "/emissionFugitiveOnglet";
     public static final String REST_MACHINE_ID = "/machineId";
     public static final String REST_MACHINE = "/machine";
     public static final String REST_AJOUTER_MACHINE = "/ajouter-machine";
@@ -75,5 +75,6 @@ public class ControllerConstante {
     public static final String REST_MODIFIER_TAUX_DE_FUITE_MACHINE = "/modifier-taux-de-fuite-machine";
     public static final String REST_MODIFIER_TYPE_MACHINE_MACHINE = "/modifier-type-machine-machine";
 
-
+    //   ------------       Mobilite domicile travail       ------------
+    public static final String REST_MOBILITE_DOMICILE_TRAVAIL_ONGLET = "/mobiliteDomicileTravailOnglet";
 }
