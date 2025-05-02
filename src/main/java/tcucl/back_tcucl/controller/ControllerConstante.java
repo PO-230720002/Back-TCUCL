@@ -87,4 +87,7 @@ public class ControllerConstante {
 
     //   ---------    Autre Immobilisation   ----------
     public static final String REST_AUTRE_IMMOBILISATION = "/autreImmobilisationOnglet";
+
+    //   ---------    Dechet   ----------
+    public static final String REST_DECHET_ONGLET = "/dechetOnglet";
 }
