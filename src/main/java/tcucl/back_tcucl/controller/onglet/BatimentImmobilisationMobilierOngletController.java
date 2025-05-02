@@ -58,7 +58,7 @@ public class BatimentImmobilisationMobilierOngletController {
 
     @DeleteMapping(REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT + REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> supprimerBatiment(@PathVariable(name = "id") Long ongletId, @PathVariable(name = "batimentId") Long batimentId) {
+    public ResponseEntity<Void> supprimerBatiment(@PathVariable(name = "id") Long ongletId, @PathVariable(name = "batimentExistantOuNeufConstruitId") Long batimentId) {
         batimentImmobilisationMobilierOngletService.supprimerBatiment(ongletId, batimentId);
         return ResponseEntity.ok().build();
 
@@ -79,7 +79,7 @@ public class BatimentImmobilisationMobilierOngletController {
     }
     @PatchMapping(REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT + REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> updateBatimentPartiel(@PathVariable(name = "id") Long ongletId, @PathVariable(name = "batimentId") Long batimentId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
+    public ResponseEntity<Void> updateBatimentPartiel(@PathVariable(name = "id") Long ongletId, @PathVariable(name = "batimentExistantOuNeufConstruitId") Long batimentId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
         batimentImmobilisationMobilierOngletService.updateBatimentPartiel(ongletId, batimentId, batimentExistantOuNeufConstruitDto);
         return ResponseEntity.ok().build();
     }

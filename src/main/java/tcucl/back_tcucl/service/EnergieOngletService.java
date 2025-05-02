@@ -7,7 +7,5 @@ public interface EnergieOngletService {
 
     public EnergieOnglet getEnergieOngletById(Long id);
 
-    public EnergieOnglet createRandomEnergieOnglet();
-
     public void updateEnergieOngletPartiel(Long id, EnergieOngletDto dto);
 }

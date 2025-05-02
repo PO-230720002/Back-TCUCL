@@ -25,10 +25,6 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
         energieOngletManager.updateEnergieOngletPartiel(id, dto);
     }
 
-    @Override
-    public EnergieOnglet createRandomEnergieOnglet() {
-        return energieOngletManager.createRandomEnergieOnglet();
-    }
 
 
 }
