@@ -45,13 +45,15 @@ public class ControllerConstante {
     //   *******************************************
 
     //   ------------       Energie       ------------
-    public static final String REST_ENERGIE_ONGLET = "/energieonglet";
+    public static final String REST_ENERGIE_ONGLET = "/energieOnglet";
 
     //   ---------    Emission Fugitive   ----------
-    public static final String REST_EMISSION_FUGITIVE_ONGLET = "/emissionFugitive";
+    public static final String REST_EMISSION_FUGITIVE_ONGLET = "/emissionFugitiveOnglet";
     public static final String REST_MACHINE_ID = "/machineId";
     public static final String REST_MACHINE = "/machine";
 
+    //   ------------       Mobilite domicile travail       ------------
+    public static final String REST_MOBILITE_DOMICILE_TRAVAIL_ONGLET = "/mobiliteDomicileTravailOnglet";
 
     //   ---------    Autre Mobilité FR   ----------
     public static final String REST_AUTRE_MOB_FR = "/autreMobFr";
