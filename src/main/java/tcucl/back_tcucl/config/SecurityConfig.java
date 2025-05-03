@@ -48,7 +48,8 @@ public class SecurityConfig {
                 .cors(cors -> {}) // ✅ Ajout obligatoire pour que CORS fonctionne avec Spring Security
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(REST_AUTH + REST_CONNEXION, REST_AUTH + REST_INSCRIPTION2, REST_AUTH + REST_CHANGE_MDP_PREMIERE_CONNEXION,REST_AUTH+REST_CREER_ENTITE, "/test/**", "/swagger-ui.html", "/swagger-ui/index.html", "/v3/api-docs").permitAll()
+                        auth.requestMatchers(REST_AUTH + REST_CONNEXION, REST_AUTH + REST_INSCRIPTION2, REST_AUTH + REST_CHANGE_MDP_PREMIERE_CONNEXION,REST_AUTH+REST_CREER_ENTITE, "/test/**",
+                                        "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtFilter(customUserDetailsService, jwtUtils), UsernamePasswordAuthenticationFilter.class);
