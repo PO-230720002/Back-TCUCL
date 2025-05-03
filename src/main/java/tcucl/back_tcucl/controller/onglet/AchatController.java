@@ -7,8 +7,7 @@ import tcucl.back_tcucl.dto.onglet.achat.AchatOngletDto;
 import tcucl.back_tcucl.entity.onglet.achat.AchatOnglet;
 import tcucl.back_tcucl.service.AchatOngletService;
 
-import static tcucl.back_tcucl.controller.ControllerConstante.REST_ACHAT_ONGLET;
-import static tcucl.back_tcucl.controller.ControllerConstante.REST_ONGLET_ID;
+import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
 @RequestMapping(REST_ACHAT_ONGLET + REST_ONGLET_ID)

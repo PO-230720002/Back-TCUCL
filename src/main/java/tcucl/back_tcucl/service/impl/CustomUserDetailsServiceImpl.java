@@ -45,6 +45,8 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         SimpleGrantedAuthority utilisateurAuthority;
 
+        authorities.add(new SimpleGrantedAuthority("ROLE_UTILISATEUR_" + utilisateurSecuriteDto.utilisateurId()));
+
         if (utilisateurSecuriteDto.estSuperAdmin()) {
             utilisateurAuthority = new SimpleGrantedAuthority("ROLE_SUPERADMIN");
         } else if (utilisateurSecuriteDto.estAdmin()) {

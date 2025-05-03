@@ -7,8 +7,7 @@ import tcucl.back_tcucl.dto.onglet.autreMobFr.AutreMobFrOngletDto;
 import tcucl.back_tcucl.entity.onglet.AutreMobFrOnglet;
 import tcucl.back_tcucl.service.AutreMobFrOngletService;
 
-import static tcucl.back_tcucl.controller.ControllerConstante.REST_AUTRE_MOB_FR;
-import static tcucl.back_tcucl.controller.ControllerConstante.REST_ONGLET_ID;
+import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
 @RequestMapping(REST_AUTRE_MOB_FR + REST_ONGLET_ID)

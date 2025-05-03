@@ -78,12 +78,12 @@ public class ControllerConstante {
 
     //   ---------    Batiment Immobilisation Mobilier   ----------
     public static final String REST_BATIMENT_IMMOBILISATION_MOBILIER_ONGLET = "/batimentImmobilisationMobilierOnglet";
-    public static final String REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT_ID = "/{batimentExistantOuNeufConstruitId}";
     public static final String REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT = "/batimentExistantOuNeufConstruit";
-    public static final String REST_ENTRETIEN_COURANT_ID = "/{entretienCourantId}";
+    public static final String REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT_ID = "/{batimentExistantOuNeufConstruitId}";
     public static final String REST_ENTRETIEN_COURANT = "/entretienCourant";
-    public static final String REST_MOBILIER_ELECTROMENAGER_ID = "/{mobilierElectromenagerId}";
+    public static final String REST_ENTRETIEN_COURANT_ID = "/{entretienCourantId}";
     public static final String REST_MOBILIER_ELECTROMENAGER = "/mobilierElectromenager";
+    public static final String REST_MOBILIER_ELECTROMENAGER_ID = "/{mobilierElectromenagerId}";
 
     //   ---------    Achat   ----------
     public static final String REST_ACHAT_ONGLET = "/achatOnglet";

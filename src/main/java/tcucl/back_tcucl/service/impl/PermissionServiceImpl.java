@@ -70,13 +70,13 @@ public class PermissionServiceImpl implements PermissionService {
 
     private boolean estAdminDe(String adminEmail, Long utilisateurId) {
         Entite entiteAdmin = utilisateurManager.getUtilisateurParEmail(adminEmail).getEntite();
-        Entite entiteUtilisateur = utilisateurManager.getUtilisateurParId(idUtilisateur).getEntite();
+        Entite entiteUtilisateur = utilisateurManager.getUtilisateurParId(utilisateurId).getEntite();
         return entiteUtilisateur==entiteAdmin;
     }
 
     private boolean estAdminDeEntite(String adminEmail, Long entiteId){
         Entite entiteAdmin = utilisateurManager.getUtilisateurParEmail(adminEmail).getEntite();
-        Entite entiteCible = entiteService.getEntiteById(idEntite);
+        Entite entiteCible = entiteService.getEntiteById(entiteId);
         return entiteAdmin == entiteCible;
     }
 }
