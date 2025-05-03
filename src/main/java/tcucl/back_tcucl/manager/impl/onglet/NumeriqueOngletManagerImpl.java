@@ -1,11 +1,12 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
+
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.numerique.EquipementNumeriqueDto;
 import tcucl.back_tcucl.dto.onglet.numerique.NumeriqueOngletDto;
 import tcucl.back_tcucl.entity.onglet.numerique.NumeriqueOnglet;
 import tcucl.back_tcucl.entity.onglet.numerique.EquipementNumerique;
+import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.NumeriqueOngletManager;
 import tcucl.back_tcucl.repository.onglet.NumeriqueOngletRepository;
@@ -31,7 +32,7 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
         return numeriqueOnglet.getEquipementNumeriqueList().stream()
                 .filter(m -> m.getId().equals(equipementId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Equipement Numérique non trouvé avec l'Id: " + equipementId));
+                .orElseThrow(() -> new ElementNontrouveException("Equipement Numérique",equipementId));
     }
 
     @Override
@@ -77,7 +78,7 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
                 .stream()
                 .filter(v -> v.getId().equals(equipementId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Equipement Numérique non trouvé avec l'id : " + equipementId));
+                .orElseThrow(() -> new ElementNontrouveException("Equipement Numérique",equipementId));
 
         numeriqueOnglet.getEquipementNumeriqueList().remove(equipementNumerique);
 
@@ -92,7 +93,7 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
                 .stream()
                 .filter(v -> v.getId().equals(equipementId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Equipement Numérique non trouvé avec l'id : " + equipementId));
+                .orElseThrow(() -> new ElementNontrouveException("Equipement Numérique",equipementId));
 
         if (equipementNumeriqueDto.getEquipement() != null)
             equipementNumerique.setEquipement(equipementNumeriqueDto.getEquipement());
