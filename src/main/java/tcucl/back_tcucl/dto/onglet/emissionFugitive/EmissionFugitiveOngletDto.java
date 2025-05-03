@@ -16,6 +16,9 @@ public class EmissionFugitiveOngletDto {
 
     List<MachineEmissionFugitiveDto> machinesEmissionFugitive;
 
+    public EmissionFugitiveOngletDto() {
+    }
+
     public EmissionFugitiveOngletDto(EmissionFugitiveOnglet entity) {
         this.id = entity.getId();
         this.estTermine = entity.getEstTermine();

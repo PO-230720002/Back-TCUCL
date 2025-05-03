@@ -47,7 +47,7 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
         }
 
         if (emissionFugitiveOngletDto.getMachinesEmissionFugitive() != null) {
-            emissionFugitiveOngletDto.getMachinesEmissionFugitive().clear();
+            emissionFugitiveOnglet.getMachinesEmissionFugitive().clear();
             for (MachineEmissionFugitiveDto machineDto : emissionFugitiveOngletDto.getMachinesEmissionFugitive()) {
                 emissionFugitiveOnglet.ajouterMachineViaDto(machineDto);
             }
@@ -111,7 +111,7 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
             machine.setTypeMachine(dto.getTypeMachine());
         }
 
-        emissionFugitiveOngletRepository.save(getEmissionFugitiveOngletById(ongletId)); // Hibernate met à jour via cascade
+        emissionFugitiveOngletRepository.save(emissionFugitiveOnglet); // Hibernate met à jour via cascade
     }
 
 

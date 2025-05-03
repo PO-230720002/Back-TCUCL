@@ -29,7 +29,8 @@ public class AutreMobFrController {
 
     @PatchMapping
     @checkRoleOnglet
-    public ResponseEntity<Void> updateAutreMobFrOngletPartiel(@PathVariable(value = "ongletId") Long ongletId, @RequestBody AutreMobFrOngletDto autreMobFrOngletDto) {
+    public ResponseEntity<Void> updateAutreMobFrOngletPartiel(@PathVariable(value = "ongletId") Long ongletId,
+                                                              @RequestBody AutreMobFrOngletDto autreMobFrOngletDto) {
         autreMobFrOngletService.updateAutreMobFrOngletPartiel(ongletId, autreMobFrOngletDto);
         return ResponseEntity.ok().build();
     }

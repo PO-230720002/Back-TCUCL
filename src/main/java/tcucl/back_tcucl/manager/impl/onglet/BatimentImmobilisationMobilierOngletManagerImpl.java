@@ -43,21 +43,21 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         }
 
         if (batimentImmobilisationMobilierOngletDto.getBatimentsExistantOuNeufConstruits() != null) {
-            batimentImmobilisationMobilierOngletDto.getBatimentsExistantOuNeufConstruits().clear();
+            batimentImmobilisationMobilierOnglet.getBatimentExistantOuNeufConstruits().clear();
             for (BatimentExistantOuNeufConstruitDto batimentDto : batimentImmobilisationMobilierOngletDto.getBatimentsExistantOuNeufConstruits()) {
                 batimentImmobilisationMobilierOnglet.ajouterBatimentViaDto(batimentDto);
             }
         }
 
         if (batimentImmobilisationMobilierOngletDto.getEntretiensCourants() != null) {
-            batimentImmobilisationMobilierOngletDto.getEntretiensCourants().clear();
+            batimentImmobilisationMobilierOnglet.getEntretienCourants().clear();
             for (EntretienCourantDto entretienCourantDto : batimentImmobilisationMobilierOngletDto.getEntretiensCourants()) {
                 batimentImmobilisationMobilierOnglet.ajouterEntretienCourantViaDto(entretienCourantDto);
             }
         }
 
         if (batimentImmobilisationMobilierOngletDto.getMobiliersElectromenagers() != null) {
-            batimentImmobilisationMobilierOngletDto.getMobiliersElectromenagers().clear();
+            batimentImmobilisationMobilierOnglet.getMobilierElectromenagers().clear();
             for (MobilierElectromenagerDto mobilierElectromenagerDto : batimentImmobilisationMobilierOngletDto.getMobiliersElectromenagers()) {
                 batimentImmobilisationMobilierOnglet.ajouterMobilierElectromenagerViaDto(mobilierElectromenagerDto);
             }
@@ -138,7 +138,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
             batiment.setTypeStructure(dto.getTypeStructure());
         }
 
-        batimentImmobilisationMobilierOngletRepository.save(getBatimentImmobilisationMobilierOngletById(ongletId)); // Hibernate met à jour via cascade
+        batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet); // Hibernate met à jour via cascade
     }
 
     @Override
@@ -215,7 +215,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
             entretienCourant.setTypeBatiment(dto.getTypeBatiment());
         }
 
-        batimentImmobilisationMobilierOngletRepository.save(getBatimentImmobilisationMobilierOngletById(ongletId)); // Hibernate met à jour via cascade
+        batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet); // Hibernate met à jour via cascade
 
     }
 
@@ -287,7 +287,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
             mobilierElectromenager.setEmissionsGesReelleskgCO2(dto.getEmissionsGesReelleskgCO2());
         }
 
-        batimentImmobilisationMobilierOngletRepository.save(getBatimentImmobilisationMobilierOngletById(ongletId)); // Hibernate met à jour via cascade
+        batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet); // Hibernate met à jour via cascade
 
     }
 

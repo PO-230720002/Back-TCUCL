@@ -30,21 +30,24 @@ public class EmissionFugitiveOngletController {
 
     @PatchMapping
     @checkRoleOnglet
-    public ResponseEntity<Void> updateEmissionFugitiveOnglet(@PathVariable(name = "ongletId") Long ongletId, @RequestBody EmissionFugitiveOngletDto emissionFugitiveOngletDto) {
+    public ResponseEntity<Void> updateEmissionFugitiveOnglet(@PathVariable(name = "ongletId") Long ongletId,
+                                                             @RequestBody EmissionFugitiveOngletDto emissionFugitiveOngletDto) {
         emissionFugitiveOngletService.updateEmissionFugitiveOnglet(ongletId, emissionFugitiveOngletDto);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping(REST_MACHINE)
     @checkRoleOnglet
-    public ResponseEntity<Void> ajouterMachine(@PathVariable(name = "ongletId") Long ongletId, @RequestBody MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
+    public ResponseEntity<Void> ajouterMachine(@PathVariable(name = "ongletId") Long ongletId,
+                                               @RequestBody MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
         emissionFugitiveOngletService.ajouterMachine(ongletId, machineEmissionFugitiveDto);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(REST_MACHINE + REST_MACHINE_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> supprimerMachine(@PathVariable(name = "ongletId") Long ongletId, @PathVariable(name = "machineId") Long machineId) {
+    public ResponseEntity<Void> supprimerMachine(@PathVariable(name = "ongletId") Long ongletId,
+                                                 @PathVariable(name = "machineId") Long machineId) {
         emissionFugitiveOngletService.supprimerMachine(ongletId, machineId);
         return ResponseEntity.ok().build();
 
@@ -52,7 +55,9 @@ public class EmissionFugitiveOngletController {
 
     @PatchMapping(REST_MACHINE + REST_MACHINE_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> updateMachinePartiel(@PathVariable(name = "ongletId") Long ongletId, @PathVariable(name = "machineId") Long machineId, MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
+    public ResponseEntity<Void> updateMachinePartiel(@PathVariable(name = "ongletId") Long ongletId,
+                                                     @PathVariable(name = "machineId") Long machineId,
+                                                     @RequestBody MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
         emissionFugitiveOngletService.updateMachinePartiel(ongletId, machineId, machineEmissionFugitiveDto);
         return ResponseEntity.ok().build();
     }

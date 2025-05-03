@@ -42,13 +42,16 @@ public class SecurityConfig {
         return authenticationManagerBuilder.build();
     }
 
+    // todo supprimer les endpoints non sécurisés en production
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .cors(cors -> {}) // ✅ Ajout obligatoire pour que CORS fonctionne avec Spring Security
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(REST_AUTH + REST_CONNEXION, REST_AUTH + REST_INSCRIPTION2, REST_AUTH + REST_CHANGE_MDP_PREMIERE_CONNEXION,REST_AUTH+REST_CREER_ENTITE, "/test/**",
+                        auth.requestMatchers(REST_AUTH + REST_CONNEXION, REST_AUTH + REST_CHANGE_MDP_PREMIERE_CONNEXION,
+                                        REST_AUTH + REST_INSCRIPTION2,
+                                        REST_AUTH+REST_CREER_ENTITE, "/test/**",
                                         "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                                 .anyRequest().authenticated()
                 )
