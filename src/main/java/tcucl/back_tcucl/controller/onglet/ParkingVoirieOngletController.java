@@ -39,26 +39,26 @@ public class ParkingVoirieOngletController {
 
     @PostMapping(REST_PARKING_VOIRIE)
     @checkRoleOnglet
-    public ResponseEntity<Void> ajouterVoyage(@PathVariable(name = "ongletId") Long ongletId,
-                                              @RequestBody ParkingVoirieDto voyageVersUneDestinationMobInternationaleDto) {
-        parkingVoirieOngletService.ajouterVoyage(ongletId, voyageVersUneDestinationMobInternationaleDto);
+    public ResponseEntity<Void> ajouterParkingVoirie(@PathVariable(name = "ongletId") Long ongletId,
+                                              @RequestBody ParkingVoirieDto parkingVoirieDto) {
+        parkingVoirieOngletService.ajouterParkingVoirie(ongletId, parkingVoirieDto);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(REST_PARKING_VOIRIE + REST_PARKING_VOIRIE_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> supprimerVoyage(@PathVariable(name = "ongletId") Long ongletId,
+    public ResponseEntity<Void> supprimerParkingVoirie(@PathVariable(name = "ongletId") Long ongletId,
                                                 @PathVariable(name = "parkingVoirieId") Long parkingVoirieId) {
-        parkingVoirieOngletService.supprimerVoyage(ongletId, parkingVoirieId);
+        parkingVoirieOngletService.supprimerParkingVoirie(ongletId, parkingVoirieId);
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping(REST_PARKING_VOIRIE + REST_PARKING_VOIRIE_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> updateVoyagePartiel(@PathVariable(name = "ongletId") Long ongletId,
+    public ResponseEntity<Void> updateParkingVoiriePartiel(@PathVariable(name = "ongletId") Long ongletId,
                                                     @PathVariable(name = "parkingVoirieId") Long parkingVoirieId,
                                                     @RequestBody ParkingVoirieDto parkingVoirieDto) {
-        parkingVoirieOngletService.updateVoyagePartiel(ongletId, parkingVoirieId, parkingVoirieDto);
+        parkingVoirieOngletService.updateParkingVoiriePartiel(ongletId, parkingVoirieId, parkingVoirieDto);
         return ResponseEntity.ok().build();
     }
 }

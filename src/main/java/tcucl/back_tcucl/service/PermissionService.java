@@ -10,7 +10,7 @@ import tcucl.back_tcucl.dto.ModificationUtilisateurParAdminDto;
 public interface PermissionService {
 
 
-    boolean adminPeutAjouterAnneeEntite(Authentication authentication, Long idEntite);
+    boolean adminPeutAjouterAnneeEntite(Authentication authentication, Long entiteId);
 
     boolean utilisateurPeutModifierUtilisateur(Authentication authentication, Long UtilisateurId);
 
@@ -20,9 +20,9 @@ public interface PermissionService {
 
     boolean adminPeutModifierUtilisateur(Authentication authentication, ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto);
 
-    boolean adminPeutModifierEstAdmin(Authentication authentication, Long id);
+    boolean adminPeutModifierEstAdmin(Authentication authentication, Long utilisateurId);
 
-    boolean adminPeutAccéderAEntite(Authentication authentication, Long idEntite);
+    boolean adminPeutAccéderAEntite(Authentication authentication, Long entiteId);
 
-    boolean adminPeutSupprimerUtilisateur(Authentication authentication, Long idUtilisateur);
+    boolean adminPeutSupprimerUtilisateur(Authentication authentication, Long utilisateurId);
 }

@@ -9,15 +9,15 @@ public interface ParkingVoirieOngletService {
 
     ParkingVoirieOnglet getParkingVoirieOngletById(Long ongletId);
 
-    ParkingVoirie getParkingVoirieById(Long idOnglet, Long idParking);
+    ParkingVoirie getParkingVoirieById(Long ongletId, Long parkingId);
 
     void updateParkingVoirieOngletPartiel(Long ongletId, ParkingVoirieOngletDto dto);
 
-    void ajouterVoyage(Long ongletId, ParkingVoirieDto parkingVoirieDto);
+    void ajouterParkingVoirie(Long ongletId, ParkingVoirieDto parkingVoirieDto);
 
-    void supprimerVoyage(Long ongletId, Long parkingVoirieId);
+    void supprimerParkingVoirie(Long ongletId, Long parkingVoirieId);
 
-    void updateVoyagePartiel(Long ongletId, Long voyageId, ParkingVoirieDto dto);
+    void updateParkingVoiriePartiel(Long ongletId, Long voyageId, ParkingVoirieDto dto);
     
     
 }

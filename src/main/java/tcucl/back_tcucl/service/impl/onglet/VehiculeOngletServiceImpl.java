@@ -18,13 +18,13 @@ public class VehiculeOngletServiceImpl implements VehiculeOngletService {
     }
 
     @Override
-    public VehiculeOnglet getVehiculeOngletById(Long idOnglet) {
-        return vehiculeOngletManager.getVehiculeOngletById(idOnglet);
+    public VehiculeOnglet getVehiculeOngletById(Long ongletId) {
+        return vehiculeOngletManager.getVehiculeOngletById(ongletId);
     }
 
     @Override
-    public Vehicule getVehiculeById(Long idOnglet, Long idParking) {
-        return vehiculeOngletManager.getVehiculeById(idOnglet, idParking);
+    public Vehicule getVehiculeById(Long ongletId, Long parkingId) {
+        return vehiculeOngletManager.getVehiculeById(ongletId, parkingId);
     }
 
     @Override
@@ -33,17 +33,17 @@ public class VehiculeOngletServiceImpl implements VehiculeOngletService {
     }
 
     @Override
-    public void ajouterVoyage(Long ongletId, VehiculeDto vehiculeDto) {
-        vehiculeOngletManager.ajouterVoyage(ongletId, vehiculeDto);
+    public void ajouterVehicule(Long ongletId, VehiculeDto vehiculeDto) {
+        vehiculeOngletManager.ajouterVehicule(ongletId, vehiculeDto);
     }
 
     @Override
-    public void supprimerVoyage(Long ongletId, Long vehiculeId) {
-        vehiculeOngletManager.supprimerVoyage(ongletId, vehiculeId);
+    public void supprimerVehicule(Long ongletId, Long vehiculeId) {
+        vehiculeOngletManager.supprimerVehicule(ongletId, vehiculeId);
     }
 
     @Override
-    public void updateVoyagePartiel(Long ongletId, Long voyageId, VehiculeDto vehiculeDto) {
-        vehiculeOngletManager.updateVoyagePartiel(ongletId, voyageId, vehiculeDto);
+    public void updateVehiculePartiel(Long ongletId, Long voyageId, VehiculeDto vehiculeDto) {
+        vehiculeOngletManager.updateVehiculePartiel(ongletId, voyageId, vehiculeDto);
     }
 }

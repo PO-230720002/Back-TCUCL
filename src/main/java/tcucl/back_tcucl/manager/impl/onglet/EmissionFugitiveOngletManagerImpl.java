@@ -1,11 +1,11 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveOngletDto;
 import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.entity.onglet.emissionFugitive.MachineEmissionFugitive;
+import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.EmissionFugitiveOngletManager;
 import tcucl.back_tcucl.repository.onglet.EmissionFugitiveOngletRepository;
@@ -28,10 +28,10 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
     @Override
     public MachineEmissionFugitive getMachineById(Long ongletId, Long machineId) {
         EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
-        return emissionFugitiveOnglet .getMachinesEmissionFugitive().stream()
+        return emissionFugitiveOnglet.getMachinesEmissionFugitive().stream()
                 .filter(m -> m.getId().equals(machineId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'Id: " + machineId));
+                .orElseThrow(() -> new ElementNontrouveException("MachineEmissionFugitive",machineId));
     }
 
     @Override
@@ -69,14 +69,14 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
         EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
 
         // Trouver la machine à supprimer
-        MachineEmissionFugitive machineASupprimer = emissionFugitiveOnglet .getMachinesEmissionFugitive()
+        MachineEmissionFugitive machineASupprimer = emissionFugitiveOnglet.getMachinesEmissionFugitive()
                 .stream()
                 .filter(v -> v.getId().equals(machineId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'id : " + machineId));
+                .orElseThrow(() -> new ElementNontrouveException("MachineEmissionFugitive",machineId));
 
         // Retirer de la liste
-        emissionFugitiveOnglet .getMachinesEmissionFugitive().remove(machineASupprimer);
+        emissionFugitiveOnglet.getMachinesEmissionFugitive().remove(machineASupprimer);
 
         // Sauvegarder l'onglet
         emissionFugitiveOngletRepository.save(emissionFugitiveOnglet);
@@ -86,10 +86,10 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
     public void updateMachinePartiel(Long ongletId, Long machineId, MachineEmissionFugitiveDto dto) {
         EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
 
-        MachineEmissionFugitive machine = emissionFugitiveOnglet .getMachinesEmissionFugitive().stream()
+        MachineEmissionFugitive machine = emissionFugitiveOnglet.getMachinesEmissionFugitive().stream()
                 .filter(m -> m.getId().equals(machineId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'Id: " + machineId));
+                .orElseThrow(() -> new ElementNontrouveException("MachineEmissionFugitive",machineId));
 
 
         if (dto.getDescriptionMachine() != null) {

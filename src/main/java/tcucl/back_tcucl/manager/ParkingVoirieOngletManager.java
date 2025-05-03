@@ -8,13 +8,13 @@ import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirie;
 public interface ParkingVoirieOngletManager {
     ParkingVoirieOnglet getParkingVoirieOngletById(Long ongletId);
 
-    ParkingVoirie getParkingVoirieById(Long idOnglet, Long idParking);
+    ParkingVoirie getParkingVoirieById(Long ongletId, Long parkingId);
 
     void updateParkingVoirieOngletPartiel(Long ongletId, ParkingVoirieOngletDto parkingVoirieOngletDto);
 
-    void ajouterVoyage(Long ongletId, ParkingVoirieDto parkingVoirieDto);
+    void ajouterParkingVoirie(Long ongletId, ParkingVoirieDto parkingVoirieDto);
 
-    void supprimerVoyage(Long ongletId, Long parkingVoirieId);
+    void supprimerParkingVoirie(Long ongletId, Long parkingVoirieId);
 
-    void updateVoyagePartiel(Long ongletId, Long voyageId, ParkingVoirieDto parkingVoirieDto);
+    void updateParkingVoiriePartiel(Long ongletId, Long voyageId, ParkingVoirieDto parkingVoirieDto);
 }

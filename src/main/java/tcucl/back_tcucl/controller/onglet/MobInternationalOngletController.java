@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.annotationPersonnalisee.checkRoleOnglet;
 import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
-import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageVersUneDestinationMobInternationaleDto;
+import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
 import tcucl.back_tcucl.service.MobInternationalOngletService;
 
@@ -39,8 +39,8 @@ public class MobInternationalOngletController {
     @PostMapping(REST_VOYAGE)
     @checkRoleOnglet
     public ResponseEntity<Void> ajouterVoyage(@PathVariable(name = "ongletId") Long ongletId,
-                                              @RequestBody VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto) {
-        mobInternationalOngletService.ajouterVoyage(ongletId, voyageVersUneDestinationMobInternationaleDto);
+                                              @RequestBody VoyageDto voyageDto) {
+        mobInternationalOngletService.ajouterVoyage(ongletId, voyageDto);
         return ResponseEntity.ok().build();
     }
 
@@ -56,8 +56,8 @@ public class MobInternationalOngletController {
     @checkRoleOnglet
     public ResponseEntity<Void> updateVoyagePartiel(@PathVariable(name = "ongletId") Long ongletId,
                                                     @PathVariable(name = "voyageId") Long voyageId,
-                                                    @RequestBody VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto) {
-        mobInternationalOngletService.updateVoyagePartiel(ongletId, voyageId, voyageVersUneDestinationMobInternationaleDto);
+                                                    @RequestBody VoyageDto voyageDto) {
+        mobInternationalOngletService.updateVoyagePartiel(ongletId, voyageId, voyageDto);
         return ResponseEntity.ok().build();
     }
 }

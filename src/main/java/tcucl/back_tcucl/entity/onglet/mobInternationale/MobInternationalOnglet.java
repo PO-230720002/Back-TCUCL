@@ -1,7 +1,7 @@
 package tcucl.back_tcucl.entity.onglet.mobInternationale;
 
 import jakarta.persistence.*;
-import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageVersUneDestinationMobInternationaleDto;
+import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
 import tcucl.back_tcucl.entity.onglet.Onglet;
 
 import java.util.List;
@@ -12,15 +12,15 @@ public class MobInternationalOnglet extends Onglet {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "voyage_mob_internationale_id")
-    private List<VoyageVersUneDestinationMobInternationale> voyageVersUneDestinationMobInternationale;
+    private List<Voyage> voyage;
 
 
-    public List<VoyageVersUneDestinationMobInternationale> getVoyageVersUneDestinationMobInternationale() {
-        return voyageVersUneDestinationMobInternationale;
+    public List<Voyage> getVoyage() {
+        return voyage;
     }
 
-    public void setVoyageVersUneDestinationMobInternationale(List<VoyageVersUneDestinationMobInternationale> voyageVersUneDestinationMobInternationale) {
-        this.voyageVersUneDestinationMobInternationale = voyageVersUneDestinationMobInternationale;
+    public void setVoyage(List<Voyage> voyage) {
+        this.voyage = voyage;
     }
 
     @Override
@@ -43,9 +43,9 @@ public class MobInternationalOnglet extends Onglet {
         super.setEstTermine(estTermine);
     }
 
-    public void ajouterVoyageViaDto(VoyageVersUneDestinationMobInternationaleDto voyageDto) {
+    public void ajouterVoyageViaDto(VoyageDto voyageDto) {
 
-        VoyageVersUneDestinationMobInternationale voyage = new VoyageVersUneDestinationMobInternationale();
+        Voyage voyage = new Voyage();
         voyage.setNomPays(voyageDto.getNomPays());
         voyage.setProsAvion(voyageDto.getProsAvion());
         voyage.setProsTrain(voyageDto.getProsTrain());
@@ -54,6 +54,6 @@ public class MobInternationalOnglet extends Onglet {
         voyage.setSemestresEtudiantsAvion(voyageDto.getSemestresEtudiantsAvion());
         voyage.setSemestresEtudiantsTrain(voyageDto.getSemestresEtudiantsTrain());
 
-        this.voyageVersUneDestinationMobInternationale.add(voyage);
+        this.voyage.add(voyage);
     }
 }

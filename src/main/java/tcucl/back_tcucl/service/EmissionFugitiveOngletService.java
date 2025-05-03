@@ -12,7 +12,7 @@ public interface EmissionFugitiveOngletService {
 
     void ajouterMachine(Long ongletId, MachineEmissionFugitiveDto machineEmissionFugitiveDto);
 
-    void supprimerMachine(Long ongletId, Long idMachine);
+    void supprimerMachine(Long ongletId, Long machineId);
 
     void updateMachinePartiel(Long ongletId, Long machineId, MachineEmissionFugitiveDto machineEmissionFugitiveDto);
 

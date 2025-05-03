@@ -7,7 +7,7 @@ import tcucl.back_tcucl.entity.Entite;
 @Repository
 public interface EntiteRepository extends JpaRepository<Entite, Long> {
 
-    public Entite findEntiteById(Long id);
+    public Entite findEntiteById(Long entiteId);
 
-    public boolean existsByNomAndType(String nom, String type);
+    public boolean existsByNomAndType(String entiteNom, String entiteType);
 }

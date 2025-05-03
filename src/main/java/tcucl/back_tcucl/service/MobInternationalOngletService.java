@@ -1,7 +1,7 @@
 package tcucl.back_tcucl.service;
 
 import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
-import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageVersUneDestinationMobInternationaleDto;
+import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
 
 public interface MobInternationalOngletService {
@@ -10,10 +10,10 @@ public interface MobInternationalOngletService {
 
     void updateMobInternationalOngletPartiel(Long ongletId, MobInternationalOngletDto mobInternationalOngletDto);
 
-    void ajouterVoyage(Long ongletId, VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto);
+    void ajouterVoyage(Long ongletId, VoyageDto voyageDto);
 
     void supprimerVoyage(Long ongletId, Long voyageId);
 
-    void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageVersUneDestinationMobInternationaleDto dto);
+    void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageDto dto);
 
 }

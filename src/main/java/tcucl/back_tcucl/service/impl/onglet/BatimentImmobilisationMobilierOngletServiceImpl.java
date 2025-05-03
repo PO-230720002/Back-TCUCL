@@ -34,8 +34,8 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
     }
 
     @Override
-    public void supprimerBatiment(Long ongletId, Long idBatiment) {
-        batimentImmobilisationMobilierOngletManager.supprimerBatimentFromOnglet(ongletId, idBatiment);
+    public void supprimerBatiment(Long ongletId, Long batimentId) {
+        batimentImmobilisationMobilierOngletManager.supprimerBatimentFromOnglet(ongletId, batimentId);
     }
 
     @Override
@@ -51,8 +51,8 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
     }
 
     @Override
-    public void supprimerEntretienCourant(Long ongletId, Long idEntretienCourant) {
-        batimentImmobilisationMobilierOngletManager.supprimerEntretienCourantFromOnglet(ongletId, idEntretienCourant);
+    public void supprimerEntretienCourant(Long ongletId, Long entretienCourantId) {
+        batimentImmobilisationMobilierOngletManager.supprimerEntretienCourantFromOnglet(ongletId, entretienCourantId);
 
     }
 
@@ -69,8 +69,8 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
     }
 
     @Override
-    public void supprimerMobilierElectromenager(Long ongletId, Long idMobilierElectromenager) {
-        batimentImmobilisationMobilierOngletManager.supprimerMobilierElectromenagerFromOnglet(ongletId, idMobilierElectromenager);
+    public void supprimerMobilierElectromenager(Long ongletId, Long mobilierElectromenagerId) {
+        batimentImmobilisationMobilierOngletManager.supprimerMobilierElectromenagerFromOnglet(ongletId, mobilierElectromenagerId);
 
     }
 

@@ -76,7 +76,7 @@ public class ParametreServiceImpl implements ParametreService {
     }
 
     @Override
-    public List<UtilisateurDto> getAllUtilisateurParEntiteId(Long idEntite) {
+    public List<UtilisateurDto> getAllUtilisateurParEntiteId(Long entiteId) {
         return utilisateurService.getAllUtilisateurParEntiteId(idEntite).stream().map(this::utilisateurToUtilisateurDto).toList();
     }
 

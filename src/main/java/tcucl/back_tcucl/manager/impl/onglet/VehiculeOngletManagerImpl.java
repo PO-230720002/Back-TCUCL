@@ -6,6 +6,7 @@ import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeDto;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeOngletDto;
 import tcucl.back_tcucl.entity.onglet.vehicule.VehiculeOnglet;
 import tcucl.back_tcucl.entity.onglet.vehicule.Vehicule;
+import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.VehiculeOngletManager;
 import tcucl.back_tcucl.repository.onglet.VehiculeOngletRepository;
@@ -26,12 +27,12 @@ public class VehiculeOngletManagerImpl implements VehiculeOngletManager {
     }
 
     @Override
-    public Vehicule getVehiculeById(Long idOnglet, Long idVehicule) {
-        VehiculeOnglet vehiculeOnglet = getVehiculeOngletById(idOnglet);
-        return vehiculeOnglet .getVehiculeList().stream()
-                .filter(p -> p.getId().equals(idVehicule))
+    public Vehicule getVehiculeById(Long ongletId, Long vehiculeId) {
+        VehiculeOnglet vehiculeOnglet = getVehiculeOngletById(ongletId);
+        return vehiculeOnglet.getVehiculeList().stream()
+                .filter(p -> p.getId().equals(vehiculeId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Vehicule non trouvé avec l'Id: " + idVehicule));
+                .orElseThrow(() -> new ElementNontrouveException("Vehicule",vehiculeId));
 
     }
 
@@ -40,50 +41,50 @@ public class VehiculeOngletManagerImpl implements VehiculeOngletManager {
         VehiculeOnglet vehiculeOnglet = getVehiculeOngletById(ongletId);
 
         if (vehiculeOngletDto.getEstTermine() != null)
-            vehiculeOnglet .setEstTermine(vehiculeOngletDto.getEstTermine());
-        if (vehiculeOngletDto.getNote() != null) vehiculeOnglet .setNote(vehiculeOngletDto.getNote());
+            vehiculeOnglet.setEstTermine(vehiculeOngletDto.getEstTermine());
+        if (vehiculeOngletDto.getNote() != null) vehiculeOnglet.setNote(vehiculeOngletDto.getNote());
 
         if (vehiculeOngletDto.getVehiculeList() != null) {
-            // On supprime les voyages existants et on les remplace par les nouveaux
-            vehiculeOnglet .getVehiculeList().clear();
+            // On supprime les véhicules existants et on les remplace par les nouveaux
+            vehiculeOnglet.getVehiculeList().clear();
             for (VehiculeDto vehiculeDto : vehiculeOngletDto.getVehiculeList()) {
-                vehiculeOnglet .ajouterVehiculeViaDto(vehiculeDto);
+                vehiculeOnglet.ajouterVehiculeViaDto(vehiculeDto);
             }
         }
         vehiculeOngletRepository.save(vehiculeOnglet);
     }
 
     @Override
-    public void ajouterVoyage(Long ongletId, VehiculeDto vehiculeDto) {
+    public void ajouterVehicule(Long ongletId, VehiculeDto vehiculeDto) {
         VehiculeOnglet vehiculeOnglet = getVehiculeOngletById(ongletId);
-        vehiculeOnglet .ajouterVehiculeViaDto(vehiculeDto);
+        vehiculeOnglet.ajouterVehiculeViaDto(vehiculeDto);
         vehiculeOngletRepository.save(vehiculeOnglet);
     }
 
     @Override
-    public void supprimerVoyage(Long ongletId, Long vehiculeId) {
+    public void supprimerVehicule(Long ongletId, Long vehiculeId) {
         VehiculeOnglet vehiculeOnglet = getVehiculeOngletById(ongletId);
 
-        Vehicule vehicule = vehiculeOnglet .getVehiculeList()
+        Vehicule vehicule = vehiculeOnglet.getVehiculeList()
                 .stream()
                 .filter(v -> v.getId().equals(vehiculeId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Vehicule non trouvé avec l'id : " + vehiculeId));
+                .orElseThrow(() -> new ElementNontrouveException("Vehicule",vehiculeId));
 
-        vehiculeOnglet .getVehiculeList().remove(vehicule);
+        vehiculeOnglet.getVehiculeList().remove(vehicule);
 
         vehiculeOngletRepository.save(vehiculeOnglet);
     }
 
     @Override
-    public void updateVoyagePartiel(Long ongletId, Long voyageId, VehiculeDto vehiculeDto) {
+    public void updateVehiculePartiel(Long ongletId, Long vehiculeId, VehiculeDto vehiculeDto) {
         VehiculeOnglet vehiculeOnglet = getVehiculeOngletById(ongletId);
 
-        Vehicule vehicule = vehiculeOnglet .getVehiculeList()
+        Vehicule vehicule = vehiculeOnglet.getVehiculeList()
                 .stream()
-                .filter(v -> v.getId().equals(voyageId))
+                .filter(v -> v.getId().equals(vehiculeId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Voyage non trouvé avec l'id : " + voyageId));
+                .orElseThrow(() -> new ElementNontrouveException("Vehicule",vehiculeId));
 
         if (vehiculeDto.getModeleOuImmatriculation() != null) {
             vehicule.setModeleOuImmatriculation(vehiculeDto.getModeleOuImmatriculation());
@@ -101,7 +102,7 @@ public class VehiculeOngletManagerImpl implements VehiculeOngletManager {
             vehicule.setDateAjoutEnBase(vehiculeDto.getDateAjoutEnBase());
         }
 
-        vehiculeOnglet .getVehiculeList().add(vehicule);
+        vehiculeOnglet.getVehiculeList().add(vehicule);
 
         vehiculeOngletRepository.save(vehiculeOnglet);
     }

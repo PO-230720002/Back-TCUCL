@@ -14,7 +14,7 @@ public class MobInternationalOngletDto {
     private Long id;
     private Boolean estTermine;
     private String note;
-    private List<VoyageVersUneDestinationMobInternationaleDto> voyageVersUneDestinationMobInternationale;
+    private List<VoyageDto> voyageVersUneDestinationMobInternationale;
 
     public MobInternationalOngletDto() {}
 
@@ -23,9 +23,9 @@ public class MobInternationalOngletDto {
         this.estTermine = entity.getEstTermine();
         this.note = entity.getNote();
 
-        if (entity.getVoyageVersUneDestinationMobInternationale() != null) {
-            this.voyageVersUneDestinationMobInternationale = entity.getVoyageVersUneDestinationMobInternationale().stream()
-                    .map(VoyageVersUneDestinationMobInternationaleDto::new)
+        if (entity.getVoyage() != null) {
+            this.voyageVersUneDestinationMobInternationale = entity.getVoyage().stream()
+                    .map(VoyageDto::new)
                     .collect(Collectors.toList());
         }
     }
@@ -54,11 +54,11 @@ public class MobInternationalOngletDto {
         this.note = note;
     }
 
-    public List<VoyageVersUneDestinationMobInternationaleDto> getVoyageVersUneDestinationMobInternationale() {
+    public List<VoyageDto> getVoyageVersUneDestinationMobInternationale() {
         return voyageVersUneDestinationMobInternationale;
     }
 
-    public void setVoyageVersUneDestinationMobInternationale(List<VoyageVersUneDestinationMobInternationaleDto> voyageVersUneDestinationMobInternationale) {
+    public void setVoyageVersUneDestinationMobInternationale(List<VoyageDto> voyageVersUneDestinationMobInternationale) {
         this.voyageVersUneDestinationMobInternationale = voyageVersUneDestinationMobInternationale;
     }
 

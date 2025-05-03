@@ -23,8 +23,8 @@ public class ParkingVoirieOngletServiceImpl implements ParkingVoirieOngletServic
     }
 
     @Override
-    public ParkingVoirie getParkingVoirieById(Long idOnglet, Long idParking) {
-        return parkingVoirieOngletManager.getParkingVoirieById(idOnglet, idParking);
+    public ParkingVoirie getParkingVoirieById(Long ongletId, Long parkingId) {
+        return parkingVoirieOngletManager.getParkingVoirieById(ongletId, parkingId);
     }
 
     @Override
@@ -33,17 +33,17 @@ public class ParkingVoirieOngletServiceImpl implements ParkingVoirieOngletServic
     }
 
     @Override
-    public void ajouterVoyage(Long ongletId, ParkingVoirieDto parkingVoirieDto) {
-        parkingVoirieOngletManager.ajouterVoyage(ongletId, parkingVoirieDto);
+    public void ajouterParkingVoirie(Long ongletId, ParkingVoirieDto parkingVoirieDto) {
+        parkingVoirieOngletManager.ajouterParkingVoirie(ongletId, parkingVoirieDto);
     }
 
     @Override
-    public void supprimerVoyage(Long ongletId, Long parkingVoirieId) {
-        parkingVoirieOngletManager.supprimerVoyage(ongletId, parkingVoirieId);
+    public void supprimerParkingVoirie(Long ongletId, Long parkingVoirieId) {
+        parkingVoirieOngletManager.supprimerParkingVoirie(ongletId, parkingVoirieId);
     }
 
     @Override
-    public void updateVoyagePartiel(Long ongletId, Long voyageId, ParkingVoirieDto parkingVoirieDto) {
-        parkingVoirieOngletManager.updateVoyagePartiel(ongletId, voyageId, parkingVoirieDto);
+    public void updateParkingVoiriePartiel(Long ongletId, Long voyageId, ParkingVoirieDto parkingVoirieDto) {
+        parkingVoirieOngletManager.updateParkingVoiriePartiel(ongletId, voyageId, parkingVoirieDto);
     }
 }

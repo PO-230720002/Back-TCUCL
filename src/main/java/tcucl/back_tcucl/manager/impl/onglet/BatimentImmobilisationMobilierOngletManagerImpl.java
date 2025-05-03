@@ -1,6 +1,5 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentExistantOuNeufConstruitDto;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentImmobilisationMobilierOngletDto;
@@ -10,6 +9,7 @@ import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOng
 import tcucl.back_tcucl.entity.onglet.batiment.BatimentExistantOuNeufConstruit;
 import tcucl.back_tcucl.entity.onglet.batiment.EntretienCourant;
 import tcucl.back_tcucl.entity.onglet.batiment.MobilierElectromenager;
+import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.BatimentImmobilisationMobilierOngletManager;
 import tcucl.back_tcucl.repository.onglet.BatimentImmobilisationMobilierOngletRepository;
@@ -35,31 +35,31 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
 
         if (batimentImmobilisationMobilierOngletDto.getEstTermine() != null) {
-            batimentImmobilisationMobilierOnglet .setEstTermine(batimentImmobilisationMobilierOngletDto.getEstTermine());
+            batimentImmobilisationMobilierOnglet.setEstTermine(batimentImmobilisationMobilierOngletDto.getEstTermine());
         }
 
         if (batimentImmobilisationMobilierOngletDto.getNote() != null) {
-            batimentImmobilisationMobilierOnglet .setNote(batimentImmobilisationMobilierOngletDto.getNote());
+            batimentImmobilisationMobilierOnglet.setNote(batimentImmobilisationMobilierOngletDto.getNote());
         }
 
         if (batimentImmobilisationMobilierOngletDto.getBatimentsExistantOuNeufConstruits() != null) {
             batimentImmobilisationMobilierOngletDto.getBatimentsExistantOuNeufConstruits().clear();
             for (BatimentExistantOuNeufConstruitDto batimentDto : batimentImmobilisationMobilierOngletDto.getBatimentsExistantOuNeufConstruits()) {
-                batimentImmobilisationMobilierOnglet .ajouterBatimentViaDto(batimentDto);
+                batimentImmobilisationMobilierOnglet.ajouterBatimentViaDto(batimentDto);
             }
         }
 
         if (batimentImmobilisationMobilierOngletDto.getEntretiensCourants() != null) {
             batimentImmobilisationMobilierOngletDto.getEntretiensCourants().clear();
             for (EntretienCourantDto entretienCourantDto : batimentImmobilisationMobilierOngletDto.getEntretiensCourants()) {
-                batimentImmobilisationMobilierOnglet .ajouterEntretienCourantViaDto(entretienCourantDto);
+                batimentImmobilisationMobilierOnglet.ajouterEntretienCourantViaDto(entretienCourantDto);
             }
         }
 
         if (batimentImmobilisationMobilierOngletDto.getMobiliersElectromenagers() != null) {
             batimentImmobilisationMobilierOngletDto.getMobiliersElectromenagers().clear();
             for (MobilierElectromenagerDto mobilierElectromenagerDto : batimentImmobilisationMobilierOngletDto.getMobiliersElectromenagers()) {
-                batimentImmobilisationMobilierOnglet .ajouterMobilierElectromenagerViaDto(mobilierElectromenagerDto);
+                batimentImmobilisationMobilierOnglet.ajouterMobilierElectromenagerViaDto(mobilierElectromenagerDto);
             }
         }
 
@@ -69,10 +69,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     @Override
     public BatimentExistantOuNeufConstruit getBatimentById(Long ongletId, Long batimentId) {
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
-        return batimentImmobilisationMobilierOnglet .getBatimentExistantOuNeufConstruits().stream()
+        return batimentImmobilisationMobilierOnglet.getBatimentExistantOuNeufConstruits().stream()
                 .filter(m -> m.getId().equals(batimentId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Batiment non trouvée avec l'Id: " + batimentId));
+                .orElseThrow(() -> new ElementNontrouveException("BatimentExistantOuNeufConstruit",batimentId));
     }
 
     @Override
@@ -87,14 +87,14 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
 
         // Trouver la machine à supprimer
-        BatimentExistantOuNeufConstruit batimentASupprimer = batimentImmobilisationMobilierOnglet .getBatimentExistantOuNeufConstruits()
+        BatimentExistantOuNeufConstruit batimentASupprimer = batimentImmobilisationMobilierOnglet.getBatimentExistantOuNeufConstruits()
                 .stream()
                 .filter(v -> v.getId().equals(batimentId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("batiment non trouvée avec l'id : " + batimentId));
+                .orElseThrow(() -> new ElementNontrouveException("BatimentExistantOuNeufConstruit",batimentId));
 
         // Retirer de la liste
-        batimentImmobilisationMobilierOnglet .getBatimentExistantOuNeufConstruits().remove(batimentASupprimer);
+        batimentImmobilisationMobilierOnglet.getBatimentExistantOuNeufConstruits().remove(batimentASupprimer);
 
         // Sauvegarder l'onglet
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
@@ -104,10 +104,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     public void updateBatimentPartiel(Long ongletId, Long batimentId, BatimentExistantOuNeufConstruitDto dto) {
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
 
-        BatimentExistantOuNeufConstruit batiment = batimentImmobilisationMobilierOnglet .getBatimentExistantOuNeufConstruits().stream()
+        BatimentExistantOuNeufConstruit batiment = batimentImmobilisationMobilierOnglet.getBatimentExistantOuNeufConstruits().stream()
                 .filter(m -> m.getId().equals(batimentId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'Id: " + batimentId));
+                .orElseThrow(() -> new ElementNontrouveException("BatimentExistantOuNeufConstruit",batimentId));
 
 
         if (dto.getNom_ou_adresse() != null) {
@@ -144,10 +144,11 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     @Override
     public EntretienCourant getEntretienCourantById(Long ongletId, Long entretienCourantId) {
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
-        return batimentImmobilisationMobilierOnglet .getEntretienCourants().stream()
+        return batimentImmobilisationMobilierOnglet.getEntretienCourants().stream()
                 .filter(m -> m.getId().equals(entretienCourantId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Batiment non trouvée avec l'Id: " + entretienCourantId));
+                .orElseThrow(() -> new ElementNontrouveException("EntretienCourant",entretienCourantId));
+
     }
 
     @Override
@@ -162,14 +163,14 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
 
         // Trouver la machine à supprimer
-        EntretienCourant entretienCourantASupprimer = batimentImmobilisationMobilierOnglet .getEntretienCourants()
+        EntretienCourant entretienCourantASupprimer = batimentImmobilisationMobilierOnglet.getEntretienCourants()
                 .stream()
                 .filter(v -> v.getId().equals(entretienCourantId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("batiment non trouvée avec l'id : " + entretienCourantId));
+                .orElseThrow(() -> new ElementNontrouveException("EntretienCourant",entretienCourantId));
 
         // Retirer de la liste
-        batimentImmobilisationMobilierOnglet .getEntretienCourants().remove(entretienCourantASupprimer);
+        batimentImmobilisationMobilierOnglet.getEntretienCourants().remove(entretienCourantASupprimer);
 
         // Sauvegarder l'onglet
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
@@ -179,10 +180,11 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     public void updateEntretienCourantPartiel(Long ongletId, Long entretienCourantId, EntretienCourantDto dto) {
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
 
-        EntretienCourant entretienCourant = batimentImmobilisationMobilierOnglet .getEntretienCourants().stream()
+        EntretienCourant entretienCourant = batimentImmobilisationMobilierOnglet.getEntretienCourants().stream()
                 .filter(m -> m.getId().equals(entretienCourantId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'Id: " + entretienCourantId));
+                .orElseThrow(() -> new ElementNontrouveException("EntretienCourant",entretienCourantId));
+
 
 
         if (dto.getDateAjout() != null) {
@@ -220,10 +222,11 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     @Override
     public MobilierElectromenager getMobilierElectromenagerById(Long ongletId, Long mobilierElectromenagerId) {
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
-        return batimentImmobilisationMobilierOnglet .getMobilierElectromenagers().stream()
+        return batimentImmobilisationMobilierOnglet.getMobilierElectromenagers().stream()
                 .filter(m -> m.getId().equals(mobilierElectromenagerId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Batiment non trouvée avec l'Id: " + mobilierElectromenagerId));
+                .orElseThrow(() -> new ElementNontrouveException("MobilierElectromenager",mobilierElectromenagerId));
+
 
     }
 
@@ -239,14 +242,15 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
 
         // Trouver la machine à supprimer
-        MobilierElectromenager mobilierElectromenagerASupprimer = batimentImmobilisationMobilierOnglet .getMobilierElectromenagers()
+        MobilierElectromenager mobilierElectromenagerASupprimer = batimentImmobilisationMobilierOnglet.getMobilierElectromenagers()
                 .stream()
                 .filter(v -> v.getId().equals(mobilierElectromenagerId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("batiment non trouvée avec l'id : " + mobilierElectromenagerId));
+                .orElseThrow(() -> new ElementNontrouveException("MobilierElectromenager",mobilierElectromenagerId));
+
 
         // Retirer de la liste
-        batimentImmobilisationMobilierOnglet .getMobilierElectromenagers().remove(mobilierElectromenagerASupprimer);
+        batimentImmobilisationMobilierOnglet.getMobilierElectromenagers().remove(mobilierElectromenagerASupprimer);
 
         // Sauvegarder l'onglet
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
@@ -257,10 +261,11 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     public void updateMobilierElectromenagerPartiel(Long ongletId, Long mobilierElectromenagerId, MobilierElectromenagerDto dto) {
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
 
-        MobilierElectromenager mobilierElectromenager = batimentImmobilisationMobilierOnglet .getMobilierElectromenagers().stream()
+        MobilierElectromenager mobilierElectromenager = batimentImmobilisationMobilierOnglet.getMobilierElectromenagers().stream()
                 .filter(m -> m.getId().equals(mobilierElectromenagerId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'Id: " + mobilierElectromenagerId));
+                .orElseThrow(() -> new ElementNontrouveException("MobilierElectromenager",mobilierElectromenagerId));
+
 
 
         if (dto.getDateAjout() != null) {

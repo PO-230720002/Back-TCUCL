@@ -26,19 +26,19 @@ public class GeneralOngletManagerImpl implements GeneralOngletManager {
         GeneralOnglet generalOnglet = getGeneralOngletById(ongletId);
 
         if (generalOngletDto.getNote() != null) {
-            generalOnglet .setNote(generalOngletDto.getNote());
+            generalOnglet.setNote(generalOngletDto.getNote());
         }
 
         if (generalOngletDto.getEstTermine() != null) {
-            generalOnglet .setEstTermine(generalOngletDto.getEstTermine());
+            generalOnglet.setEstTermine(generalOngletDto.getEstTermine());
         }
 
         if (generalOngletDto.getNbSalarie() != null) {
-            generalOnglet .setNbSalarie(generalOngletDto.getNbSalarie());
+            generalOnglet.setNbSalarie(generalOngletDto.getNbSalarie());
         }
 
         if (generalOngletDto.getNbEtudiant() != null) {
-            generalOnglet .setNbEtudiant(generalOngletDto.getNbEtudiant());
+            generalOnglet.setNbEtudiant(generalOngletDto.getNbEtudiant());
         }
 
         generalOngletRepository.save(generalOnglet);

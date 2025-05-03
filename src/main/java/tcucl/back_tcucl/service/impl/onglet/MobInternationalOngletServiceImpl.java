@@ -2,7 +2,7 @@ package tcucl.back_tcucl.service.impl.onglet;
 
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
-import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageVersUneDestinationMobInternationaleDto;
+import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
 import tcucl.back_tcucl.manager.MobInternationalOngletManager;
 import tcucl.back_tcucl.service.MobInternationalOngletService;
@@ -27,8 +27,8 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
     }
 
     @Override
-    public void ajouterVoyage(Long ongletId, VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto) {
-        mobInternationalOngletManager.ajouterVoyage(ongletId, voyageVersUneDestinationMobInternationaleDto);
+    public void ajouterVoyage(Long ongletId, VoyageDto voyageDto) {
+        mobInternationalOngletManager.ajouterVoyage(ongletId, voyageDto);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
     }
 
     @Override
-    public void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto) {
-        mobInternationalOngletManager.updateVoyagePartiel(ongletId, voyageId, voyageVersUneDestinationMobInternationaleDto);
+    public void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageDto voyageDto) {
+        mobInternationalOngletManager.updateVoyagePartiel(ongletId, voyageId, voyageDto);
     }
 }

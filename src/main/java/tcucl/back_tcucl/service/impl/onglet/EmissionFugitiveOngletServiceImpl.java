@@ -33,8 +33,8 @@ public class EmissionFugitiveOngletServiceImpl implements EmissionFugitiveOnglet
     }
 
     @Override
-    public void supprimerMachine(Long ongletId, Long idMachine) {
-        emissionFugitiveOngletManager.supprimerMachineFromOnglet(ongletId, idMachine);
+    public void supprimerMachine(Long ongletId, Long machineId) {
+        emissionFugitiveOngletManager.supprimerMachineFromOnglet(ongletId, machineId);
     }
 
     @Override

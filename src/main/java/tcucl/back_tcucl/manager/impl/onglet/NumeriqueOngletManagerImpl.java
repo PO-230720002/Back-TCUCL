@@ -28,7 +28,7 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
     @Override
     public EquipementNumerique getEquipementNumeriqueById(Long ongletId, Long equipementId) {
         NumeriqueOnglet numeriqueOnglet = getNumeriqueOngletById(ongletId);
-        return numeriqueOnglet .getEquipementNumeriqueList().stream()
+        return numeriqueOnglet.getEquipementNumeriqueList().stream()
                 .filter(m -> m.getId().equals(equipementId))
                 .findFirst()
                 .orElseThrow(() -> new EntityNotFoundException("Equipement Numérique non trouvé avec l'Id: " + equipementId));
@@ -39,24 +39,24 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
         NumeriqueOnglet numeriqueOnglet = getNumeriqueOngletById(ongletId);
 
         if (numeriqueOngletDto.getEstTermine() != null)
-            numeriqueOnglet .setEstTermine(numeriqueOngletDto.getEstTermine());
-        if (numeriqueOngletDto.getNote() != null) numeriqueOnglet .setNote(numeriqueOngletDto.getNote());
+            numeriqueOnglet.setEstTermine(numeriqueOngletDto.getEstTermine());
+        if (numeriqueOngletDto.getNote() != null) numeriqueOnglet.setNote(numeriqueOngletDto.getNote());
 
         if (numeriqueOngletDto.getUseMethodSimplifiee() != null)
-            numeriqueOnglet .setUseMethodSimplifiee(numeriqueOngletDto.getUseMethodSimplifiee());
+            numeriqueOnglet.setUseMethodSimplifiee(numeriqueOngletDto.getUseMethodSimplifiee());
         if (numeriqueOngletDto.getTraficCloudUtilisateur() != null)
-            numeriqueOnglet .setTraficCloudUtilisateur(numeriqueOngletDto.getTraficCloudUtilisateur());
+            numeriqueOnglet.setTraficCloudUtilisateur(numeriqueOngletDto.getTraficCloudUtilisateur());
         if (numeriqueOngletDto.getTraficTipUtilisateur() != null)
-            numeriqueOnglet .setTraficTipUtilisateur(numeriqueOngletDto.getTraficTipUtilisateur());
+            numeriqueOnglet.setTraficTipUtilisateur(numeriqueOngletDto.getTraficTipUtilisateur());
         if (numeriqueOngletDto.getPartTraficFranceEtranger() != null)
-            numeriqueOnglet .setPartTraficFranceEtranger(numeriqueOngletDto.getPartTraficFranceEtranger());
+            numeriqueOnglet.setPartTraficFranceEtranger(numeriqueOngletDto.getPartTraficFranceEtranger());
 
 
         if (numeriqueOngletDto.getEquipementNumeriqueList() != null) {
             // On supprime les equipementNumeriques existants et on les remplace par les nouveaux
-            numeriqueOnglet .getEquipementNumeriqueList().clear();
+            numeriqueOnglet.getEquipementNumeriqueList().clear();
             for (EquipementNumeriqueDto equipementNumeriqueDto : numeriqueOngletDto.getEquipementNumeriqueList()) {
-                numeriqueOnglet .ajouterEquipementNumeriqueViaDto(equipementNumeriqueDto);
+                numeriqueOnglet.ajouterEquipementNumeriqueViaDto(equipementNumeriqueDto);
             }
         }
         numeriqueOngletRepository.save(numeriqueOnglet);
@@ -65,7 +65,7 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
     @Override
     public void ajouterEquipementNumerique(Long ongletId, EquipementNumeriqueDto equipementNumeriqueDto) {
         NumeriqueOnglet numeriqueOnglet = getNumeriqueOngletById(ongletId);
-        numeriqueOnglet .ajouterEquipementNumeriqueViaDto(equipementNumeriqueDto);
+        numeriqueOnglet.ajouterEquipementNumeriqueViaDto(equipementNumeriqueDto);
         numeriqueOngletRepository.save(numeriqueOnglet);
     }
 
@@ -73,13 +73,13 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
     public void supprimerEquipementNumerique(Long ongletId, Long equipementId) {
         NumeriqueOnglet numeriqueOnglet = getNumeriqueOngletById(ongletId);
 
-        EquipementNumerique equipementNumerique = numeriqueOnglet .getEquipementNumeriqueList()
+        EquipementNumerique equipementNumerique = numeriqueOnglet.getEquipementNumeriqueList()
                 .stream()
                 .filter(v -> v.getId().equals(equipementId))
                 .findFirst()
                 .orElseThrow(() -> new EntityNotFoundException("Equipement Numérique non trouvé avec l'id : " + equipementId));
 
-        numeriqueOnglet .getEquipementNumeriqueList().remove(equipementNumerique);
+        numeriqueOnglet.getEquipementNumeriqueList().remove(equipementNumerique);
 
         numeriqueOngletRepository.save(numeriqueOnglet);
     }
@@ -88,7 +88,7 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
     public void updateEquipementNumeriquePartiel(Long ongletId, Long equipementId, EquipementNumeriqueDto equipementNumeriqueDto) {
         NumeriqueOnglet numeriqueOnglet = getNumeriqueOngletById(ongletId);
 
-        EquipementNumerique equipementNumerique = numeriqueOnglet .getEquipementNumeriqueList()
+        EquipementNumerique equipementNumerique = numeriqueOnglet.getEquipementNumeriqueList()
                 .stream()
                 .filter(v -> v.getId().equals(equipementId))
                 .findFirst()
@@ -105,7 +105,7 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
         if (equipementNumeriqueDto.getEmissionsReellesParProduitKgCO2e() != null)
             equipementNumerique.setEmissionsReellesParProduitKgCO2e(equipementNumeriqueDto.getEmissionsReellesParProduitKgCO2e());
 
-        numeriqueOnglet .getEquipementNumeriqueList().add(equipementNumerique);
+        numeriqueOnglet.getEquipementNumeriqueList().add(equipementNumerique);
 
         numeriqueOngletRepository.save(numeriqueOnglet);
     }

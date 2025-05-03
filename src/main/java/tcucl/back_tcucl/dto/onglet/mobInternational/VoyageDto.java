@@ -2,12 +2,12 @@ package tcucl.back_tcucl.dto.onglet.mobInternational;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.onglet.mobInternationale.VoyageVersUneDestinationMobInternationale;
+import tcucl.back_tcucl.entity.onglet.mobInternationale.Voyage;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.enums.EnumMobInternationale_NomPays;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class VoyageVersUneDestinationMobInternationaleDto {
+public class VoyageDto {
 
     private Long id;
     private EnumMobInternationale_NomPays nomPays;
@@ -18,9 +18,9 @@ public class VoyageVersUneDestinationMobInternationaleDto {
     private Integer semestresEtudiantsAvion;
     private Integer semestresEtudiantsTrain;
 
-    public VoyageVersUneDestinationMobInternationaleDto() {}
+    public VoyageDto() {}
 
-    public VoyageVersUneDestinationMobInternationaleDto(VoyageVersUneDestinationMobInternationale entity) {
+    public VoyageDto(Voyage entity) {
         this.id = entity.getId();
         this.nomPays = entity.getNomPays();
         this.prosAvion = entity.getProsAvion();

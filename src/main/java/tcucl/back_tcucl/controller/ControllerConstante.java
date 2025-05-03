@@ -96,4 +96,9 @@ public class ControllerConstante {
 
     // ---------    General   ----------
     public static final String REST_GENERAL_ONGLET = "/generalOnglet";
+
+    //   ---------    Vehicule    ------------
+    public static final String REST_VEHICULE_ONGLET = "/vehiculeOnglet";
+    public static final String REST_VEHICULE = "/vehicule";
+    public static final String REST_VEHICULE_ID = "/{vehiculeId}";
 }

@@ -1,11 +1,11 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
-import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageVersUneDestinationMobInternationaleDto;
+import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
-import tcucl.back_tcucl.entity.onglet.mobInternationale.VoyageVersUneDestinationMobInternationale;
+import tcucl.back_tcucl.entity.onglet.mobInternationale.Voyage;
+import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.MobInternationalOngletManager;
 import tcucl.back_tcucl.repository.onglet.MobInternationalOngletRepository;
@@ -26,12 +26,12 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
     }
 
     @Override
-    public VoyageVersUneDestinationMobInternationale getVoyageById(Long ongletId, Long voyageId) {
+    public Voyage getVoyageById(Long ongletId, Long voyageId) {
         MobInternationalOnglet mobInternationalOnglet = getMobInternationalOngletById(ongletId);
-        return mobInternationalOnglet .getVoyageVersUneDestinationMobInternationale().stream()
+        return mobInternationalOnglet.getVoyage().stream()
                 .filter(m -> m.getId().equals(voyageId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Voyage non trouvé avec l'Id: " + voyageId));
+                .orElseThrow(() -> new ElementNontrouveException("Voyage", voyageId));
     }
 
     @Override
@@ -45,8 +45,8 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
 
         if (mobInternationalOngletDto.getVoyageVersUneDestinationMobInternationale() != null) {
             // On supprime les voyages existants et on les remplace par les nouveaux
-            mobInternationalOnglet.getVoyageVersUneDestinationMobInternationale().clear();
-            for (VoyageVersUneDestinationMobInternationaleDto voyageDto : mobInternationalOngletDto.getVoyageVersUneDestinationMobInternationale()) {
+            mobInternationalOnglet.getVoyage().clear();
+            for (VoyageDto voyageDto : mobInternationalOngletDto.getVoyageVersUneDestinationMobInternationale()) {
                 mobInternationalOnglet.ajouterVoyageViaDto(voyageDto);
             }
         }
@@ -54,7 +54,7 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
     }
 
     @Override
-    public void ajouterVoyage(Long ongletId, VoyageVersUneDestinationMobInternationaleDto voyageDto) {
+    public void ajouterVoyage(Long ongletId, VoyageDto voyageDto) {
         MobInternationalOnglet mobInternationalOnglet = getMobInternationalOngletById(ongletId);
         mobInternationalOnglet.ajouterVoyageViaDto(voyageDto);
         mobInternationalOngletRepository.save(mobInternationalOnglet);
@@ -64,44 +64,44 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
     public void supprimerVoyage(Long ongletId, Long voyageId) {
         MobInternationalOnglet mobInternationalOnglet = getMobInternationalOngletById(ongletId);
 
-        VoyageVersUneDestinationMobInternationale voyage = mobInternationalOnglet .getVoyageVersUneDestinationMobInternationale()
+        Voyage voyage = mobInternationalOnglet.getVoyage()
                 .stream()
                 .filter(v -> v.getId().equals(voyageId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Voyage non trouvé avec l'id : " + voyageId));
+                .orElseThrow(() -> new ElementNontrouveException("Voyage", voyageId));
 
-        mobInternationalOnglet .getVoyageVersUneDestinationMobInternationale().remove(voyage);
+        mobInternationalOnglet.getVoyage().remove(voyage);
 
         mobInternationalOngletRepository.save(mobInternationalOnglet);
     }
 
     @Override
-    public void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto) {
+    public void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageDto voyageDto) {
         MobInternationalOnglet mobInternationalOnglet = getMobInternationalOngletById(ongletId);
 
-        VoyageVersUneDestinationMobInternationale voyage = mobInternationalOnglet .getVoyageVersUneDestinationMobInternationale()
+        Voyage voyage = mobInternationalOnglet.getVoyage()
                 .stream()
                 .filter(v -> v.getId().equals(voyageId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Voyage non trouvé avec l'id : " + voyageId));
+                .orElseThrow(() -> new ElementNontrouveException("Voyage", voyageId));
 
 
-        if (voyageVersUneDestinationMobInternationaleDto.getNomPays() != null)
-            voyage.setNomPays(voyageVersUneDestinationMobInternationaleDto.getNomPays());
-        if (voyageVersUneDestinationMobInternationaleDto.getProsAvion() != null)
-            voyage.setProsAvion(voyageVersUneDestinationMobInternationaleDto.getProsAvion());
-        if (voyageVersUneDestinationMobInternationaleDto.getProsTrain() != null)
-            voyage.setProsTrain(voyageVersUneDestinationMobInternationaleDto.getProsTrain());
-        if (voyageVersUneDestinationMobInternationaleDto.getStagesEtudiantsAvion() != null)
-            voyage.setStagesEtudiantsAvion(voyageVersUneDestinationMobInternationaleDto.getStagesEtudiantsAvion());
-        if (voyageVersUneDestinationMobInternationaleDto.getStagesEtudiantsTrain() != null)
-            voyage.setStagesEtudiantsTrain(voyageVersUneDestinationMobInternationaleDto.getStagesEtudiantsTrain());
-        if (voyageVersUneDestinationMobInternationaleDto.getSemestresEtudiantsAvion() != null)
-            voyage.setSemestresEtudiantsAvion(voyageVersUneDestinationMobInternationaleDto.getSemestresEtudiantsAvion());
-        if (voyageVersUneDestinationMobInternationaleDto.getSemestresEtudiantsTrain() != null)
-            voyage.setSemestresEtudiantsTrain(voyageVersUneDestinationMobInternationaleDto.getSemestresEtudiantsTrain());
+        if (voyageDto.getNomPays() != null)
+            voyage.setNomPays(voyageDto.getNomPays());
+        if (voyageDto.getProsAvion() != null)
+            voyage.setProsAvion(voyageDto.getProsAvion());
+        if (voyageDto.getProsTrain() != null)
+            voyage.setProsTrain(voyageDto.getProsTrain());
+        if (voyageDto.getStagesEtudiantsAvion() != null)
+            voyage.setStagesEtudiantsAvion(voyageDto.getStagesEtudiantsAvion());
+        if (voyageDto.getStagesEtudiantsTrain() != null)
+            voyage.setStagesEtudiantsTrain(voyageDto.getStagesEtudiantsTrain());
+        if (voyageDto.getSemestresEtudiantsAvion() != null)
+            voyage.setSemestresEtudiantsAvion(voyageDto.getSemestresEtudiantsAvion());
+        if (voyageDto.getSemestresEtudiantsTrain() != null)
+            voyage.setSemestresEtudiantsTrain(voyageDto.getSemestresEtudiantsTrain());
 
-        mobInternationalOnglet .getVoyageVersUneDestinationMobInternationale().add(voyage);
+        mobInternationalOnglet.getVoyage().add(voyage);
 
         mobInternationalOngletRepository.save(mobInternationalOnglet);
     }
