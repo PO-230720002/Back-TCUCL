@@ -22,13 +22,13 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
     @Override
     public EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long ongletId) {
         return emissionFugitiveOngletRepository.findById(ongletId)
-                .orElseThrow(() -> new OngletNonTrouveIdException("EmissionFugitive",ongletId));
+                .orElseThrow(() -> new OngletNonTrouveIdException("EmissionFugitiveOnglet", ongletId));
     }
 
     @Override
     public MachineEmissionFugitive getMachineById(Long ongletId, Long machineId) {
-        EmissionFugitiveOnglet onglet = getEmissionFugitiveOngletById(ongletId);
-        return onglet.getMachinesEmissionFugitive().stream()
+        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
+        return emissionFugitiveOnglet .getMachinesEmissionFugitive().stream()
                 .filter(m -> m.getId().equals(machineId))
                 .findFirst()
                 .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'Id: " + machineId));
@@ -59,42 +59,38 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
     @Override
     public void ajouterMachine(Long ongletId, MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
         EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
-        if (emissionFugitiveOnglet != null) {
-            emissionFugitiveOnglet.ajouterMachineViaDto(machineEmissionFugitiveDto);
-            emissionFugitiveOngletRepository.save(emissionFugitiveOnglet);
-        } else {
-            throw new EntityNotFoundException("EmissionFugitiveOnglet non trouvé avec l'Id: " + ongletId);
-        }
+        emissionFugitiveOnglet.ajouterMachineViaDto(machineEmissionFugitiveDto);
+        emissionFugitiveOngletRepository.save(emissionFugitiveOnglet);
     }
 
 
     @Override
     public void supprimerMachineFromOnglet(Long ongletId, Long machineId) {
-        EmissionFugitiveOnglet ongletById = getEmissionFugitiveOngletById(ongletId);
+        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
 
         // Trouver la machine à supprimer
-        MachineEmissionFugitive machineASupprimer = ongletById.getMachinesEmissionFugitive()
+        MachineEmissionFugitive machineASupprimer = emissionFugitiveOnglet .getMachinesEmissionFugitive()
                 .stream()
                 .filter(v -> v.getId().equals(machineId))
                 .findFirst()
                 .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'id : " + machineId));
 
         // Retirer de la liste
-        ongletById.getMachinesEmissionFugitive().remove(machineASupprimer);
+        emissionFugitiveOnglet .getMachinesEmissionFugitive().remove(machineASupprimer);
 
         // Sauvegarder l'onglet
-        emissionFugitiveOngletRepository.save(ongletById);
+        emissionFugitiveOngletRepository.save(emissionFugitiveOnglet);
     }
 
     @Override
     public void updateMachinePartiel(Long ongletId, Long machineId, MachineEmissionFugitiveDto dto) {
-        EmissionFugitiveOnglet onglet = getEmissionFugitiveOngletById(ongletId);
-        
-        MachineEmissionFugitive machine = onglet.getMachinesEmissionFugitive().stream()
+        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
+
+        MachineEmissionFugitive machine = emissionFugitiveOnglet .getMachinesEmissionFugitive().stream()
                 .filter(m -> m.getId().equals(machineId))
                 .findFirst()
                 .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'Id: " + machineId));
-        
+
 
         if (dto.getDescriptionMachine() != null) {
             machine.setDescriptionMachine(dto.getDescriptionMachine());

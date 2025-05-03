@@ -23,25 +23,25 @@ public class GeneralOngletManagerImpl implements GeneralOngletManager {
 
     @Override
     public void updateGeneralOngletPartiel(Long ongletId, GeneralOngletDto generalOngletDto) {
-        GeneralOnglet onglet = getGeneralOngletById(ongletId);
+        GeneralOnglet generalOnglet = getGeneralOngletById(ongletId);
 
         if (generalOngletDto.getNote() != null) {
-            onglet.setNote(generalOngletDto.getNote());
+            generalOnglet .setNote(generalOngletDto.getNote());
         }
 
         if (generalOngletDto.getEstTermine() != null) {
-            onglet.setEstTermine(generalOngletDto.getEstTermine());
+            generalOnglet .setEstTermine(generalOngletDto.getEstTermine());
         }
 
         if (generalOngletDto.getNbSalarie() != null) {
-            onglet.setNbSalarie(generalOngletDto.getNbSalarie());
+            generalOnglet .setNbSalarie(generalOngletDto.getNbSalarie());
         }
 
         if (generalOngletDto.getNbEtudiant() != null) {
-            onglet.setNbEtudiant(generalOngletDto.getNbEtudiant());
+            generalOnglet .setNbEtudiant(generalOngletDto.getNbEtudiant());
         }
 
-        generalOngletRepository.save(onglet);
+        generalOngletRepository.save(generalOnglet);
     }
 
 }

@@ -19,12 +19,13 @@ public class AutreMobFrOngletManagerImpl implements AutreMobFrOngletManager {
     @Override
     public AutreMobFrOnglet getAutreMobFrOngletById(Long ongletId) {
         return autreMobFrOngletRepository.findById(ongletId).orElseThrow(
-                () -> new OngletNonTrouveIdException("AutreMobFr",ongletId));
+                () -> new OngletNonTrouveIdException("AutreMobFrOnglet",ongletId));
     }
 
     @Override
     public void updateAutreMobFrOngletPartiel(Long ongletId, AutreMobFrOngletDto autreMobFrOngletDto) {
-        AutreMobFrOnglet autreMobFrOnglet = autreMobFrOngletRepository.getReferenceById(ongletId);
+        AutreMobFrOnglet autreMobFrOnglet = getAutreMobFrOngletById(ongletId);
+
         if (autreMobFrOngletDto.getEstTermine() != null){
             autreMobFrOnglet.setEstTermine(autreMobFrOngletDto.getEstTermine());
         }

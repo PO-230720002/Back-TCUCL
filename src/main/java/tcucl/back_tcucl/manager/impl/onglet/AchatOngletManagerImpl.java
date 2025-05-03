@@ -32,21 +32,21 @@ public class AchatOngletManagerImpl implements AchatOngletManager {
 
     @Override
     public void updateAchatOngletPartiel(Long ongletId, AchatOngletDto achatOngletDto) {
-        AchatOnglet achatOngletById = getAchatOngletById(ongletId);
+        AchatOnglet achatOnglet = getAchatOngletById(ongletId);
 
         if (achatOngletDto.getEstTermine() != null) {
-            achatOngletById.setEstTermine(achatOngletDto.getEstTermine());
+            achatOnglet.setEstTermine(achatOngletDto.getEstTermine());
         }
         if (achatOngletDto.getNote() != null) {
-            achatOngletById.setNote(achatOngletDto.getNote());
+            achatOnglet.setNote(achatOngletDto.getNote());
         }
 
         // --- AchatConsommable ---
         if (achatOngletDto.getAchatConsommable() != null) {
-            AchatConsommable achatConsommable = achatOngletById.getAchatConsommable();
+            AchatConsommable achatConsommable = achatOnglet.getAchatConsommable();
             if (achatConsommable == null) {
                 achatConsommable = new AchatConsommable();
-                achatOngletById.setAchatConsommable(achatConsommable);
+                achatOnglet.setAchatConsommable(achatConsommable);
             }
             AchatConsommableDto achatConsommableDto = achatOngletDto.getAchatConsommable();
             if (achatConsommableDto.getPapier_T() != null) achatConsommable.setPapier_T(achatConsommableDto.getPapier_T());
@@ -63,10 +63,10 @@ public class AchatOngletManagerImpl implements AchatOngletManager {
 
         // --- AchatRestauration ---
         if (achatOngletDto.getAchatRestauration() != null) {
-            AchatRestauration achatRestauration = achatOngletById.getAchatRestauration();
+            AchatRestauration achatRestauration = achatOnglet.getAchatRestauration();
             if (achatRestauration == null) {
                 achatRestauration = new AchatRestauration();
-                achatOngletById.setAchatRestauration(achatRestauration);
+                achatOnglet.setAchatRestauration(achatRestauration);
             }
             AchatRestaurationDto achatRestaurationDto = achatOngletDto.getAchatRestauration();
             if (achatRestaurationDto.getMethode() != null) achatRestauration.setMethodeCalcul(achatRestaurationDto.getMethode());
@@ -103,10 +103,10 @@ public class AchatOngletManagerImpl implements AchatOngletManager {
 
         // --- AchatTextile ---
         if (achatOngletDto.getAchatTextile() != null) {
-            AchatTextile achatTextile = achatOngletById.getAchatTextile();
+            AchatTextile achatTextile = achatOnglet.getAchatTextile();
             if (achatTextile == null) {
                 achatTextile = new AchatTextile();
-                achatOngletById.setAchatTextile(achatTextile);
+                achatOnglet.setAchatTextile(achatTextile);
             }
             AchatTextileDto achatTextileDto = achatOngletDto.getAchatTextile();
             if (achatTextileDto.getChemise_nb() != null) achatTextile.setChemise_nb(achatTextileDto.getChemise_nb());
@@ -121,7 +121,7 @@ public class AchatOngletManagerImpl implements AchatOngletManager {
             if (achatTextileDto.getChaussure_nb() != null) achatTextile.setChaussure_nb(achatTextileDto.getChaussure_nb());
         }
 
-        achatOngletRepository.save(achatOngletById); // Hibernate mettra à jour en cascade
+        achatOngletRepository.save(achatOnglet); // Hibernate mettra à jour en cascade
     }
 
 }
