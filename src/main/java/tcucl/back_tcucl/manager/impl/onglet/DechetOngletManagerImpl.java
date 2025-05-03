@@ -1,11 +1,11 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.dechet.DechetDto;
 import tcucl.back_tcucl.dto.onglet.dechet.DechetOngletDto;
 import tcucl.back_tcucl.entity.onglet.dechet.DechetOnglet;
 import tcucl.back_tcucl.entity.onglet.dechet.Dechet;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.DechetOngletManager;
 import tcucl.back_tcucl.repository.onglet.DechetOngletRepository;
 
@@ -20,7 +20,7 @@ public class DechetOngletManagerImpl implements DechetOngletManager {
 
     @Override
     public DechetOnglet getDechetOngletById(Long ongletId) {
-        return dechetOngletRepository.findById(ongletId).orElseThrow(() -> new EntityNotFoundException("DechetOnglet non trouvé avec l'Id: " + ongletId));
+        return dechetOngletRepository.findById(ongletId).orElseThrow(() -> new OngletNonTrouveIdException("Dechet",ongletId));
     }
 
     @Override

@@ -29,7 +29,6 @@ public class AuthController {
         this.parametreService = parametreService;
     }
 
-    //pour les tests
     // TODO supprimer cette méthode en fin de dev
     @PostMapping(REST_INSCRIPTION2)
     public ResponseEntity<?> inscription2(@RequestBody InscriptionDto inscriptionDto) {

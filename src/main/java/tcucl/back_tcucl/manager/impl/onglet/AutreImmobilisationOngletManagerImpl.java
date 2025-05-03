@@ -1,9 +1,9 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.autreImmobilisation.AutreImmobilisationOngletDto;
 import tcucl.back_tcucl.entity.onglet.AutreImmobilisationOnglet;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.AutreImmobilisationOngletManager;
 import tcucl.back_tcucl.repository.onglet.AutreImmobilisationOngletRepository;
 
@@ -18,7 +18,7 @@ public class AutreImmobilisationOngletManagerImpl implements AutreImmobilisation
 
     @Override
     public AutreImmobilisationOnglet getAutreImmobilisationOngletById(Long ongletId) {
-        return autreImmobilisationOngletRepository.findById(ongletId).orElseThrow(() -> new EntityNotFoundException("AutreImmobilisationOnglet non trouvé avec l'Id: " + ongletId));
+        return autreImmobilisationOngletRepository.findById(ongletId).orElseThrow(() -> new OngletNonTrouveIdException("AutreImmobilisationOnglet",ongletId));
     }
 
     @Override

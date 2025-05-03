@@ -1,9 +1,9 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.general.GeneralOngletDto;
 import tcucl.back_tcucl.entity.onglet.GeneralOnglet;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.GeneralOngletManager;
 import tcucl.back_tcucl.repository.onglet.GeneralOngletRepository;
 
@@ -18,7 +18,7 @@ public class GeneralOngletManagerImpl implements GeneralOngletManager {
 
     @Override
     public GeneralOnglet getGeneralOngletById(Long ongletId) {
-        return generalOngletRepository.findById(ongletId).orElseThrow(() -> new EntityNotFoundException("GeneralOnglet non trouvé avec l'Id: " + ongletId));
+        return generalOngletRepository.findById(ongletId).orElseThrow(() -> new OngletNonTrouveIdException("General",ongletId));
     }
 
     @Override

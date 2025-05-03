@@ -6,6 +6,7 @@ import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeDto;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeOngletDto;
 import tcucl.back_tcucl.entity.onglet.vehicule.VehiculeOnglet;
 import tcucl.back_tcucl.entity.onglet.vehicule.Vehicule;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.VehiculeOngletManager;
 import tcucl.back_tcucl.repository.onglet.VehiculeOngletRepository;
 
@@ -19,9 +20,9 @@ public class VehiculeOngletManagerImpl implements VehiculeOngletManager {
     }
 
     @Override
-    public VehiculeOnglet getVehiculeOngletById(Long idOnglet) {
-        return vehiculeOngletRepository.findById(idOnglet).orElseThrow(
-                () -> new EntityNotFoundException("VehiculeOnglet non trouvée avec l'id: " + idOnglet));
+    public VehiculeOnglet getVehiculeOngletById(Long ongletId) {
+        return vehiculeOngletRepository.findById(ongletId).orElseThrow(
+                () -> new OngletNonTrouveIdException("Vehicule",ongletId));
     }
 
     @Override

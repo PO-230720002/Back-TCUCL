@@ -1,4 +1,4 @@
-package tcucl.back_tcucl.dto;
+package tcucl.back_tcucl.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,44 +12,47 @@ import static tcucl.back_tcucl.Constante.*;
 @RestControllerAdvice
 public class GestionnaireErreurController {
 
+    //Entité / Utilisateur / Onglet
+    // Todo les objets dépendant d'un onglet
+    @ExceptionHandler(NonTrouveCustomException.class)
+    public ResponseEntity<String> handleNonTrouveCustomException(NonTrouveCustomException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
 
+    //Inscription
     @ExceptionHandler(EmailDejaPrisException.class)
     public ResponseEntity<String> handleEmailDejaPrisException(EmailDejaPrisException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
-    @ExceptionHandler(UtilisateurNonTrouveEmailException.class)
-    public ResponseEntity<String> handleUtilisateurNonTrouveEmailException(UtilisateurNonTrouveEmailException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ERREUR_UTILISATEUR_NON_TROUVE);
+    @ExceptionHandler(EntiteDejaExistantAvecNomTypeException.class)
+    public ResponseEntity<String> handleEntiteDejaExistantAvecNomTypeException(EntiteDejaExistantAvecNomTypeException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
-    @ExceptionHandler(UtilisateurNonTrouveIdException.class)
-    public ResponseEntity<String> handleUtilisateurNonTrouveIdException(UtilisateurNonTrouveIdException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ERREUR_UTILISATEUR_NON_TROUVE);
-    }
-
-
-
-    //
+    //Changement de mot de passe
     @ExceptionHandler(MauvaisAncienMdpException.class)
     public ResponseEntity<String> handleMauvaisAncienMdpException(MauvaisAncienMdpException ex) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_MAUVAIS_ANCIEN_MDP);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
     }
 
     //Connexion
+    @ExceptionHandler(MauvaisIdentifiantsException.class)
+    public ResponseEntity<String> handleMauvaisIdentifiantException(MauvaisIdentifiantsException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
+    }
+
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<String> handleAuthenticationException(AuthenticationException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_AUTHENTIFICATION);
     }
 
-    @ExceptionHandler(EntiteNonTrouveeIdException.class)
-    public ResponseEntity<String> handleEntiteNonTrouveeException(EntiteNonTrouveeIdException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ERREUR_ENTITE_NON_TROUVE);
-    }
-
     //Tout le reste
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ERREUR_INTERNE);
+        // TODO  à changer en prod afin de ne pas afficher les messages d'erreurs
+//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ERREUR_INTERNE);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+
     }
 }

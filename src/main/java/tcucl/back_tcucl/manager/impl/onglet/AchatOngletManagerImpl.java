@@ -1,6 +1,5 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.achat.AchatConsommableDto;
 import tcucl.back_tcucl.dto.onglet.achat.AchatOngletDto;
@@ -10,6 +9,7 @@ import tcucl.back_tcucl.entity.onglet.achat.AchatOnglet;
 import tcucl.back_tcucl.entity.onglet.achat.AchatConsommable;
 import tcucl.back_tcucl.entity.onglet.achat.AchatRestauration;
 import tcucl.back_tcucl.entity.onglet.achat.AchatTextile;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.AchatOngletManager;
 import tcucl.back_tcucl.repository.onglet.AchatOngletRepository;
 
@@ -25,7 +25,7 @@ public class AchatOngletManagerImpl implements AchatOngletManager {
 
     @Override
     public AchatOnglet getAchatOngletById(Long ongletId) {
-        return achatOngletRepository.findById(ongletId).orElseThrow(() -> new EntityNotFoundException("AchatOnglet non trouvé avec l'Id: " + ongletId));
+        return achatOngletRepository.findById(ongletId).orElseThrow(() -> new OngletNonTrouveIdException("AchatOnglet", ongletId));
     }
 
 

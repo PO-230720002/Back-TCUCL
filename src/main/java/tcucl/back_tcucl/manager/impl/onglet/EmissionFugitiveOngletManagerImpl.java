@@ -6,6 +6,7 @@ import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveOngletDto;
 import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.entity.onglet.emissionFugitive.MachineEmissionFugitive;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.EmissionFugitiveOngletManager;
 import tcucl.back_tcucl.repository.onglet.EmissionFugitiveOngletRepository;
 
@@ -21,7 +22,7 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
     @Override
     public EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long ongletId) {
         return emissionFugitiveOngletRepository.findById(ongletId)
-                .orElseThrow(() -> new EntityNotFoundException("EmissionFugitiveOnglet non trouvé avec l'Id : " + ongletId));
+                .orElseThrow(() -> new OngletNonTrouveIdException("EmissionFugitive",ongletId));
     }
 
     @Override

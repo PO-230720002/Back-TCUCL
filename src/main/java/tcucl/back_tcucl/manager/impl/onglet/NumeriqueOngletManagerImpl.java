@@ -6,6 +6,7 @@ import tcucl.back_tcucl.dto.onglet.numerique.EquipementNumeriqueDto;
 import tcucl.back_tcucl.dto.onglet.numerique.NumeriqueOngletDto;
 import tcucl.back_tcucl.entity.onglet.numerique.NumeriqueOnglet;
 import tcucl.back_tcucl.entity.onglet.numerique.EquipementNumerique;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.NumeriqueOngletManager;
 import tcucl.back_tcucl.repository.onglet.NumeriqueOngletRepository;
 
@@ -21,7 +22,7 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
     @Override
     public NumeriqueOnglet getNumeriqueOngletById(Long ongletId) {
         return numeriqueOngletRepository.findById(ongletId).orElseThrow(
-                () -> new EntityNotFoundException("NumeriqueOnglet non trouvé avec l'Id : " + ongletId));
+                () -> new OngletNonTrouveIdException("Numerique",ongletId));
     }
 
     @Override

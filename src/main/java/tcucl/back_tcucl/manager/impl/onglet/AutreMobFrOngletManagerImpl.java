@@ -1,9 +1,9 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.autreMobFr.AutreMobFrOngletDto;
 import tcucl.back_tcucl.entity.onglet.AutreMobFrOnglet;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.AutreMobFrOngletManager;
 import tcucl.back_tcucl.repository.onglet.AutreMobFrOngletRepository;
 
@@ -19,7 +19,7 @@ public class AutreMobFrOngletManagerImpl implements AutreMobFrOngletManager {
     @Override
     public AutreMobFrOnglet getAutreMobFrOngletById(Long ongletId) {
         return autreMobFrOngletRepository.findById(ongletId).orElseThrow(
-                () -> new EntityNotFoundException("AutreMobFrOnglet non trouvée avec l'ongletId: " + ongletId));
+                () -> new OngletNonTrouveIdException("AutreMobFr",ongletId));
     }
 
     @Override

@@ -10,6 +10,7 @@ import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOng
 import tcucl.back_tcucl.entity.onglet.batiment.BatimentExistantOuNeufConstruit;
 import tcucl.back_tcucl.entity.onglet.batiment.EntretienCourant;
 import tcucl.back_tcucl.entity.onglet.batiment.MobilierElectromenager;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.BatimentImmobilisationMobilierOngletManager;
 import tcucl.back_tcucl.repository.onglet.BatimentImmobilisationMobilierOngletRepository;
 
@@ -25,7 +26,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     @Override
     public BatimentImmobilisationMobilierOnglet getBatimentImmobilisationMobilierOngletById(Long ongletId) {
         return batimentImmobilisationMobilierOngletRepository.findById(ongletId)
-                .orElseThrow(() -> new EntityNotFoundException("BatimentImmobilisationMobilierOnglet non trouvé avec l'Id : " + ongletId));
+                .orElseThrow(() -> new OngletNonTrouveIdException("BatimentImmobilisationMobilier",ongletId));
     }
 
     @Override

@@ -1,9 +1,9 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.mobiliteDomicileTravail.MobiliteDomicileTravailOngletDto;
 import tcucl.back_tcucl.entity.onglet.MobiliteDomicileTravailOnglet;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.repository.onglet.MobiliteDomicileTravailOngletRepository;
 import tcucl.back_tcucl.manager.MobiliteDomicileTravailOngletManager;
 
@@ -19,7 +19,7 @@ public class MobiliteDomicileTravailOngletManagerImpl implements MobiliteDomicil
     @Override
     public MobiliteDomicileTravailOnglet getMobiliteDomicileTravailOngletById(Long ongletId) {
         return repository.findById(ongletId)
-                .orElseThrow(() -> new EntityNotFoundException("MobiliteDomicileTravailOnglet non trouvé avec l'Id: " + ongletId));
+                .orElseThrow(() -> new OngletNonTrouveIdException("MobiliteDomicileTravail",ongletId));
     }
 
 

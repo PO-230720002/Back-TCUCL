@@ -13,7 +13,6 @@ import tcucl.back_tcucl.dto.InscriptionDto;
 import tcucl.back_tcucl.dto.UtilisateurDto;
 import tcucl.back_tcucl.entity.Utilisateur;
 import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisIdentifiantsException;
-import tcucl.back_tcucl.exceptionPersonnalisee.UtilisateurNonTrouveEmailException;
 import tcucl.back_tcucl.service.UtilisateurService;
 import tcucl.back_tcucl.service.AuthentificationService;
 

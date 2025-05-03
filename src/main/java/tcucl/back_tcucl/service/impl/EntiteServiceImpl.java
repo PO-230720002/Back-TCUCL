@@ -3,7 +3,7 @@ package tcucl.back_tcucl.service.impl;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.entity.Annee;
 import tcucl.back_tcucl.entity.Entite;
-import tcucl.back_tcucl.exceptionPersonnalisee.EntiteDejaExistantAvecNomType;
+import tcucl.back_tcucl.exceptionPersonnalisee.EntiteDejaExistantAvecNomTypeException;
 import tcucl.back_tcucl.manager.EntiteManager;
 import tcucl.back_tcucl.service.EntiteService;
 
@@ -29,12 +29,12 @@ public class EntiteServiceImpl implements EntiteService {
     }
 
     @Override
-    public Entite creerEntite(String nomEntite, String typeEntite) {
-        if (!entiteManager.existsEntiteByNomAndType(nomEntite, typeEntite)) {
-            Entite entite = new Entite(nomEntite, typeEntite);
+    public Entite creerEntite(String entiteNom, String entiteType) {
+        if (!entiteManager.existsEntiteByNomAndType(entiteNom, entiteType)) {
+            Entite entite = new Entite(entiteNom, entiteType);
             return entiteManager.save(entite);
         } else {
-            throw new EntiteDejaExistantAvecNomType(nomEntite, typeEntite);
+            throw new EntiteDejaExistantAvecNomTypeException(entiteNom, entiteType);
         }
     }
 

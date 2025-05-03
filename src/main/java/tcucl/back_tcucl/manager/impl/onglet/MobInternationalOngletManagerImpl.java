@@ -6,6 +6,7 @@ import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
 import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageVersUneDestinationMobInternationaleDto;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.VoyageVersUneDestinationMobInternationale;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.MobInternationalOngletManager;
 import tcucl.back_tcucl.repository.onglet.MobInternationalOngletRepository;
 
@@ -21,7 +22,7 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
     @Override
     public MobInternationalOnglet getMobInternationalOngletById(Long ongletId) {
         return mobInternationalOngletRepository.findById(ongletId).orElseThrow(
-                () -> new EntityNotFoundException("MobInternationalOnglet non trouvé avec l'Id: " + ongletId));
+                () -> new OngletNonTrouveIdException("MobInternational",ongletId));
     }
 
     @Override

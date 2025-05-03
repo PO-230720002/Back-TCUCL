@@ -6,6 +6,7 @@ import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieDto;
 import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieOngletDto;
 import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirieOnglet;
 import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirie;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.ParkingVoirieOngletManager;
 import tcucl.back_tcucl.repository.onglet.ParkingVoirieOngletRepository;
 
@@ -21,7 +22,7 @@ public class ParkingVoirieOngletManagerImpl implements ParkingVoirieOngletManage
     @Override
     public ParkingVoirieOnglet getParkingVoirieOngletById(Long ongletId) {
         return parkingVoirieOngletRepository.findById(ongletId).orElseThrow(
-                () -> new EntityNotFoundException("ParkingVoirieOnglet non trouvée avec l'id: " + ongletId));
+                () -> new OngletNonTrouveIdException("ParkingVoirie",ongletId));
     }
 
     @Override

@@ -1,9 +1,8 @@
 package tcucl.back_tcucl.manager.impl;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.entity.Entite;
-import tcucl.back_tcucl.exceptionPersonnalisee.EntiteNonTrouveeIdException;
+import tcucl.back_tcucl.exceptionPersonnalisee.EntiteNonTrouveIdException;
 import tcucl.back_tcucl.manager.EntiteManager;
 import tcucl.back_tcucl.repository.EntiteRepository;
 
@@ -23,7 +22,7 @@ public class EntiteManagerImpl implements EntiteManager {
     public Entite getEntitebyId(Long entiteId) {
         Optional<Entite> entite = entiteRepository.findById(entiteId);
         if (entite.isEmpty()) {
-            throw new EntiteNonTrouveeIdException(entiteId);
+            throw new EntiteNonTrouveIdException(entiteId);
         }
         return entite.get();
 
