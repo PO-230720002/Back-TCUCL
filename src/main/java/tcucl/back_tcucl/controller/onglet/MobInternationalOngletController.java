@@ -11,7 +11,7 @@ import tcucl.back_tcucl.service.MobInternationalOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_MOB_INTERNATIONALE_ONGLET + REST_ID)
+@RequestMapping(REST_MOB_INTERNATIONALE_ONGLET + REST_ONGLET_ID)
 public class MobInternationalOngletController {
 
     private final MobInternationalOngletService mobInternationalOngletService;
@@ -22,31 +22,31 @@ public class MobInternationalOngletController {
 
     @GetMapping
     @checkRoleOnglet
-    public ResponseEntity<?> getById(@PathVariable(name = "id") Long id) {
-        MobInternationalOnglet mobInternationalOngletById = mobInternationalOngletService.getMobInternationalOngletById(id);
+    public ResponseEntity<?> getById(@PathVariable(name = "ongletId") Long ongletId) {
+        MobInternationalOnglet mobInternationalOngletById = mobInternationalOngletService.getMobInternationalOngletById(ongletId);
         MobInternationalOngletDto mobInternationalOngletDto = new MobInternationalOngletDto(mobInternationalOngletById);
         return ResponseEntity.ok(mobInternationalOngletDto);
     }
 
     @PatchMapping
     @checkRoleOnglet
-    public ResponseEntity<Void> updatePartiel(@PathVariable(name = "id") Long id,
+    public ResponseEntity<Void> updatePartiel(@PathVariable(name = "ongletId") Long ongletId,
                                               @RequestBody MobInternationalOngletDto mobInternationalOngletDto) {
-        mobInternationalOngletService.updateMobInternationalOngletPartiel(id, mobInternationalOngletDto);
+        mobInternationalOngletService.updateMobInternationalOngletPartiel(ongletId, mobInternationalOngletDto);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping(REST_VOYAGE)
     @checkRoleOnglet
-    public ResponseEntity<Void> ajouterVoyage(@PathVariable(name = "id") Long id,
+    public ResponseEntity<Void> ajouterVoyage(@PathVariable(name = "ongletId") Long ongletId,
                                               @RequestBody VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto) {
-        mobInternationalOngletService.ajouterVoyage(id, voyageVersUneDestinationMobInternationaleDto);
+        mobInternationalOngletService.ajouterVoyage(ongletId, voyageVersUneDestinationMobInternationaleDto);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(REST_VOYAGE + REST_VOYAGE_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> supprimerVoyage(@PathVariable(name = "id") Long ongletId,
+    public ResponseEntity<Void> supprimerVoyage(@PathVariable(name = "ongletId") Long ongletId,
                                                 @PathVariable(name = "voyageId") Long voyageId) {
         mobInternationalOngletService.supprimerVoyage(ongletId, voyageId);
         return ResponseEntity.ok().build();
@@ -54,10 +54,10 @@ public class MobInternationalOngletController {
 
     @PatchMapping(REST_VOYAGE + REST_VOYAGE_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> updateVoyagePartiel(@PathVariable(name = "id") Long ongletId,
+    public ResponseEntity<Void> updateVoyagePartiel(@PathVariable(name = "ongletId") Long ongletId,
                                                     @PathVariable(name = "voyageId") Long voyageId,
-                                                    @RequestBody VoyageVersUneDestinationMobInternationaleDto dto) {
-        mobInternationalOngletService.updateVoyagePartiel(ongletId, voyageId, dto);
+                                                    @RequestBody VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto) {
+        mobInternationalOngletService.updateVoyagePartiel(ongletId, voyageId, voyageVersUneDestinationMobInternationaleDto);
         return ResponseEntity.ok().build();
     }
 }

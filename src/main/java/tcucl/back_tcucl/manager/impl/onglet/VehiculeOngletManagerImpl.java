@@ -35,16 +35,16 @@ public class VehiculeOngletManagerImpl implements VehiculeOngletManager {
     }
 
     @Override
-    public void updateVehiculeOngletPartiel(Long id, VehiculeOngletDto dto) {
-        VehiculeOnglet vehiculeOnglet = getVehiculeOngletById(id);
+    public void updateVehiculeOngletPartiel(Long ongletId, VehiculeOngletDto vehiculeOngletDto) {
+        VehiculeOnglet vehiculeOnglet = getVehiculeOngletById(ongletId);
 
-        if (dto.getEstTermine() != null) vehiculeOnglet.setEstTermine(dto.getEstTermine());
-        if (dto.getNote() != null) vehiculeOnglet.setNote(dto.getNote());
+        if (vehiculeOngletDto.getEstTermine() != null) vehiculeOnglet.setEstTermine(vehiculeOngletDto.getEstTermine());
+        if (vehiculeOngletDto.getNote() != null) vehiculeOnglet.setNote(vehiculeOngletDto.getNote());
 
-        if (dto.getVehiculeList() != null) {
+        if (vehiculeOngletDto.getVehiculeList() != null) {
             // On supprime les voyages existants et on les remplace par les nouveaux
             vehiculeOnglet.getVehiculeList().clear();
-            for (VehiculeDto vehiculeDto : dto.getVehiculeList()) {
+            for (VehiculeDto vehiculeDto : vehiculeOngletDto.getVehiculeList()) {
                 vehiculeOnglet.ajouterVehiculeViaDto(vehiculeDto);
             }
         }
@@ -52,13 +52,13 @@ public class VehiculeOngletManagerImpl implements VehiculeOngletManager {
     }
 
     @Override
-    public void ajouterVoyage(Long id, VehiculeDto vehiculeDto) {
-        VehiculeOnglet vehiculeOnglet = getVehiculeOngletById(id);
+    public void ajouterVoyage(Long ongletId, VehiculeDto vehiculeDto) {
+        VehiculeOnglet vehiculeOnglet = getVehiculeOngletById(ongletId);
         if (vehiculeDto != null) {
             vehiculeOnglet.ajouterVehiculeViaDto(vehiculeDto);
             vehiculeOngletRepository.save(vehiculeOnglet);
         } else {
-            throw new EntityNotFoundException("VehiculeOnglet non trouvé avec l'Id: " + id);
+            throw new EntityNotFoundException("VehiculeOnglet non trouvé avec l'Id: " + ongletId);
         }
     }
 
@@ -78,7 +78,7 @@ public class VehiculeOngletManagerImpl implements VehiculeOngletManager {
     }
 
     @Override
-    public void updateVoyagePartiel(Long ongletId, Long voyageId, VehiculeDto dto) {
+    public void updateVoyagePartiel(Long ongletId, Long voyageId, VehiculeDto vehiculeDto) {
         VehiculeOnglet onglet = vehiculeOngletRepository.getReferenceById(ongletId);
 
         Vehicule vehicule = onglet.getVehiculeList()
@@ -87,20 +87,20 @@ public class VehiculeOngletManagerImpl implements VehiculeOngletManager {
                 .findFirst()
                 .orElseThrow(() -> new EntityNotFoundException("Voyage non trouvé avec l'id : " + voyageId));
 
-        if (dto.getModeleOuImmatriculation() != null) {
-            vehicule.setModeleOuImmatriculation(dto.getModeleOuImmatriculation());
+        if (vehiculeDto.getModeleOuImmatriculation() != null) {
+            vehicule.setModeleOuImmatriculation(vehiculeDto.getModeleOuImmatriculation());
         }
-        if (dto.getTypeVehicule() != null) {
-            vehicule.setTypeVehicule(dto.getTypeVehicule());
+        if (vehiculeDto.getTypeVehicule() != null) {
+            vehicule.setTypeVehicule(vehiculeDto.getTypeVehicule());
         }
-        if (dto.getNombreKilometresParVoitureMoyen() != null) {
-            vehicule.setNombreKilometresParVoitureMoyen(dto.getNombreKilometresParVoitureMoyen());
+        if (vehiculeDto.getNombreKilometresParVoitureMoyen() != null) {
+            vehicule.setNombreKilometresParVoitureMoyen(vehiculeDto.getNombreKilometresParVoitureMoyen());
         }
-        if (dto.getNombreVehiculesIdentiques() != null) {
-            vehicule.setNombreVehiculesIdentiques(dto.getNombreVehiculesIdentiques());
+        if (vehiculeDto.getNombreVehiculesIdentiques() != null) {
+            vehicule.setNombreVehiculesIdentiques(vehiculeDto.getNombreVehiculesIdentiques());
         }
-        if (dto.getDateAjoutEnBase() != null) {
-            vehicule.setDateAjoutEnBase(dto.getDateAjoutEnBase());
+        if (vehiculeDto.getDateAjoutEnBase() != null) {
+            vehicule.setDateAjoutEnBase(vehiculeDto.getDateAjoutEnBase());
         }
         
         onglet.getVehiculeList().add(vehicule);

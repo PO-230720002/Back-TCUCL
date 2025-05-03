@@ -18,8 +18,8 @@ public class NumeriqueOngletServiceImpl implements NumeriqueOngletService {
     }
 
     @Override
-    public NumeriqueOnglet getNumeriqueOngletById(Long id) {
-        return numeriqueOngletManager.getNumeriqueOngletById(id);
+    public NumeriqueOnglet getNumeriqueOngletById(Long ongletId) {
+        return numeriqueOngletManager.getNumeriqueOngletById(ongletId);
     }
 
     @Override
@@ -28,13 +28,13 @@ public class NumeriqueOngletServiceImpl implements NumeriqueOngletService {
     }
 
     @Override
-    public void updateNumeriqueOngletPartiel(Long id, NumeriqueOngletDto numeriqueOngletDto) {
-        numeriqueOngletManager.updateNumeriqueOngletPartiel(id, numeriqueOngletDto);
+    public void updateNumeriqueOngletPartiel(Long ongletId, NumeriqueOngletDto numeriqueOngletDto) {
+        numeriqueOngletManager.updateNumeriqueOngletPartiel(ongletId, numeriqueOngletDto);
     }
 
     @Override
-    public void ajouterEquipementNumerique(Long id, EquipementNumeriqueDto equipementNumeriqueDto) {
-        numeriqueOngletManager.ajouterEquipementNumerique(id, equipementNumeriqueDto);
+    public void ajouterEquipementNumerique(Long ongletId, EquipementNumeriqueDto equipementNumeriqueDto) {
+        numeriqueOngletManager.ajouterEquipementNumerique(ongletId, equipementNumeriqueDto);
     }
 
     @Override

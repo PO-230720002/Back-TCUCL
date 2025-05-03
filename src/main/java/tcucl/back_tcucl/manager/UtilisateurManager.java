@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface UtilisateurManager {
 
-    void supprimerUtilisateur(Long id);
+    void supprimerUtilisateur(Long utilisateurId);
 
     List<Utilisateur> getAllUtilisateurParEntiteId(Long entiteId);
 
-    boolean emailDejaPris(String email);
+    boolean isEmailDejaPris(String utilisateurEmail);
 
     Utilisateur save(Utilisateur utilisateur);
 
-    Utilisateur getUtilisateurParId(Long id);
+    Utilisateur getUtilisateurParId(Long utilisateurId);
 
-    Utilisateur getUtilisateurParEmail(String email);
+    Utilisateur getUtilisateurParEmail(String utilisateurEmail);
 
-    UtilisateurSecuriteDto findUtilisateurSecurityDTOByEmail(String email);
+    UtilisateurSecuriteDto findUtilisateurSecurityDTOByEmail(String utilisateurEmail);
 }

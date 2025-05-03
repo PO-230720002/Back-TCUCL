@@ -21,8 +21,6 @@ public class AutreImmobilisationOnglet extends Onglet {
     private Boolean onduleur_IsEmissionGESConnues;
     private Float onduleur_EmissionDeGes;
 
-    //TODO
-    //cablage et structure ??
 
     @AssertTrue(message = "Si installationComplete_IsEmissionGESConnues est faux, installationComplete_EmissionDeGes doit être null")
     public Boolean isInstallationEmissionGesValid() {

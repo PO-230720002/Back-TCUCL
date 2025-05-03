@@ -6,13 +6,13 @@ import tcucl.back_tcucl.entity.onglet.numerique.NumeriqueOnglet;
 import tcucl.back_tcucl.entity.onglet.numerique.EquipementNumerique;
 
 public interface NumeriqueOngletManager {
-    NumeriqueOnglet getNumeriqueOngletById(Long id);
+    NumeriqueOnglet getNumeriqueOngletById(Long ongletId);
 
     EquipementNumerique getEquipementNumeriqueById(Long ongletId, Long equipementId);
 
-    void updateNumeriqueOngletPartiel(Long id, NumeriqueOngletDto dto);
+    void updateNumeriqueOngletPartiel(Long ongletId, NumeriqueOngletDto numeriqueOngletDto);
 
-    void ajouterEquipementNumerique(Long id, EquipementNumeriqueDto equipementNumeriqueDto);
+    void ajouterEquipementNumerique(Long ongletId, EquipementNumeriqueDto equipementNumeriqueDto);
 
     void supprimerEquipementNumerique(Long ongletId, Long equipementId);
 

@@ -31,18 +31,18 @@ public class ParametreServiceImpl implements ParametreService {
     }
 
     @Override
-    public void modifierEstAdmin(Long id, Boolean estAdmin) {
-        utilisateurService.modifierEstAdmin(id, estAdmin);
+    public void modifierEstAdmin(Long utilisateurId, Boolean estAdmin) {
+        utilisateurService.modifierEstAdmin(utilisateurId, estAdmin);
     }
 
     @Override
-    public void supprimerUtilisateur(Long id) {
-        utilisateurService.supprimerUtilisateur(id);
+    public void supprimerUtilisateur(Long utilisateurId) {
+        utilisateurService.supprimerUtilisateur(utilisateurId);
     }
 
     @Override
-    public void modifierUtilisateurParAdmin(Long id, ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto) {
-        utilisateurService.modifierUtilisateurParAdmin(id, modificationUtilisateurParAdminDto);
+    public void modifierUtilisateurParAdmin(Long utilisateurId, ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto) {
+        utilisateurService.modifierUtilisateurParAdmin(utilisateurId, modificationUtilisateurParAdminDto);
     }
 
     @Override
@@ -56,15 +56,17 @@ public class ParametreServiceImpl implements ParametreService {
         entiteService.ajouterAnneeEntite(entiteId, anneeUniversitaire);
     }
 
+    //Le transactionnal permet le rollback de l'opération si une exception est levée
+    //ex: si l'inscription de l'utilisateur échoue, l'entité ne sera pas créée
     @Transactional
     @Override
     public void creerEntiteEtAdmin(CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
-//todo check dto pas null + faire transactionnal de tout le proccessus
+
         //Creation puis récupération de l'entite
         Entite entite = entiteService.creerEntite(creationEntiteEtAdminDto.getNom(), creationEntiteEtAdminDto.getType());
 
         //Inscription de l'utilisateur
-        utilisateurService.inscrireUtilisateur(new InscriptionDto(
+        utilisateurService. inscrireUtilisateur(new InscriptionDto(
                         creationEntiteEtAdminDto.getNomUtilisateur(),
                         creationEntiteEtAdminDto.getPrenomUtilisateur(),
                         creationEntiteEtAdminDto.getEmailUtilisateur(),
@@ -73,15 +75,14 @@ public class ParametreServiceImpl implements ParametreService {
         ));
     }
 
-
     @Override
     public List<UtilisateurDto> getAllUtilisateurParEntiteId(Long idEntite) {
         return utilisateurService.getAllUtilisateurParEntiteId(idEntite).stream().map(this::utilisateurToUtilisateurDto).toList();
     }
 
     @Override
-    public void modifierUtilisateurParUtilisateur(Long id, ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto) {
-        utilisateurService.modifierUtilisateurParUtilisateur(id, modificationUtilisateurParUtilisateurDto);
+    public void modifierUtilisateurParUtilisateur(Long utilisateurId, ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto) {
+        utilisateurService.modifierUtilisateurParUtilisateur(utilisateurId, modificationUtilisateurParUtilisateurDto);
     }
 
     private UtilisateurDto utilisateurToUtilisateurDto(Utilisateur utilisateur){
@@ -94,4 +95,5 @@ public class ParametreServiceImpl implements ParametreService {
                 utilisateur.getEntite().getNom()
         );
     }
+
 }

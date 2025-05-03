@@ -19,9 +19,9 @@ public class ParkingVoirieOngletManagerImpl implements ParkingVoirieOngletManage
     }
 
     @Override
-    public ParkingVoirieOnglet getParkingVoirieOngletById(Long idOnglet) {
-        return parkingVoirieOngletRepository.findById(idOnglet).orElseThrow(
-                () -> new EntityNotFoundException("ParkingVoirieOnglet non trouvée avec l'id: " + idOnglet));
+    public ParkingVoirieOnglet getParkingVoirieOngletById(Long ongletId) {
+        return parkingVoirieOngletRepository.findById(ongletId).orElseThrow(
+                () -> new EntityNotFoundException("ParkingVoirieOnglet non trouvée avec l'id: " + ongletId));
     }
 
     @Override
@@ -35,16 +35,16 @@ public class ParkingVoirieOngletManagerImpl implements ParkingVoirieOngletManage
     }
 
     @Override
-    public void updateParkingVoirieOngletPartiel(Long id, ParkingVoirieOngletDto dto) {
-        ParkingVoirieOnglet parkingVoirieOnglet = getParkingVoirieOngletById(id);
+    public void updateParkingVoirieOngletPartiel(Long ongletId, ParkingVoirieOngletDto parkingVoirieOngletDto) {
+        ParkingVoirieOnglet parkingVoirieOnglet = getParkingVoirieOngletById(ongletId);
 
-        if (dto.getEstTermine() != null) parkingVoirieOnglet.setEstTermine(dto.getEstTermine());
-        if (dto.getNote() != null) parkingVoirieOnglet.setNote(dto.getNote());
+        if (parkingVoirieOngletDto.getEstTermine() != null) parkingVoirieOnglet.setEstTermine(parkingVoirieOngletDto.getEstTermine());
+        if (parkingVoirieOngletDto.getNote() != null) parkingVoirieOnglet.setNote(parkingVoirieOngletDto.getNote());
 
-        if (dto.getParkingVoirieList() != null) {
+        if (parkingVoirieOngletDto.getParkingVoirieList() != null) {
             // On supprime les voyages existants et on les remplace par les nouveaux
             parkingVoirieOnglet.getParkingVoirieList().clear();
-            for (ParkingVoirieDto parkingVoirieDto : dto.getParkingVoirieList()) {
+            for (ParkingVoirieDto parkingVoirieDto : parkingVoirieOngletDto.getParkingVoirieList()) {
                 parkingVoirieOnglet.ajouterParkingVoirieViaDto(parkingVoirieDto);
             }
         }
@@ -52,13 +52,13 @@ public class ParkingVoirieOngletManagerImpl implements ParkingVoirieOngletManage
     }
 
     @Override
-    public void ajouterVoyage(Long id, ParkingVoirieDto parkingVoirieDto) {
-        ParkingVoirieOnglet parkingVoirieOnglet = getParkingVoirieOngletById(id);
+    public void ajouterVoyage(Long ongletId, ParkingVoirieDto parkingVoirieDto) {
+        ParkingVoirieOnglet parkingVoirieOnglet = getParkingVoirieOngletById(ongletId);
         if (parkingVoirieDto != null) {
             parkingVoirieOnglet.ajouterParkingVoirieViaDto(parkingVoirieDto);
             parkingVoirieOngletRepository.save(parkingVoirieOnglet);
         } else {
-            throw new EntityNotFoundException("ParkingVoirieOnglet non trouvé avec l'Id: " + id);
+            throw new EntityNotFoundException("ParkingVoirieOnglet non trouvé avec l'Id: " + ongletId);
         }
     }
 
@@ -78,7 +78,7 @@ public class ParkingVoirieOngletManagerImpl implements ParkingVoirieOngletManage
     }
 
     @Override
-    public void updateVoyagePartiel(Long ongletId, Long voyageId, ParkingVoirieDto dto) {
+    public void updateVoyagePartiel(Long ongletId, Long voyageId, ParkingVoirieDto parkingVoirieDto) {
         ParkingVoirieOnglet onglet = parkingVoirieOngletRepository.getReferenceById(ongletId);
 
         ParkingVoirie parkingVoirie = onglet.getParkingVoirieList()
@@ -88,14 +88,14 @@ public class ParkingVoirieOngletManagerImpl implements ParkingVoirieOngletManage
                 .orElseThrow(() -> new EntityNotFoundException("Voyage non trouvé avec l'id : " + voyageId));
 
 
-        if (dto.getNomOuAdresse() != null) parkingVoirie.setNomOuAdresse(dto.getNomOuAdresse());
-        if (dto.getDateConstruction() != null) parkingVoirie.setDateConstruction(dto.getDateConstruction());
-        if (dto.getEmissionsGesConnues() != null) parkingVoirie.setEmissionsGesConnues(dto.getEmissionsGesConnues());
-        if (dto.getEmissionsGesReelles() != null) parkingVoirie.setEmissionsGesReelles(dto.getEmissionsGesReelles());
-        if (dto.getType() != null) parkingVoirie.setType(dto.getType());
-        if (dto.getTypeStructure() != null) parkingVoirie.setTypeStructure(dto.getTypeStructure());
-        if (dto.getNombreM2() != null) parkingVoirie.setNombreM2(dto.getNombreM2());
-        if (dto.getDateAjoutEnBase() != null) parkingVoirie.setDateAjoutEnBase(dto.getDateAjoutEnBase());
+        if (parkingVoirieDto.getNomOuAdresse() != null) parkingVoirie.setNomOuAdresse(parkingVoirieDto.getNomOuAdresse());
+        if (parkingVoirieDto.getDateConstruction() != null) parkingVoirie.setDateConstruction(parkingVoirieDto.getDateConstruction());
+        if (parkingVoirieDto.getEmissionsGesConnues() != null) parkingVoirie.setEmissionsGesConnues(parkingVoirieDto.getEmissionsGesConnues());
+        if (parkingVoirieDto.getEmissionsGesReelles() != null) parkingVoirie.setEmissionsGesReelles(parkingVoirieDto.getEmissionsGesReelles());
+        if (parkingVoirieDto.getType() != null) parkingVoirie.setType(parkingVoirieDto.getType());
+        if (parkingVoirieDto.getTypeStructure() != null) parkingVoirie.setTypeStructure(parkingVoirieDto.getTypeStructure());
+        if (parkingVoirieDto.getNombreM2() != null) parkingVoirie.setNombreM2(parkingVoirieDto.getNombreM2());
+        if (parkingVoirieDto.getDateAjoutEnBase() != null) parkingVoirie.setDateAjoutEnBase(parkingVoirieDto.getDateAjoutEnBase());
 
         onglet.getParkingVoirieList().add(parkingVoirie);
 

@@ -16,13 +16,13 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
     }
 
     @Override
-    public EnergieOnglet getEnergieOngletById(Long id) {
-        return energieOngletManager.getEnergieOngletById(id);
+    public EnergieOnglet getEnergieOngletById(Long ongletId) {
+        return energieOngletManager.getEnergieOngletById(ongletId);
     }
 
     @Override
-    public void updateEnergieOngletPartiel(Long id, EnergieOngletDto dto) {
-        energieOngletManager.updateEnergieOngletPartiel(id, dto);
+    public void updateEnergieOngletPartiel(Long ongletId, EnergieOngletDto energieOngletDto) {
+        energieOngletManager.updateEnergieOngletPartiel(ongletId, energieOngletDto);
     }
 
 

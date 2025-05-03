@@ -16,13 +16,13 @@ public class MobiliteDomicileTravailOngletServiceImpl implements MobiliteDomicil
     }
 
     @Override
-    public MobiliteDomicileTravailOnglet getMobiliteDomicileTravailOngletById(Long id) {
-        return mobiliteDomicileTravailOngletManager.getMobiliteDomicileTravailOngletById(id);
+    public MobiliteDomicileTravailOnglet getMobiliteDomicileTravailOngletById(Long ongletId) {
+        return mobiliteDomicileTravailOngletManager.getMobiliteDomicileTravailOngletById(ongletId);
     }
 
     @Override
-    public void updateMobiliteDomicileTravailOngletPartiel(Long id, MobiliteDomicileTravailOngletDto dto) {
-        mobiliteDomicileTravailOngletManager.updateMobiliteDomicileTravailOngletPartiel(id, dto);
+    public void updateMobiliteDomicileTravailOngletPartiel(Long ongletId, MobiliteDomicileTravailOngletDto mobiliteDomicileTravailOngletDto) {
+        mobiliteDomicileTravailOngletManager.updateMobiliteDomicileTravailOngletPartiel(ongletId, mobiliteDomicileTravailOngletDto);
     }
 
 

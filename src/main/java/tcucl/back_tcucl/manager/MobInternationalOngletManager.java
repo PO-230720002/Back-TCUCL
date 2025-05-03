@@ -7,15 +7,15 @@ import tcucl.back_tcucl.entity.onglet.mobInternationale.VoyageVersUneDestination
 
 public interface MobInternationalOngletManager {
 
-    MobInternationalOnglet getMobInternationalOngletById(Long id);
+    MobInternationalOnglet getMobInternationalOngletById(Long ongletId);
 
     VoyageVersUneDestinationMobInternationale getVoyageById(Long ongletId, Long voyageId);
 
-    void updateMobInternationalOngletPartiel(Long id, MobInternationalOngletDto dto);
+    void updateMobInternationalOngletPartiel(Long ongletId, MobInternationalOngletDto mobInternationalOngletDto);
 
-    void ajouterVoyage(Long id, VoyageVersUneDestinationMobInternationaleDto voyageDto);
+    void ajouterVoyage(Long ongletId, VoyageVersUneDestinationMobInternationaleDto voyageDto);
 
     void supprimerVoyage(Long ongletId, Long voyageId);
 
-    void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageVersUneDestinationMobInternationaleDto dto);
+    void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto);
 }

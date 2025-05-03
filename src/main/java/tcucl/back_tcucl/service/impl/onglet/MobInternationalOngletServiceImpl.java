@@ -17,18 +17,18 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
     }
 
     @Override
-    public MobInternationalOnglet getMobInternationalOngletById(Long id) {
-        return mobInternationalOngletManager.getMobInternationalOngletById(id);
+    public MobInternationalOnglet getMobInternationalOngletById(Long ongletId) {
+        return mobInternationalOngletManager.getMobInternationalOngletById(ongletId);
     }
 
     @Override
-    public void updateMobInternationalOngletPartiel(Long id, MobInternationalOngletDto mobInternationalOngletDto) {
-        mobInternationalOngletManager.updateMobInternationalOngletPartiel(id, mobInternationalOngletDto);
+    public void updateMobInternationalOngletPartiel(Long ongletId, MobInternationalOngletDto mobInternationalOngletDto) {
+        mobInternationalOngletManager.updateMobInternationalOngletPartiel(ongletId, mobInternationalOngletDto);
     }
 
     @Override
-    public void ajouterVoyage(Long id, VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto) {
-        mobInternationalOngletManager.ajouterVoyage(id, voyageVersUneDestinationMobInternationaleDto);
+    public void ajouterVoyage(Long ongletId, VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto) {
+        mobInternationalOngletManager.ajouterVoyage(ongletId, voyageVersUneDestinationMobInternationaleDto);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
     }
 
     @Override
-    public void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageVersUneDestinationMobInternationaleDto dto) {
-        mobInternationalOngletManager.updateVoyagePartiel(ongletId, voyageId, dto);
+    public void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto) {
+        mobInternationalOngletManager.updateVoyagePartiel(ongletId, voyageId, voyageVersUneDestinationMobInternationaleDto);
     }
 }

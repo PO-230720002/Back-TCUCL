@@ -24,6 +24,15 @@ public class Entite {
     private String nom;
     private String type;
 
+    // TODO
+    // créer ENUM pour les types d'entité
+    // 1. EDUC_SUP
+    // 2. LYCEE
+    // 3. SANTE
+    // 4. LOGEMENT
+    // 5.
+    // 6.
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "notes_permanentes_id")
     private NotesPermanentes notesPermanentes;

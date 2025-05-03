@@ -5,7 +5,7 @@ import tcucl.back_tcucl.entity.onglet.AutreMobFrOnglet;
 
 public interface AutreMobFrOngletManager {
 
-    AutreMobFrOnglet getAutreMobFrOngletById(Long id);
+    AutreMobFrOnglet getAutreMobFrOngletById(Long ongletId);
 
-    void updateAutreMobFrOngletPartiel(Long id, AutreMobFrOngletDto autreMobFrOngletDto);
+    void updateAutreMobFrOngletPartiel(Long ongletId, AutreMobFrOngletDto autreMobFrOngletDto);
 }

@@ -11,9 +11,9 @@ public interface VehiculeOngletService {
 
     Vehicule getVehiculeById(Long idOnglet, Long idParking);
 
-    void updateVehiculeOngletPartiel(Long id, VehiculeOngletDto dto);
+    void updateVehiculeOngletPartiel(Long ongletId, VehiculeOngletDto dto);
 
-    void ajouterVoyage(Long id, VehiculeDto vehiculeDto);
+    void ajouterVoyage(Long ongletId, VehiculeDto vehiculeDto);
 
     void supprimerVoyage(Long ongletId, Long vehiculeId);
 

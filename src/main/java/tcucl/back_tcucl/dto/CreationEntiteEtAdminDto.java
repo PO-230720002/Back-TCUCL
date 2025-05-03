@@ -1,5 +1,7 @@
 package tcucl.back_tcucl.dto;
 
+import jakarta.validation.constraints.AssertTrue;
+
 public class CreationEntiteEtAdminDto {
 
     private String nom;
@@ -15,6 +17,7 @@ public class CreationEntiteEtAdminDto {
         this.prenomUtilisateur = prenomUtilisateur;
         this.emailUtilisateur = emailUtilisateur;
     }
+
 
     public String getNom() {
         return nom;

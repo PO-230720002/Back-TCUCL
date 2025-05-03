@@ -16,12 +16,12 @@ public class AutreMobFrOngletServiceImpl implements AutreMobFrOngletService {
     }
 
     @Override
-    public AutreMobFrOnglet getAutreMobFrOngletById(Long id) {
-        return autreMobFrOngletManager.getAutreMobFrOngletById(id);
+    public AutreMobFrOnglet getAutreMobFrOngletById(Long ongletId) {
+        return autreMobFrOngletManager.getAutreMobFrOngletById(ongletId);
     }
 
     @Override
-    public void updateAutreMobFrOngletPartiel(Long id, AutreMobFrOngletDto autreMobFrOngletDto) {
-        autreMobFrOngletManager.updateAutreMobFrOngletPartiel(id, autreMobFrOngletDto);
+    public void updateAutreMobFrOngletPartiel(Long ongletId, AutreMobFrOngletDto autreMobFrOngletDto) {
+        autreMobFrOngletManager.updateAutreMobFrOngletPartiel(ongletId, autreMobFrOngletDto);
     }
 }

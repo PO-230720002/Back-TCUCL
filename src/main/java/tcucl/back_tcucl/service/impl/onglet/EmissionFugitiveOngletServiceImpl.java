@@ -18,18 +18,18 @@ public class EmissionFugitiveOngletServiceImpl implements EmissionFugitiveOnglet
     }
 
     @Override
-    public EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long id) {
-        return emissionFugitiveOngletManager.getEmissionFugitiveOngletById(id);
+    public EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long ongletId) {
+        return emissionFugitiveOngletManager.getEmissionFugitiveOngletById(ongletId);
     }
 
     @Override
-    public void updateEmissionFugitiveOnglet(Long id, EmissionFugitiveOngletDto emissionFugitiveOngletDto) {
-        emissionFugitiveOngletManager.updateEmissionFugitiveOnglet(id, emissionFugitiveOngletDto);
+    public void updateEmissionFugitiveOnglet(Long ongletId, EmissionFugitiveOngletDto emissionFugitiveOngletDto) {
+        emissionFugitiveOngletManager.updateEmissionFugitiveOnglet(ongletId, emissionFugitiveOngletDto);
     }
 
     @Override
-    public void ajouterMachine(Long id, MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
-        emissionFugitiveOngletManager.ajouterMachine(id, machineEmissionFugitiveDto);
+    public void ajouterMachine(Long ongletId, MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
+        emissionFugitiveOngletManager.ajouterMachine(ongletId, machineEmissionFugitiveDto);
     }
 
     @Override

@@ -16,12 +16,12 @@ public class GeneralOngletServiceImpl implements GeneralOngletService {
     }
 
     @Override
-    public GeneralOnglet getGeneralOngletById(Long id) {
-        return generalOngletManager.getGeneralOngletById(id);
+    public GeneralOnglet getGeneralOngletById(Long ongletId) {
+        return generalOngletManager.getGeneralOngletById(ongletId);
     }
 
     @Override
-    public void updateGeneralOngletPartiel(Long id, GeneralOngletDto dto) {
-        generalOngletManager.updateGeneralOngletPartiel(id, dto);
+    public void updateGeneralOngletPartiel(Long ongletId, GeneralOngletDto generalOngletDto) {
+        generalOngletManager.updateGeneralOngletPartiel(ongletId, generalOngletDto);
     }
 }

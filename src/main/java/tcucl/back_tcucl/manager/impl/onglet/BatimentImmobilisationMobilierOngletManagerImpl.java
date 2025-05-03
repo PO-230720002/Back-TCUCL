@@ -23,14 +23,14 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     }
 
     @Override
-    public BatimentImmobilisationMobilierOnglet getBatimentImmobilisationMobilierOngletById(Long id) {
-        return batimentImmobilisationMobilierOngletRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("BatimentImmobilisationMobilierOnglet non trouvé avec l'Id : " + id));
+    public BatimentImmobilisationMobilierOnglet getBatimentImmobilisationMobilierOngletById(Long ongletId) {
+        return batimentImmobilisationMobilierOngletRepository.findById(ongletId)
+                .orElseThrow(() -> new EntityNotFoundException("BatimentImmobilisationMobilierOnglet non trouvé avec l'Id : " + ongletId));
     }
 
     @Override
-    public void updateBatimentImmobilisationMobilierOnglet(Long id, BatimentImmobilisationMobilierOngletDto batimentImmobilisationMobilierOngletDto) {
-        BatimentImmobilisationMobilierOnglet onglet = getBatimentImmobilisationMobilierOngletById(id);
+    public void updateBatimentImmobilisationMobilierOnglet(Long ongletId, BatimentImmobilisationMobilierOngletDto batimentImmobilisationMobilierOngletDto) {
+        BatimentImmobilisationMobilierOnglet onglet = getBatimentImmobilisationMobilierOngletById(ongletId);
 
         if (batimentImmobilisationMobilierOngletDto.getEstTermine() != null) {
             onglet.setEstTermine(batimentImmobilisationMobilierOngletDto.getEstTermine());
@@ -74,13 +74,13 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     }
 
     @Override
-    public void ajouterBatiment(Long id, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
-        BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(id);
+    public void ajouterBatiment(Long ongletId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
+        BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
         if (batimentImmobilisationMobilierOnglet != null) {
             batimentImmobilisationMobilierOnglet.ajouterBatimentViaDto(batimentExistantOuNeufConstruitDto);
             batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
         } else {
-            throw new EntityNotFoundException("BatimentImmobilisationMobilierOnglet non trouvé avec l'Id: " + id);
+            throw new EntityNotFoundException("BatimentImmobilisationMobilierOnglet non trouvé avec l'Id: " + ongletId);
         }
     }
 
@@ -153,13 +153,13 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     }
 
     @Override
-    public void ajouterEntretienCourant(Long id, EntretienCourantDto entretienCourantDto) {
-        BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(id);
+    public void ajouterEntretienCourant(Long ongletId, EntretienCourantDto entretienCourantDto) {
+        BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
         if (batimentImmobilisationMobilierOnglet != null) {
             batimentImmobilisationMobilierOnglet.ajouterEntretienCourantViaDto(entretienCourantDto);
             batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
         } else {
-            throw new EntityNotFoundException("BatimentImmobilisationMobilierOnglet non trouvé avec l'Id: " + id);
+            throw new EntityNotFoundException("BatimentImmobilisationMobilierOnglet non trouvé avec l'Id: " + ongletId);
         }
     }
 
@@ -234,13 +234,13 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     }
 
     @Override
-    public void ajouterMobilierElectromenager(Long id, MobilierElectromenagerDto mobilierElectromenagerDto) {
-        BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(id);
+    public void ajouterMobilierElectromenager(Long ongletId, MobilierElectromenagerDto mobilierElectromenagerDto) {
+        BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
         if (batimentImmobilisationMobilierOnglet != null) {
             batimentImmobilisationMobilierOnglet.ajouterMobilierElectromenagerViaDto(mobilierElectromenagerDto);
             batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
         } else {
-            throw new EntityNotFoundException("BatimentImmobilisationMobilierOnglet non trouvé avec l'Id: " + id);
+            throw new EntityNotFoundException("BatimentImmobilisationMobilierOnglet non trouvé avec l'Id: " + ongletId);
         }
     }
 

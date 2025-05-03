@@ -17,14 +17,14 @@ public class AutreMobFrOngletManagerImpl implements AutreMobFrOngletManager {
     }
 
     @Override
-    public AutreMobFrOnglet getAutreMobFrOngletById(Long id) {
-        return autreMobFrOngletRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("AutreMobFrOnglet non trouvée avec l'id: " + id));
+    public AutreMobFrOnglet getAutreMobFrOngletById(Long ongletId) {
+        return autreMobFrOngletRepository.findById(ongletId).orElseThrow(
+                () -> new EntityNotFoundException("AutreMobFrOnglet non trouvée avec l'ongletId: " + ongletId));
     }
 
     @Override
-    public void updateAutreMobFrOngletPartiel(Long id, AutreMobFrOngletDto autreMobFrOngletDto) {
-        AutreMobFrOnglet autreMobFrOnglet = autreMobFrOngletRepository.getReferenceById(id);
+    public void updateAutreMobFrOngletPartiel(Long ongletId, AutreMobFrOngletDto autreMobFrOngletDto) {
+        AutreMobFrOnglet autreMobFrOnglet = autreMobFrOngletRepository.getReferenceById(ongletId);
         if (autreMobFrOngletDto.getEstTermine() != null){
             autreMobFrOnglet.setEstTermine(autreMobFrOngletDto.getEstTermine());
         }

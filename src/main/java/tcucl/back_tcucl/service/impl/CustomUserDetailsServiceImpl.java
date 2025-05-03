@@ -29,12 +29,12 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
     //loadByUsername Override la méthode loadUserByUsername de l'interface UserDetailsService qui fait partie de Spring Security (le framework)
     // Pas toucher !
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String utilisateurEmail) throws UsernameNotFoundException {
 
-        UtilisateurSecuriteDto utilisateurSecuriteDto = utilisateurService.findUtilisateurSecuriteDtoByEmail(email);
-        List<AnneeSecuriteDto> anneesSecuriteDto = anneeService.getAnneeSecuriteDtoByEntiteId(utilisateurSecuriteDto.entiteId());
+        UtilisateurSecuriteDto utilisateurSecuriteDto = utilisateurService.findUtilisateurSecuriteDtoByEmail(utilisateurEmail);
+        List<AnneeSecuriteDto> anneesSecuriteDtoList = anneeService.getAnneeSecuriteDtoByEntiteId(utilisateurSecuriteDto.entiteId());
 
-        if (anneesSecuriteDto.isEmpty()) {
+        if (anneesSecuriteDtoList.isEmpty()) {
             try {
                 throw new Exception();
             } catch (Exception e) {
@@ -59,7 +59,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority("ROLE_ENTITE_" + utilisateurSecuriteDto.entiteId()));
             authorities.add(new SimpleGrantedAuthority("ROLE_NOTES_PERMANENTES_" + utilisateurSecuriteDto.notesPermanentesId()));
 
-            anneesSecuriteDto.forEach(annee -> {
+            anneesSecuriteDtoList.forEach(annee -> {
                 //année
                 authorities.add(new SimpleGrantedAuthority("ROLE_ANNEE_" + annee.anneeId()));
 

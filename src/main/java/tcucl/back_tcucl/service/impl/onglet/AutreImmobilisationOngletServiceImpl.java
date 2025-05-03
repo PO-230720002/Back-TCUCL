@@ -16,12 +16,12 @@ public class AutreImmobilisationOngletServiceImpl implements AutreImmobilisation
     }
 
     @Override
-    public AutreImmobilisationOnglet getAutreImmobilisationOngletById(Long id) {
-        return autreImmobilisationOngletManager.getAutreImmobilisationOngletById(id);
+    public AutreImmobilisationOnglet getAutreImmobilisationOngletById(Long ongletId) {
+        return autreImmobilisationOngletManager.getAutreImmobilisationOngletById(ongletId);
     }
 
     @Override
-    public void updateAutreImmobilisationOngletPartiel(Long id, AutreImmobilisationOngletDto dto) {
-        autreImmobilisationOngletManager.updateAutreImmobilisationOngletPartiel(id, dto);
+    public void updateAutreImmobilisationOngletPartiel(Long ongletId, AutreImmobilisationOngletDto autreImmobilisationOngletDto) {
+        autreImmobilisationOngletManager.updateAutreImmobilisationOngletPartiel(ongletId, autreImmobilisationOngletDto);
     }
 }

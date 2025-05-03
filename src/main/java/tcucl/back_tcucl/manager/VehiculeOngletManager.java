@@ -10,11 +10,11 @@ public interface VehiculeOngletManager {
 
     Vehicule getVehiculeById(Long idOnglet, Long idParking);
 
-    void updateVehiculeOngletPartiel(Long id, VehiculeOngletDto dto);
+    void updateVehiculeOngletPartiel(Long ongletId, VehiculeOngletDto vehiculeOngletDto);
 
-    void ajouterVoyage(Long id, VehiculeDto vehiculeDto);
+    void ajouterVoyage(Long ongletId, VehiculeDto vehiculeDto);
 
     void supprimerVoyage(Long ongletId, Long vehiculeId);
 
-    void updateVoyagePartiel(Long ongletId, Long voyageId, VehiculeDto dto);
+    void updateVoyagePartiel(Long ongletId, Long voyageId, VehiculeDto vehiculeDto);
 }

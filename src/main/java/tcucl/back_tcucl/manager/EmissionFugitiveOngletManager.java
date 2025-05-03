@@ -7,13 +7,13 @@ import tcucl.back_tcucl.entity.onglet.emissionFugitive.MachineEmissionFugitive;
 
 public interface EmissionFugitiveOngletManager {
 
-    EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long id);
+    EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long ongletId);
 
-    void updateEmissionFugitiveOnglet(Long id, EmissionFugitiveOngletDto emissionFugitiveOngletDto);
+    void updateEmissionFugitiveOnglet(Long ongletId, EmissionFugitiveOngletDto emissionFugitiveOngletDto);
 
     MachineEmissionFugitive getMachineById(Long ongletId, Long machineId);
 
-    void ajouterMachine(Long id, MachineEmissionFugitiveDto machineEmissionFugitiveDto);
+    void ajouterMachine(Long ongletId, MachineEmissionFugitiveDto machineEmissionFugitiveDto);
 
     void supprimerMachineFromOnglet(Long ongletId, Long machineId);
 

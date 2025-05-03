@@ -13,7 +13,7 @@ import tcucl.back_tcucl.service.BatimentImmobilisationMobilierOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_BATIMENT_IMMOBILISATION_MOBILIER_ONGLET+REST_ID)
+@RequestMapping(REST_BATIMENT_IMMOBILISATION_MOBILIER_ONGLET+REST_ONGLET_ID)
 public class BatimentImmobilisationMobilierOngletController {
 
     private final BatimentImmobilisationMobilierOngletService batimentImmobilisationMobilierOngletService;
@@ -24,74 +24,74 @@ public class BatimentImmobilisationMobilierOngletController {
 
     @GetMapping()
     @checkRoleOnglet
-    public ResponseEntity<?> getBatimentImmobilisationMobilierOngletById(@PathVariable(name = "id") Long id) {
-        BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOngletById = batimentImmobilisationMobilierOngletService.getBatimentImmobilisationMobilierOngletById(id);
+    public ResponseEntity<?> getBatimentImmobilisationMobilierOngletById(@PathVariable(name = "ongletId") Long ongletId) {
+        BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOngletById = batimentImmobilisationMobilierOngletService.getBatimentImmobilisationMobilierOngletById(ongletId);
         BatimentImmobilisationMobilierOngletDto batimentImmobilisationMobilierOngletDto = new BatimentImmobilisationMobilierOngletDto(batimentImmobilisationMobilierOngletById);
         return ResponseEntity.ok(batimentImmobilisationMobilierOngletDto);
     }
 
     @PatchMapping
     @checkRoleOnglet
-    public ResponseEntity<Void> updateBatimentImmobilisationMobilierOnglet(@PathVariable(name = "id") Long id, @RequestBody BatimentImmobilisationMobilierOngletDto batimentImmobilisationMobilierOngletDto) {
-        batimentImmobilisationMobilierOngletService.updateBatimentImmobilisationMobilierOnglet(id, batimentImmobilisationMobilierOngletDto);
+    public ResponseEntity<Void> updateBatimentImmobilisationMobilierOnglet(@PathVariable(name = "ongletId") Long ongletId, @RequestBody BatimentImmobilisationMobilierOngletDto batimentImmobilisationMobilierOngletDto) {
+        batimentImmobilisationMobilierOngletService.updateBatimentImmobilisationMobilierOnglet(ongletId, batimentImmobilisationMobilierOngletDto);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping(REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT)
     @checkRoleOnglet
-    public ResponseEntity<Void> ajouterBatiment(@PathVariable(name = "id") Long id, @RequestBody BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
-        batimentImmobilisationMobilierOngletService.ajouterBatiment(id, batimentExistantOuNeufConstruitDto);
+    public ResponseEntity<Void> ajouterBatiment(@PathVariable(name = "ongletId") Long ongletId, @RequestBody BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
+        batimentImmobilisationMobilierOngletService.ajouterBatiment(ongletId, batimentExistantOuNeufConstruitDto);
         return ResponseEntity.ok().build();
     }
     @PostMapping(REST_ENTRETIEN_COURANT)
     @checkRoleOnglet
-    public ResponseEntity<Void> ajouterEntretienCourant(@PathVariable(name = "id") Long id, @RequestBody EntretienCourantDto entretienCourantDto) {
-        batimentImmobilisationMobilierOngletService.ajouterEntretienCourant(id, entretienCourantDto);
+    public ResponseEntity<Void> ajouterEntretienCourant(@PathVariable(name = "ongletId") Long ongletId, @RequestBody EntretienCourantDto entretienCourantDto) {
+        batimentImmobilisationMobilierOngletService.ajouterEntretienCourant(ongletId, entretienCourantDto);
         return ResponseEntity.ok().build();
     }
     @PostMapping(REST_MOBILIER_ELECTROMENAGER)
     @checkRoleOnglet
-    public ResponseEntity<Void> ajouterMobilierElectromenager(@PathVariable(name = "id") Long id, @RequestBody MobilierElectromenagerDto mobilierElectromenagerDto) {
-        batimentImmobilisationMobilierOngletService.ajouterMobilierElectromenager(id, mobilierElectromenagerDto);
+    public ResponseEntity<Void> ajouterMobilierElectromenager(@PathVariable(name = "ongletId") Long ongletId, @RequestBody MobilierElectromenagerDto mobilierElectromenagerDto) {
+        batimentImmobilisationMobilierOngletService.ajouterMobilierElectromenager(ongletId, mobilierElectromenagerDto);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT + REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> supprimerBatiment(@PathVariable(name = "id") Long ongletId, @PathVariable(name = "batimentExistantOuNeufConstruitId") Long batimentId) {
+    public ResponseEntity<Void> supprimerBatiment(@PathVariable(name = "ongletId") Long ongletId, @PathVariable(name = "batimentExistantOuNeufConstruitId") Long batimentId) {
         batimentImmobilisationMobilierOngletService.supprimerBatiment(ongletId, batimentId);
         return ResponseEntity.ok().build();
 
     }
     @DeleteMapping(REST_ENTRETIEN_COURANT + REST_ENTRETIEN_COURANT_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> supprimerEntretienCourant(@PathVariable(name = "id") Long ongletId, @PathVariable(name = "entretienCourantId") Long entretienCourantId) {
+    public ResponseEntity<Void> supprimerEntretienCourant(@PathVariable(name = "ongletId") Long ongletId, @PathVariable(name = "entretienCourantId") Long entretienCourantId) {
         batimentImmobilisationMobilierOngletService.supprimerEntretienCourant(ongletId, entretienCourantId);
         return ResponseEntity.ok().build();
 
     }
     @DeleteMapping(REST_MOBILIER_ELECTROMENAGER + REST_MOBILIER_ELECTROMENAGER_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> supprimerMobilierElectromenager(@PathVariable(name = "id") Long ongletId, @PathVariable(name = "mobilierElectromenagerId") Long mobilierElectromenagerId) {
+    public ResponseEntity<Void> supprimerMobilierElectromenager(@PathVariable(name = "ongletId") Long ongletId, @PathVariable(name = "mobilierElectromenagerId") Long mobilierElectromenagerId) {
         batimentImmobilisationMobilierOngletService.supprimerMobilierElectromenager(ongletId, mobilierElectromenagerId);
         return ResponseEntity.ok().build();
 
     }
     @PatchMapping(REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT + REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> updateBatimentPartiel(@PathVariable(name = "id") Long ongletId, @PathVariable(name = "batimentExistantOuNeufConstruitId") Long batimentId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
+    public ResponseEntity<Void> updateBatimentPartiel(@PathVariable(name = "ongletId") Long ongletId, @PathVariable(name = "batimentExistantOuNeufConstruitId") Long batimentId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
         batimentImmobilisationMobilierOngletService.updateBatimentPartiel(ongletId, batimentId, batimentExistantOuNeufConstruitDto);
         return ResponseEntity.ok().build();
     }
     @PatchMapping(REST_ENTRETIEN_COURANT + REST_ENTRETIEN_COURANT_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> updateEntretienCourantPartiel(@PathVariable(name = "id") Long ongletId, @PathVariable(name = "entretienCourantId") Long entretienCourantId, EntretienCourantDto entretienCourantDto) {
+    public ResponseEntity<Void> updateEntretienCourantPartiel(@PathVariable(name = "ongletId") Long ongletId, @PathVariable(name = "entretienCourantId") Long entretienCourantId, EntretienCourantDto entretienCourantDto) {
         batimentImmobilisationMobilierOngletService.updateEntretienCourantPartiel(ongletId, entretienCourantId, entretienCourantDto);
         return ResponseEntity.ok().build();
     }
     @PatchMapping(REST_MOBILIER_ELECTROMENAGER + REST_MOBILIER_ELECTROMENAGER_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> updateMobilierElectromenagerPartiel(@PathVariable(name = "id") Long ongletId, @PathVariable(name = "mobilierElectromenagerId") Long mobilierElectromenagerId, MobilierElectromenagerDto mobilierElectromenagerDto) {
+    public ResponseEntity<Void> updateMobilierElectromenagerPartiel(@PathVariable(name = "ongletId") Long ongletId, @PathVariable(name = "mobilierElectromenagerId") Long mobilierElectromenagerId, MobilierElectromenagerDto mobilierElectromenagerDto) {
         batimentImmobilisationMobilierOngletService.updateMobilierElectromenagerPartiel(ongletId, mobilierElectromenagerId, mobilierElectromenagerDto);
         return ResponseEntity.ok().build();
     }

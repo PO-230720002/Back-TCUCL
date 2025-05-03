@@ -17,96 +17,96 @@ public class AutreImmobilisationOngletManagerImpl implements AutreImmobilisation
     }
 
     @Override
-    public AutreImmobilisationOnglet getAutreImmobilisationOngletById(Long id) {
-        return autreImmobilisationOngletRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("AutreImmobilisationOnglet non trouvé avec l'Id: " + id));
+    public AutreImmobilisationOnglet getAutreImmobilisationOngletById(Long ongletId) {
+        return autreImmobilisationOngletRepository.findById(ongletId).orElseThrow(() -> new EntityNotFoundException("AutreImmobilisationOnglet non trouvé avec l'Id: " + ongletId));
     }
 
     @Override
-    public void updateAutreImmobilisationOngletPartiel(Long id, AutreImmobilisationOngletDto dto) {
-        AutreImmobilisationOnglet onglet = getAutreImmobilisationOngletById(id);
+    public void updateAutreImmobilisationOngletPartiel(Long ongletId, AutreImmobilisationOngletDto autreImmobilisationOngletDto) {
+        AutreImmobilisationOnglet autreImmobilisationOngletById = getAutreImmobilisationOngletById(ongletId);
 
-        if (dto.getNote() != null) {
-            onglet.setNote(dto.getNote());
+        if (autreImmobilisationOngletDto.getNote() != null) {
+            autreImmobilisationOngletById.setNote(autreImmobilisationOngletDto.getNote());
         }
-        if (dto.getEstTermine() != null) {
-            onglet.setEstTermine(dto.getEstTermine());
+        if (autreImmobilisationOngletDto.getEstTermine() != null) {
+            autreImmobilisationOngletById.setEstTermine(autreImmobilisationOngletDto.getEstTermine());
         }
 
         // Installation complète
-        if (dto.getInstallationComplete_IsEmissionGESConnues() != null)
-            onglet.setInstallationComplete_IsEmissionGESConnues(dto.getInstallationComplete_IsEmissionGESConnues());
-        if (dto.getInstallationComplete_EmissionDeGes() != null)
-            onglet.setInstallationComplete_EmissionDeGes(dto.getInstallationComplete_EmissionDeGes());
+        if (autreImmobilisationOngletDto.getInstallationComplete_IsEmissionGESConnues() != null)
+            autreImmobilisationOngletById.setInstallationComplete_IsEmissionGESConnues(autreImmobilisationOngletDto.getInstallationComplete_IsEmissionGESConnues());
+        if (autreImmobilisationOngletDto.getInstallationComplete_EmissionDeGes() != null)
+            autreImmobilisationOngletById.setInstallationComplete_EmissionDeGes(autreImmobilisationOngletDto.getInstallationComplete_EmissionDeGes());
 
         // Panneaux
-        if (dto.getPanneaux_PuissanceTotale() != null)
-            onglet.setPanneaux_PuissanceTotale(dto.getPanneaux_PuissanceTotale());
-        if (dto.getPanneaux_DureeDeVie() != null)
-            onglet.setPanneaux_DureeDeVie(dto.getPanneaux_DureeDeVie());
-        if (dto.getPanneaux_IsEmissionGESConnues() != null)
-            onglet.setPanneaux_IsEmissionGESConnues(dto.getPanneaux_IsEmissionGESConnues());
-        if (dto.getPanneaux_EmissionDeGes() != null)
-            onglet.setPanneaux_EmissionDeGes(dto.getPanneaux_EmissionDeGes());
+        if (autreImmobilisationOngletDto.getPanneaux_PuissanceTotale() != null)
+            autreImmobilisationOngletById.setPanneaux_PuissanceTotale(autreImmobilisationOngletDto.getPanneaux_PuissanceTotale());
+        if (autreImmobilisationOngletDto.getPanneaux_DureeDeVie() != null)
+            autreImmobilisationOngletById.setPanneaux_DureeDeVie(autreImmobilisationOngletDto.getPanneaux_DureeDeVie());
+        if (autreImmobilisationOngletDto.getPanneaux_IsEmissionGESConnues() != null)
+            autreImmobilisationOngletById.setPanneaux_IsEmissionGESConnues(autreImmobilisationOngletDto.getPanneaux_IsEmissionGESConnues());
+        if (autreImmobilisationOngletDto.getPanneaux_EmissionDeGes() != null)
+            autreImmobilisationOngletById.setPanneaux_EmissionDeGes(autreImmobilisationOngletDto.getPanneaux_EmissionDeGes());
 
         // Onduleur
-        if (dto.getOnduleur_PuissanceTotale() != null)
-            onglet.setOnduleur_PuissanceTotale(dto.getOnduleur_PuissanceTotale());
-        if (dto.getOnduleur_DureeDeVie() != null)
-            onglet.setOnduleur_DureeDeVie(dto.getOnduleur_DureeDeVie());
-        if (dto.getOnduleur_IsEmissionGESConnues() != null)
-            onglet.setOnduleur_IsEmissionGESConnues(dto.getOnduleur_IsEmissionGESConnues());
-        if (dto.getOnduleur_EmissionDeGes() != null)
-            onglet.setOnduleur_EmissionDeGes(dto.getOnduleur_EmissionDeGes());
+        if (autreImmobilisationOngletDto.getOnduleur_PuissanceTotale() != null)
+            autreImmobilisationOngletById.setOnduleur_PuissanceTotale(autreImmobilisationOngletDto.getOnduleur_PuissanceTotale());
+        if (autreImmobilisationOngletDto.getOnduleur_DureeDeVie() != null)
+            autreImmobilisationOngletById.setOnduleur_DureeDeVie(autreImmobilisationOngletDto.getOnduleur_DureeDeVie());
+        if (autreImmobilisationOngletDto.getOnduleur_IsEmissionGESConnues() != null)
+            autreImmobilisationOngletById.setOnduleur_IsEmissionGESConnues(autreImmobilisationOngletDto.getOnduleur_IsEmissionGESConnues());
+        if (autreImmobilisationOngletDto.getOnduleur_EmissionDeGes() != null)
+            autreImmobilisationOngletById.setOnduleur_EmissionDeGes(autreImmobilisationOngletDto.getOnduleur_EmissionDeGes());
 
         // Groupes électrogènes
-        if (dto.getGroupesElectrogenes_Nombre() != null)
-            onglet.setGroupesElectrogenes_Nombre(dto.getGroupesElectrogenes_Nombre());
-        if (dto.getGroupesElectrogenes_PoidsDuProduit() != null)
-            onglet.setGroupesElectrogenes_PoidsDuProduit(dto.getGroupesElectrogenes_PoidsDuProduit());
-        if (dto.getGroupesElectrogenes_DureeAmortissement() != null)
-            onglet.setGroupesElectrogenes_DureeAmortissement(dto.getGroupesElectrogenes_DureeAmortissement());
-        if (dto.getGroupesElectrogenes_IsEmissionConnue() != null)
-            onglet.setGroupesElectrogenes_IsEmissionConnue(dto.getGroupesElectrogenes_IsEmissionConnue());
-        if (dto.getGroupesElectrogenes_EmissionReelle() != null)
-            onglet.setGroupesElectrogenes_EmissionReelle(dto.getGroupesElectrogenes_EmissionReelle());
+        if (autreImmobilisationOngletDto.getGroupesElectrogenes_Nombre() != null)
+            autreImmobilisationOngletById.setGroupesElectrogenes_Nombre(autreImmobilisationOngletDto.getGroupesElectrogenes_Nombre());
+        if (autreImmobilisationOngletDto.getGroupesElectrogenes_PoidsDuProduit() != null)
+            autreImmobilisationOngletById.setGroupesElectrogenes_PoidsDuProduit(autreImmobilisationOngletDto.getGroupesElectrogenes_PoidsDuProduit());
+        if (autreImmobilisationOngletDto.getGroupesElectrogenes_DureeAmortissement() != null)
+            autreImmobilisationOngletById.setGroupesElectrogenes_DureeAmortissement(autreImmobilisationOngletDto.getGroupesElectrogenes_DureeAmortissement());
+        if (autreImmobilisationOngletDto.getGroupesElectrogenes_IsEmissionConnue() != null)
+            autreImmobilisationOngletById.setGroupesElectrogenes_IsEmissionConnue(autreImmobilisationOngletDto.getGroupesElectrogenes_IsEmissionConnue());
+        if (autreImmobilisationOngletDto.getGroupesElectrogenes_EmissionReelle() != null)
+            autreImmobilisationOngletById.setGroupesElectrogenes_EmissionReelle(autreImmobilisationOngletDto.getGroupesElectrogenes_EmissionReelle());
 
         // Moteur électrique
-        if (dto.getMoteurElectrique_Nombre() != null)
-            onglet.setMoteurElectrique_Nombre(dto.getMoteurElectrique_Nombre());
-        if (dto.getMoteurElectrique_PoidsDuProduit() != null)
-            onglet.setMoteurElectrique_PoidsDuProduit(dto.getMoteurElectrique_PoidsDuProduit());
-        if (dto.getMoteurElectrique_DureeAmortissement() != null)
-            onglet.setMoteurElectrique_DureeAmortissement(dto.getMoteurElectrique_DureeAmortissement());
-        if (dto.getMoteurElectrique_IsEmissionConnue() != null)
-            onglet.setMoteurElectrique_IsEmissionConnue(dto.getMoteurElectrique_IsEmissionConnue());
-        if (dto.getMoteurElectrique_EmissionReelle() != null)
-            onglet.setMoteurElectrique_EmissionReelle(dto.getMoteurElectrique_EmissionReelle());
+        if (autreImmobilisationOngletDto.getMoteurElectrique_Nombre() != null)
+            autreImmobilisationOngletById.setMoteurElectrique_Nombre(autreImmobilisationOngletDto.getMoteurElectrique_Nombre());
+        if (autreImmobilisationOngletDto.getMoteurElectrique_PoidsDuProduit() != null)
+            autreImmobilisationOngletById.setMoteurElectrique_PoidsDuProduit(autreImmobilisationOngletDto.getMoteurElectrique_PoidsDuProduit());
+        if (autreImmobilisationOngletDto.getMoteurElectrique_DureeAmortissement() != null)
+            autreImmobilisationOngletById.setMoteurElectrique_DureeAmortissement(autreImmobilisationOngletDto.getMoteurElectrique_DureeAmortissement());
+        if (autreImmobilisationOngletDto.getMoteurElectrique_IsEmissionConnue() != null)
+            autreImmobilisationOngletById.setMoteurElectrique_IsEmissionConnue(autreImmobilisationOngletDto.getMoteurElectrique_IsEmissionConnue());
+        if (autreImmobilisationOngletDto.getMoteurElectrique_EmissionReelle() != null)
+            autreImmobilisationOngletById.setMoteurElectrique_EmissionReelle(autreImmobilisationOngletDto.getMoteurElectrique_EmissionReelle());
 
         // Autres machines (Kg)
-        if (dto.getAutresMachinesKg_Nombre() != null)
-            onglet.setAutresMachinesKg_Nombre(dto.getAutresMachinesKg_Nombre());
-        if (dto.getAutresMachinesKg_PoidsDuProduit() != null)
-            onglet.setAutresMachinesKg_PoidsDuProduit(dto.getAutresMachinesKg_PoidsDuProduit());
-        if (dto.getAutresMachinesKg_DureeAmortissement() != null)
-            onglet.setAutresMachinesKg_DureeAmortissement(dto.getAutresMachinesKg_DureeAmortissement());
-        if (dto.getAutresMachinesKg_IsEmissionConnue() != null)
-            onglet.setAutresMachinesKg_IsEmissionConnue(dto.getAutresMachinesKg_IsEmissionConnue());
-        if (dto.getAutresMachinesKg_EmissionReelle() != null)
-            onglet.setAutresMachinesKg_EmissionReelle(dto.getAutresMachinesKg_EmissionReelle());
+        if (autreImmobilisationOngletDto.getAutresMachinesKg_Nombre() != null)
+            autreImmobilisationOngletById.setAutresMachinesKg_Nombre(autreImmobilisationOngletDto.getAutresMachinesKg_Nombre());
+        if (autreImmobilisationOngletDto.getAutresMachinesKg_PoidsDuProduit() != null)
+            autreImmobilisationOngletById.setAutresMachinesKg_PoidsDuProduit(autreImmobilisationOngletDto.getAutresMachinesKg_PoidsDuProduit());
+        if (autreImmobilisationOngletDto.getAutresMachinesKg_DureeAmortissement() != null)
+            autreImmobilisationOngletById.setAutresMachinesKg_DureeAmortissement(autreImmobilisationOngletDto.getAutresMachinesKg_DureeAmortissement());
+        if (autreImmobilisationOngletDto.getAutresMachinesKg_IsEmissionConnue() != null)
+            autreImmobilisationOngletById.setAutresMachinesKg_IsEmissionConnue(autreImmobilisationOngletDto.getAutresMachinesKg_IsEmissionConnue());
+        if (autreImmobilisationOngletDto.getAutresMachinesKg_EmissionReelle() != null)
+            autreImmobilisationOngletById.setAutresMachinesKg_EmissionReelle(autreImmobilisationOngletDto.getAutresMachinesKg_EmissionReelle());
 
         // Autres machines (Eur)
-        if (dto.getAutresMachinesEur_Nombre() != null)
-            onglet.setAutresMachinesEur_Nombre(dto.getAutresMachinesEur_Nombre());
-        if (dto.getAutresMachinesEur_PoidsDuProduit() != null)
-            onglet.setAutresMachinesEur_PoidsDuProduit(dto.getAutresMachinesEur_PoidsDuProduit());
-        if (dto.getAutresMachinesEur_DureeAmortissement() != null)
-            onglet.setAutresMachinesEur_DureeAmortissement(dto.getAutresMachinesEur_DureeAmortissement());
-        if (dto.getAutresMachinesEur_IsEmissionConnue() != null)
-            onglet.setAutresMachinesEur_IsEmissionConnue(dto.getAutresMachinesEur_IsEmissionConnue());
-        if (dto.getAutresMachinesEur_EmissionReelle() != null)
-            onglet.setAutresMachinesEur_EmissionReelle(dto.getAutresMachinesEur_EmissionReelle());
+        if (autreImmobilisationOngletDto.getAutresMachinesEur_Nombre() != null)
+            autreImmobilisationOngletById.setAutresMachinesEur_Nombre(autreImmobilisationOngletDto.getAutresMachinesEur_Nombre());
+        if (autreImmobilisationOngletDto.getAutresMachinesEur_PoidsDuProduit() != null)
+            autreImmobilisationOngletById.setAutresMachinesEur_PoidsDuProduit(autreImmobilisationOngletDto.getAutresMachinesEur_PoidsDuProduit());
+        if (autreImmobilisationOngletDto.getAutresMachinesEur_DureeAmortissement() != null)
+            autreImmobilisationOngletById.setAutresMachinesEur_DureeAmortissement(autreImmobilisationOngletDto.getAutresMachinesEur_DureeAmortissement());
+        if (autreImmobilisationOngletDto.getAutresMachinesEur_IsEmissionConnue() != null)
+            autreImmobilisationOngletById.setAutresMachinesEur_IsEmissionConnue(autreImmobilisationOngletDto.getAutresMachinesEur_IsEmissionConnue());
+        if (autreImmobilisationOngletDto.getAutresMachinesEur_EmissionReelle() != null)
+            autreImmobilisationOngletById.setAutresMachinesEur_EmissionReelle(autreImmobilisationOngletDto.getAutresMachinesEur_EmissionReelle());
 
-        autreImmobilisationOngletRepository.save(onglet);
+        autreImmobilisationOngletRepository.save(autreImmobilisationOngletById);
     }
 
 }

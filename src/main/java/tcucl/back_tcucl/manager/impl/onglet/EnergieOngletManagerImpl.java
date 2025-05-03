@@ -17,56 +17,56 @@ public class EnergieOngletManagerImpl implements EnergieOngletManager {
     }
 
     @Override
-    public EnergieOnglet getEnergieOngletById(Long id) {
-        return energieOngletRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("EnergieOnglet non trouvé avec l'Id: " + id));
+    public EnergieOnglet getEnergieOngletById(Long ongletId) {
+        return energieOngletRepository.findById(ongletId).orElseThrow(() -> new EntityNotFoundException("EnergieOnglet non trouvé avec l'Id: " + ongletId));
     }
 
     @Override
-    public void updateEnergieOngletPartiel(Long id, EnergieOngletDto dto) {
-        EnergieOnglet onglet = getEnergieOngletById(id);
+    public void updateEnergieOngletPartiel(Long ongletId, EnergieOngletDto energieOngletDto) {
+        EnergieOnglet onglet = getEnergieOngletById(ongletId);
 
-        if (dto.getEstTermine()){
-            onglet.setEstTermine(dto.getEstTermine());
+        if (energieOngletDto.getEstTermine()){
+            onglet.setEstTermine(energieOngletDto.getEstTermine());
         }
-        if (dto.getNote() != null) {
-            onglet.setNote(dto.getNote());
+        if (energieOngletDto.getNote() != null) {
+            onglet.setNote(energieOngletDto.getNote());
         }
 
-        if (dto.getConsoGaz() != null) {
-            onglet.setConsoGaz(dto.getConsoGaz());
+        if (energieOngletDto.getConsoGaz() != null) {
+            onglet.setConsoGaz(energieOngletDto.getConsoGaz());
         }
-        if (dto.getConsoFioul() != null) {
-            onglet.setConsoFioul(dto.getConsoFioul());
+        if (energieOngletDto.getConsoFioul() != null) {
+            onglet.setConsoFioul(energieOngletDto.getConsoFioul());
         }
-        if (dto.getConsoBois() != null) {
-            onglet.setConsoBois(dto.getConsoBois());
+        if (energieOngletDto.getConsoBois() != null) {
+            onglet.setConsoBois(energieOngletDto.getConsoBois());
         }
-        if (dto.getConsoReseauVille() != null) {
-            onglet.setConsoReseauVille(dto.getConsoReseauVille());
+        if (energieOngletDto.getConsoReseauVille() != null) {
+            onglet.setConsoReseauVille(energieOngletDto.getConsoReseauVille());
         }
-        if (dto.getConsoElecChauffage() != null) {
-            onglet.setConsoElecChauffage(dto.getConsoElecChauffage());
+        if (energieOngletDto.getConsoElecChauffage() != null) {
+            onglet.setConsoElecChauffage(energieOngletDto.getConsoElecChauffage());
         }
-        if (dto.getConsoElecSpecifique() != null) {
-            onglet.setConsoElecSpecifique(dto.getConsoElecSpecifique());
+        if (energieOngletDto.getConsoElecSpecifique() != null) {
+            onglet.setConsoElecSpecifique(energieOngletDto.getConsoElecSpecifique());
         }
-        if (dto.getConsoEau() != null) {
-            onglet.setConsoEau(dto.getConsoEau());
+        if (energieOngletDto.getConsoEau() != null) {
+            onglet.setConsoEau(energieOngletDto.getConsoEau());
         }
-        if (dto.getNote() != null) {
-            onglet.setNote(dto.getNote());
+        if (energieOngletDto.getNote() != null) {
+            onglet.setNote(energieOngletDto.getNote());
         }
-        if (dto.getNomReseauVille() != null) {
-            onglet.setNomReseauVille(dto.getNomReseauVille());
+        if (energieOngletDto.getNomReseauVille() != null) {
+            onglet.setNomReseauVille(energieOngletDto.getNomReseauVille());
         }
-        if (dto.getUniteBois() != null) {
-            onglet.setUniteBois(dto.getUniteBois());
+        if (energieOngletDto.getUniteBois() != null) {
+            onglet.setUniteBois(energieOngletDto.getUniteBois());
         }
-        if (dto.getUniteFioul() != null) {
-            onglet.setUniteFioul(dto.getUniteFioul());
+        if (energieOngletDto.getUniteFioul() != null) {
+            onglet.setUniteFioul(energieOngletDto.getUniteFioul());
         }
-        if (dto.getUniteGaz() != null) {
-            onglet.setUniteGaz(dto.getUniteGaz());
+        if (energieOngletDto.getUniteGaz() != null) {
+            onglet.setUniteGaz(energieOngletDto.getUniteGaz());
         }
         energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
     }

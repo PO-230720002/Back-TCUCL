@@ -19,29 +19,29 @@ public class DechetOngletManagerImpl implements DechetOngletManager {
     }
 
     @Override
-    public DechetOnglet getDechetOngletById(Long id) {
-        return dechetOngletRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("DechetOnglet non trouvé avec l'Id: " + id));
+    public DechetOnglet getDechetOngletById(Long ongletId) {
+        return dechetOngletRepository.findById(ongletId).orElseThrow(() -> new EntityNotFoundException("DechetOnglet non trouvé avec l'Id: " + ongletId));
     }
 
     @Override
-    public void updateDechetOngletPartiel(Long id, DechetOngletDto dto) {
-        DechetOnglet onglet = getDechetOngletById(id);
+    public void updateDechetOngletPartiel(Long ongletId, DechetOngletDto dechetOngletDto) {
+        DechetOnglet onglet = getDechetOngletById(ongletId);
 
-        if (dto.getEstTermine() != null) {
-            onglet.setEstTermine(dto.getEstTermine());
+        if (dechetOngletDto.getEstTermine() != null) {
+            onglet.setEstTermine(dechetOngletDto.getEstTermine());
         }
-        if (dto.getNote() != null) {
-            onglet.setNote(dto.getNote());
+        if (dechetOngletDto.getNote() != null) {
+            onglet.setNote(dechetOngletDto.getNote());
         }
 
         // Ordures ménagères
-        if (dto.getOrdures_menageres() != null) {
+        if (dechetOngletDto.getOrdures_menageres() != null) {
             Dechet ordures = onglet.getOrdures_menageres();
             if (ordures == null) {
                 ordures = new Dechet();
                 onglet.setOrdures_menageres(ordures);
             }
-            DechetDto orduresDto = dto.getOrdures_menageres();
+            DechetDto orduresDto = dechetOngletDto.getOrdures_menageres();
             if (orduresDto.getTraitement() != null)
                 ordures.setTraitement(orduresDto.getTraitement());
             if (orduresDto.getQuantiteTonne() != null)
@@ -49,13 +49,13 @@ public class DechetOngletManagerImpl implements DechetOngletManager {
         }
 
         // Cartons
-        if (dto.getCartons() != null) {
+        if (dechetOngletDto.getCartons() != null) {
             Dechet cartons = onglet.getCartons();
             if (cartons == null) {
                 cartons = new Dechet();
                 onglet.setCartons(cartons);
             }
-            DechetDto cartonsDto = dto.getCartons();
+            DechetDto cartonsDto = dechetOngletDto.getCartons();
             if (cartonsDto.getTraitement() != null)
                 cartons.setTraitement(cartonsDto.getTraitement());
             if (cartonsDto.getQuantiteTonne() != null)
@@ -63,13 +63,13 @@ public class DechetOngletManagerImpl implements DechetOngletManager {
         }
 
         // Verre
-        if (dto.getVerre() != null) {
+        if (dechetOngletDto.getVerre() != null) {
             Dechet verre = onglet.getVerre();
             if (verre == null) {
                 verre = new Dechet();
                 onglet.setVerre(verre);
             }
-            DechetDto verreDto = dto.getVerre();
+            DechetDto verreDto = dechetOngletDto.getVerre();
             if (verreDto.getTraitement() != null)
                 verre.setTraitement(verreDto.getTraitement());
             if (verreDto.getQuantiteTonne() != null)
@@ -77,13 +77,13 @@ public class DechetOngletManagerImpl implements DechetOngletManager {
         }
 
         // Métaux
-        if (dto.getMetaux() != null) {
+        if (dechetOngletDto.getMetaux() != null) {
             Dechet metaux = onglet.getMetaux();
             if (metaux == null) {
                 metaux = new Dechet();
                 onglet.setMetaux(metaux);
             }
-            DechetDto metauxDto = dto.getMetaux();
+            DechetDto metauxDto = dechetOngletDto.getMetaux();
             if (metauxDto.getTraitement() != null)
                 metaux.setTraitement(metauxDto.getTraitement());
             if (metauxDto.getQuantiteTonne() != null)
@@ -91,13 +91,13 @@ public class DechetOngletManagerImpl implements DechetOngletManager {
         }
 
         // Textile
-        if (dto.getTextile() != null) {
+        if (dechetOngletDto.getTextile() != null) {
             Dechet textile = onglet.getTextile();
             if (textile == null) {
                 textile = new Dechet();
                 onglet.setTextile(textile);
             }
-            DechetDto textileDto = dto.getTextile();
+            DechetDto textileDto = dechetOngletDto.getTextile();
             if (textileDto.getTraitement() != null)
                 textile.setTraitement(textileDto.getTraitement());
             if (textileDto.getQuantiteTonne() != null)

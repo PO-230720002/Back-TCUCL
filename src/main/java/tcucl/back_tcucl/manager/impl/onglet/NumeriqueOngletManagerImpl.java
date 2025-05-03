@@ -19,9 +19,9 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
     }
 
     @Override
-    public NumeriqueOnglet getNumeriqueOngletById(Long id) {
-        return numeriqueOngletRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("NumeriqueOnglet non trouvé avec l'Id : " + id));
+    public NumeriqueOnglet getNumeriqueOngletById(Long ongletId) {
+        return numeriqueOngletRepository.findById(ongletId).orElseThrow(
+                () -> new EntityNotFoundException("NumeriqueOnglet non trouvé avec l'Id : " + ongletId));
     }
 
     @Override
@@ -34,22 +34,22 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
     }
 
     @Override
-    public void updateNumeriqueOngletPartiel(Long id, NumeriqueOngletDto dto) {
-        NumeriqueOnglet numeriqueOnglet = getNumeriqueOngletById(id);
+    public void updateNumeriqueOngletPartiel(Long ongletId, NumeriqueOngletDto numeriqueOngletDto) {
+        NumeriqueOnglet numeriqueOnglet = getNumeriqueOngletById(ongletId);
 
-        if (dto.getEstTermine() != null) numeriqueOnglet.setEstTermine(dto.getEstTermine());
-        if (dto.getNote() != null) numeriqueOnglet.setNote(dto.getNote());
+        if (numeriqueOngletDto.getEstTermine() != null) numeriqueOnglet.setEstTermine(numeriqueOngletDto.getEstTermine());
+        if (numeriqueOngletDto.getNote() != null) numeriqueOnglet.setNote(numeriqueOngletDto.getNote());
 
-        if (dto.getUseMethodSimplifiee() != null) numeriqueOnglet.setUseMethodSimplifiee(dto.getUseMethodSimplifiee());
-        if (dto.getTraficCloudUtilisateur() != null) numeriqueOnglet.setTraficCloudUtilisateur(dto.getTraficCloudUtilisateur());
-        if (dto.getTraficTipUtilisateur() != null) numeriqueOnglet.setTraficTipUtilisateur(dto.getTraficTipUtilisateur());
-        if (dto.getPartTraficFranceEtranger() != null) numeriqueOnglet.setPartTraficFranceEtranger(dto.getPartTraficFranceEtranger());
+        if (numeriqueOngletDto.getUseMethodSimplifiee() != null) numeriqueOnglet.setUseMethodSimplifiee(numeriqueOngletDto.getUseMethodSimplifiee());
+        if (numeriqueOngletDto.getTraficCloudUtilisateur() != null) numeriqueOnglet.setTraficCloudUtilisateur(numeriqueOngletDto.getTraficCloudUtilisateur());
+        if (numeriqueOngletDto.getTraficTipUtilisateur() != null) numeriqueOnglet.setTraficTipUtilisateur(numeriqueOngletDto.getTraficTipUtilisateur());
+        if (numeriqueOngletDto.getPartTraficFranceEtranger() != null) numeriqueOnglet.setPartTraficFranceEtranger(numeriqueOngletDto.getPartTraficFranceEtranger());
 
 
-        if (dto.getEquipementNumeriqueList() != null) {
+        if (numeriqueOngletDto.getEquipementNumeriqueList() != null) {
             // On supprime les equipementNumeriques existants et on les remplace par les nouveaux
             numeriqueOnglet.getEquipementNumeriqueList().clear();
-            for (EquipementNumeriqueDto equipementNumeriqueDto : dto.getEquipementNumeriqueList()) {
+            for (EquipementNumeriqueDto equipementNumeriqueDto : numeriqueOngletDto.getEquipementNumeriqueList()) {
                 numeriqueOnglet.ajouterEquipementNumeriqueViaDto(equipementNumeriqueDto);
             }
         }
@@ -57,13 +57,13 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
     }
 
     @Override
-    public void ajouterEquipementNumerique(Long id, EquipementNumeriqueDto equipementNumeriqueDto) {
-        NumeriqueOnglet numeriqueOnglet = getNumeriqueOngletById(id);
+    public void ajouterEquipementNumerique(Long ongletId, EquipementNumeriqueDto equipementNumeriqueDto) {
+        NumeriqueOnglet numeriqueOnglet = getNumeriqueOngletById(ongletId);
         if (equipementNumeriqueDto != null) {
             numeriqueOnglet.ajouterEquipementNumeriqueViaDto(equipementNumeriqueDto);
             numeriqueOngletRepository.save(numeriqueOnglet);
         } else {
-            throw new EntityNotFoundException("NumeriqueOnglet non trouvé avec l'Id: " + id);
+            throw new EntityNotFoundException("NumeriqueOnglet non trouvé avec l'Id: " + ongletId);
         }
     }
 

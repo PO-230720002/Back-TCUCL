@@ -17,20 +17,20 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
         this.batimentImmobilisationMobilierOngletManager = batimentImmobilisationMobilierOngletManager;
     }
     @Override
-    public BatimentImmobilisationMobilierOnglet getBatimentImmobilisationMobilierOngletById(Long id) {
-        return batimentImmobilisationMobilierOngletManager.getBatimentImmobilisationMobilierOngletById(id);
+    public BatimentImmobilisationMobilierOnglet getBatimentImmobilisationMobilierOngletById(Long ongletId) {
+        return batimentImmobilisationMobilierOngletManager.getBatimentImmobilisationMobilierOngletById(ongletId);
 
     }
 
     @Override
-    public void updateBatimentImmobilisationMobilierOnglet(Long id, BatimentImmobilisationMobilierOngletDto batimentImmobilisationMobilierOngletDto) {
-        batimentImmobilisationMobilierOngletManager.updateBatimentImmobilisationMobilierOnglet(id, batimentImmobilisationMobilierOngletDto);
+    public void updateBatimentImmobilisationMobilierOnglet(Long ongletId, BatimentImmobilisationMobilierOngletDto batimentImmobilisationMobilierOngletDto) {
+        batimentImmobilisationMobilierOngletManager.updateBatimentImmobilisationMobilierOnglet(ongletId, batimentImmobilisationMobilierOngletDto);
 
     }
 
     @Override
-    public void ajouterBatiment(Long id, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
-        batimentImmobilisationMobilierOngletManager.ajouterBatiment(id, batimentExistantOuNeufConstruitDto);
+    public void ajouterBatiment(Long ongletId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
+        batimentImmobilisationMobilierOngletManager.ajouterBatiment(ongletId, batimentExistantOuNeufConstruitDto);
     }
 
     @Override
@@ -45,8 +45,8 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
     }
 
     @Override
-    public void ajouterEntretienCourant(Long id, EntretienCourantDto entretienCourantDto) {
-        batimentImmobilisationMobilierOngletManager.ajouterEntretienCourant(id, entretienCourantDto);
+    public void ajouterEntretienCourant(Long ongletId, EntretienCourantDto entretienCourantDto) {
+        batimentImmobilisationMobilierOngletManager.ajouterEntretienCourant(ongletId, entretienCourantDto);
 
     }
 
@@ -63,8 +63,8 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
     }
 
     @Override
-    public void ajouterMobilierElectromenager(Long id, MobilierElectromenagerDto mobilierElectromenagerDto) {
-        batimentImmobilisationMobilierOngletManager.ajouterMobilierElectromenager(id, mobilierElectromenagerDto);
+    public void ajouterMobilierElectromenager(Long ongletId, MobilierElectromenagerDto mobilierElectromenagerDto) {
+        batimentImmobilisationMobilierOngletManager.ajouterMobilierElectromenager(ongletId, mobilierElectromenagerDto);
 
     }
 

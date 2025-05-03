@@ -8,10 +8,10 @@ import tcucl.back_tcucl.entity.onglet.achat.AchatOnglet;
 import tcucl.back_tcucl.service.AchatOngletService;
 
 import static tcucl.back_tcucl.controller.ControllerConstante.REST_ACHAT_ONGLET;
-import static tcucl.back_tcucl.controller.ControllerConstante.REST_ID;
+import static tcucl.back_tcucl.controller.ControllerConstante.REST_ONGLET_ID;
 
 @RestController
-@RequestMapping(REST_ACHAT_ONGLET + REST_ID)
+@RequestMapping(REST_ACHAT_ONGLET + REST_ONGLET_ID)
 public class AchatController {
 
     private final AchatOngletService achatOngletService;
@@ -22,17 +22,17 @@ public class AchatController {
 
     @GetMapping()
     @checkRoleOnglet
-    public ResponseEntity<?> getAchatOngletById(@PathVariable(value = "id") Long id) {
-        AchatOnglet achatOngletById = achatOngletService.getAchatOngletById(id);
-        AchatOngletDto body = new AchatOngletDto(achatOngletById);
-        return ResponseEntity.ok(body);
+    public ResponseEntity<?> getAchatOngletById(@PathVariable(value = "ongletId") Long ongletId) {
+        AchatOnglet achatOngletById = achatOngletService.getAchatOngletById(ongletId);
+        AchatOngletDto achatOngletDto = new AchatOngletDto(achatOngletById);
+        return ResponseEntity.ok(achatOngletDto);
     }
 
     @PatchMapping()
     @checkRoleOnglet
-    public ResponseEntity<Void> updateAchatOngletPartiel(@PathVariable(value = "id") Long id,
-                                                           @RequestBody AchatOngletDto dto) {
-        achatOngletService.updateAchatOngletPartiel(id, dto);
+    public ResponseEntity<Void> updateAchatOngletPartiel(@PathVariable(value = "ongletId") Long ongletId,
+                                                           @RequestBody AchatOngletDto achatOngletDto) {
+        achatOngletService.updateAchatOngletPartiel(ongletId, achatOngletDto);
         return ResponseEntity.ok().build();
     }
 }

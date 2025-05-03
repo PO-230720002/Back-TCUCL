@@ -5,7 +5,7 @@ import tcucl.back_tcucl.entity.onglet.energie.EnergieOnglet;
 
 public interface EnergieOngletService {
 
-    public EnergieOnglet getEnergieOngletById(Long id);
+    public EnergieOnglet getEnergieOngletById(Long ongletId);
 
-    public void updateEnergieOngletPartiel(Long id, EnergieOngletDto dto);
+    public void updateEnergieOngletPartiel(Long ongletId, EnergieOngletDto dto);
 }

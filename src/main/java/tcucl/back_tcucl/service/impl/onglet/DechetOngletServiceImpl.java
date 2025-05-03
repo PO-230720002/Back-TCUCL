@@ -1,4 +1,4 @@
-package tcucl.back_tcucl.service.impl;
+package tcucl.back_tcucl.service.impl.onglet;
 
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.dechet.DechetOngletDto;
@@ -16,12 +16,12 @@ public class DechetOngletServiceImpl implements DechetOngletService {
     }
 
     @Override
-    public DechetOnglet getDechetOngletById(Long id) {
-        return dechetOngletManager.getDechetOngletById(id);
+    public DechetOnglet getDechetOngletById(Long ongletId) {
+        return dechetOngletManager.getDechetOngletById(ongletId);
     }
 
     @Override
-    public void updateDechetOngletPartiel(Long id, DechetOngletDto dto) {
-        dechetOngletManager.updateDechetOngletPartiel(id, dto);
+    public void updateDechetOngletPartiel(Long ongletId, DechetOngletDto dechetOngletDto) {
+        dechetOngletManager.updateDechetOngletPartiel(ongletId, dechetOngletDto);
     }
 }

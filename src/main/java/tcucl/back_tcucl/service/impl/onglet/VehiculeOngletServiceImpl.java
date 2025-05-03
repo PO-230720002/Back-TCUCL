@@ -28,13 +28,13 @@ public class VehiculeOngletServiceImpl implements VehiculeOngletService {
     }
 
     @Override
-    public void updateVehiculeOngletPartiel(Long id, VehiculeOngletDto dto) {
-        vehiculeOngletManager.updateVehiculeOngletPartiel(id, dto);
+    public void updateVehiculeOngletPartiel(Long ongletId, VehiculeOngletDto vehiculeOngletDto) {
+        vehiculeOngletManager.updateVehiculeOngletPartiel(ongletId, vehiculeOngletDto);
     }
 
     @Override
-    public void ajouterVoyage(Long id, VehiculeDto vehiculeDto) {
-        vehiculeOngletManager.ajouterVoyage(id, vehiculeDto);
+    public void ajouterVoyage(Long ongletId, VehiculeDto vehiculeDto) {
+        vehiculeOngletManager.ajouterVoyage(ongletId, vehiculeDto);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class VehiculeOngletServiceImpl implements VehiculeOngletService {
     }
 
     @Override
-    public void updateVoyagePartiel(Long ongletId, Long voyageId, VehiculeDto dto) {
-        vehiculeOngletManager.updateVoyagePartiel(ongletId, voyageId, dto);
+    public void updateVoyagePartiel(Long ongletId, Long voyageId, VehiculeDto vehiculeDto) {
+        vehiculeOngletManager.updateVoyagePartiel(ongletId, voyageId, vehiculeDto);
     }
 }

@@ -17,28 +17,28 @@ public class GeneralOngletManagerImpl implements GeneralOngletManager {
     }
 
     @Override
-    public GeneralOnglet getGeneralOngletById(Long id) {
-        return generalOngletRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("GeneralOnglet non trouvé avec l'Id: " + id));
+    public GeneralOnglet getGeneralOngletById(Long ongletId) {
+        return generalOngletRepository.findById(ongletId).orElseThrow(() -> new EntityNotFoundException("GeneralOnglet non trouvé avec l'Id: " + ongletId));
     }
 
     @Override
-    public void updateGeneralOngletPartiel(Long id, GeneralOngletDto dto) {
-        GeneralOnglet onglet = getGeneralOngletById(id);
+    public void updateGeneralOngletPartiel(Long ongletId, GeneralOngletDto generalOngletDto) {
+        GeneralOnglet onglet = getGeneralOngletById(ongletId);
 
-        if (dto.getNote() != null) {
-            onglet.setNote(dto.getNote());
+        if (generalOngletDto.getNote() != null) {
+            onglet.setNote(generalOngletDto.getNote());
         }
 
-        if (dto.getEstTermine() != null) {
-            onglet.setEstTermine(dto.getEstTermine());
+        if (generalOngletDto.getEstTermine() != null) {
+            onglet.setEstTermine(generalOngletDto.getEstTermine());
         }
 
-        if (dto.getNbSalarie() != null) {
-            onglet.setNbSalarie(dto.getNbSalarie());
+        if (generalOngletDto.getNbSalarie() != null) {
+            onglet.setNbSalarie(generalOngletDto.getNbSalarie());
         }
 
-        if (dto.getNbEtudiant() != null) {
-            onglet.setNbEtudiant(dto.getNbEtudiant());
+        if (generalOngletDto.getNbEtudiant() != null) {
+            onglet.setNbEtudiant(generalOngletDto.getNbEtudiant());
         }
 
         generalOngletRepository.save(onglet);

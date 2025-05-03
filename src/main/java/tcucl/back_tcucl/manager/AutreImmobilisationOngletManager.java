@@ -4,7 +4,7 @@ import tcucl.back_tcucl.dto.onglet.autreImmobilisation.AutreImmobilisationOnglet
 import tcucl.back_tcucl.entity.onglet.AutreImmobilisationOnglet;
 
 public interface AutreImmobilisationOngletManager {
-    AutreImmobilisationOnglet getAutreImmobilisationOngletById(Long id);
+    AutreImmobilisationOnglet getAutreImmobilisationOngletById(Long ongletId);
 
-    void updateAutreImmobilisationOngletPartiel(Long id, AutreImmobilisationOngletDto dto);
+    void updateAutreImmobilisationOngletPartiel(Long ongletId, AutreImmobilisationOngletDto autreImmobilisationOngletDto);
 }

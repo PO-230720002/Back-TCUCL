@@ -10,7 +10,7 @@ import tcucl.back_tcucl.service.MobiliteDomicileTravailOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_MOBILITE_DOMICILE_TRAVAIL_ONGLET + REST_ID)
+@RequestMapping(REST_MOBILITE_DOMICILE_TRAVAIL_ONGLET + REST_ONGLET_ID)
 public class MobiliteDomicileTravailOngletController {
 
     private final MobiliteDomicileTravailOngletService mobiliteDomicileTravailOngletService;
@@ -21,17 +21,17 @@ public class MobiliteDomicileTravailOngletController {
 
     @GetMapping()
     @checkRoleOnglet
-    public ResponseEntity<?> getMobiliteDomicileTravailOngletById(@PathVariable(value = "id") Long id) {
-        MobiliteDomicileTravailOnglet mobiliteDomicileTravailOngletById = mobiliteDomicileTravailOngletService.getMobiliteDomicileTravailOngletById(id);
-        MobiliteDomicileTravailOngletDto body = new MobiliteDomicileTravailOngletDto(mobiliteDomicileTravailOngletById);
-        return ResponseEntity.ok(body);
+    public ResponseEntity<?> getMobiliteDomicileTravailOngletById(@PathVariable(value = "ongletId") Long ongletId) {
+        MobiliteDomicileTravailOnglet mobiliteDomicileTravailOngletById = mobiliteDomicileTravailOngletService.getMobiliteDomicileTravailOngletById(ongletId);
+        MobiliteDomicileTravailOngletDto mobiliteDomicileTravailOngletDto = new MobiliteDomicileTravailOngletDto(mobiliteDomicileTravailOngletById);
+        return ResponseEntity.ok(mobiliteDomicileTravailOngletDto);
     }
 
     @PatchMapping()
     @checkRoleOnglet
-    public ResponseEntity<Void> updateMobiliteDomicileTravailOngletPartiel(@PathVariable(value = "id") Long id,
-                                                                           @RequestBody MobiliteDomicileTravailOngletDto dto) {
-        mobiliteDomicileTravailOngletService.updateMobiliteDomicileTravailOngletPartiel(id, dto);
+    public ResponseEntity<Void> updateMobiliteDomicileTravailOngletPartiel(@PathVariable(value = "ongletId") Long ongletId,
+                                                                           @RequestBody MobiliteDomicileTravailOngletDto mobiliteDomicileTravailOngletDto) {
+        mobiliteDomicileTravailOngletService.updateMobiliteDomicileTravailOngletPartiel(ongletId, mobiliteDomicileTravailOngletDto);
         return ResponseEntity.ok().build();
     }
 

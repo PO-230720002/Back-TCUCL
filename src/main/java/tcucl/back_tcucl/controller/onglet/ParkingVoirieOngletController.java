@@ -11,7 +11,7 @@ import tcucl.back_tcucl.service.ParkingVoirieOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_PARKING_VOIRIE_ONGLET + REST_ID)
+@RequestMapping(REST_PARKING_VOIRIE_ONGLET + REST_ONGLET_ID)
 public class ParkingVoirieOngletController {
 
     private final ParkingVoirieOngletService parkingVoirieOngletService;
@@ -23,31 +23,31 @@ public class ParkingVoirieOngletController {
 
     @GetMapping
     @checkRoleOnglet
-    public ResponseEntity<?> getById(@PathVariable(name = "id") Long id) {
-        ParkingVoirieOnglet parkingVoirieOngletById = parkingVoirieOngletService.getParkingVoirieOngletById(id);
+    public ResponseEntity<?> getById(@PathVariable(name = "ongletId") Long ongletId) {
+        ParkingVoirieOnglet parkingVoirieOngletById = parkingVoirieOngletService.getParkingVoirieOngletById(ongletId);
         ParkingVoirieOngletDto parkingVoirieOngletDto = new ParkingVoirieOngletDto(parkingVoirieOngletById);
         return ResponseEntity.ok(parkingVoirieOngletDto);
     }
 
     @PatchMapping
     @checkRoleOnglet
-    public ResponseEntity<Void> updatePartiel(@PathVariable(name = "id") Long id,
+    public ResponseEntity<Void> updatePartiel(@PathVariable(name = "ongletId") Long ongletId,
                                               @RequestBody ParkingVoirieOngletDto parkingVoirieOngletDto) {
-        parkingVoirieOngletService.updateParkingVoirieOngletPartiel(id, parkingVoirieOngletDto);
+        parkingVoirieOngletService.updateParkingVoirieOngletPartiel(ongletId, parkingVoirieOngletDto);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping(REST_PARKING_VOIRIE)
     @checkRoleOnglet
-    public ResponseEntity<Void> ajouterVoyage(@PathVariable(name = "id") Long id,
+    public ResponseEntity<Void> ajouterVoyage(@PathVariable(name = "ongletId") Long ongletId,
                                               @RequestBody ParkingVoirieDto voyageVersUneDestinationMobInternationaleDto) {
-        parkingVoirieOngletService.ajouterVoyage(id, voyageVersUneDestinationMobInternationaleDto);
+        parkingVoirieOngletService.ajouterVoyage(ongletId, voyageVersUneDestinationMobInternationaleDto);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(REST_PARKING_VOIRIE + REST_PARKING_VOIRIE_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> supprimerVoyage(@PathVariable(name = "id") Long ongletId,
+    public ResponseEntity<Void> supprimerVoyage(@PathVariable(name = "ongletId") Long ongletId,
                                                 @PathVariable(name = "parkingVoirieId") Long parkingVoirieId) {
         parkingVoirieOngletService.supprimerVoyage(ongletId, parkingVoirieId);
         return ResponseEntity.ok().build();
@@ -55,10 +55,10 @@ public class ParkingVoirieOngletController {
 
     @PatchMapping(REST_PARKING_VOIRIE + REST_PARKING_VOIRIE_ID)
     @checkRoleOnglet
-    public ResponseEntity<Void> updateVoyagePartiel(@PathVariable(name = "id") Long ongletId,
+    public ResponseEntity<Void> updateVoyagePartiel(@PathVariable(name = "ongletId") Long ongletId,
                                                     @PathVariable(name = "parkingVoirieId") Long parkingVoirieId,
-                                                    @RequestBody ParkingVoirieDto dto) {
-        parkingVoirieOngletService.updateVoyagePartiel(ongletId, parkingVoirieId, dto);
+                                                    @RequestBody ParkingVoirieDto parkingVoirieDto) {
+        parkingVoirieOngletService.updateVoyagePartiel(ongletId, parkingVoirieId, parkingVoirieDto);
         return ResponseEntity.ok().build();
     }
 }

@@ -10,7 +10,7 @@ import tcucl.back_tcucl.service.EnergieOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_ENERGIE_ONGLET + REST_ID)
+@RequestMapping(REST_ENERGIE_ONGLET + REST_ONGLET_ID)
 public class EnergieOngletController {
 
     private final EnergieOngletService energieOngletService;
@@ -21,17 +21,17 @@ public class EnergieOngletController {
 
     @GetMapping()
     @checkRoleOnglet
-    public ResponseEntity<?> getEnergieOngletById(@PathVariable(value = "id") Long id) {
-        EnergieOnglet energieOngletById = energieOngletService.getEnergieOngletById(id);
-        EnergieOngletDto body = new EnergieOngletDto(energieOngletById);
-        return ResponseEntity.ok(body);
+    public ResponseEntity<?> getEnergieOngletById(@PathVariable(value = "ongletId") Long ongletId) {
+        EnergieOnglet energieOngletById = energieOngletService.getEnergieOngletById(ongletId);
+        EnergieOngletDto energieOngletDto = new EnergieOngletDto(energieOngletById);
+        return ResponseEntity.ok(energieOngletDto);
     }
 
     @PatchMapping()
     @checkRoleOnglet
-    public ResponseEntity<Void> updateEnergieOngletPartiel(@PathVariable(value = "id") Long id,
-                                                           @RequestBody EnergieOngletDto dto) {
-        energieOngletService.updateEnergieOngletPartiel(id, dto);
+    public ResponseEntity<Void> updateEnergieOngletPartiel(@PathVariable(value = "ongletId") Long ongletId,
+                                                           @RequestBody EnergieOngletDto energieOngletDto) {
+        energieOngletService.updateEnergieOngletPartiel(ongletId, energieOngletDto);
         return ResponseEntity.ok().build();
     }
 

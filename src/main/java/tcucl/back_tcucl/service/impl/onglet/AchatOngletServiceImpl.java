@@ -16,12 +16,12 @@ public class AchatOngletServiceImpl implements AchatOngletService {
     }
 
     @Override
-    public AchatOnglet getAchatOngletById(Long id) {
-        return achatOngletManager.getAchatOngletById(id);
+    public AchatOnglet getAchatOngletById(Long ongletId) {
+        return achatOngletManager.getAchatOngletById(ongletId);
     }
 
     @Override
-    public void updateAchatOngletPartiel(Long id, AchatOngletDto dto) {
-        achatOngletManager.updateAchatOngletPartiel(id, dto);
+    public void updateAchatOngletPartiel(Long ongletId, AchatOngletDto achatOngletDto) {
+        achatOngletManager.updateAchatOngletPartiel(ongletId, achatOngletDto);
     }
 }

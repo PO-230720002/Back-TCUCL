@@ -19,9 +19,9 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
     }
 
     @Override
-    public EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long id) {
-        return emissionFugitiveOngletRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("EmissionFugitiveOnglet non trouvé avec l'Id : " + id));
+    public EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long ongletId) {
+        return emissionFugitiveOngletRepository.findById(ongletId)
+                .orElseThrow(() -> new EntityNotFoundException("EmissionFugitiveOnglet non trouvé avec l'Id : " + ongletId));
     }
 
     @Override
@@ -34,8 +34,8 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
     }
 
     @Override
-    public void updateEmissionFugitiveOnglet(Long id, EmissionFugitiveOngletDto emissionFugitiveOngletDto) {
-        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(id);
+    public void updateEmissionFugitiveOnglet(Long ongletId, EmissionFugitiveOngletDto emissionFugitiveOngletDto) {
+        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
 
         if (emissionFugitiveOngletDto.getEstTermine() != null) {
             emissionFugitiveOnglet.setEstTermine(emissionFugitiveOngletDto.getEstTermine());
@@ -56,13 +56,13 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
     }
 
     @Override
-    public void ajouterMachine(Long id, MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
-        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(id);
+    public void ajouterMachine(Long ongletId, MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
+        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
         if (emissionFugitiveOnglet != null) {
             emissionFugitiveOnglet.ajouterMachineViaDto(machineEmissionFugitiveDto);
             emissionFugitiveOngletRepository.save(emissionFugitiveOnglet);
         } else {
-            throw new EntityNotFoundException("EmissionFugitiveOnglet non trouvé avec l'Id: " + id);
+            throw new EntityNotFoundException("EmissionFugitiveOnglet non trouvé avec l'Id: " + ongletId);
         }
     }
 

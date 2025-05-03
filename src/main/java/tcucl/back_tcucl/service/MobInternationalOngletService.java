@@ -6,11 +6,11 @@ import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
 
 public interface MobInternationalOngletService {
 
-    MobInternationalOnglet getMobInternationalOngletById(Long id);
+    MobInternationalOnglet getMobInternationalOngletById(Long ongletId);
 
-    void updateMobInternationalOngletPartiel(Long id, MobInternationalOngletDto mobInternationalOngletDto);
+    void updateMobInternationalOngletPartiel(Long ongletId, MobInternationalOngletDto mobInternationalOngletDto);
 
-    void ajouterVoyage(Long id, VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto);
+    void ajouterVoyage(Long ongletId, VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto);
 
     void supprimerVoyage(Long ongletId, Long voyageId);
 

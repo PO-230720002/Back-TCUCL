@@ -20,10 +20,10 @@ public class EntiteManagerImpl implements EntiteManager {
     }
 
     @Override
-    public Entite getEntitebyId(Long id) {
-        Optional<Entite> entite = entiteRepository.findById(id);
+    public Entite getEntitebyId(Long entiteId) {
+        Optional<Entite> entite = entiteRepository.findById(entiteId);
         if (entite.isEmpty()) {
-            throw new EntiteNonTrouveeIdException(id);
+            throw new EntiteNonTrouveeIdException(entiteId);
         }
         return entite.get();
 
@@ -40,7 +40,7 @@ public class EntiteManagerImpl implements EntiteManager {
     }
 
     @Override
-    public boolean existsEntiteByNomAndType(String nom, String type) {
-        return entiteRepository.existsByNomAndType(nom, type);
+    public boolean existsEntiteByNomAndType(String nomEntite, String typeEntite) {
+        return entiteRepository.existsByNomAndType(nomEntite, typeEntite);
     }
 }
