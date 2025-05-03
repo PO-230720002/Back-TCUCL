@@ -15,7 +15,6 @@ public class BatimentExistantOuNeufConstruitDto {
     private String nom_ou_adresse;
     private LocalDate dateConstruction;
     private LocalDate dateDerniereGrosseRenovation;
-    private Boolean aCompleter;
     private Boolean acvBatimentRealisee;
     private Float emissionsGesReellesTCO2;
     private Float surfaceEnM2;
@@ -30,7 +29,6 @@ public class BatimentExistantOuNeufConstruitDto {
         this.nom_ou_adresse = entity.getNom_ou_adresse();
         this.dateConstruction = entity.getDateConstruction();
         this.dateDerniereGrosseRenovation = entity.getDateDerniereGrosseRenovation();
-        this.aCompleter = entity.getACompleter();
         this.acvBatimentRealisee = entity.getAcvBatimentRealisee();
         this.emissionsGesReellesTCO2 = entity.getEmissionsGesReellesTCO2();
         this.surfaceEnM2 = entity.getSurfaceEnM2();
@@ -70,13 +68,6 @@ public class BatimentExistantOuNeufConstruitDto {
         this.dateDerniereGrosseRenovation = dateDerniereGrosseRenovation;
     }
 
-    public Boolean getACompleter() {
-        return aCompleter;
-    }
-
-    public void setACompleter(Boolean aCompleter) {
-        this.aCompleter = aCompleter;
-    }
 
     public Boolean getAcvBatimentRealisee() {
         return acvBatimentRealisee;

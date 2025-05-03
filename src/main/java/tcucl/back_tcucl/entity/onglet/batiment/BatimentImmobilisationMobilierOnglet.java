@@ -56,7 +56,6 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
         batimentExistantOuNeufConstruit.setNom_ou_adresse(batimentExistantOuNeufConstruitDto.getNom_ou_adresse());
         batimentExistantOuNeufConstruit.setDateConstruction(batimentExistantOuNeufConstruitDto.getDateConstruction());
         batimentExistantOuNeufConstruit.setDateDerniereGrosseRenovation(batimentExistantOuNeufConstruitDto.getDateDerniereGrosseRenovation());
-        batimentExistantOuNeufConstruit.setACompleter(batimentExistantOuNeufConstruitDto.getACompleter());
         batimentExistantOuNeufConstruit.setAcvBatimentRealisee(batimentExistantOuNeufConstruitDto.getAcvBatimentRealisee());
         batimentExistantOuNeufConstruit.setEmissionsGesReellesTCO2(batimentExistantOuNeufConstruitDto.getEmissionsGesReellesTCO2());
         batimentExistantOuNeufConstruit.setTypeBatiment(batimentExistantOuNeufConstruitDto.getTypeBatiment());

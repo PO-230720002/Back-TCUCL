@@ -22,21 +22,25 @@ public class MachineEmissionFugitive {
     private Integer valeurEnumTypeMachine;
 
 
-    @AssertTrue(message = "Les règles de validation ne sont pas respectées.")
-    public boolean isValid() {
-        if (tauxDeFuiteConnu) {
-            // Si tauxDeFuiteConnu est true, valeurEnumTypeMachine doit être vide
-            if (valeurEnumTypeMachine != null) {
-                return false;
-            }
-        } else {
-            // Si tauxDeFuiteConnu est false, tauxDeFuite doit être vide (null ou 0)
-            if (tauxDeFuite != null && tauxDeFuite != 0.0f) {
-                return false;
-            }
+    @AssertTrue(message = "Le type de machine doit être vide si le taux de fuite est connu.")
+    public Boolean assertTypeMachineVideSiTauxConnu() {
+        if (Boolean.TRUE.equals(tauxDeFuiteConnu)) {
+            return valeurEnumTypeMachine == null || valeurEnumTypeMachine == 0;
         }
         return true;
     }
+    @AssertTrue(message = "Le taux de fuite doit être vide ou égal à 0 si le taux de fuite n’est pas connu.")
+    public Boolean assertTauxVideSiTauxInconnu() {
+        if (Boolean.FALSE.equals(tauxDeFuiteConnu)) {
+            return tauxDeFuite == null || tauxDeFuite == 0.0f;
+        }
+        return true;
+    }
+    @AssertTrue(message = "L'information sur la connaissance du taux de fuite doit être renseignée.")
+    public Boolean assertTauxConnuRenseigne() {
+        return tauxDeFuiteConnu != null;
+    }
+
 
 
     public EnumEmissionFugitive_TypeMachine getTypeMachine() {

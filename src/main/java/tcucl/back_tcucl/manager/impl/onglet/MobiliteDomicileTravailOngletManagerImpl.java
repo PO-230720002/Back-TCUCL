@@ -10,16 +10,16 @@ import tcucl.back_tcucl.manager.MobiliteDomicileTravailOngletManager;
 @Component
 public class MobiliteDomicileTravailOngletManagerImpl implements MobiliteDomicileTravailOngletManager {
 
-    private final MobiliteDomicileTravailOngletRepository repository;
+    private final MobiliteDomicileTravailOngletRepository mobiliteDomicileTravailOngletRepository;
 
-    public MobiliteDomicileTravailOngletManagerImpl(MobiliteDomicileTravailOngletRepository repository) {
-        this.repository = repository;
+    public MobiliteDomicileTravailOngletManagerImpl(MobiliteDomicileTravailOngletRepository mobiliteDomicileTravailOngletRepository) {
+        this.mobiliteDomicileTravailOngletRepository = mobiliteDomicileTravailOngletRepository;
     }
 
     @Override
     public MobiliteDomicileTravailOnglet getMobiliteDomicileTravailOngletById(Long ongletId) {
-        return repository.findById(ongletId)
-                .orElseThrow(() -> new OngletNonTrouveIdException("MobiliteDomicileTravail",ongletId));
+        return mobiliteDomicileTravailOngletRepository.findById(ongletId)
+                .orElseThrow(() -> new OngletNonTrouveIdException("MobiliteDomicileTravailOnglet",ongletId));
     }
 
 
@@ -56,6 +56,6 @@ public class MobiliteDomicileTravailOngletManagerImpl implements MobiliteDomicil
         if (mobiliteDomicileTravailOngletDto.getMarcheAPiedSalarieKm() != null) mobiliteDomicileTravailOnglet.setMarcheAPiedSalarieKm(mobiliteDomicileTravailOngletDto.getMarcheAPiedSalarieKm());
         if (mobiliteDomicileTravailOngletDto.getNbJoursDeplacementSalarie() != null) mobiliteDomicileTravailOnglet.setNbJoursDeplacementSalarie(mobiliteDomicileTravailOngletDto.getNbJoursDeplacementSalarie());
 
-        repository.save(mobiliteDomicileTravailOnglet);
+        mobiliteDomicileTravailOngletRepository.save(mobiliteDomicileTravailOnglet);
     }
 }

@@ -1,5 +1,9 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentExistantOuNeufConstruitDto;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentImmobilisationMobilierOngletDto;
@@ -9,13 +13,21 @@ import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOng
 import tcucl.back_tcucl.entity.onglet.batiment.BatimentExistantOuNeufConstruit;
 import tcucl.back_tcucl.entity.onglet.batiment.EntretienCourant;
 import tcucl.back_tcucl.entity.onglet.batiment.MobilierElectromenager;
+import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_Mobilier;
 import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.BatimentImmobilisationMobilierOngletManager;
 import tcucl.back_tcucl.repository.onglet.BatimentImmobilisationMobilierOngletRepository;
 
+import java.time.LocalDate;
+import java.util.Set;
+
 @Component
 public class BatimentImmobilisationMobilierOngletManagerImpl implements BatimentImmobilisationMobilierOngletManager {
+
+    @Autowired
+    private Validator validator;
+
 
     //todo problème dans les erreurs liste elt
     private final BatimentImmobilisationMobilierOngletRepository batimentImmobilisationMobilierOngletRepository;
@@ -72,7 +84,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         return batimentImmobilisationMobilierOnglet.getBatimentExistantOuNeufConstruits().stream()
                 .filter(m -> m.getId().equals(batimentId))
                 .findFirst()
-                .orElseThrow(() -> new ElementNontrouveException("BatimentExistantOuNeufConstruit",batimentId));
+                .orElseThrow(() -> new ElementNontrouveException("BatimentExistantOuNeufConstruit", batimentId));
     }
 
     @Override
@@ -91,7 +103,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
                 .stream()
                 .filter(v -> v.getId().equals(batimentId))
                 .findFirst()
-                .orElseThrow(() -> new ElementNontrouveException("BatimentExistantOuNeufConstruit",batimentId));
+                .orElseThrow(() -> new ElementNontrouveException("BatimentExistantOuNeufConstruit", batimentId));
 
         // Retirer de la liste
         batimentImmobilisationMobilierOnglet.getBatimentExistantOuNeufConstruits().remove(batimentASupprimer);
@@ -107,7 +119,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         BatimentExistantOuNeufConstruit batiment = batimentImmobilisationMobilierOnglet.getBatimentExistantOuNeufConstruits().stream()
                 .filter(m -> m.getId().equals(batimentId))
                 .findFirst()
-                .orElseThrow(() -> new ElementNontrouveException("BatimentExistantOuNeufConstruit",batimentId));
+                .orElseThrow(() -> new ElementNontrouveException("BatimentExistantOuNeufConstruit", batimentId));
 
 
         if (dto.getNom_ou_adresse() != null) {
@@ -118,9 +130,6 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         }
         if (dto.getDateDerniereGrosseRenovation() != null) {
             batiment.setDateDerniereGrosseRenovation(dto.getDateDerniereGrosseRenovation());
-        }
-        if (dto.getACompleter() != null) {
-            batiment.setACompleter(dto.getACompleter());
         }
         if (dto.getAcvBatimentRealisee() != null) {
             batiment.setAcvBatimentRealisee(dto.getAcvBatimentRealisee());
@@ -147,7 +156,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         return batimentImmobilisationMobilierOnglet.getEntretienCourants().stream()
                 .filter(m -> m.getId().equals(entretienCourantId))
                 .findFirst()
-                .orElseThrow(() -> new ElementNontrouveException("EntretienCourant",entretienCourantId));
+                .orElseThrow(() -> new ElementNontrouveException("EntretienCourant", entretienCourantId));
 
     }
 
@@ -167,7 +176,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
                 .stream()
                 .filter(v -> v.getId().equals(entretienCourantId))
                 .findFirst()
-                .orElseThrow(() -> new ElementNontrouveException("EntretienCourant",entretienCourantId));
+                .orElseThrow(() -> new ElementNontrouveException("EntretienCourant", entretienCourantId));
 
         // Retirer de la liste
         batimentImmobilisationMobilierOnglet.getEntretienCourants().remove(entretienCourantASupprimer);
@@ -183,8 +192,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         EntretienCourant entretienCourant = batimentImmobilisationMobilierOnglet.getEntretienCourants().stream()
                 .filter(m -> m.getId().equals(entretienCourantId))
                 .findFirst()
-                .orElseThrow(() -> new ElementNontrouveException("EntretienCourant",entretienCourantId));
-
+                .orElseThrow(() -> new ElementNontrouveException("EntretienCourant", entretienCourantId));
 
 
         if (dto.getDateAjout() != null) {
@@ -225,7 +233,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         return batimentImmobilisationMobilierOnglet.getMobilierElectromenagers().stream()
                 .filter(m -> m.getId().equals(mobilierElectromenagerId))
                 .findFirst()
-                .orElseThrow(() -> new ElementNontrouveException("MobilierElectromenager",mobilierElectromenagerId));
+                .orElseThrow(() -> new ElementNontrouveException("MobilierElectromenager", mobilierElectromenagerId));
 
 
     }
@@ -246,7 +254,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
                 .stream()
                 .filter(v -> v.getId().equals(mobilierElectromenagerId))
                 .findFirst()
-                .orElseThrow(() -> new ElementNontrouveException("MobilierElectromenager",mobilierElectromenagerId));
+                .orElseThrow(() -> new ElementNontrouveException("MobilierElectromenager", mobilierElectromenagerId));
 
 
         // Retirer de la liste
@@ -258,36 +266,38 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     }
 
     @Override
-    public void updateMobilierElectromenagerPartiel(Long ongletId, Long mobilierElectromenagerId, MobilierElectromenagerDto dto) {
+    public void updateMobilierElectromenagerPartiel(Long ongletId, Long mobilierElectromenagerId, MobilierElectromenagerDto mobilierElectromenagerDto) {
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
 
         MobilierElectromenager mobilierElectromenager = batimentImmobilisationMobilierOnglet.getMobilierElectromenagers().stream()
                 .filter(m -> m.getId().equals(mobilierElectromenagerId))
                 .findFirst()
-                .orElseThrow(() -> new ElementNontrouveException("MobilierElectromenager",mobilierElectromenagerId));
+                .orElseThrow(() -> new ElementNontrouveException("MobilierElectromenager", mobilierElectromenagerId));
 
 
+        if (mobilierElectromenagerDto.getMobilier() != null) {
+            mobilierElectromenager.setMobilier(mobilierElectromenagerDto.getMobilier());
+        }
+        if (mobilierElectromenagerDto.getDateAjout() != null) {
+            mobilierElectromenager.setDateAjout(mobilierElectromenagerDto.getDateAjout());
+        }
+        if (mobilierElectromenagerDto.getQuantite() != null) {
+            mobilierElectromenager.setQuantite(mobilierElectromenagerDto.getQuantite());
+        }
+        if (mobilierElectromenagerDto.getPoidsDuProduit() != null) {
+            mobilierElectromenager.setPoidsDuProduit(mobilierElectromenagerDto.getPoidsDuProduit());
+        }
+        if (mobilierElectromenagerDto.getDureeAmortissement() != null) {
+            mobilierElectromenager.setDureeAmortissement(mobilierElectromenagerDto.getDureeAmortissement());
+        }
+        if (mobilierElectromenagerDto.getEmissionGesPrecisesConnues() != null) {
+            mobilierElectromenager.setEmissionGesPrecisesConnues(mobilierElectromenagerDto.getEmissionGesPrecisesConnues());
+        }
+        if (mobilierElectromenagerDto.getEmissionsGesReelleskgCO2() != null) {
+            mobilierElectromenager.setEmissionsGesReelleskgCO2(mobilierElectromenagerDto.getEmissionsGesReelleskgCO2());
+        }
 
-        if (dto.getDateAjout() != null) {
-            mobilierElectromenager.setDateAjout(dto.getDateAjout());
-        }
-        if (dto.getQuantite() != null) {
-            mobilierElectromenager.setQuantite(dto.getQuantite());
-        }
-        if (dto.getPoidsDuProduit() != null) {
-            mobilierElectromenager.setPoidsDuProduit(dto.getPoidsDuProduit());
-        }
-        if (dto.getDureeAmortissement() != null) {
-            mobilierElectromenager.setDureeAmortissement(dto.getDureeAmortissement());
-        }
-        if (dto.getEmissionGesPrecisesConnues() != null) {
-            mobilierElectromenager.setEmissionGesPrecisesConnues(dto.getEmissionGesPrecisesConnues());
-        }
-        if (dto.getEmissionsGesReelleskgCO2() != null) {
-            mobilierElectromenager.setEmissionsGesReelleskgCO2(dto.getEmissionsGesReelleskgCO2());
-        }
-
-        batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet); // Hibernate met à jour via cascade
+        batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
 
     }
 

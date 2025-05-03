@@ -3,7 +3,7 @@ package tcucl.back_tcucl.entity.onglet.vehicule;
 import jakarta.persistence.*;
 import tcucl.back_tcucl.entity.onglet.vehicule.enums.EnumVehicule_Type;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 @Entity
@@ -18,7 +18,7 @@ public class Vehicule {
     private Integer valeurEnumTypeVehicule;
     private Integer nombreVehiculesIdentiques;
     private Float nombreKilometresParVoitureMoyen;
-    private Date dateAjoutEnBase;
+    private LocalDate dateAjoutEnBase;
 
     public void setId(Long id) {
         this.id = id;
@@ -62,11 +62,11 @@ public class Vehicule {
         return (valeurEnumTypeVehicule != null) ? EnumVehicule_Type.fromCode(valeurEnumTypeVehicule) : null;
     }
 
-    public Date getDateAjoutEnBase() {
+    public LocalDate getDateAjoutEnBase() {
         return dateAjoutEnBase;
     }
 
-    public void setDateAjoutEnBase(Date dateAjoutEnBase) {
+    public void setDateAjoutEnBase(LocalDate dateAjoutEnBase) {
         this.dateAjoutEnBase = dateAjoutEnBase;
     }
 }

@@ -23,17 +23,17 @@ public class AutreImmobilisationOnglet extends Onglet {
 
 
     @AssertTrue(message = "Si installationComplete_IsEmissionGESConnues est faux, installationComplete_EmissionDeGes doit être null")
-    public Boolean isInstallationEmissionGesValid() {
+    public Boolean assertInstallationEmissionGesValid() {
         return installationComplete_IsEmissionGESConnues || installationComplete_EmissionDeGes == null;
     }
 
     @AssertTrue(message = "Si panneaux_IsEmissionGESConnues est faux, panneaux_EmissionDeGes doit être null")
-    public Boolean isPanneauxEmissionGesValid() {
+    public Boolean assertPanneauxEmissionGesValid() {
         return panneaux_IsEmissionGESConnues || panneaux_EmissionDeGes == null;
     }
 
     @AssertTrue(message = "Si onduleur_IsEmissionGESConnues est faux, onduleur_EmissionDeGes doit être null")
-    public Boolean isOnduleurEmissionGesValid() {
+    public Boolean assertOnduleurEmissionGesValid() {
         return onduleur_IsEmissionGESConnues || onduleur_EmissionDeGes == null;
     }
 
@@ -62,22 +62,22 @@ public class AutreImmobilisationOnglet extends Onglet {
     private Float autresMachinesEur_EmissionReelle;
 
     @AssertTrue(message = "Si groupesElectrogenes_IsEmissionConnue est faux, groupesElectrogenes_EmissionReelle doit être null")
-    public Boolean isGroupesElectrogenesEmissionValid() {
+    public Boolean assertGroupesElectrogenesEmissionValid() {
         return groupesElectrogenes_IsEmissionConnue || groupesElectrogenes_EmissionReelle == null;
     }
 
     @AssertTrue(message = "Si moteurElectrique_IsEmissionConnue est faux, moteurElectrique_EmissionReelle doit être null")
-    public Boolean isMoteurElectriqueEmissionValid() {
+    public Boolean assertMoteurElectriqueEmissionValid() {
         return moteurElectrique_IsEmissionConnue || moteurElectrique_EmissionReelle == null;
     }
 
     @AssertTrue(message = "Si autresMachinesKg_IsEmissionConnue est faux, autresMachinesKg_EmissionReelle doit être null")
-    public Boolean isAutresMachinesKgEmissionValid() {
+    public Boolean assertAutresMachinesKgEmissionValid() {
         return autresMachinesKg_IsEmissionConnue || autresMachinesKg_EmissionReelle == null;
     }
 
     @AssertTrue(message = "Si autresMachinesEur_IsEmissionConnue est faux, autresMachinesEur_EmissionReelle doit être null")
-    public Boolean isAutresMachinesEurEmissionValid() {
+    public Boolean assertAutresMachinesEurEmissionValid() {
         return autresMachinesEur_IsEmissionConnue || autresMachinesEur_EmissionReelle == null;
     }
 

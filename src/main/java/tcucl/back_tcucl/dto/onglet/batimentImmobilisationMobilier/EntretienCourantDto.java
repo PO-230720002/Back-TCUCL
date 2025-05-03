@@ -7,14 +7,13 @@ import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeBatiment;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeTravaux;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EntretienCourantDto {
 
     private Long id;
-    private Date dateAjout;
+    private LocalDate dateAjout;
     private String nom_adresse;
     private EnumBatiment_TypeTravaux typeTravaux;
     private LocalDate dateTravaux;
@@ -48,11 +47,11 @@ public class EntretienCourantDto {
         this.id = id;
     }
 
-    public Date getDateAjout() {
+    public LocalDate getDateAjout() {
         return dateAjout;
     }
 
-    public void setDateAjout(Date dateAjout) {
+    public void setDateAjout(LocalDate dateAjout) {
         this.dateAjout = dateAjout;
     }
 

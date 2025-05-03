@@ -88,7 +88,7 @@ public class Voyage {
 
 
     @AssertTrue(message = "Les champs train ne doivent pas être remplis pour ce pays.")
-    public boolean isTrainExistForThisDestination() {
+    public Boolean assertTrainExistForThisDestination() {
         if (PAYS_PAS_DE_TRAJET_EN_TRAIN.contains(valeurEnumMobInternationale_NomPays)) {
             return prosTrain == 0 && stagesEtudiantsTrain == 0 && semestresEtudiantsTrain == 0;
         }

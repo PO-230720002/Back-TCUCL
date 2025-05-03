@@ -19,7 +19,7 @@ public class EquipementNumerique {
     private Float emissionsReellesParProduitKgCO2e;
 
     @AssertTrue(message = "Si les émissions GES précises ne sont pas connues, les émissions réelles doivent être nulles.")
-    private boolean isEmissionsReellesValide() {
+    public Boolean assertEmissionsReellesValide() {
         return emissionsGesPrecisesConnues || emissionsReellesParProduitKgCO2e == null;
     }
 
@@ -48,7 +48,7 @@ public class EquipementNumerique {
         this.dureeAmortissement = dureeAmortissement;
     }
 
-    public boolean isEmissionsGesPrecisesConnues() {
+    public Boolean assertEmissionsGesPrecisesConnues() {
         return emissionsGesPrecisesConnues;
     }
 

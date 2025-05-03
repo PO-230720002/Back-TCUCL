@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 
 @Target({ ElementType.METHOD }) // seulement sur les méthodes
 @Retention(RetentionPolicy.RUNTIME)
-@PreAuthorize("hasAuthority('ROLE_ONGLET_' + #id)")
+@PreAuthorize("hasAuthority('ROLE_ONGLET_' + #ongletId)")
 public @interface checkRoleOnglet {
 }

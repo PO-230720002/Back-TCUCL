@@ -18,28 +18,43 @@ public class BatimentExistantOuNeufConstruit {
     private String nom_ou_adresse;
     private LocalDate dateConstruction;
     private LocalDate dateDerniereGrosseRenovation;
-    private Boolean aCompleter;
     private Boolean acvBatimentRealisee;
     private Float emissionsGesReellesTCO2;
     private Integer valeurEnumTypeBatiment;
     private Float surfaceEnM2;
     private Integer valeurEnumTypeStructure;
 
-    // Getters et Setters
 
-    @AssertTrue(message = "Les règles de validation pour les attributs ne sont pas respectées")
-    public boolean isValid() {
-        // Si acvBâtimentRealisee est true, valeurEnumTypeBatiment et valeurEnumTypeStructure doivent être null ou vides (0)
+    @AssertTrue(message = "Le type de bâtiment doit être vide ou 'NA' si une ACV bâtiment est réalisée.")
+    public Boolean assertTypeBatimentVideSiAcv() {
         if (Boolean.TRUE.equals(acvBatimentRealisee)) {
-            return (valeurEnumTypeBatiment == null || valeurEnumTypeBatiment == 0) &&
-                    (valeurEnumTypeStructure == null || valeurEnumTypeStructure == 0);
+            return valeurEnumTypeBatiment == null
+                    || valeurEnumTypeBatiment == 0
+                    || valeurEnumTypeBatiment.equals(EnumBatiment_TypeBatiment.NA.getCode());
         }
-        // Si acvBâtimentRealisee est false, emissionsGesReelles doit être null ou vide (0.0)
+        return true;
+    }
+    @AssertTrue(message = "Le type de structure doit être vide ou 'NA' si une ACV bâtiment est réalisée.")
+    public Boolean assertTypeStructureVideSiAcv() {
+        if (Boolean.TRUE.equals(acvBatimentRealisee)) {
+            return valeurEnumTypeStructure == null
+                    || valeurEnumTypeStructure == 0
+                    || valeurEnumTypeStructure.equals(EnumBatiment_TypeStructure.NA.getCode());
+        }
+        return true;
+    }
+    @AssertTrue(message = "Les émissions GES réelles doivent être nulles ou 0 si aucune ACV bâtiment n'est réalisée.")
+    public Boolean assertEmissionVideSiPasAcv() {
         if (Boolean.FALSE.equals(acvBatimentRealisee)) {
             return emissionsGesReellesTCO2 == null || emissionsGesReellesTCO2 == 0.0f;
         }
-        return true; // Si aucune des conditions ne s'applique, la validation est réussie
+        return true;
     }
+    @AssertTrue(message = "L'information sur la réalisation d'une ACV bâtiment doit être renseignée.")
+    public Boolean assertAcvRenseignee() {
+        return acvBatimentRealisee != null;
+    }
+
 
 
     // Getters et Setters
@@ -60,7 +75,6 @@ public class BatimentExistantOuNeufConstruit {
         this.nom_ou_adresse = nom;
     }
 
-
     public LocalDate getDateConstruction() {
         return dateConstruction;
     }
@@ -75,14 +89,6 @@ public class BatimentExistantOuNeufConstruit {
 
     public void setDateDerniereGrosseRenovation(LocalDate dateDerniereGrosseRenovation) {
         this.dateDerniereGrosseRenovation = dateDerniereGrosseRenovation;
-    }
-
-    public Boolean getACompleter() {
-        return aCompleter;
-    }
-
-    public void setACompleter(Boolean aCompleter) {
-        this.aCompleter = aCompleter;
     }
 
     public Boolean getAcvBatimentRealisee() {

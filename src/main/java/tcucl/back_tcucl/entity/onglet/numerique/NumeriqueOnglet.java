@@ -23,7 +23,7 @@ public class NumeriqueOnglet extends Onglet {
 
 
     @AssertTrue(message = "Si useMethodSimplifiee est true, les autres champs doivent être null ou vides.")
-    private Boolean isUseMethodSimplifieeValid() {
+    public Boolean assertUseMethodSimplifieeValid() {
         return useMethodSimplifiee || (TraficCloudUtilisateur == null && TraficTipUtilisateur == null && PartTraficFranceEtranger == null);
     }
 

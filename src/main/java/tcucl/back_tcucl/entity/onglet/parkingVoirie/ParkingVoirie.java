@@ -9,7 +9,7 @@ import jakarta.validation.constraints.AssertTrue;
 import tcucl.back_tcucl.entity.onglet.parkingVoirie.enums.EnumParkingVoirie_Type;
 import tcucl.back_tcucl.entity.onglet.parkingVoirie.enums.EnumParkingVoirie_TypeStructure;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "parking_voirie")
@@ -20,25 +20,31 @@ public class ParkingVoirie {
     private Long id;
 
     private String nomOuAdresse;
-    private Date dateConstruction;
+    private LocalDate dateConstruction;
     private Boolean emissionsGesConnues;
     private Float emissionsGesReelles; // en TCO2e/an
     private Integer valeurEnumType; // Enum correspondant au type de bâtiment
     private Float nombreM2;
     private Integer valeurEnumTypeStructure;
-    private Date dateAjoutEnBase;
+    private LocalDate dateAjoutEnBase;
 
 
-    @AssertTrue(message = "Incohérence dans les émissions de GES et les types")
-    public boolean isValidEmissionsAndTypes() {
+    @AssertTrue(message = "Si les émissions sont connues, les types ne doivent pas être renseignés.")
+    public Boolean assertTypesAbsentSiEmissionsConnu() {
         if (Boolean.TRUE.equals(emissionsGesConnues)) {
-            // Si emissionsGesConnues est vrai, les types doivent être vides ou nuls
             return valeurEnumType == null && valeurEnumTypeStructure == null;
-        } else {
-            // Si emissionsGesConnues est faux, emissionsGesReelles doit être vide ou nul
+        }
+        return true;
+    }
+
+    @AssertTrue(message = "Si les émissions ne sont pas connues, la valeur d'émissions doit être vide.")
+    public Boolean assertEmissionsVideSiInconnu() {
+        if (Boolean.FALSE.equals(emissionsGesConnues)) {
             return emissionsGesReelles == null;
         }
+        return true;
     }
+
 
     public void setId(Long id) {
         this.id = id;
@@ -72,11 +78,11 @@ public class ParkingVoirie {
         this.nomOuAdresse = nomOuAdresse;
     }
 
-    public Date getDateConstruction() {
+    public LocalDate getDateConstruction() {
         return dateConstruction;
     }
 
-    public void setDateConstruction(Date dateConstruction) {
+    public void setDateConstruction(LocalDate dateConstruction) {
         this.dateConstruction = dateConstruction;
     }
 
@@ -104,11 +110,11 @@ public class ParkingVoirie {
         this.nombreM2 = nombreM2;
     }
 
-    public Date getDateAjoutEnBase() {
+    public LocalDate getDateAjoutEnBase() {
         return dateAjoutEnBase;
     }
 
-    public void setDateAjoutEnBase(Date dateAjoutEnBase) {
+    public void setDateAjoutEnBase(LocalDate dateAjoutEnBase) {
         this.dateAjoutEnBase = dateAjoutEnBase;
     }
 }

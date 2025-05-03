@@ -7,6 +7,7 @@ import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.Voyage;
 import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
+import tcucl.back_tcucl.exceptionPersonnalisee.VoyageDejaExistantException;
 import tcucl.back_tcucl.manager.MobInternationalOngletManager;
 import tcucl.back_tcucl.repository.onglet.MobInternationalOngletRepository;
 
@@ -56,8 +57,21 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
     @Override
     public void ajouterVoyage(Long ongletId, VoyageDto voyageDto) {
         MobInternationalOnglet mobInternationalOnglet = getMobInternationalOngletById(ongletId);
-        mobInternationalOnglet.ajouterVoyageViaDto(voyageDto);
-        mobInternationalOngletRepository.save(mobInternationalOnglet);
+
+        // Vérification si le voyage existe déjà
+        Voyage existingVoyage = mobInternationalOnglet.getVoyage()
+                .stream()
+                .filter(v -> v.getNomPays().equals(voyageDto.getNomPays()))
+                .findFirst()
+                .orElse(null);
+
+        if(existingVoyage != null) {
+            throw new VoyageDejaExistantException(voyageDto.getNomPays());
+        }else{
+            mobInternationalOnglet.ajouterVoyageViaDto(voyageDto);
+            mobInternationalOngletRepository.save(mobInternationalOnglet);
+        }
+
     }
 
     @Override
@@ -85,9 +99,6 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
                 .findFirst()
                 .orElseThrow(() -> new ElementNontrouveException("Voyage", voyageId));
 
-
-        if (voyageDto.getNomPays() != null)
-            voyage.setNomPays(voyageDto.getNomPays());
         if (voyageDto.getProsAvion() != null)
             voyage.setProsAvion(voyageDto.getProsAvion());
         if (voyageDto.getProsTrain() != null)

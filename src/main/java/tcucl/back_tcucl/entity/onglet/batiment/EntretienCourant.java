@@ -1,11 +1,12 @@
 package tcucl.back_tcucl.entity.onglet.batiment;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.AssertTrue;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeBatiment;
+import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeStructure;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeTravaux;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "entretien_courant")
@@ -13,7 +14,7 @@ public class EntretienCourant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date dateAjout;
+    private LocalDate dateAjout;
     private String nom_adresse;
     private Integer valeurEnumTypeTravaux;
     private LocalDate dateTravaux;
@@ -22,6 +23,35 @@ public class EntretienCourant {
     private Integer valeurEnumTypeBatiment;
     private Float surfaceConcernee;
     private Integer dureeAmortissement;
+
+    @AssertTrue(message = "Le type de bâtiment doit être vide ou 'NA' si une ACV rénovation est réalisée.")
+    public Boolean assertTypeBatimentVideSiAcv() {
+        if (Boolean.TRUE.equals(acvRenovationRealisee)) {
+            return valeurEnumTypeBatiment == null
+                    || valeurEnumTypeBatiment == 0
+                    || valeurEnumTypeBatiment.equals(EnumBatiment_TypeStructure.NA.getCode());
+        }
+        return true;
+    }
+    @AssertTrue(message = "La surface concernée doit être vide ou 0 si une ACV rénovation est réalisée.")
+    public Boolean assertSurfaceVideSiAcv() {
+        if (Boolean.TRUE.equals(acvRenovationRealisee)) {
+            return surfaceConcernee == null || surfaceConcernee == 0;
+        }
+        return true;
+    }
+    @AssertTrue(message = "Les émissions GES réelles doivent être nulles ou 0 si aucune ACV rénovation n'est réalisée.")
+    public Boolean assertEmissionVideSiPasAcv() {
+        if (Boolean.FALSE.equals(acvRenovationRealisee)) {
+            return emissionsGesReellesTCO2 == null || emissionsGesReellesTCO2 == 0;
+        }
+        return true;
+    }
+    @AssertTrue(message = "L'information sur la réalisation d'une ACV rénovation doit être renseignée.")
+    public Boolean assertAcvRenseignee() {
+        return acvRenovationRealisee != null;
+    }
+
 
 
     // Getters et Setters
@@ -34,11 +64,11 @@ public class EntretienCourant {
         this.id = id;
     }
 
-    public Date getDateAjout() {
+    public LocalDate getDateAjout() {
         return dateAjout;
     }
 
-    public void setDateAjout(Date dateAjout) {
+    public void setDateAjout(LocalDate dateAjout) {
         this.dateAjout = dateAjout;
     }
 

@@ -1,11 +1,16 @@
 package tcucl.back_tcucl.controller;
 
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.ConstraintViolation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import tcucl.back_tcucl.exceptionPersonnalisee.*;
+
+import java.util.stream.Collectors;
 
 import static tcucl.back_tcucl.Constante.*;
 
@@ -30,6 +35,11 @@ public class GestionnaireErreurController {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
+    @ExceptionHandler(VoyageDejaExistantException.class)
+    public ResponseEntity<String> handleEntiteDejaExistantAvecNomTypeException(VoyageDejaExistantException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
+
     //Changement de mot de passe
     @ExceptionHandler(MauvaisAncienMdpException.class)
     public ResponseEntity<String> handleMauvaisAncienMdpException(MauvaisAncienMdpException ex) {
@@ -45,6 +55,19 @@ public class GestionnaireErreurController {
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<String> handleAuthenticationException(AuthenticationException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_AUTHENTIFICATION);
+    }
+
+    //Gestion des erreurs de validation
+    @ExceptionHandler(TransactionSystemException.class)
+    public ResponseEntity<?> handleTransactionException(TransactionSystemException ex) {
+        Throwable cause = ex.getRootCause();
+        if (cause instanceof ConstraintViolationException cve) {
+            String msg = cve.getConstraintViolations().stream()
+                    .map(ConstraintViolation::getMessage)
+                    .collect(Collectors.joining(", "));
+            return ResponseEntity.badRequest().body(msg);
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ERREUR_INTERNE);
     }
 
     //Tout le reste
