@@ -12,16 +12,16 @@ public class AchatTextile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Integer Chemise_nb;
-    private Integer Polaire_nb;
-    private Integer Pull_Acrylique_nb;
-    private Integer Pull_Coton_nb;
-    private Integer T_shirt_polyester_nb;
-    private Integer Jean_nb;
-    private Integer Sweat_nb;
-    private Integer Veste_Anorak_nb;
-    private Integer Manteau_nb;
-    private Integer Chaussure_nb;
+    private Integer Chemise_nb = 0;
+    private Integer Polaire_nb = 0;
+    private Integer Pull_Acrylique_nb = 0;
+    private Integer Pull_Coton_nb = 0;
+    private Integer T_shirt_polyester_nb = 0;
+    private Integer Jean_nb = 0;
+    private Integer Sweat_nb = 0;
+    private Integer Veste_Anorak_nb = 0;
+    private Integer Manteau_nb = 0;
+    private Integer Chaussure_nb = 0;
 
     public AchatTextile() {
     }

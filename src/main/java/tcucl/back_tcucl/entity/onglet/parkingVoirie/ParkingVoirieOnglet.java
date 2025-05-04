@@ -15,10 +15,10 @@ public class ParkingVoirieOnglet extends Onglet {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "parking_voirie_onglet_id")
     @Valid
-    private List<ParkingVoirie> parkingVoirieList;
+    private List<ParkingVoirie> parkingVoirieList = new ArrayList<>();
 
     public ParkingVoirieOnglet() {
-        this.parkingVoirieList = new ArrayList<>();
+        super();
     }
 
     public List<ParkingVoirie> getParkingVoirieList() {
@@ -28,8 +28,6 @@ public class ParkingVoirieOnglet extends Onglet {
     public void setParkingVoirieList(List<ParkingVoirie> parkingVoirieList) {
         this.parkingVoirieList = parkingVoirieList;
     }
-
-    
 
     public void ajouterParkingVoirieViaDto(ParkingVoirieDto parkingVoirieDto) {
         ParkingVoirie parkingVoirie = new ParkingVoirie();

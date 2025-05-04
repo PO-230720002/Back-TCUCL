@@ -10,15 +10,15 @@ public class AchatConsommableDto {
 
     private Long id;
 
-    private Integer papier_T;
-    private Integer papier_nb;
-    private Integer livres_T;
-    private Integer livres_nb;
-    private Integer cartonNeuf_T;
-    private Integer cartonRecycle_T;
+    private Float papier_T;
+    private Float papier_nb;
+    private Float livres_T;
+    private Float livres_nb;
+    private Float cartonNeuf_T;
+    private Float cartonRecycle_T;
     private Float petitesFournitures_Eur;
-    private Integer nbFeuillesImprimeesJetEncre_Nb;
-    private Integer nbFeuillesImprimeesToner_Nb;
+    private Float nbFeuillesImprimeesJetEncre_Nb;
+    private Float nbFeuillesImprimeesToner_Nb;
     private Float produitsPharmaceutiques_Eur;
 
     public AchatConsommableDto() {
@@ -46,51 +46,51 @@ public class AchatConsommableDto {
         this.id = id;
     }
 
-    public Integer getPapier_T() {
+    public Float getPapier_T() {
         return papier_T;
     }
 
-    public void setPapier_T(Integer papier_T) {
+    public void setPapier_T(Float papier_T) {
         this.papier_T = papier_T;
     }
 
-    public Integer getPapier_nb() {
+    public Float getPapier_nb() {
         return papier_nb;
     }
 
-    public void setPapier_nb(Integer papier_nb) {
+    public void setPapier_nb(Float papier_nb) {
         this.papier_nb = papier_nb;
     }
 
-    public Integer getLivres_T() {
+    public Float getLivres_T() {
         return livres_T;
     }
 
-    public void setLivres_T(Integer livres_T) {
+    public void setLivres_T(Float livres_T) {
         this.livres_T = livres_T;
     }
 
-    public Integer getLivres_nb() {
+    public Float getLivres_nb() {
         return livres_nb;
     }
 
-    public void setLivres_nb(Integer livres_nb) {
+    public void setLivres_nb(Float livres_nb) {
         this.livres_nb = livres_nb;
     }
 
-    public Integer getCartonNeuf_T() {
+    public Float getCartonNeuf_T() {
         return cartonNeuf_T;
     }
 
-    public void setCartonNeuf_T(Integer cartonNeuf_T) {
+    public void setCartonNeuf_T(Float cartonNeuf_T) {
         this.cartonNeuf_T = cartonNeuf_T;
     }
 
-    public Integer getCartonRecycle_T() {
+    public Float getCartonRecycle_T() {
         return cartonRecycle_T;
     }
 
-    public void setCartonRecycle_T(Integer cartonRecycle_T) {
+    public void setCartonRecycle_T(Float cartonRecycle_T) {
         this.cartonRecycle_T = cartonRecycle_T;
     }
 
@@ -102,19 +102,19 @@ public class AchatConsommableDto {
         this.petitesFournitures_Eur = petitesFournitures_Eur;
     }
 
-    public Integer getNbFeuillesImprimeesJetEncre_Nb() {
+    public Float getNbFeuillesImprimeesJetEncre_Nb() {
         return nbFeuillesImprimeesJetEncre_Nb;
     }
 
-    public void setNbFeuillesImprimeesJetEncre_Nb(Integer nbFeuillesImprimeesJetEncre_Nb) {
+    public void setNbFeuillesImprimeesJetEncre_Nb(Float nbFeuillesImprimeesJetEncre_Nb) {
         this.nbFeuillesImprimeesJetEncre_Nb = nbFeuillesImprimeesJetEncre_Nb;
     }
 
-    public Integer getNbFeuillesImprimeesToner_Nb() {
+    public Float getNbFeuillesImprimeesToner_Nb() {
         return nbFeuillesImprimeesToner_Nb;
     }
 
-    public void setNbFeuillesImprimeesToner_Nb(Integer nbFeuillesImprimeesToner_Nb) {
+    public void setNbFeuillesImprimeesToner_Nb(Float nbFeuillesImprimeesToner_Nb) {
         this.nbFeuillesImprimeesToner_Nb = nbFeuillesImprimeesToner_Nb;
     }
 

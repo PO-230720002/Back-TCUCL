@@ -35,7 +35,7 @@ public class Entite {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "notes_permanentes_id")
-    private NotesPermanentes notesPermanentes;
+    private NotesPermanentes notesPermanentes = new NotesPermanentes();
 
     @OneToMany(mappedBy = "entite", cascade = CascadeType.ALL)
     private List<Annee> annees;
@@ -44,7 +44,6 @@ public class Entite {
     public Entite(String nom, String type) {
         this.nom = nom;
         this.type = type;
-        this.notesPermanentes = new NotesPermanentes();
 
         Annee annee = new Annee();
         annee.setEntite(this); // Liaison bidirectionnelle

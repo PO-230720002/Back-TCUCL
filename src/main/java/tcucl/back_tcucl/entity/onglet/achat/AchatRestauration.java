@@ -15,36 +15,36 @@ public class AchatRestauration {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Integer enumValeur_Methode;
-    private Integer methodeRapideNombrePersonnesServiesRegimeClassique;
-    private Integer methodeRapideNombrePersonnesServiesRegimeFlexitarien;
+    private Integer enumValeur_Methode = 0;
+    private Integer methodeRapideNombrePersonnesServiesRegimeClassique = 0;
+    private Integer methodeRapideNombrePersonnesServiesRegimeFlexitarien = 0;
 
-    private Integer nombreRepasServisDominanteAnimaleBoeuf;
-    private Integer nombreRepasServisDominanteAnimalePoulet;
-    private Integer nombreRepasServisDominanteVegetaleBoeuf;
-    private Integer nombreRepasServisDominanteVegetalePoulet;
-    private Integer nombreRepasServisDominanteClassiqueBoeuf;
-    private Integer nombreRepasServisDominanteClassiquePoulet;
-    private Integer nombreRepasServisRepasMoyen;
-    private Integer nombreRepasServisRepasVegetarien;
+    private Integer nombreRepasServisDominanteAnimaleBoeuf = 0;
+    private Integer nombreRepasServisDominanteAnimalePoulet = 0;
+    private Integer nombreRepasServisDominanteVegetaleBoeuf = 0;
+    private Integer nombreRepasServisDominanteVegetalePoulet = 0;
+    private Integer nombreRepasServisDominanteClassiqueBoeuf = 0;
+    private Integer nombreRepasServisDominanteClassiquePoulet = 0;
+    private Integer nombreRepasServisRepasMoyen = 0;
+    private Integer nombreRepasServisRepasVegetarien = 0;
 
-    private Float boeufAgneauMouton_Tonnes;
-    private Float poulet_Tonnes;
-    private Float cafe_Tonnes;
-    private Float chocolat_Tonnes;
-    private Float beurre_Tonnes;
-    private Float viandesMoyenne_Tonnes;
-    private Float produitsSucresMoyenne_Tonnes;
-    private Float poissonsMoyenne_Tonnes;
-    private Float fromagesMoyenne_Tonnes;
-    private Float oleagineuxMoyenne_Tonnes;
-    private Float matieresGrassesMoyenne_Tonnes;
-    private Float boissonsMoyenne_Tonnes;
-    private Float oeufs_Tonnes;
-    private Float cerealesMoyenne_Tonnes;
-    private Float legumesMoyenne_Tonnes;
-    private Float fruitsMoyenne_Tonnes;
-    private Float legumineuseMoyenne_Tonnes;
+    private Float boeufAgneauMouton_Tonnes = 0f;
+    private Float poulet_Tonnes = 0f;
+    private Float cafe_Tonnes = 0f;
+    private Float chocolat_Tonnes = 0f;
+    private Float beurre_Tonnes = 0f;
+    private Float viandesMoyenne_Tonnes = 0f;
+    private Float produitsSucresMoyenne_Tonnes = 0f;
+    private Float poissonsMoyenne_Tonnes = 0f;
+    private Float fromagesMoyenne_Tonnes = 0f;
+    private Float oleagineuxMoyenne_Tonnes = 0f;
+    private Float matieresGrassesMoyenne_Tonnes = 0f;
+    private Float boissonsMoyenne_Tonnes = 0f;
+    private Float oeufs_Tonnes = 0f;
+    private Float cerealesMoyenne_Tonnes = 0f;
+    private Float legumesMoyenne_Tonnes = 0f;
+    private Float fruitsMoyenne_Tonnes = 0f;
+    private Float legumineuseMoyenne_Tonnes = 0f;
 
     public AchatRestauration() {
     }

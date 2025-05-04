@@ -21,7 +21,6 @@ public class MachineEmissionFugitive {
     private Float tauxDeFuite;
     private Integer valeurEnumTypeMachine;
 
-
     @AssertTrue(message = "Le type de machine doit être vide si le taux de fuite est connu.")
     public Boolean assertTypeMachineVideSiTauxConnu() {
         if (Boolean.TRUE.equals(tauxDeFuiteConnu)) {

@@ -6,13 +6,11 @@ import jakarta.persistence.*;
 @Table(name = "general_onglet")
 public class GeneralOnglet extends Onglet {
 
-    private Integer nbSalarie;
-    private Integer nbEtudiant;
+    private Integer nbSalarie = 0;
+    private Integer nbEtudiant = 0;
 
     public GeneralOnglet(){
         super();
-        this.nbSalarie = 0;
-        this.nbEtudiant = 0;
     }
 
     public Integer getNbSalarie() {

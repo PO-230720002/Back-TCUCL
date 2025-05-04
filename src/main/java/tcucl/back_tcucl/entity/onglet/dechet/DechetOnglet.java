@@ -11,17 +11,19 @@ import tcucl.back_tcucl.entity.onglet.Onglet;
 public class DechetOnglet extends Onglet {
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Dechet ordures_menageres;
+    private Dechet ordures_menageres = new Dechet();
     @OneToOne(cascade = CascadeType.ALL)
-    private Dechet cartons;
+    private Dechet cartons = new Dechet();
     @OneToOne(cascade = CascadeType.ALL)
-    private Dechet verre;
+    private Dechet verre = new Dechet();
     @OneToOne(cascade = CascadeType.ALL)
-    private Dechet metaux;
+    private Dechet metaux = new Dechet();
     @OneToOne(cascade = CascadeType.ALL)
-    private Dechet textile;
+    private Dechet textile = new Dechet();
 
-
+    public DechetOnglet() {
+        super();
+    }
 
     public Dechet getOrdures_menageres() {
         return ordures_menageres;

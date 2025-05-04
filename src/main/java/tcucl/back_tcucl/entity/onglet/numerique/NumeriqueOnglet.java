@@ -6,6 +6,7 @@ import jakarta.validation.constraints.AssertTrue;
 import tcucl.back_tcucl.dto.onglet.numerique.EquipementNumeriqueDto;
 import tcucl.back_tcucl.entity.onglet.Onglet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,12 +17,21 @@ public class NumeriqueOnglet extends Onglet {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "equipement_numerique_id")
     @Valid
-    List<EquipementNumerique> equipementNumeriqueList;
+    List<EquipementNumerique> equipementNumeriqueList = new ArrayList<>();
 
-    private Boolean useMethodSimplifiee;
-    private Float TraficCloudUtilisateur;
-    private Float TraficTipUtilisateur;
-    private Integer PartTraficFranceEtranger;
+    private Boolean useMethodSimplifiee = false;
+    private Float TraficCloudUtilisateur = 0f;
+    private Float TraficTipUtilisateur = 0f;
+    private Integer PartTraficFranceEtranger = 55;
+
+    public NumeriqueOnglet() {
+        super();
+    }
+
+    @AssertTrue(message = "La part de Trafic en France doit être comprise entre 0 et 100.")
+    public Boolean assertPartTraficFranceEtrangerValid() {
+        return PartTraficFranceEtranger >= 0 && PartTraficFranceEtranger <= 100;
+    }
 
 
     @AssertTrue(message = "Si useMethodSimplifiee est true, les autres champs doivent être null ou vides.")

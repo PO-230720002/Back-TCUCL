@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeDto;
 import tcucl.back_tcucl.entity.onglet.Onglet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,11 @@ public class VehiculeOnglet extends Onglet {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "vehicule_onglet_id")
-    private List<Vehicule> vehiculeList;
+    private List<Vehicule> vehiculeList = new ArrayList<>();
+
+    public VehiculeOnglet() {
+        super();
+    }
 
     public List<Vehicule> getVehiculeList() {
         return vehiculeList;
@@ -22,7 +27,6 @@ public class VehiculeOnglet extends Onglet {
         this.vehiculeList = vehiculeList;
     }
 
-    
 
     public void ajouterVehiculeViaDto(VehiculeDto vehiculeDto) {
         Vehicule vehicule = new Vehicule();

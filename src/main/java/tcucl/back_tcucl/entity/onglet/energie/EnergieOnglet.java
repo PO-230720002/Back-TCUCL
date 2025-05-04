@@ -11,20 +11,24 @@ import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_UniteGaz;
 @Table(name = "energie_onglet")
 public class EnergieOnglet extends Onglet {
 
-    private Float ConsoGaz;
-    private Float ConsoFioul;
-    private Float ConsoBois;
-    private Float ConsoReseauVille;
-    private Float ConsoElecChauffage;
-    private Float ConsoElecSpecifique;
-    private Float ConsoEau;
+    private Float ConsoGaz = 0f;
+    private Float ConsoFioul = 0f;
+    private Float ConsoBois = 0f;
+    private Float ConsoReseauVille = 0f;
+    private Float ConsoElecChauffage = 0f;
+    private Float ConsoElecSpecifique = 0f;
+    private Float ConsoEau = 0f;
     // valeur stockée en base = code de l'enum,
     // valeur affichée par get = 1 valeur de l'enum
     // valeur à setter = 1 valeur de l'enum
-    private Integer valeurEnumEnergieReseauVille;
-    private Integer valeurEnumEnergieUniteBois;
-    private Integer valeurEnumEnergieUniteFioul;
-    private Integer valeurEnumEnergieUniteGaz;
+    private Integer valeurEnumEnergieReseauVille = 0;
+    private Integer valeurEnumEnergieUniteBois = 0;
+    private Integer valeurEnumEnergieUniteFioul = 0;
+    private Integer valeurEnumEnergieUniteGaz = 0;
+
+    public EnergieOnglet() {
+        super();
+    }
 
     public Float getConsoEau() {
         return ConsoEau;

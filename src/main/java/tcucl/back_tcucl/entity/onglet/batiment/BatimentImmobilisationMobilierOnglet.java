@@ -29,6 +29,9 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
     @Valid
     private List<MobilierElectromenager> mobiliersElectromenagers = new ArrayList<>();
 
+    public BatimentImmobilisationMobilierOnglet() {
+        super();
+    }
 
     public List<BatimentExistantOuNeufConstruit> getBatimentExistantOuNeufConstruits() {
         return batimentsExistantOuNeufConstruits;

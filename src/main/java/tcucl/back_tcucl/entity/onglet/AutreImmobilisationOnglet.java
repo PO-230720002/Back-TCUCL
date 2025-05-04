@@ -8,77 +8,99 @@ import jakarta.validation.constraints.AssertTrue;
 @Table(name = "autre_immobilisation_onglet")
 public class AutreImmobilisationOnglet extends Onglet {
 
-    private Boolean installationComplete_IsEmissionGESConnues;
-    private Float installationComplete_EmissionDeGes;
+    private Boolean installationComplete_IsEmissionGESConnues = false;
+    private Float installationComplete_EmissionDeGes = 0f;
 
-    private Float panneaux_PuissanceTotale;
-    private Integer panneaux_DureeDeVie;
-    private Boolean panneaux_IsEmissionGESConnues;
-    private Float panneaux_EmissionDeGes;
+    private Float panneaux_PuissanceTotale = 0f;
+    private Integer panneaux_DureeDeVie = 0;
+    private Boolean panneaux_IsEmissionGESConnues = false;
+    private Float panneaux_EmissionDeGes = 0f;
 
-    private Float onduleur_PuissanceTotale;
-    private Integer onduleur_DureeDeVie;
-    private Boolean onduleur_IsEmissionGESConnues;
-    private Float onduleur_EmissionDeGes;
+    private Float onduleur_PuissanceTotale = 0f;
+    private Integer onduleur_DureeDeVie = 0;
+    private Boolean onduleur_IsEmissionGESConnues = false;
+    private Float onduleur_EmissionDeGes = 0f;
 
+    private Integer groupesElectrogenes_Nombre = 0;
+    private Float groupesElectrogenes_PoidsDuProduit = 0f;
+    private Integer groupesElectrogenes_DureeAmortissement = 0;
+    private Boolean groupesElectrogenes_IsEmissionConnue = false;
+    private Float groupesElectrogenes_EmissionReelle = 0f;
 
-    @AssertTrue(message = "Si installationComplete_IsEmissionGESConnues est faux, installationComplete_EmissionDeGes doit être null")
-    public Boolean assertInstallationEmissionGesValid() {
-        return installationComplete_IsEmissionGESConnues || installationComplete_EmissionDeGes == null;
+    private Integer moteurElectrique_Nombre = 0;
+    private Float moteurElectrique_PoidsDuProduit = 0f;
+    private Integer moteurElectrique_DureeAmortissement = 0;
+    private Boolean moteurElectrique_IsEmissionConnue = false;
+    private Float moteurElectrique_EmissionReelle = 0f;
+
+    private Integer autresMachinesKg_Nombre = 0;
+    private Float autresMachinesKg_PoidsDuProduit = 0f;
+    private Integer autresMachinesKg_DureeAmortissement = 0;
+    private Boolean autresMachinesKg_IsEmissionConnue = false;
+    private Float autresMachinesKg_EmissionReelle = 0f;
+
+    private Integer autresMachinesEur_Nombre = 0;
+    private Float autresMachinesEur_PoidsDuProduit = 0f;
+    private Integer autresMachinesEur_DureeAmortissement = 0;
+    private Boolean autresMachinesEur_IsEmissionConnue = false;
+    private Float autresMachinesEur_EmissionReelle = 0f;
+
+    public AutreImmobilisationOnglet() {
+        super();
     }
 
-    @AssertTrue(message = "Si panneaux_IsEmissionGESConnues est faux, panneaux_EmissionDeGes doit être null")
-    public Boolean assertPanneauxEmissionGesValid() {
-        return panneaux_IsEmissionGESConnues || panneaux_EmissionDeGes == null;
+    @AssertTrue(message = "Si 'installationComplete_IsEmissionGESConnues' est faux, alors 'installationComplete_EmissionDeGes' doit être égal à 0.")
+    public Boolean isInstallationEmissionGesValide() {
+        if (Boolean.FALSE.equals(installationComplete_IsEmissionGESConnues)) {
+            return installationComplete_EmissionDeGes != null && installationComplete_EmissionDeGes == 0f;
+        }
+        return true;
+    }
+    @AssertTrue(message = "Si 'panneaux_IsEmissionGESConnues' est faux, alors 'panneaux_EmissionDeGes' doit être égal à 0.")
+    public Boolean isPanneauxEmissionGesValide() {
+        if (Boolean.FALSE.equals(panneaux_IsEmissionGESConnues)) {
+            return panneaux_EmissionDeGes != null && panneaux_EmissionDeGes == 0f;
+        }
+        return true;
+    }
+    @AssertTrue(message = "Si 'onduleur_IsEmissionGESConnues' est faux, alors 'onduleur_EmissionDeGes' doit être égal à 0.")
+    public Boolean isOnduleurEmissionGesValide() {
+        if (Boolean.FALSE.equals(onduleur_IsEmissionGESConnues)) {
+            return onduleur_EmissionDeGes != null && onduleur_EmissionDeGes == 0f;
+        }
+        return true;
     }
 
-    @AssertTrue(message = "Si onduleur_IsEmissionGESConnues est faux, onduleur_EmissionDeGes doit être null")
-    public Boolean assertOnduleurEmissionGesValid() {
-        return onduleur_IsEmissionGESConnues || onduleur_EmissionDeGes == null;
+    @AssertTrue(message = "Si 'groupesElectrogenes_IsEmissionConnue' est faux, alors 'groupesElectrogenes_EmissionReelle' doit être égal à 0.")
+    public Boolean isGroupesElectrogenesEmissionValid() {
+        if (Boolean.FALSE.equals(groupesElectrogenes_IsEmissionConnue)) {
+            return groupesElectrogenes_EmissionReelle != null && groupesElectrogenes_EmissionReelle == 0f;
+        }
+        return true;
     }
 
-    private Integer groupesElectrogenes_Nombre;
-    private Float groupesElectrogenes_PoidsDuProduit;
-    private Integer groupesElectrogenes_DureeAmortissement;
-    private Boolean groupesElectrogenes_IsEmissionConnue;
-    private Float groupesElectrogenes_EmissionReelle;
-
-    private Integer moteurElectrique_Nombre;
-    private Float moteurElectrique_PoidsDuProduit;
-    private Integer moteurElectrique_DureeAmortissement;
-    private Boolean moteurElectrique_IsEmissionConnue;
-    private Float moteurElectrique_EmissionReelle;
-
-    private Integer autresMachinesKg_Nombre;
-    private Float autresMachinesKg_PoidsDuProduit;
-    private Integer autresMachinesKg_DureeAmortissement;
-    private Boolean autresMachinesKg_IsEmissionConnue;
-    private Float autresMachinesKg_EmissionReelle;
-
-    private Integer autresMachinesEur_Nombre;
-    private Float autresMachinesEur_PoidsDuProduit;
-    private Integer autresMachinesEur_DureeAmortissement;
-    private Boolean autresMachinesEur_IsEmissionConnue;
-    private Float autresMachinesEur_EmissionReelle;
-
-    @AssertTrue(message = "Si groupesElectrogenes_IsEmissionConnue est faux, groupesElectrogenes_EmissionReelle doit être null")
-    public Boolean assertGroupesElectrogenesEmissionValid() {
-        return groupesElectrogenes_IsEmissionConnue || groupesElectrogenes_EmissionReelle == null;
+    @AssertTrue(message = "Si 'moteurElectrique_IsEmissionConnue' est faux, alors 'moteurElectrique_EmissionReelle' doit être égal à 0.")
+    public Boolean isMoteurElectriqueEmissionValid() {
+        if (Boolean.FALSE.equals(moteurElectrique_IsEmissionConnue)) {
+            return moteurElectrique_EmissionReelle != null && moteurElectrique_EmissionReelle == 0f;
+        }
+        return true;
     }
 
-    @AssertTrue(message = "Si moteurElectrique_IsEmissionConnue est faux, moteurElectrique_EmissionReelle doit être null")
-    public Boolean assertMoteurElectriqueEmissionValid() {
-        return moteurElectrique_IsEmissionConnue || moteurElectrique_EmissionReelle == null;
+    @AssertTrue(message = "Si 'autresMachinesKg_IsEmissionConnue' est faux, alors 'autresMachinesKg_EmissionReelle' doit être égal à 0.")
+    public Boolean isAutresMachinesKgEmissionValid() {
+        if (Boolean.FALSE.equals(autresMachinesKg_IsEmissionConnue)) {
+            return autresMachinesKg_EmissionReelle != null && autresMachinesKg_EmissionReelle == 0f;
+        }
+        return true;
     }
 
-    @AssertTrue(message = "Si autresMachinesKg_IsEmissionConnue est faux, autresMachinesKg_EmissionReelle doit être null")
-    public Boolean assertAutresMachinesKgEmissionValid() {
-        return autresMachinesKg_IsEmissionConnue || autresMachinesKg_EmissionReelle == null;
-    }
-
-    @AssertTrue(message = "Si autresMachinesEur_IsEmissionConnue est faux, autresMachinesEur_EmissionReelle doit être null")
-    public Boolean assertAutresMachinesEurEmissionValid() {
-        return autresMachinesEur_IsEmissionConnue || autresMachinesEur_EmissionReelle == null;
+    @AssertTrue(message = "Si 'autresMachinesEur_IsEmissionConnue' est faux, alors 'autresMachinesEur_EmissionReelle' doit être égal à 0.")
+    public Boolean isAutresMachinesEurEmissionValid() {
+        if (Boolean.FALSE.equals(autresMachinesEur_IsEmissionConnue)) {
+            return autresMachinesEur_EmissionReelle != null && autresMachinesEur_EmissionReelle == 0f;
+        }
+        return true;
     }
 
 

@@ -15,8 +15,11 @@ public class Dechet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Integer valeurEnumTraitement;
-    private Integer quantiteTonne;
+    private Integer valeurEnumTraitement = 0;
+    private Integer quantiteTonne = 0;
+
+    public Dechet() {
+    }
 
     public int getQuantiteTonne() {
         return quantiteTonne;

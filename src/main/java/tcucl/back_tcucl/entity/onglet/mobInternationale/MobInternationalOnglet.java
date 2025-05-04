@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
 import tcucl.back_tcucl.entity.onglet.Onglet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,8 +15,11 @@ public class MobInternationalOnglet extends Onglet {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "voyage_mob_internationale_id")
     @Valid
-    private List<Voyage> voyage;
+    private List<Voyage> voyage = new ArrayList<>();
 
+    public MobInternationalOnglet() {
+        super();
+    }
 
     public List<Voyage> getVoyage() {
         return voyage;

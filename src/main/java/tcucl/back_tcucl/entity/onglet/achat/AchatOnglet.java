@@ -11,16 +11,14 @@ import tcucl.back_tcucl.entity.onglet.Onglet;
 public class AchatOnglet extends Onglet {
 
     @OneToOne(cascade = CascadeType.ALL)
-    private AchatConsommable achatConsommable;
+    private AchatConsommable achatConsommable = new AchatConsommable();
     @OneToOne(cascade = CascadeType.ALL)
-    private AchatRestauration achatRestauration;
+    private AchatRestauration achatRestauration = new AchatRestauration();
     @OneToOne(cascade = CascadeType.ALL)
-    private AchatTextile achatTextile;
+    private AchatTextile achatTextile = new AchatTextile();
 
     public AchatOnglet() {
-        this.achatConsommable = new AchatConsommable();
-        this.achatRestauration = new AchatRestauration();
-        this.achatTextile = new AchatTextile();
+        super();
     }
 
 
@@ -48,5 +46,5 @@ public class AchatOnglet extends Onglet {
         this.achatTextile = achatTextile;
     }
 
-    
+
 }

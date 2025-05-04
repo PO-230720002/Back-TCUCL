@@ -16,10 +16,10 @@ public class EmissionFugitiveOnglet extends Onglet {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "emission_fugitive_onglet_id")
     @Valid
-    private List<MachineEmissionFugitive> machinesEmissionFugitive;
+    private List<MachineEmissionFugitive> machinesEmissionFugitive = new ArrayList<>();
 
     public EmissionFugitiveOnglet() {
-        this.machinesEmissionFugitive = new ArrayList<>();
+        super();
     }
 
     public List<MachineEmissionFugitive> getMachinesEmissionFugitive() {
@@ -43,5 +43,5 @@ public class EmissionFugitiveOnglet extends Onglet {
         this.machinesEmissionFugitive.add(machineEmissionFugitive);
     }
 
-    
+
 }

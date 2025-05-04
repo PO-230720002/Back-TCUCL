@@ -26,31 +26,31 @@ public class Annee {
     private int anneeValeur;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private GeneralOnglet generalOnglet;
+    private GeneralOnglet generalOnglet = new GeneralOnglet();
     @OneToOne(cascade = CascadeType.ALL)
-    private EnergieOnglet energieOnglet;
+    private EnergieOnglet energieOnglet = new EnergieOnglet();
     @OneToOne(cascade = CascadeType.ALL)
-    private AchatOnglet achatOnglet;
+    private AchatOnglet achatOnglet = new AchatOnglet();
     @OneToOne(cascade = CascadeType.ALL)
-    private AutreImmobilisationOnglet autreImmobilisationOnglet;
+    private AutreImmobilisationOnglet autreImmobilisationOnglet = new AutreImmobilisationOnglet();
     @OneToOne(cascade = CascadeType.ALL)
-    private AutreMobFrOnglet autreMobFrOnglet;
+    private AutreMobFrOnglet autreMobFrOnglet = new AutreMobFrOnglet();
     @OneToOne(cascade = CascadeType.ALL)
-    private BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet;
+    private BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = new BatimentImmobilisationMobilierOnglet();
     @OneToOne(cascade = CascadeType.ALL)
-    private DechetOnglet dechetOnglet;
+    private DechetOnglet dechetOnglet = new DechetOnglet();
     @OneToOne(cascade = CascadeType.ALL)
-    private EmissionFugitiveOnglet emissionFugitiveOnglet;
+    private EmissionFugitiveOnglet emissionFugitiveOnglet = new EmissionFugitiveOnglet();
     @OneToOne(cascade = CascadeType.ALL)
-    private MobiliteDomicileTravailOnglet mobiliteDomicileTravailOnglet;
+    private MobiliteDomicileTravailOnglet mobiliteDomicileTravailOnglet = new MobiliteDomicileTravailOnglet();
     @OneToOne(cascade = CascadeType.ALL)
-    private MobInternationalOnglet mobInternationalOnglet;
+    private MobInternationalOnglet mobInternationalOnglet = new MobInternationalOnglet();
     @OneToOne(cascade = CascadeType.ALL)
-    private NumeriqueOnglet numeriqueOnglet;
+    private NumeriqueOnglet numeriqueOnglet = new NumeriqueOnglet();
     @OneToOne(cascade = CascadeType.ALL)
-    private ParkingVoirieOnglet parkingVoirieOnglet;
+    private ParkingVoirieOnglet parkingVoirieOnglet = new ParkingVoirieOnglet();
     @OneToOne(cascade = CascadeType.ALL)
-    private VehiculeOnglet vehiculeOnglet;
+    private VehiculeOnglet vehiculeOnglet = new VehiculeOnglet();
 
     @ManyToOne
     @JoinColumn(name = "entite_id")
@@ -58,36 +58,10 @@ public class Annee {
 
     public Annee() {
         this.anneeValeur = AnneeConfig.getAnneeCourante();
-        this.generalOnglet = new GeneralOnglet();
-        this.energieOnglet = new EnergieOnglet();
-        this.achatOnglet = new AchatOnglet();
-        this.autreImmobilisationOnglet = new AutreImmobilisationOnglet();
-        this.autreMobFrOnglet = new AutreMobFrOnglet();
-        this.batimentImmobilisationMobilierOnglet = new BatimentImmobilisationMobilierOnglet();
-        this.dechetOnglet = new DechetOnglet();
-        this.emissionFugitiveOnglet = new EmissionFugitiveOnglet();
-        this.mobiliteDomicileTravailOnglet = new MobiliteDomicileTravailOnglet();
-        this.mobInternationalOnglet = new MobInternationalOnglet();
-        this.numeriqueOnglet = new NumeriqueOnglet();
-        this.parkingVoirieOnglet = new ParkingVoirieOnglet();
-        this.vehiculeOnglet = new VehiculeOnglet();
     }
 
     public Annee(int anneeValeur) {
         this.anneeValeur = anneeValeur;
-        this.generalOnglet = new GeneralOnglet();
-        this.energieOnglet = new EnergieOnglet();
-        this.achatOnglet = new AchatOnglet();
-        this.autreImmobilisationOnglet = new AutreImmobilisationOnglet();
-        this.autreMobFrOnglet = new AutreMobFrOnglet();
-        this.batimentImmobilisationMobilierOnglet = new BatimentImmobilisationMobilierOnglet();
-        this.dechetOnglet = new DechetOnglet();
-        this.emissionFugitiveOnglet = new EmissionFugitiveOnglet();
-        this.mobiliteDomicileTravailOnglet = new MobiliteDomicileTravailOnglet();
-        this.mobInternationalOnglet = new MobInternationalOnglet();
-        this.numeriqueOnglet = new NumeriqueOnglet();
-        this.parkingVoirieOnglet = new ParkingVoirieOnglet();
-        this.vehiculeOnglet = new VehiculeOnglet();
     }
 
     public void setId(Long id) {
