@@ -25,6 +25,9 @@ public class AchatConsommable {
     private Integer nbFeuillesImprimeesToner_Nb;
     private Float produitsPharmaceutiques_Eur;
 
+    public AchatConsommable() {
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

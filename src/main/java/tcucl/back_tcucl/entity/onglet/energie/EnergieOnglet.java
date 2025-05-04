@@ -120,23 +120,5 @@ public class EnergieOnglet extends Onglet {
     }
 
 
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public Boolean getEstTermine() {
-        return super.getEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(Boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
+    
 }

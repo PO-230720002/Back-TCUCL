@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.entity.onglet.parkingVoirie;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieDto;
 import tcucl.back_tcucl.entity.onglet.Onglet;
 
@@ -11,8 +12,9 @@ import java.util.List;
 @Table(name = "parking_voirie_onglet")
 public class ParkingVoirieOnglet extends Onglet {
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "parking_voirie_onglet_id")
+    @Valid
     private List<ParkingVoirie> parkingVoirieList;
 
     public ParkingVoirieOnglet() {
@@ -27,25 +29,7 @@ public class ParkingVoirieOnglet extends Onglet {
         this.parkingVoirieList = parkingVoirieList;
     }
 
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public Boolean getEstTermine() {
-        return super.getEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(Boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
+    
 
     public void ajouterParkingVoirieViaDto(ParkingVoirieDto parkingVoirieDto) {
         ParkingVoirie parkingVoirie = new ParkingVoirie();

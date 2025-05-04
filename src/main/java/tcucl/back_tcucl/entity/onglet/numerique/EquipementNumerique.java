@@ -15,12 +15,28 @@ public class EquipementNumerique {
     private Integer valeurEnumEquipement;
     private Integer nombre;
     private Integer dureeAmortissement;
-    private boolean emissionsGesPrecisesConnues;
+    private Boolean emissionsGesPrecisesConnues;
     private Float emissionsReellesParProduitKgCO2e;
 
-    @AssertTrue(message = "Si les émissions GES précises ne sont pas connues, les émissions réelles doivent être nulles.")
-    public Boolean assertEmissionsReellesValide() {
-        return emissionsGesPrecisesConnues || emissionsReellesParProduitKgCO2e == null;
+    @AssertTrue(message = "L'indicateur 'emissionsGesPrecisesConnues' doit être renseigné.")
+    public boolean isEmissionsConnuesNonNull() {
+        return emissionsGesPrecisesConnues != null;
+    }
+
+    @AssertTrue(message = "Si les émissions GES sont connues, la valeur doit être renseignée et > 0.")
+    public boolean isValeurPresenteSiConnue() {
+        if (Boolean.TRUE.equals(emissionsGesPrecisesConnues)) {
+            return emissionsReellesParProduitKgCO2e != null && emissionsReellesParProduitKgCO2e > 0.0f;
+        }
+        return true;
+    }
+
+    @AssertTrue(message = "Si les émissions GES ne sont pas connues, la valeur doit être nulle ou 0.")
+    public boolean isValeurVideSiInconnue() {
+        if (Boolean.FALSE.equals(emissionsGesPrecisesConnues)) {
+            return emissionsReellesParProduitKgCO2e == null || emissionsReellesParProduitKgCO2e == 0.0f;
+        }
+        return true;
     }
 
 
@@ -48,11 +64,11 @@ public class EquipementNumerique {
         this.dureeAmortissement = dureeAmortissement;
     }
 
-    public Boolean assertEmissionsGesPrecisesConnues() {
+    public Boolean getEmissionsGesPrecisesConnues() {
         return emissionsGesPrecisesConnues;
     }
 
-    public void setEmissionsGesPrecisesConnues(boolean emissionsGesPrecisesConnues) {
+    public void setEmissionsGesPrecisesConnues(Boolean emissionsGesPrecisesConnues) {
         this.emissionsGesPrecisesConnues = emissionsGesPrecisesConnues;
     }
 

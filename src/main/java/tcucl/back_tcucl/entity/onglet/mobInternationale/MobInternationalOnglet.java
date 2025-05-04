@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.entity.onglet.mobInternationale;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
 import tcucl.back_tcucl.entity.onglet.Onglet;
 
@@ -10,8 +11,9 @@ import java.util.List;
 @Table(name = "mob_international_onglet")
 public class MobInternationalOnglet extends Onglet {
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "voyage_mob_internationale_id")
+    @Valid
     private List<Voyage> voyage;
 
 
@@ -23,25 +25,7 @@ public class MobInternationalOnglet extends Onglet {
         this.voyage = voyage;
     }
 
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public Boolean getEstTermine() {
-        return super.getEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(Boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
+    
 
     public void ajouterVoyageViaDto(VoyageDto voyageDto) {
 

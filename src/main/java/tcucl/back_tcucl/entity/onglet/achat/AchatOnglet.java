@@ -10,13 +10,18 @@ import tcucl.back_tcucl.entity.onglet.Onglet;
 @Table(name = "achat_onglet")
 public class AchatOnglet extends Onglet {
 
-
     @OneToOne(cascade = CascadeType.ALL)
     private AchatConsommable achatConsommable;
     @OneToOne(cascade = CascadeType.ALL)
     private AchatRestauration achatRestauration;
     @OneToOne(cascade = CascadeType.ALL)
     private AchatTextile achatTextile;
+
+    public AchatOnglet() {
+        this.achatConsommable = new AchatConsommable();
+        this.achatRestauration = new AchatRestauration();
+        this.achatTextile = new AchatTextile();
+    }
 
 
     public AchatConsommable getAchatConsommable() {
@@ -43,23 +48,5 @@ public class AchatOnglet extends Onglet {
         this.achatTextile = achatTextile;
     }
 
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public Boolean getEstTermine() {
-        return super.getEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(Boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
+    
 }

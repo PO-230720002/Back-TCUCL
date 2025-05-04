@@ -1,9 +1,9 @@
 package tcucl.back_tcucl.entity.onglet.vehicule.enums;
 
 public enum EnumVehicule_Type {
-    VOITURE_THERMIQUE(0),
-    VOITURE_ELECTRIQUE(1),
-    VOITURE_HYBRIDE(2);
+    VEHICULE_THERMIQUE(0),
+    VEHICULE_ELECTRIQUE(1),
+    VEHICULE_HYBRIDE(2);
 
     private final int code;
 

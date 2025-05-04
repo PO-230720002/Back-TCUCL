@@ -31,7 +31,7 @@ public class MobilierElectromenagerDto {
         this.quantite = entity.getQuantite();
         this.poidsDuProduit = entity.getPoidsDuProduit();
         this.dureeAmortissement = entity.getDureeAmortissement();
-        this.emissionGesPrecisesConnues = entity.isEmissionGesPrecisesConnues();
+        this.emissionGesPrecisesConnues = entity.getEmissionGesPrecisesConnues();
         this.emissionsGesReelleskgCO2 = entity.getEmissionsGesReelleskgCO2();
     }
 

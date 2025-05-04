@@ -226,23 +226,5 @@ public class AutreMobFrOnglet extends Onglet {
         this.etudiantDistanceTotale_Autocar = etudiantDistanceTotale_Autocar;
     }
 
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public Boolean getEstTermine() {
-        return super.getEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(Boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
+    
 }

@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.entity.onglet.emissionFugitive;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.entity.onglet.Onglet;
 
@@ -14,6 +15,7 @@ public class EmissionFugitiveOnglet extends Onglet {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "emission_fugitive_onglet_id")
+    @Valid
     private List<MachineEmissionFugitive> machinesEmissionFugitive;
 
     public EmissionFugitiveOnglet() {
@@ -41,23 +43,5 @@ public class EmissionFugitiveOnglet extends Onglet {
         this.machinesEmissionFugitive.add(machineEmissionFugitive);
     }
 
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public Boolean getEstTermine() {
-        return super.getEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(Boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
+    
 }

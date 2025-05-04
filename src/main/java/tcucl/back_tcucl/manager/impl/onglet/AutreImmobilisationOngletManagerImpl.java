@@ -1,14 +1,24 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.autreImmobilisation.AutreImmobilisationOngletDto;
 import tcucl.back_tcucl.entity.onglet.AutreImmobilisationOnglet;
+import tcucl.back_tcucl.entity.onglet.numerique.NumeriqueOnglet;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
+import tcucl.back_tcucl.exceptionPersonnalisee.ValidationCustomException;
 import tcucl.back_tcucl.manager.AutreImmobilisationOngletManager;
 import tcucl.back_tcucl.repository.onglet.AutreImmobilisationOngletRepository;
 
+import java.util.Set;
+
 @Component
 public class AutreImmobilisationOngletManagerImpl implements AutreImmobilisationOngletManager {
+
+    @Autowired
+    private Validator validator;
 
     private final AutreImmobilisationOngletRepository autreImmobilisationOngletRepository;
 
@@ -106,6 +116,11 @@ public class AutreImmobilisationOngletManagerImpl implements AutreImmobilisation
         if (autreImmobilisationOngletDto.getAutresMachinesEur_EmissionReelle() != null)
             autreImmobilisationOnglet.setAutresMachinesEur_EmissionReelle(autreImmobilisationOngletDto.getAutresMachinesEur_EmissionReelle());
 
+
+        Set<ConstraintViolation<AutreImmobilisationOnglet>> violations = validator.validate(autreImmobilisationOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         autreImmobilisationOngletRepository.save(autreImmobilisationOnglet);
     }
 

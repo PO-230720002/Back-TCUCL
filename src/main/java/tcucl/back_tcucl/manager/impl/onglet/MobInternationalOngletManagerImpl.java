@@ -1,19 +1,29 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
 import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.Voyage;
 import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
+import tcucl.back_tcucl.exceptionPersonnalisee.ValidationCustomException;
 import tcucl.back_tcucl.exceptionPersonnalisee.VoyageDejaExistantException;
 import tcucl.back_tcucl.manager.MobInternationalOngletManager;
 import tcucl.back_tcucl.repository.onglet.MobInternationalOngletRepository;
 
+import java.util.Set;
+
 @Component
 public class MobInternationalOngletManagerImpl implements MobInternationalOngletManager {
 
+    @Autowired
+    private Validator validator;
+    
     private final MobInternationalOngletRepository mobInternationalOngletRepository;
 
     public MobInternationalOngletManagerImpl(MobInternationalOngletRepository mobInternationalOngletRepository) {
@@ -51,6 +61,11 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
                 mobInternationalOnglet.ajouterVoyageViaDto(voyageDto);
             }
         }
+        
+        Set<ConstraintViolation<MobInternationalOnglet>> violations = validator.validate(mobInternationalOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         mobInternationalOngletRepository.save(mobInternationalOnglet);
     }
 
@@ -69,7 +84,12 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
             throw new VoyageDejaExistantException(voyageDto.getNomPays());
         }else{
             mobInternationalOnglet.ajouterVoyageViaDto(voyageDto);
-            mobInternationalOngletRepository.save(mobInternationalOnglet);
+            
+        Set<ConstraintViolation<MobInternationalOnglet>> violations = validator.validate(mobInternationalOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
+        mobInternationalOngletRepository.save(mobInternationalOnglet);
         }
 
     }
@@ -86,6 +106,11 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
 
         mobInternationalOnglet.getVoyage().remove(voyage);
 
+        
+        Set<ConstraintViolation<MobInternationalOnglet>> violations = validator.validate(mobInternationalOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         mobInternationalOngletRepository.save(mobInternationalOnglet);
     }
 
@@ -114,6 +139,11 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
 
         mobInternationalOnglet.getVoyage().add(voyage);
 
+        
+        Set<ConstraintViolation<MobInternationalOnglet>> violations = validator.validate(mobInternationalOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         mobInternationalOngletRepository.save(mobInternationalOnglet);
     }
 

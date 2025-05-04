@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "vehicule_onglet")
 public class VehiculeOnglet extends Onglet {
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "vehicule_onglet_id")
     private List<Vehicule> vehiculeList;
 
@@ -22,25 +22,7 @@ public class VehiculeOnglet extends Onglet {
         this.vehiculeList = vehiculeList;
     }
 
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public Boolean getEstTermine() {
-        return super.getEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(Boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
+    
 
     public void ajouterVehiculeViaDto(VehiculeDto vehiculeDto) {
         Vehicule vehicule = new Vehicule();

@@ -104,7 +104,7 @@ public class MobilierElectromenager {
         this.dureeAmortissement = dureeAmortissement;
     }
 
-    public Boolean assertEmissionGesPrecisesConnues() {
+    public Boolean getEmissionGesPrecisesConnues() {
         return emissionGesPrecisesConnues;
     }
 

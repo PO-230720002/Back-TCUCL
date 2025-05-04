@@ -23,7 +23,7 @@ public class VehiculeOngletController {
 
     @GetMapping
     @checkRoleOnglet
-    public ResponseEntity<?> getById(@PathVariable(name = "ongletId") Long ongletId) {
+    public ResponseEntity<?> getVehiculeOngletById(@PathVariable(name = "ongletId") Long ongletId) {
         VehiculeOnglet vehiculeOngletById = vehiculeOngletService.getVehiculeOngletById(ongletId);
         VehiculeOngletDto vehiculeOngletDto = new VehiculeOngletDto(vehiculeOngletById);
         return ResponseEntity.ok(vehiculeOngletDto);

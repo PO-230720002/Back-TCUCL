@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.entity.onglet.batiment;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentExistantOuNeufConstruitDto;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.EntretienCourantDto;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.MobilierElectromenagerDto;
@@ -13,16 +14,19 @@ import java.util.List;
 @Table(name = "batiment_onglet")
 public class BatimentImmobilisationMobilierOnglet extends Onglet {
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "batiment_onglet_id")
+    @Valid
     private List<BatimentExistantOuNeufConstruit> batimentsExistantOuNeufConstruits = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "batiment_onglet_id")
+    @Valid
     private List<EntretienCourant> entretiensCourants = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "batiment_onglet_id")
+    @Valid
     private List<MobilierElectromenager> mobiliersElectromenagers = new ArrayList<>();
 
 
@@ -94,23 +98,5 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
         this.mobiliersElectromenagers.add(mobilierElectromenager);
     }
 
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public Boolean getEstTermine() {
-        return super.getEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(Boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
+    
 }

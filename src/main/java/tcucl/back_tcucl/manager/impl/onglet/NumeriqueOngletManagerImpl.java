@@ -1,18 +1,28 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.numerique.EquipementNumeriqueDto;
 import tcucl.back_tcucl.dto.onglet.numerique.NumeriqueOngletDto;
+import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
 import tcucl.back_tcucl.entity.onglet.numerique.NumeriqueOnglet;
 import tcucl.back_tcucl.entity.onglet.numerique.EquipementNumerique;
 import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
+import tcucl.back_tcucl.exceptionPersonnalisee.ValidationCustomException;
 import tcucl.back_tcucl.manager.NumeriqueOngletManager;
 import tcucl.back_tcucl.repository.onglet.NumeriqueOngletRepository;
 
+import java.util.Set;
+
 @Component
 public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
+    
+    @Autowired
+    private Validator validator;
 
     public final NumeriqueOngletRepository numeriqueOngletRepository;
 
@@ -60,6 +70,11 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
                 numeriqueOnglet.ajouterEquipementNumeriqueViaDto(equipementNumeriqueDto);
             }
         }
+        
+        Set<ConstraintViolation<NumeriqueOnglet>> violations = validator.validate(numeriqueOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         numeriqueOngletRepository.save(numeriqueOnglet);
     }
 
@@ -67,6 +82,11 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
     public void ajouterEquipementNumerique(Long ongletId, EquipementNumeriqueDto equipementNumeriqueDto) {
         NumeriqueOnglet numeriqueOnglet = getNumeriqueOngletById(ongletId);
         numeriqueOnglet.ajouterEquipementNumeriqueViaDto(equipementNumeriqueDto);
+        
+        Set<ConstraintViolation<NumeriqueOnglet>> violations = validator.validate(numeriqueOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         numeriqueOngletRepository.save(numeriqueOnglet);
     }
 
@@ -82,6 +102,11 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
 
         numeriqueOnglet.getEquipementNumeriqueList().remove(equipementNumerique);
 
+        
+        Set<ConstraintViolation<NumeriqueOnglet>> violations = validator.validate(numeriqueOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         numeriqueOngletRepository.save(numeriqueOnglet);
     }
 
@@ -108,6 +133,11 @@ public class NumeriqueOngletManagerImpl implements NumeriqueOngletManager {
 
         numeriqueOnglet.getEquipementNumeriqueList().add(equipementNumerique);
 
+        
+        Set<ConstraintViolation<NumeriqueOnglet>> violations = validator.validate(numeriqueOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         numeriqueOngletRepository.save(numeriqueOnglet);
     }
 }

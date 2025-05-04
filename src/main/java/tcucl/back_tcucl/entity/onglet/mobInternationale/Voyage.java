@@ -21,6 +21,14 @@ public class Voyage {
     private Integer semestresEtudiantsAvion;
     private Integer semestresEtudiantsTrain;
 
+    @AssertTrue(message = "Les champs train ne doivent pas être remplis pour ce pays.")
+    public Boolean assertTrainExistForThisDestination() {
+        if (PAYS_PAS_DE_TRAJET_EN_TRAIN.contains(valeurEnumMobInternationale_NomPays)) {
+            return prosTrain == 0 && stagesEtudiantsTrain == 0 && semestresEtudiantsTrain == 0;
+        }
+        return true;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -86,23 +94,6 @@ public class Voyage {
         this.semestresEtudiantsTrain = semestresEtudiantsTrain;
     }
 
-
-    @AssertTrue(message = "Les champs train ne doivent pas être remplis pour ce pays.")
-    public Boolean assertTrainExistForThisDestination() {
-        if (PAYS_PAS_DE_TRAJET_EN_TRAIN.contains(valeurEnumMobInternationale_NomPays)) {
-            return prosTrain == 0 && stagesEtudiantsTrain == 0 && semestresEtudiantsTrain == 0;
-        }
-        return true;
-    }
-
-//    EXEMPLE UTILISATION VALIDATOR DANS UN CONTROLEUR
-//    @PostMapping("/test")
-//    public ResponseEntity<?> test(@Valid @RequestBody VOYAGEMOBETC, BindingResult result) { binding -> stock le résulat de la validation
-//        if (result.hasErrors()) {
-//            return ResponseEntity.badRequest().body(result.getAllErrors());
-//        }
-//        return ResponseEntity.ok("Tout est bon !");
-//    }
 
     private static final Set<Integer> PAYS_PAS_DE_TRAJET_EN_TRAIN = Set.of(
             EnumMobInternationale_NomPays.ALBANIE.getCode(),

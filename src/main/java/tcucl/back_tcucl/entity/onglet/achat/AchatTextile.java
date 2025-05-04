@@ -23,6 +23,9 @@ public class AchatTextile {
     private Integer Manteau_nb;
     private Integer Chaussure_nb;
 
+    public AchatTextile() {
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

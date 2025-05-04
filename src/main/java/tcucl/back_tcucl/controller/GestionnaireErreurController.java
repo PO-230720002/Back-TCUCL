@@ -17,10 +17,9 @@ import static tcucl.back_tcucl.Constante.*;
 @RestControllerAdvice
 public class GestionnaireErreurController {
 
-    //Entité / Utilisateur / Onglet
-    // Todo les objets dépendant d'un onglet
-    @ExceptionHandler(NonTrouveCustomException.class)
-    public ResponseEntity<String> handleNonTrouveCustomException(NonTrouveCustomException ex) {
+    //Entité / Utilisateur / Onglet / Element (onglet contenant une liste d'éléments)
+    @ExceptionHandler(NonTrouveGeneralCustomException.class)
+    public ResponseEntity<String> handleNonTrouveCustomException(NonTrouveGeneralCustomException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
@@ -35,6 +34,8 @@ public class GestionnaireErreurController {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
+    // Ajout d'un voyage vers une destination déjà existante
+    // (ce n'est pas censé arriver car usage d'un patch dasn ce cas)
     @ExceptionHandler(VoyageDejaExistantException.class)
     public ResponseEntity<String> handleEntiteDejaExistantAvecNomTypeException(VoyageDejaExistantException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
@@ -57,17 +58,10 @@ public class GestionnaireErreurController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_AUTHENTIFICATION);
     }
 
-    //Gestion des erreurs de validation
-    @ExceptionHandler(TransactionSystemException.class)
-    public ResponseEntity<?> handleTransactionException(TransactionSystemException ex) {
-        Throwable cause = ex.getRootCause();
-        if (cause instanceof ConstraintViolationException cve) {
-            String msg = cve.getConstraintViolations().stream()
-                    .map(ConstraintViolation::getMessage)
-                    .collect(Collectors.joining(", "));
-            return ResponseEntity.badRequest().body(msg);
-        }
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ERREUR_INTERNE);
+    //Validation de Donnée custom (évite une erreur "JPA Transaction" lors d'un save)
+    @ExceptionHandler(ValidationCustomException.class)
+    public ResponseEntity<String> handleConstraintViolationException(ValidationCustomException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
     //Tout le reste

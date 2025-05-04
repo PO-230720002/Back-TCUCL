@@ -46,6 +46,9 @@ public class AchatRestauration {
     private Float fruitsMoyenne_Tonnes;
     private Float legumineuseMoyenne_Tonnes;
 
+    public AchatRestauration() {
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

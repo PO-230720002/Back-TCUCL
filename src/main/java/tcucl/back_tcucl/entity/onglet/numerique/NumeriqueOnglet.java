@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.entity.onglet.numerique;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.AssertTrue;
 import tcucl.back_tcucl.dto.onglet.numerique.EquipementNumeriqueDto;
 import tcucl.back_tcucl.entity.onglet.Onglet;
@@ -12,8 +13,9 @@ import java.util.List;
 public class NumeriqueOnglet extends Onglet {
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "equipement_numerique_id")
+    @Valid
     List<EquipementNumerique> equipementNumeriqueList;
 
     private Boolean useMethodSimplifiee;
@@ -67,25 +69,7 @@ public class NumeriqueOnglet extends Onglet {
         this.equipementNumeriqueList = equipementNumeriqueList;
     }
 
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public Boolean getEstTermine() {
-        return super.getEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(Boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
+    
 
     public void ajouterEquipementNumeriqueViaDto(EquipementNumeriqueDto equipementNumeriqueDto  ) {
         EquipementNumerique equipementNumerique = new EquipementNumerique();

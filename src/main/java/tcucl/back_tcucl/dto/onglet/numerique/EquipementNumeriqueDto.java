@@ -25,7 +25,7 @@ public class EquipementNumeriqueDto {
         this.equipement = equipementNumerique.getEquipement();
         this.nombre = equipementNumerique.getNombre();
         this.dureeAmortissement = equipementNumerique.getDureeAmortissement();
-        this.emissionsGesPrecisesConnues = equipementNumerique.isEmissionsGesPrecisesConnues();
+        this.emissionsGesPrecisesConnues = equipementNumerique.getEmissionsGesPrecisesConnues();
         this.emissionsReellesParProduitKgCO2e = equipementNumerique.getEmissionsReellesParProduitKgCO2e();
     }
 

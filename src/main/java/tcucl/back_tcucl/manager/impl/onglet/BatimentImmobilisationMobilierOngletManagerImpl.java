@@ -14,8 +14,10 @@ import tcucl.back_tcucl.entity.onglet.batiment.BatimentExistantOuNeufConstruit;
 import tcucl.back_tcucl.entity.onglet.batiment.EntretienCourant;
 import tcucl.back_tcucl.entity.onglet.batiment.MobilierElectromenager;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_Mobilier;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirieOnglet;
 import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
+import tcucl.back_tcucl.exceptionPersonnalisee.ValidationCustomException;
 import tcucl.back_tcucl.manager.BatimentImmobilisationMobilierOngletManager;
 import tcucl.back_tcucl.repository.onglet.BatimentImmobilisationMobilierOngletRepository;
 
@@ -29,7 +31,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     private Validator validator;
 
 
-    //todo problème dans les erreurs liste elt
+    // todo problème dans les erreurs liste elt
     private final BatimentImmobilisationMobilierOngletRepository batimentImmobilisationMobilierOngletRepository;
 
     public BatimentImmobilisationMobilierOngletManagerImpl(BatimentImmobilisationMobilierOngletRepository batimentImmobilisationMobilierOngletRepository) {
@@ -75,6 +77,11 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
             }
         }
 
+        
+        Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
     }
 
@@ -91,6 +98,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     public void ajouterBatiment(Long ongletId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
         batimentImmobilisationMobilierOnglet.ajouterBatimentViaDto(batimentExistantOuNeufConstruitDto);
+        Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
     }
 
@@ -109,6 +120,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         batimentImmobilisationMobilierOnglet.getBatimentExistantOuNeufConstruits().remove(batimentASupprimer);
 
         // Sauvegarder l'onglet
+        Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
     }
 
@@ -147,6 +162,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
             batiment.setTypeStructure(dto.getTypeStructure());
         }
 
+        Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet); // Hibernate met à jour via cascade
     }
 
@@ -164,6 +183,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     public void ajouterEntretienCourant(Long ongletId, EntretienCourantDto entretienCourantDto) {
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
         batimentImmobilisationMobilierOnglet.ajouterEntretienCourantViaDto(entretienCourantDto);
+        Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
     }
 
@@ -182,6 +205,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         batimentImmobilisationMobilierOnglet.getEntretienCourants().remove(entretienCourantASupprimer);
 
         // Sauvegarder l'onglet
+        Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
     }
 
@@ -223,6 +250,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
             entretienCourant.setTypeBatiment(dto.getTypeBatiment());
         }
 
+        Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet); // Hibernate met à jour via cascade
 
     }
@@ -242,6 +273,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     public void ajouterMobilierElectromenager(Long ongletId, MobilierElectromenagerDto mobilierElectromenagerDto) {
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
         batimentImmobilisationMobilierOnglet.ajouterMobilierElectromenagerViaDto(mobilierElectromenagerDto);
+        Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
     }
 
@@ -261,6 +296,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         batimentImmobilisationMobilierOnglet.getMobilierElectromenagers().remove(mobilierElectromenagerASupprimer);
 
         // Sauvegarder l'onglet
+        Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
 
     }
@@ -297,6 +336,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
             mobilierElectromenager.setEmissionsGesReelleskgCO2(mobilierElectromenagerDto.getEmissionsGesReelleskgCO2());
         }
 
+        Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
 
     }

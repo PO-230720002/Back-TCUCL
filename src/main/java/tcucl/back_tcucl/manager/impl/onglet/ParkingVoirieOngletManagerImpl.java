@@ -1,5 +1,9 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
+import jakarta.xml.bind.ValidationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieDto;
 import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieOngletDto;
@@ -7,11 +11,18 @@ import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirieOnglet;
 import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirie;
 import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
+import tcucl.back_tcucl.exceptionPersonnalisee.ValidationCustomException;
 import tcucl.back_tcucl.manager.ParkingVoirieOngletManager;
 import tcucl.back_tcucl.repository.onglet.ParkingVoirieOngletRepository;
 
+import java.util.Set;
+
 @Component
 public class ParkingVoirieOngletManagerImpl implements ParkingVoirieOngletManager {
+
+    @Autowired
+    private Validator validator;
+
 
     private final ParkingVoirieOngletRepository parkingVoirieOngletRepository;
 
@@ -51,6 +62,11 @@ public class ParkingVoirieOngletManagerImpl implements ParkingVoirieOngletManage
                 parkingVoirieOnglet.ajouterParkingVoirieViaDto(parkingVoirieDto);
             }
         }
+        
+        Set<ConstraintViolation<ParkingVoirieOnglet>> violations = validator.validate(parkingVoirieOnglet);
+        if(!violations.isEmpty()) {
+           throw new ValidationCustomException(violations);
+        }
         parkingVoirieOngletRepository.save(parkingVoirieOnglet);
     }
 
@@ -58,6 +74,10 @@ public class ParkingVoirieOngletManagerImpl implements ParkingVoirieOngletManage
     public void ajouterParkingVoirie(Long ongletId, ParkingVoirieDto parkingVoirieDto) {
         ParkingVoirieOnglet parkingVoirieOnglet = getParkingVoirieOngletById(ongletId);
         parkingVoirieOnglet.ajouterParkingVoirieViaDto(parkingVoirieDto);
+        Set<ConstraintViolation<ParkingVoirieOnglet>> violations = validator.validate(parkingVoirieOnglet);
+        if(!violations.isEmpty()) {
+           throw new ValidationCustomException(violations);
+        }
         parkingVoirieOngletRepository.save(parkingVoirieOnglet);
     }
 
@@ -74,6 +94,10 @@ public class ParkingVoirieOngletManagerImpl implements ParkingVoirieOngletManage
 
         parkingVoirieOnglet.getParkingVoirieList().remove(parkingVoirie);
 
+        Set<ConstraintViolation<ParkingVoirieOnglet>> violations = validator.validate(parkingVoirieOnglet);
+        if(!violations.isEmpty()) {
+           throw new ValidationCustomException(violations);
+        }
         parkingVoirieOngletRepository.save(parkingVoirieOnglet);
     }
 
@@ -105,6 +129,10 @@ public class ParkingVoirieOngletManagerImpl implements ParkingVoirieOngletManage
 
         parkingVoirieOnglet.getParkingVoirieList().add(parkingVoirie);
 
+        Set<ConstraintViolation<ParkingVoirieOnglet>> violations = validator.validate(parkingVoirieOnglet);
+        if(!violations.isEmpty()) {
+           throw new ValidationCustomException(violations);
+        }
         parkingVoirieOngletRepository.save(parkingVoirieOnglet);
     }
 }
