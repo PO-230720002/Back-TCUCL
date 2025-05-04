@@ -22,5 +22,9 @@ public interface ParametreService {
 
     void ajouterAnneeEntite(Long entiteId, Integer anneeUniversitaire);
 
+    void creerAnneeSuivante();
+
     List<UtilisateurDto> getAllUtilisateurParEntiteId(Long entiteId);
+
+    Boolean peutCreerUneNouvelleAnnee();
 }

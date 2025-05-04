@@ -32,6 +32,7 @@ public class ControllerConstante {
     public static final String REST_AJOUTER_ANNEE = "/ajouter-annee";
     public static final String REST_CREER_ENTITE = "/creer-entite";
     public static final String REST_IMPORT_FACTEURS_EMISSION = "/import-facteurs-emission";
+    public static final String REST_CREER_ANNEE_SUIVANTE = "/creer-annee-suivante";
     public static final String REST_UTILISATEUR_ENTITE = "/utilisateur-entite";
     //messages
     public static final String REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT = "Le compte utilisateur a bien créé.";
@@ -42,6 +43,7 @@ public class ControllerConstante {
     public static final String REST_MESSAGE_ENTITE_CREEE = "L'entité a bien été créé.";
     public static final String REST_MESSAGE_ANNEE_ENTITE_AJOUTEE = "L'année a bien été ajoutée à l'entité.";
     public static final String REST_MESSAGE_IMPORT_FACTEURS_EMISSION = "Importation réussie.";
+    public static final String REST_MESSAGE_ANNEE_SUIVANTE_CREEE = "Nouvelle année créée pour toutes les organisations inscrites.";
 
     //   *******************************************
     //   ------------      ONGLET       ------------

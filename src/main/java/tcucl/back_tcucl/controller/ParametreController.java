@@ -89,11 +89,25 @@ public class ParametreController {
         return ResponseEntity.ok(REST_MESSAGE_IMPORT_FACTEURS_EMISSION);
     }
 
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
+    @GetMapping(REST_CREER_ANNEE_SUIVANTE)
+    public ResponseEntity<?> creerAnneeSuivante() {
+        parametreService.creerAnneeSuivante();
+        return ResponseEntity.ok(REST_MESSAGE_ANNEE_SUIVANTE_CREEE);
+    }
+
     //Initialisation
     @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ENTITE_' + #entiteId))")
     @GetMapping(REST_UTILISATEUR_ENTITE + REST_ENTITE_ID)
     public ResponseEntity<?> getAllUtilisateurParEntiteId(@PathVariable("entiteId") Long entiteId) {
+        // todo : mettre en Dto
         return ResponseEntity.ok(parametreService.getAllUtilisateurParEntiteId(entiteId));
+    }
+
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
+    @GetMapping()
+    public ResponseEntity<?> peutCreerUneNouvelleAnnee() {
+        return ResponseEntity.ok(parametreService.peutCreerUneNouvelleAnnee());
     }
 
 }

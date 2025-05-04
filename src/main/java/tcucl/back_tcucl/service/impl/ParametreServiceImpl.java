@@ -2,13 +2,12 @@ package tcucl.back_tcucl.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tcucl.back_tcucl.config.AnneeConfig;
 import tcucl.back_tcucl.dto.*;
+import tcucl.back_tcucl.entity.Annee;
 import tcucl.back_tcucl.entity.Entite;
 import tcucl.back_tcucl.entity.Utilisateur;
-import tcucl.back_tcucl.service.ParametreService;
-import tcucl.back_tcucl.service.AuthentificationService;
-import tcucl.back_tcucl.service.EntiteService;
-import tcucl.back_tcucl.service.UtilisateurService;
+import tcucl.back_tcucl.service.*;
 
 import java.util.List;
 
@@ -19,10 +18,12 @@ public class ParametreServiceImpl implements ParametreService {
 
     private final EntiteService entiteService;
     private final UtilisateurService utilisateurService;
+    private final ApplicationParamService applicationParamService;
 
-    public ParametreServiceImpl(EntiteService entiteService, UtilisateurService utilisateurService, AuthentificationService authentificationService) {
+    public ParametreServiceImpl(EntiteService entiteService, UtilisateurService utilisateurService, AuthentificationService authentificationService, ApplicationParamService applicationParamService) {
         this.entiteService = entiteService;
         this.utilisateurService = utilisateurService;
+        this.applicationParamService = applicationParamService;
     }
 
     @Override
@@ -83,6 +84,34 @@ public class ParametreServiceImpl implements ParametreService {
     @Override
     public void modifierUtilisateurParUtilisateur(Long utilisateurId, ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto) {
         utilisateurService.modifierUtilisateurParUtilisateur(utilisateurId, modificationUtilisateurParUtilisateurDto);
+    }
+
+    @Transactional
+    @Override
+    public void creerAnneeSuivante() {
+
+        int anneeUniversitaire = AnneeConfig.getAnneeCourante();
+
+        //On vérifie si l'année universitaire courante est déjà créée
+        if (applicationParamService.getDerniereAnneeCreee() == anneeUniversitaire) {
+            throw new IllegalStateException("L'année universitaire " + anneeUniversitaire + " est déjà créée.");
+        }
+
+        List<Entite> entites = entiteService.getAllEntites();
+        for (Entite entite : entites) {
+
+            Annee annee = new Annee(anneeUniversitaire);
+            annee.setEntite(entite);
+            entite.getAnnees().add(annee);
+
+            entiteService.saveEntite(entite);
+        }
+        applicationParamService.setDerniereAnneeCreee(anneeUniversitaire);
+    }
+
+    @Override
+    public Boolean peutCreerUneNouvelleAnnee() {
+        return applicationParamService.getDerniereAnneeCreee() != AnneeConfig.getAnneeCourante();
     }
 
     private UtilisateurDto utilisateurToUtilisateurDto(Utilisateur utilisateur){
