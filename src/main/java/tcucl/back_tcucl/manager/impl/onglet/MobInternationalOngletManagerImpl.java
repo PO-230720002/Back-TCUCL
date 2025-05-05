@@ -147,5 +147,8 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
         mobInternationalOngletRepository.save(mobInternationalOnglet);
     }
 
-
+    @Override
+    public void save(MobInternationalOnglet mobInternationalOnglet) {
+        mobInternationalOngletRepository.save(mobInternationalOnglet);
+    }
 }

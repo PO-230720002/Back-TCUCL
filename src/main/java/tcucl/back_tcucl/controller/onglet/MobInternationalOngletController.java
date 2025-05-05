@@ -1,7 +1,9 @@
 package tcucl.back_tcucl.controller.onglet;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import tcucl.back_tcucl.annotationPersonnalisee.checkRoleOnglet;
 import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
 import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
@@ -59,5 +61,14 @@ public class MobInternationalOngletController {
                                                     @RequestBody VoyageDto voyageDto) {
         mobInternationalOngletService.updateVoyagePartiel(ongletId, voyageId, voyageDto);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping(REST_IMPORT_VOYAGES)
+    @checkRoleOnglet
+    public ResponseEntity<?> importVoyagesFromExcel(@PathVariable(name = "ongletId") Long ongletId,
+                                                    @RequestParam("file") MultipartFile file,
+                                                    @RequestParam(name = "rajouter", defaultValue = "false") boolean rajouter) {
+        mobInternationalOngletService.importVoyagesFromExcel(ongletId, file, rajouter);
+        return ResponseEntity.ok(REST_MESSAGE_IMPORT_VOYAGE);
     }
 }

@@ -18,4 +18,6 @@ public interface MobInternationalOngletManager {
     void supprimerVoyage(Long ongletId, Long voyageId);
 
     void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageDto voyageDto);
+
+    void save(MobInternationalOnglet mobInternationalOnglet);
 }

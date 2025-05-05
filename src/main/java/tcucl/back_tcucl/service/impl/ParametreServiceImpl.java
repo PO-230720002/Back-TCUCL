@@ -77,8 +77,8 @@ public class ParametreServiceImpl implements ParametreService {
     }
 
     @Override
-    public List<UtilisateurDto> getAllUtilisateurParEntiteId(Long entiteId) {
-        return utilisateurService.getAllUtilisateurParEntiteId(entiteId).stream().map(this::utilisateurToUtilisateurDto).toList();
+    public List<Utilisateur> getAllUtilisateurParEntiteId(Long entiteId) {
+        return utilisateurService.getAllUtilisateurParEntiteId(entiteId);
     }
 
     @Override
@@ -112,17 +112,6 @@ public class ParametreServiceImpl implements ParametreService {
     @Override
     public Boolean peutCreerUneNouvelleAnnee() {
         return applicationParamService.getDerniereAnneeCreee() != AnneeConfig.getAnneeCourante();
-    }
-
-    private UtilisateurDto utilisateurToUtilisateurDto(Utilisateur utilisateur){
-        return new UtilisateurDto(
-                utilisateur.getId(),
-                utilisateur.getNom(),
-                utilisateur.getPrenom(),
-                utilisateur.getEmail(),
-                utilisateur.getEstAdmin(),
-                utilisateur.getEntite().getNom()
-        );
     }
 
 }

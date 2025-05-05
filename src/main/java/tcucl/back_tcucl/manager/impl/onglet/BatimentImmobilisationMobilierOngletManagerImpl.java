@@ -30,8 +30,6 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     @Autowired
     private Validator validator;
 
-
-    // todo problème dans les erreurs liste elt
     private final BatimentImmobilisationMobilierOngletRepository batimentImmobilisationMobilierOngletRepository;
 
     public BatimentImmobilisationMobilierOngletManagerImpl(BatimentImmobilisationMobilierOngletRepository batimentImmobilisationMobilierOngletRepository) {

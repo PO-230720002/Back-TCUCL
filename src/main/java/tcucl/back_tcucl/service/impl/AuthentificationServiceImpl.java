@@ -82,14 +82,7 @@ public class AuthentificationServiceImpl implements AuthentificationService {
                     authData.put(JETON, jwtUtils.generateToken(connexionDto.getEmail()));
                     logger.info("Token JWT généré");
 
-                    UtilisateurDto utilisateurDto = new UtilisateurDto(
-                            utilisateur.getId(),
-                            utilisateur.getNom(),
-                            utilisateur.getPrenom(),
-                            utilisateur.getEmail(),
-                            utilisateur.getEstAdmin(),
-                            utilisateur.getEntite().getNom()
-                    );
+                    UtilisateurDto utilisateurDto = new UtilisateurDto(utilisateur);
 
                     authData.put("user", utilisateurDto);
                 }

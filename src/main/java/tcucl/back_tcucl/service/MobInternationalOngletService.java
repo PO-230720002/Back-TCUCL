@@ -1,5 +1,6 @@
 package tcucl.back_tcucl.service;
 
+import org.springframework.web.multipart.MultipartFile;
 import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
 import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
@@ -16,4 +17,5 @@ public interface MobInternationalOngletService {
 
     void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageDto dto);
 
+    void importVoyagesFromExcel(Long ongletId, MultipartFile file, boolean rajouter);
 }

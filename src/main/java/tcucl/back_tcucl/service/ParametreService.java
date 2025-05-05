@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.service;
 
 import tcucl.back_tcucl.dto.*;
+import tcucl.back_tcucl.entity.Utilisateur;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface ParametreService {
 
     void creerAnneeSuivante();
 
-    List<UtilisateurDto> getAllUtilisateurParEntiteId(Long entiteId);
+    List<Utilisateur> getAllUtilisateurParEntiteId(Long entiteId);
 
     Boolean peutCreerUneNouvelleAnnee();
 }

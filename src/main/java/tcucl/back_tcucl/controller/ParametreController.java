@@ -5,8 +5,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tcucl.back_tcucl.dto.*;
+import tcucl.back_tcucl.entity.Utilisateur;
 import tcucl.back_tcucl.service.FacteurEmissionService;
 import tcucl.back_tcucl.service.ParametreService;
+
+import java.util.List;
 
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
@@ -100,8 +103,9 @@ public class ParametreController {
     @PreAuthorize("hasRole('ROLE_SUPERADMIN') or (hasRole('ROLE_ENTITE_' + #entiteId))")
     @GetMapping(REST_UTILISATEUR_ENTITE + REST_ENTITE_ID)
     public ResponseEntity<?> getAllUtilisateurParEntiteId(@PathVariable("entiteId") Long entiteId) {
-        // todo : mettre en Dto
-        return ResponseEntity.ok(parametreService.getAllUtilisateurParEntiteId(entiteId));
+        List<Utilisateur> allUtilisateurParEntiteId = parametreService.getAllUtilisateurParEntiteId(entiteId);
+        List<UtilisateurDto> allUtilisateurParEntiteIdDto = allUtilisateurParEntiteId.stream().map(UtilisateurDto::new).toList();
+        return ResponseEntity.ok(allUtilisateurParEntiteIdDto);
     }
 
     @PreAuthorize("hasRole('ROLE_SUPERADMIN')")

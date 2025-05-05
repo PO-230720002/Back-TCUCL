@@ -1,5 +1,7 @@
 package tcucl.back_tcucl.dto;
 
+import tcucl.back_tcucl.entity.Utilisateur;
+
 public class UtilisateurDto {
 
     private long id;
@@ -8,15 +10,21 @@ public class UtilisateurDto {
     private String email;
     private Boolean estAdmin;
     private String entiteNom;
+    private Long entiteId;
 
 
-    public UtilisateurDto(long id, String nom, String prenom, String email, Boolean estAdmin, String entiteNom) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.estAdmin = estAdmin;
-        this.entiteNom = entiteNom;
+    public UtilisateurDto() {
+    }
+
+    public UtilisateurDto (Utilisateur utilisateur){
+        this.id = utilisateur.getId();
+        this.nom = utilisateur.getNom();
+        this.prenom = utilisateur.getPrenom();
+        this.email = utilisateur.getEmail();
+        this.estAdmin = utilisateur.getEstAdmin();
+        this.entiteNom = utilisateur.getEntite().getNom();
+        this.entiteId = utilisateur.getEntite().getId();
+
     }
 
     public long getId() {
@@ -67,4 +75,11 @@ public class UtilisateurDto {
         this.entiteNom = entiteNom;
     }
 
+    public Long getEntiteId() {
+        return entiteId;
+    }
+
+    public void setEntiteId(Long entiteId) {
+        this.entiteId = entiteId;
+    }
 }

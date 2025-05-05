@@ -67,6 +67,9 @@ public class ControllerConstante {
     public static final String REST_MOB_INTERNATIONALE_ONGLET = "/mobInternationaleOnglet";
     public static final String REST_VOYAGE = "/voyage";
     public static final String REST_VOYAGE_ID = "/{voyageId}";
+    public static final String REST_IMPORT_VOYAGES = "/import-voyage";
+    public static final String REST_MESSAGE_IMPORT_VOYAGE = "Importation des voyages réussie.";
+
 
     //   ---------    Parking   ----------
     public static final String REST_PARKING_VOIRIE_ONGLET = "parkingVoirieOnglet";
