@@ -1,4 +1,4 @@
-package tcucl.back_tcucl.entity;
+package tcucl.back_tcucl.entity.facteurEmission;
 
 import jakarta.persistence.*;
 
@@ -16,7 +16,7 @@ public class FacteurEmission {
 
     private String unite;
 
-    private Double facteurEmission;
+    private Float facteurEmission;
 
 
     // --- Getters and Setters ---
@@ -52,11 +52,11 @@ public class FacteurEmission {
         this.unite = unite;
     }
 
-    public Double getFacteurEmission() {
+    public Float getFacteurEmission() {
         return facteurEmission;
     }
 
-    public void setFacteurEmission(Double facteurEmission) {
+    public void setFacteurEmission(Float facteurEmission) {
         this.facteurEmission = facteurEmission;
     }
 
