@@ -35,5 +35,9 @@ public class EnergieOngletController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping(REST_RESULTAT)
+    @checkRoleOnglet
+    public
+
 
 }

@@ -5,7 +5,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import tcucl.back_tcucl.entity.FacteurEmission;
-import tcucl.back_tcucl.repository.FacteurEmissionRepository;
+import tcucl.back_tcucl.manager.FacteurEmissionManager;
 import tcucl.back_tcucl.service.FacteurEmissionService;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -15,12 +15,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class FacteurEmissionImpl implements FacteurEmissionService {
+public class FacteurEmissionServiceImpl implements FacteurEmissionService {
 
-    private final FacteurEmissionRepository repository;
+    private final FacteurEmissionManager facteurEmissionManager;
 
-    public FacteurEmissionImpl(FacteurEmissionRepository repository) {
-        this.repository = repository;
+    public FacteurEmissionServiceImpl(FacteurEmissionManager facteurEmissionManager) {
+        this.facteurEmissionManager = facteurEmissionManager;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class FacteurEmissionImpl implements FacteurEmissionService {
         try (Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
             Sheet sheet = workbook.getSheetAt(0);
 
-            repository.deleteAll();
+            facteurEmissionManager.deleteAll();
 
             for (int i = 3; i <= sheet.getLastRowNum(); i++) {
                 Row row = sheet.getRow(i);
@@ -37,7 +37,7 @@ public class FacteurEmissionImpl implements FacteurEmissionService {
                 try {
                     String categorie = getCellValue(row.getCell(0));
                     String type = getCellValue(row.getCell(1));
-                    Double facteur = parseDoubleSafe(row.getCell(2), sheet);                    String unite = getCellValue(row.getCell(3));
+                    Float facteur = parseFloatSafe(row.getCell(2), sheet);                    String unite = getCellValue(row.getCell(3));
                     // Si tu as une colonne pourcentage en cellule 4 :
                     // Double pourcentage = parsePourcentage(row.getCell(4));
 
@@ -53,7 +53,7 @@ public class FacteurEmissionImpl implements FacteurEmissionService {
                     fe.setUnite(unite);
                     // fe.setPourcentage(pourcentage); // si applicable
 
-                    repository.save(fe);
+                    facteurEmissionManager.save(fe);
 
                 } catch (Exception e) {
                     System.err.printf("Erreur à la ligne %d : %s%n", i + 1, e.getMessage());
@@ -63,6 +63,10 @@ public class FacteurEmissionImpl implements FacteurEmissionService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public FacteurEmission findByCategorieAndTypeAndUnite(String categorie, String type, String unite){
+        return facteurEmissionManager.findByCategorieAndTypeAndUnite(categorie, type, unite);
     }
 
     private String getCellValue(Cell cell) {
@@ -78,16 +82,16 @@ public class FacteurEmissionImpl implements FacteurEmissionService {
         };
     }
 
-    private Double parseDoubleSafe(Cell cell, Sheet sheet) {
+    private Float parseFloatSafe(Cell cell, Sheet sheet) {
         try {
-            if (cell == null) return 0.0;
+            if (cell == null) return 0.0f;
 
             if (cell.getCellType() == CellType.NUMERIC) {
-                return cell.getNumericCellValue();
+                return (float) cell.getNumericCellValue();
             }
 
             String formula = getCellValue(cell);
-            if (formula == null || formula.isBlank()) return 0.0;
+            if (formula == null || formula.isBlank()) return 0.0f;
 
             formula = formula.replace(",", ".");
 
@@ -100,7 +104,7 @@ public class FacteurEmissionImpl implements FacteurEmissionService {
                 Row refRow = sheet.getRow(cellRef.getRow());
                 if (refRow != null) {
                     Cell refCell = refRow.getCell(cellRef.getCol());
-                    double value = parseDoubleSafe(refCell, sheet);
+                    float value = parseFloatSafe(refCell, sheet);
                     formula = formula.replace(ref, String.valueOf(value));
                 } else {
                     formula = formula.replace(ref, "0");
@@ -109,11 +113,14 @@ public class FacteurEmissionImpl implements FacteurEmissionService {
 
             // Évalue l'expression mathématique
             Expression exp = new ExpressionBuilder(formula).build();
-            return exp.evaluate();
+            return (float) exp.evaluate();
 
         } catch (Exception e) {
             System.err.println("Erreur de conversion/évaluation : " + e.getMessage());
-            return 0.0;
+            return 0.0f;
         }
     }
+
+
+
 }
