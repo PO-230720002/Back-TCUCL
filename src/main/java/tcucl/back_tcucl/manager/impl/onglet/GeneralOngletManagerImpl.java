@@ -1,9 +1,9 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.general.GeneralOngletDto;
 import tcucl.back_tcucl.entity.onglet.GeneralOnglet;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.GeneralOngletManager;
 import tcucl.back_tcucl.repository.onglet.GeneralOngletRepository;
 
@@ -17,31 +17,31 @@ public class GeneralOngletManagerImpl implements GeneralOngletManager {
     }
 
     @Override
-    public GeneralOnglet getGeneralOngletById(Long id) {
-        return generalOngletRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("GeneralOnglet non trouvé avec l'Id: " + id));
+    public GeneralOnglet getGeneralOngletById(Long ongletId) {
+        return generalOngletRepository.findById(ongletId).orElseThrow(() -> new OngletNonTrouveIdException("General",ongletId));
     }
 
     @Override
-    public void updateGeneralOngletPartiel(Long id, GeneralOngletDto dto) {
-        GeneralOnglet onglet = getGeneralOngletById(id);
+    public void updateGeneralOngletPartiel(Long ongletId, GeneralOngletDto generalOngletDto) {
+        GeneralOnglet generalOnglet = getGeneralOngletById(ongletId);
 
-        if (dto.getNote() != null) {
-            onglet.setNote(dto.getNote());
+        if (generalOngletDto.getNote() != null) {
+            generalOnglet.setNote(generalOngletDto.getNote());
         }
 
-        if (dto.getEstTermine() != null) {
-            onglet.setEstTermine(dto.getEstTermine());
+        if (generalOngletDto.getEstTermine() != null) {
+            generalOnglet.setEstTermine(generalOngletDto.getEstTermine());
         }
 
-        if (dto.getNbSalarie() != null) {
-            onglet.setNbSalarie(dto.getNbSalarie());
+        if (generalOngletDto.getNbSalarie() != null) {
+            generalOnglet.setNbSalarie(generalOngletDto.getNbSalarie());
         }
 
-        if (dto.getNbEtudiant() != null) {
-            onglet.setNbEtudiant(dto.getNbEtudiant());
+        if (generalOngletDto.getNbEtudiant() != null) {
+            generalOnglet.setNbEtudiant(generalOngletDto.getNbEtudiant());
         }
 
-        generalOngletRepository.save(onglet);
+        generalOngletRepository.save(generalOnglet);
     }
 
 }

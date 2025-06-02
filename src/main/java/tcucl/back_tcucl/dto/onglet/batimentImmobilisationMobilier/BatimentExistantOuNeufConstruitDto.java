@@ -1,9 +1,9 @@
 package tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.parametre.batiment.BatimentExistantOuNeufConstruit;
-import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_TypeBatiment;
-import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_TypeStructure;
+import tcucl.back_tcucl.entity.onglet.batiment.BatimentExistantOuNeufConstruit;
+import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeBatiment;
+import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeStructure;
 
 import java.time.LocalDate;
 
@@ -15,7 +15,6 @@ public class BatimentExistantOuNeufConstruitDto {
     private String nom_ou_adresse;
     private LocalDate dateConstruction;
     private LocalDate dateDerniereGrosseRenovation;
-    private Boolean aCompleter;
     private Boolean acvBatimentRealisee;
     private Float emissionsGesReellesTCO2;
     private Float surfaceEnM2;
@@ -30,7 +29,6 @@ public class BatimentExistantOuNeufConstruitDto {
         this.nom_ou_adresse = entity.getNom_ou_adresse();
         this.dateConstruction = entity.getDateConstruction();
         this.dateDerniereGrosseRenovation = entity.getDateDerniereGrosseRenovation();
-        this.aCompleter = entity.getACompleter();
         this.acvBatimentRealisee = entity.getAcvBatimentRealisee();
         this.emissionsGesReellesTCO2 = entity.getEmissionsGesReellesTCO2();
         this.surfaceEnM2 = entity.getSurfaceEnM2();
@@ -70,13 +68,6 @@ public class BatimentExistantOuNeufConstruitDto {
         this.dateDerniereGrosseRenovation = dateDerniereGrosseRenovation;
     }
 
-    public Boolean getACompleter() {
-        return aCompleter;
-    }
-
-    public void setACompleter(Boolean aCompleter) {
-        this.aCompleter = aCompleter;
-    }
 
     public Boolean getAcvBatimentRealisee() {
         return acvBatimentRealisee;

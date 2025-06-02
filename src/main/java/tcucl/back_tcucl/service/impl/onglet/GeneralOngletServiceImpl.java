@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.general.GeneralOngletDto;
 import tcucl.back_tcucl.entity.onglet.GeneralOnglet;
 import tcucl.back_tcucl.manager.GeneralOngletManager;
-import tcucl.back_tcucl.repository.onglet.GeneralOngletRepository;
 import tcucl.back_tcucl.service.GeneralOngletService;
 
 @Service
@@ -17,12 +16,12 @@ public class GeneralOngletServiceImpl implements GeneralOngletService {
     }
 
     @Override
-    public GeneralOnglet getGeneralOngletById(Long id) {
-        return generalOngletManager.getGeneralOngletById(id);
+    public GeneralOnglet getGeneralOngletById(Long ongletId) {
+        return generalOngletManager.getGeneralOngletById(ongletId);
     }
 
     @Override
-    public void updateGeneralOngletPartiel(Long id, GeneralOngletDto dto) {
-        generalOngletManager.updateGeneralOngletPartiel(id, dto);
+    public void updateGeneralOngletPartiel(Long ongletId, GeneralOngletDto generalOngletDto) {
+        generalOngletManager.updateGeneralOngletPartiel(ongletId, generalOngletDto);
     }
 }

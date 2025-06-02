@@ -2,8 +2,8 @@ package tcucl.back_tcucl.dto.onglet.numerique;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.parametre.numerique.EquipementNumerique;
-import tcucl.back_tcucl.entity.parametre.numerique.enums.EnumNumerique_Equipement;
+import tcucl.back_tcucl.entity.onglet.numerique.EquipementNumerique;
+import tcucl.back_tcucl.entity.onglet.numerique.enums.EnumNumerique_Equipement;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -25,7 +25,7 @@ public class EquipementNumeriqueDto {
         this.equipement = equipementNumerique.getEquipement();
         this.nombre = equipementNumerique.getNombre();
         this.dureeAmortissement = equipementNumerique.getDureeAmortissement();
-        this.emissionsGesPrecisesConnues = equipementNumerique.isEmissionsGesPrecisesConnues();
+        this.emissionsGesPrecisesConnues = equipementNumerique.getEmissionsGesPrecisesConnues();
         this.emissionsReellesParProduitKgCO2e = equipementNumerique.getEmissionsReellesParProduitKgCO2e();
     }
 

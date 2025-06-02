@@ -1,11 +1,11 @@
 package tcucl.back_tcucl.service;
 
 import tcucl.back_tcucl.dto.onglet.dechet.DechetOngletDto;
-import tcucl.back_tcucl.entity.onglet.DechetOnglet;
+import tcucl.back_tcucl.entity.onglet.dechet.DechetOnglet;
 
 public interface DechetOngletService {
-    DechetOnglet getDechetOngletById(Long id);
+    DechetOnglet getDechetOngletById(Long ongletId);
 
-    void updateDechetOngletPartiel(Long id, DechetOngletDto dto);
+    void updateDechetOngletPartiel(Long ongletId, DechetOngletDto dto);
 
 }

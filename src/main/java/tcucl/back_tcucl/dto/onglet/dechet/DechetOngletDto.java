@@ -3,7 +3,7 @@ package tcucl.back_tcucl.dto.onglet.dechet;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.onglet.DechetOnglet;
+import tcucl.back_tcucl.entity.onglet.dechet.DechetOnglet;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,6 +20,11 @@ public class DechetOngletDto {
     private DechetDto textile;
 
     public DechetOngletDto() {
+        this.ordures_menageres = new DechetDto();
+        this.cartons = new DechetDto();
+        this.verre = new DechetDto();
+        this.metaux = new DechetDto();
+        this.textile = new DechetDto();
     }
 
     public DechetOngletDto(DechetOnglet entity) {

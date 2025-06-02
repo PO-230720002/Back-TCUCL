@@ -2,11 +2,12 @@ package tcucl.back_tcucl.dto.onglet.parkingVoirie;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.parametre.parkingVoirie.ParkingVoirie;
-import tcucl.back_tcucl.entity.parametre.parkingVoirie.enums.EnumParkingVoirie_Type;
-import tcucl.back_tcucl.entity.parametre.parkingVoirie.enums.EnumParkingVoirie_TypeStructure;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirie;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.enums.EnumParkingVoirie_Type;
+import tcucl.back_tcucl.entity.onglet.parkingVoirie.enums.EnumParkingVoirie_TypeStructure;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,13 +16,13 @@ public class ParkingVoirieDto {
     private Long id;
 
     private String nomOuAdresse;
-    private Date dateConstruction;
+    private LocalDate dateConstruction;
     private Boolean emissionsGesConnues;
     private Float emissionsGesReelles; // en TCO2e/an
     private EnumParkingVoirie_Type type; // Enum correspondant au type de bâtiment
     private Float nombreM2;
     private EnumParkingVoirie_TypeStructure typeStructure;
-    private Date dateAjoutEnBase;
+    private LocalDate dateAjoutEnBase;
 
     public ParkingVoirieDto() {
     }
@@ -55,11 +56,11 @@ public class ParkingVoirieDto {
         this.nomOuAdresse = nomOuAdresse;
     }
 
-    public Date getDateConstruction() {
+    public LocalDate getDateConstruction() {
         return dateConstruction;
     }
 
-    public void setDateConstruction(Date dateConstruction) {
+    public void setDateConstruction(LocalDate dateConstruction) {
         this.dateConstruction = dateConstruction;
     }
 
@@ -103,11 +104,11 @@ public class ParkingVoirieDto {
         this.typeStructure = typeStructure;
     }
 
-    public Date getDateAjoutEnBase() {
+    public LocalDate getDateAjoutEnBase() {
         return dateAjoutEnBase;
     }
 
-    public void setDateAjoutEnBase(Date dateAjoutEnBase) {
+    public void setDateAjoutEnBase(LocalDate dateAjoutEnBase) {
         this.dateAjoutEnBase = dateAjoutEnBase;
     }
 }

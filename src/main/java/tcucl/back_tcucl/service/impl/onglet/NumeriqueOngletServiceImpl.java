@@ -3,8 +3,8 @@ package tcucl.back_tcucl.service.impl.onglet;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.numerique.EquipementNumeriqueDto;
 import tcucl.back_tcucl.dto.onglet.numerique.NumeriqueOngletDto;
-import tcucl.back_tcucl.entity.onglet.NumeriqueOnglet;
-import tcucl.back_tcucl.entity.parametre.numerique.EquipementNumerique;
+import tcucl.back_tcucl.entity.onglet.numerique.NumeriqueOnglet;
+import tcucl.back_tcucl.entity.onglet.numerique.EquipementNumerique;
 import tcucl.back_tcucl.manager.NumeriqueOngletManager;
 import tcucl.back_tcucl.service.NumeriqueOngletService;
 
@@ -18,8 +18,8 @@ public class NumeriqueOngletServiceImpl implements NumeriqueOngletService {
     }
 
     @Override
-    public NumeriqueOnglet getNumeriqueOngletById(Long id) {
-        return numeriqueOngletManager.getNumeriqueOngletById(id);
+    public NumeriqueOnglet getNumeriqueOngletById(Long ongletId) {
+        return numeriqueOngletManager.getNumeriqueOngletById(ongletId);
     }
 
     @Override
@@ -28,13 +28,13 @@ public class NumeriqueOngletServiceImpl implements NumeriqueOngletService {
     }
 
     @Override
-    public void updateNumeriqueOngletPartiel(Long id, NumeriqueOngletDto numeriqueOngletDto) {
-        numeriqueOngletManager.updateNumeriqueOngletPartiel(id, numeriqueOngletDto);
+    public void updateNumeriqueOngletPartiel(Long ongletId, NumeriqueOngletDto numeriqueOngletDto) {
+        numeriqueOngletManager.updateNumeriqueOngletPartiel(ongletId, numeriqueOngletDto);
     }
 
     @Override
-    public void ajouterEquipementNumerique(Long id, EquipementNumeriqueDto equipementNumeriqueDto) {
-        numeriqueOngletManager.ajouterEquipementNumerique(id, equipementNumeriqueDto);
+    public void ajouterEquipementNumerique(Long ongletId, EquipementNumeriqueDto equipementNumeriqueDto) {
+        numeriqueOngletManager.ajouterEquipementNumerique(ongletId, equipementNumeriqueDto);
     }
 
     @Override

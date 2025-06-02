@@ -43,23 +43,23 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public boolean adminPeutModifierEstAdmin(Authentication authentication, Long idUtilisateur){
-        return estAdminDe(authentication.getName(), idUtilisateur);
+    public boolean adminPeutModifierEstAdmin(Authentication authentication, Long utilisateurId){
+        return estAdminDe(authentication.getName(), utilisateurId);
     }
 
     @Override
-    public boolean adminPeutAccéderAEntite(Authentication authentication, Long idEntite){
-        return estAdminDeEntite(authentication.getName(), idEntite);
+    public boolean adminPeutAccéderAEntite(Authentication authentication, Long entiteId){
+        return estAdminDeEntite(authentication.getName(),entiteId);
     }
 
     @Override
-    public boolean adminPeutSupprimerUtilisateur(Authentication authentication, Long idUtilisateur){
-        return estAdminDe(authentication.getName(), idUtilisateur);
+    public boolean adminPeutSupprimerUtilisateur(Authentication authentication, Long utilisateurId){
+        return estAdminDe(authentication.getName(), utilisateurId);
     }
 
     @Override
-    public boolean adminPeutAjouterAnneeEntite(Authentication authentication, Long idEntite) {
-        return estAdminDeEntite(authentication.getName(), idEntite);
+    public boolean adminPeutAjouterAnneeEntite(Authentication authentication, Long entiteId) {
+        return estAdminDeEntite(authentication.getName(),entiteId);
     }
 
     private boolean estAdminDe(String adminEmail, String utilisateurEmail) {
@@ -68,15 +68,15 @@ public class PermissionServiceImpl implements PermissionService {
         return entiteUtilisateur==entiteAdmin;
     }
 
-    private boolean estAdminDe(String adminEmail, Long idUtilisateur) {
+    private boolean estAdminDe(String adminEmail, Long utilisateurId) {
         Entite entiteAdmin = utilisateurManager.getUtilisateurParEmail(adminEmail).getEntite();
-        Entite entiteUtilisateur = utilisateurManager.getUtilisateurParId(idUtilisateur).getEntite();
+        Entite entiteUtilisateur = utilisateurManager.getUtilisateurParId(utilisateurId).getEntite();
         return entiteUtilisateur==entiteAdmin;
     }
 
-    private boolean estAdminDeEntite(String adminEmail, Long idEntite){
+    private boolean estAdminDeEntite(String adminEmail, Long entiteId){
         Entite entiteAdmin = utilisateurManager.getUtilisateurParEmail(adminEmail).getEntite();
-        Entite entiteCible = entiteService.getEntiteById(idEntite);
+        Entite entiteCible = entiteService.getEntiteById(entiteId);
         return entiteAdmin == entiteCible;
     }
 }

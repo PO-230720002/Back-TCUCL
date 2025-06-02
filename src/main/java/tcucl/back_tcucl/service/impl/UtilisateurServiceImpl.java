@@ -2,7 +2,6 @@ package tcucl.back_tcucl.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import tcucl.back_tcucl.dto.*;
 import tcucl.back_tcucl.dto.securite.UtilisateurSecuriteDto;
@@ -40,17 +39,17 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public Boolean emailDejaPris(String email){
-        return utilisateurManager.emailDejaPris(email);
+    public Boolean isEmailDejaPris(String utilisateurEmail){
+        return utilisateurManager.isEmailDejaPris(utilisateurEmail);
     }
 
     @Override
-    public void modifierUtilisateurParUtilisateur(Long id, ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto){
-        if(utilisateurManager.emailDejaPris(modificationUtilisateurParUtilisateurDto.getEmail()))
+    public void modifierUtilisateurParUtilisateur(Long utilisateurId, ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto){
+        if(utilisateurManager.isEmailDejaPris(modificationUtilisateurParUtilisateurDto.getEmail()))
         {
             throw new EmailDejaPrisException(modificationUtilisateurParUtilisateurDto.getEmail());
         }
-        Utilisateur utilisateur = utilisateurManager.getUtilisateurParId(id);
+        Utilisateur utilisateur = utilisateurManager.getUtilisateurParId(utilisateurId);
         utilisateur.setNom(modificationUtilisateurParUtilisateurDto.getNom());
         utilisateur.setPrenom(modificationUtilisateurParUtilisateurDto.getPrenom());
         utilisateur.setEmail(modificationUtilisateurParUtilisateurDto.getEmail());
@@ -58,8 +57,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public void modifierUtilisateurParAdmin(Long id, ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto) {
-        Utilisateur utilisateur = utilisateurManager.getUtilisateurParId(id);
+    public void modifierUtilisateurParAdmin(Long utilisateurId, ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto) {
+        if(utilisateurManager.isEmailDejaPris(modificationUtilisateurParAdminDto.getEmail()))
+        {
+            throw new EmailDejaPrisException(modificationUtilisateurParAdminDto.getEmail());
+        }
+        Utilisateur utilisateur = utilisateurManager.getUtilisateurParId(utilisateurId);
         utilisateur.setNom(modificationUtilisateurParAdminDto.getNom());
         utilisateur.setPrenom(modificationUtilisateurParAdminDto.getPrenom());
         utilisateur.setEmail(modificationUtilisateurParAdminDto.getEmail());
@@ -68,20 +71,20 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public Utilisateur getUtilisateurParEmail(String email) {
-        return utilisateurManager.getUtilisateurParEmail(email);
+    public Utilisateur getUtilisateurParEmail(String utilisateurEmail) {
+        return utilisateurManager.getUtilisateurParEmail(utilisateurEmail);
     }
 
     @Override
-    public Utilisateur getUtilisateurParId(Long id) {
-        return utilisateurManager.getUtilisateurParId(id);
+    public Utilisateur getUtilisateurParId(Long utilisateurId) {
+        return utilisateurManager.getUtilisateurParId(utilisateurId);
     }
 
     @Override
     public void inscrireUtilisateur(InscriptionDto inscriptionDto){
         //Est ce que le mail est déjà pris
         String email = inscriptionDto.getEmail();
-        if (utilisateurManager.emailDejaPris(email)){
+        if (utilisateurManager.isEmailDejaPris(email)){
             throw new EmailDejaPrisException(email);
         }
 
@@ -107,37 +110,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public void inscrireUtilisateur2(InscriptionDto inscriptionDto) {
-        //Est ce que le mail est déjà pris
-        String email = inscriptionDto.getEmail();
-        if (utilisateurManager.emailDejaPris(email)){
-            throw new EmailDejaPrisException(email);
-        }
-
-        //Génération du mot de passe aléatoire
-        String mdpAleatoire = genererMdpAleatoire();
-        logger.info("Mot de passe généré: " + mdpAleatoire);  // Log du mot de passe généré
-
-        //Création de l'utilisateur
-        Utilisateur nouvelUtilisateur = new Utilisateur(
-                inscriptionDto.getNom(),
-                inscriptionDto.getPrenom(),
-                passwordEncoder.encode(mdpAleatoire),
-                email,
-                PREMIERE_CONNEXION_TRUE,
-                ROLE_USER,
-                inscriptionDto.isEstAdmin(),
-                SUPERADMIN_FALSE,
-                null);
-
-        //envoi du mail
-        emailService.sendSimpleEmail(inscriptionDto.getPrenom(), email, mdpAleatoire);
-        utilisateurManager.save(nouvelUtilisateur);
-    }
-
-    @Override
-    public void modifierEstAdmin(Long id, Boolean estAdmin) {
-        Utilisateur utilisateur = utilisateurManager.getUtilisateurParId(id);
+    public void modifierEstAdmin(Long utilisateurId, Boolean estAdmin) {
+        Utilisateur utilisateur = utilisateurManager.getUtilisateurParId(utilisateurId);
         utilisateur.setEstAdmin(estAdmin);
         utilisateurManager.save(utilisateur);
     }
@@ -154,25 +128,25 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public void changePassword(ChangePasswordDto requete) {
-        Utilisateur utilisateur = utilisateurManager.getUtilisateurParEmail(requete.getEmail());
-        if (!passwordEncoder.matches(requete.getAncienMdp(), utilisateur.getMdp())) {
+    public void changePassword(ChangePasswordDto changePasswordDto) {
+        Utilisateur utilisateur = utilisateurManager.getUtilisateurParEmail(changePasswordDto.getEmail());
+        if (!passwordEncoder.matches(changePasswordDto.getAncienMdp(), utilisateur.getMdp())) {
             throw new MauvaisAncienMdpException();
         }
-        utilisateur.setMdp(passwordEncoder.encode(requete.getNouveauMdp()));
+        utilisateur.setMdp(passwordEncoder.encode(changePasswordDto.getNouveauMdp()));
         utilisateur.setEstPremiereConnexion(PREMIERE_CONNEXION_FALSE);
         utilisateurManager.save(utilisateur);
 
     }
 
     @Override
-    public UtilisateurSecuriteDto findUtilisateurSecuriteDtoByEmail(String email) {
-        return utilisateurManager.findUtilisateurSecurityDTOByEmail(email);
+    public UtilisateurSecuriteDto findUtilisateurSecuriteDtoByEmail(String utilisateurEmail) {
+        return utilisateurManager.findUtilisateurSecurityDTOByEmail(utilisateurEmail);
     }
 
     @Override
-    public void supprimerUtilisateur(Long id) {
-        utilisateurManager.supprimerUtilisateur(id);
+    public void supprimerUtilisateur(Long utilisateurId) {
+        utilisateurManager.supprimerUtilisateur(utilisateurId);
     }
 
     private String genererMdpAleatoire() {

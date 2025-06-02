@@ -5,7 +5,7 @@ import tcucl.back_tcucl.entity.onglet.GeneralOnglet;
 
 public interface GeneralOngletService {
 
-    GeneralOnglet getGeneralOngletById(Long id);
+    GeneralOnglet getGeneralOngletById(Long ongletId);
 
-    void updateGeneralOngletPartiel(Long id, GeneralOngletDto dto);
+    void updateGeneralOngletPartiel(Long ongletId, GeneralOngletDto dto);
 }

@@ -7,11 +7,10 @@ import tcucl.back_tcucl.dto.onglet.autreMobFr.AutreMobFrOngletDto;
 import tcucl.back_tcucl.entity.onglet.AutreMobFrOnglet;
 import tcucl.back_tcucl.service.AutreMobFrOngletService;
 
-import static tcucl.back_tcucl.controller.ControllerConstante.REST_AUTRE_MOB_FR;
-import static tcucl.back_tcucl.controller.ControllerConstante.REST_ID;
+import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_AUTRE_MOB_FR + REST_ID)
+@RequestMapping(REST_AUTRE_MOB_FR + REST_ONGLET_ID)
 public class AutreMobFrController {
 
     private final AutreMobFrOngletService autreMobFrOngletService;
@@ -22,16 +21,17 @@ public class AutreMobFrController {
 
     @GetMapping()
     @checkRoleOnglet
-    public ResponseEntity<?> getAutreMobFrOngletById(@PathVariable(value = "id") Long id) {
-        AutreMobFrOnglet autreMobFrOnglet = autreMobFrOngletService.getAutreMobFrOngletById(id);
+    public ResponseEntity<?> getAutreMobFrOngletById(@PathVariable(value = "ongletId") Long ongletId) {
+        AutreMobFrOnglet autreMobFrOnglet = autreMobFrOngletService.getAutreMobFrOngletById(ongletId);
         AutreMobFrOngletDto autreMobFrOngletDto = new AutreMobFrOngletDto(autreMobFrOnglet);
         return ResponseEntity.ok(autreMobFrOngletDto);
     }
 
     @PatchMapping
     @checkRoleOnglet
-    public ResponseEntity<Void> updateAutreMobFrOngletPartiel(@PathVariable(value = "id") Long id, @RequestBody AutreMobFrOngletDto autreMobFrOngletDto) {
-        autreMobFrOngletService.updateAutreMobFrOngletPartiel(id, autreMobFrOngletDto);
+    public ResponseEntity<Void> updateAutreMobFrOngletPartiel(@PathVariable(value = "ongletId") Long ongletId,
+                                                              @RequestBody AutreMobFrOngletDto autreMobFrOngletDto) {
+        autreMobFrOngletService.updateAutreMobFrOngletPartiel(ongletId, autreMobFrOngletDto);
         return ResponseEntity.ok().build();
     }
 }

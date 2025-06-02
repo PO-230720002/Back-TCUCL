@@ -6,7 +6,9 @@ public class ControllerConstante {
     }
 
     //    GENERAL
-    public static final String REST_ID = "/{id}";
+    public static final String REST_ONGLET_ID = "/{ongletId}";
+    public static final String REST_UTILISATEUR_ID = "/{utilisateurId}";
+    public static final String REST_ENTITE_ID = "/{entiteId}";
 
     //   ------------         AUTH          ------------
     public static final String REST_AUTH = "/auth";
@@ -27,8 +29,10 @@ public class ControllerConstante {
     public static final String REST_SUPPRIMER_UTILISATEUR = "/supprimer-utilisateur";
     public static final String REST_MODIFIER_UTILISATEUR_ADMIN = "/modifier-utilisateur-admin";
     public static final String REST_MODIFIER_EST_ADMIN = "/modifier-est-admin";
+    public static final String REST_AJOUTER_ANNEE = "/ajouter-annee";
     public static final String REST_CREER_ENTITE = "/creer-entite";
     public static final String REST_IMPORT_FACTEURS_EMISSION = "/import-facteurs-emission";
+    public static final String REST_CREER_ANNEE_SUIVANTE = "/creer-annee-suivante";
     public static final String REST_UTILISATEUR_ENTITE = "/utilisateur-entite";
     //messages
     public static final String REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT = "Le compte utilisateur a bien créé.";
@@ -39,6 +43,7 @@ public class ControllerConstante {
     public static final String REST_MESSAGE_ENTITE_CREEE = "L'entité a bien été créé.";
     public static final String REST_MESSAGE_ANNEE_ENTITE_AJOUTEE = "L'année a bien été ajoutée à l'entité.";
     public static final String REST_MESSAGE_IMPORT_FACTEURS_EMISSION = "Importation réussie.";
+    public static final String REST_MESSAGE_ANNEE_SUIVANTE_CREEE = "Nouvelle année créée pour toutes les organisations inscrites.";
 
     //   *******************************************
     //   ------------      ONGLET       ------------
@@ -62,6 +67,9 @@ public class ControllerConstante {
     public static final String REST_MOB_INTERNATIONALE_ONGLET = "/mobInternationaleOnglet";
     public static final String REST_VOYAGE = "/voyage";
     public static final String REST_VOYAGE_ID = "/{voyageId}";
+    public static final String REST_IMPORT_VOYAGES = "/import-voyage";
+    public static final String REST_MESSAGE_IMPORT_VOYAGE = "Importation des voyages réussie.";
+
 
     //   ---------    Parking   ----------
     public static final String REST_PARKING_VOIRIE_ONGLET = "parkingVoirieOnglet";
@@ -75,12 +83,12 @@ public class ControllerConstante {
 
     //   ---------    Batiment Immobilisation Mobilier   ----------
     public static final String REST_BATIMENT_IMMOBILISATION_MOBILIER_ONGLET = "/batimentImmobilisationMobilierOnglet";
-    public static final String REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT_ID = "/{batimentExistantOuNeufConstruitId}";
     public static final String REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT = "/batimentExistantOuNeufConstruit";
-    public static final String REST_ENTRETIEN_COURANT_ID = "/{entretienCourantId}";
+    public static final String REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT_ID = "/{batimentExistantOuNeufConstruitId}";
     public static final String REST_ENTRETIEN_COURANT = "/entretienCourant";
-    public static final String REST_MOBILIER_ELECTROMENAGER_ID = "/{mobilierElectromenagerId}";
+    public static final String REST_ENTRETIEN_COURANT_ID = "/{entretienCourantId}";
     public static final String REST_MOBILIER_ELECTROMENAGER = "/mobilierElectromenager";
+    public static final String REST_MOBILIER_ELECTROMENAGER_ID = "/{mobilierElectromenagerId}";
 
     //   ---------    Achat   ----------
     public static final String REST_ACHAT_ONGLET = "/achatOnglet";
@@ -93,4 +101,9 @@ public class ControllerConstante {
 
     // ---------    General   ----------
     public static final String REST_GENERAL_ONGLET = "/generalOnglet";
+
+    //   ---------    Vehicule    ------------
+    public static final String REST_VEHICULE_ONGLET = "/vehiculeOnglet";
+    public static final String REST_VEHICULE = "/vehicule";
+    public static final String REST_VEHICULE_ID = "/{vehiculeId}";
 }

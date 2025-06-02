@@ -9,30 +9,28 @@ import java.util.List;
 
 public interface UtilisateurService {
 
-    void modifierEstAdmin(Long id, Boolean estAdmin);
+    void modifierEstAdmin(Long utilisateurId, Boolean estAdmin);
 
-    void changePassword(ChangePasswordDto requete);
+    void changePassword(ChangePasswordDto changePasswordDto);
 
     void save(Utilisateur utilisateur);
 
-    void modifierUtilisateurParUtilisateur(Long id, ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto);
+    void modifierUtilisateurParUtilisateur(Long utilisateurId, ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto);
 
-    void modifierUtilisateurParAdmin(Long id, ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto);
+    void modifierUtilisateurParAdmin(Long utilisateurId, ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto);
 
     void inscrireUtilisateur(InscriptionDto inscriptionDto);
 
-    void inscrireUtilisateur2(InscriptionDto inscriptionDto);
+    void supprimerUtilisateur(Long utilisateurId);
 
-    void supprimerUtilisateur(Long id);
+    Utilisateur getUtilisateurParEmail(String utilisateurEmail);
 
-    Utilisateur getUtilisateurParEmail(String email);
-
-    Utilisateur getUtilisateurParId(Long id);
+    Utilisateur getUtilisateurParId(Long utilisateurId);
 
     List<Utilisateur> getAllUtilisateurParEntiteId(Long entiteId);
 
-    UtilisateurSecuriteDto findUtilisateurSecuriteDtoByEmail(String email);
+    UtilisateurSecuriteDto findUtilisateurSecuriteDtoByEmail(String utilisateurEmail);
 
-    Boolean emailDejaPris(String email);
+    Boolean isEmailDejaPris(String utilisateurEmail);
 
 }

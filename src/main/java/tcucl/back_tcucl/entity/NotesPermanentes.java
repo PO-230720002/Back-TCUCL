@@ -11,33 +11,21 @@ public class NotesPermanentes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String NoteEnergie;
-    private String NoteEnergieFugitive;
-    private String NoteMobiliteDomicileTravail;
-    private String NoteAutreMobiliteFr;
-    private String NoteMobiliteInternationale;
-    private String NoteBatiment;
-    private String NoteParkings;
-    private String NoteAutomobile;
-    private String NoteNumerique;
-    private String NoteImmobilisation;
-    private String NoteAchat;
-    private String NoteDechet;
+    private String NoteEnergie = "";
+    private String NoteEnergieFugitive = "";
+    private String NoteMobiliteDomicileTravail = "";
+    private String NoteAutreMobiliteFr = "";
+    private String NoteMobiliteInternationale = "";
+    private String NoteBatiment = "";
+    private String NoteParkings = "";
+    private String NoteAutomobile = "";
+    private String NoteNumerique = "";
+    private String NoteImmobilisation = "";
+    private String NoteAchat = "";
+    private String NoteDechet = "";
 
 
     public NotesPermanentes() {
-        NoteEnergie = "";
-        NoteEnergieFugitive = "";
-        NoteMobiliteDomicileTravail = "";
-        NoteAutreMobiliteFr = "";
-        NoteMobiliteInternationale = "";
-        NoteBatiment = "";
-        NoteParkings = "";
-        NoteAutomobile = "";
-        NoteNumerique = "";
-        NoteImmobilisation = "";
-        NoteAchat = "";
-        NoteDechet = "";
     }
 
     public Long getId() {

@@ -3,11 +3,8 @@ package tcucl.back_tcucl.service.impl;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.entity.Annee;
 import tcucl.back_tcucl.entity.Entite;
-import tcucl.back_tcucl.entity.NotesPermanentes;
-import tcucl.back_tcucl.exceptionPersonnalisee.EntiteDejaExistantAvecNomType;
-import tcucl.back_tcucl.exceptionPersonnalisee.EntiteNonTrouveeIdException;
+import tcucl.back_tcucl.exceptionPersonnalisee.EntiteDejaExistantAvecNomTypeException;
 import tcucl.back_tcucl.manager.EntiteManager;
-import tcucl.back_tcucl.repository.EntiteRepository;
 import tcucl.back_tcucl.service.EntiteService;
 
 import java.util.List;
@@ -22,8 +19,8 @@ public class EntiteServiceImpl implements EntiteService {
     }
 
     @Override
-    public Entite getEntiteById(Long id) {
-        return entiteManager.getEntitebyId(id);
+    public Entite getEntiteById(Long entiteId) {
+        return entiteManager.getEntitebyId(entiteId);
     }
 
     @Override
@@ -32,25 +29,22 @@ public class EntiteServiceImpl implements EntiteService {
     }
 
     @Override
-    public Entite creerEntite(String nom, String type) {
-        if (!entiteManager.existsEntiteByNomAndType(nom, type)) {
-            Entite entite = new Entite(nom, type);
-            Annee annee = new Annee();
-            annee.setEntite(entite);
-            entite.addAnnee(annee);
+    public Entite creerEntite(String entiteNom, String entiteType) {
+        if (!entiteManager.existsEntiteByNomAndType(entiteNom, entiteType)) {
+            Entite entite = new Entite(entiteNom, entiteType);
             return entiteManager.save(entite);
         } else {
-            throw new EntiteDejaExistantAvecNomType(nom, type);
+            throw new EntiteDejaExistantAvecNomTypeException(entiteNom, entiteType);
         }
     }
 
     @Override
     public Entite ajouterAnneeEntite(Long entiteId, Integer anneeUniversitaire) {
-        Entite entite = entiteManager.getEntitebyId(entiteId);
+        Entite entiteById = entiteManager.getEntitebyId(entiteId);
         Annee annee = new Annee(anneeUniversitaire);
-        annee.setEntite(entite);
-        entite.getAnnees().add(annee);
-        return entiteManager.save(entite);
+        annee.setEntite(entiteById);
+        entiteById.getAnnees().add(annee);
+        return entiteManager.save(entiteById);
     }
 
     @Override
@@ -58,5 +52,8 @@ public class EntiteServiceImpl implements EntiteService {
         return entiteManager.getAll();
     }
 
-
+    @Override
+    public Boolean existEntiteByNomEtType(String nomEntite, String typeEntite) {
+        return entiteManager.existsEntiteByNomAndType(nomEntite, typeEntite);
+    }
 }

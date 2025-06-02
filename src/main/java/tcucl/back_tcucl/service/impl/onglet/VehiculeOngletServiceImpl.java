@@ -3,8 +3,8 @@ package tcucl.back_tcucl.service.impl.onglet;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeDto;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeOngletDto;
-import tcucl.back_tcucl.entity.onglet.VehiculeOnglet;
-import tcucl.back_tcucl.entity.parametre.vehicule.Vehicule;
+import tcucl.back_tcucl.entity.onglet.vehicule.VehiculeOnglet;
+import tcucl.back_tcucl.entity.onglet.vehicule.Vehicule;
 import tcucl.back_tcucl.manager.VehiculeOngletManager;
 import tcucl.back_tcucl.service.VehiculeOngletService;
 
@@ -18,32 +18,32 @@ public class VehiculeOngletServiceImpl implements VehiculeOngletService {
     }
 
     @Override
-    public VehiculeOnglet getVehiculeOngletById(Long idOnglet) {
-        return vehiculeOngletManager.getVehiculeOngletById(idOnglet);
+    public VehiculeOnglet getVehiculeOngletById(Long ongletId) {
+        return vehiculeOngletManager.getVehiculeOngletById(ongletId);
     }
 
     @Override
-    public Vehicule getVehiculeById(Long idOnglet, Long idParking) {
-        return vehiculeOngletManager.getVehiculeById(idOnglet, idParking);
+    public Vehicule getVehiculeById(Long ongletId, Long parkingId) {
+        return vehiculeOngletManager.getVehiculeById(ongletId, parkingId);
     }
 
     @Override
-    public void updateVehiculeOngletPartiel(Long id, VehiculeOngletDto dto) {
-        vehiculeOngletManager.updateVehiculeOngletPartiel(id, dto);
+    public void updateVehiculeOngletPartiel(Long ongletId, VehiculeOngletDto vehiculeOngletDto) {
+        vehiculeOngletManager.updateVehiculeOngletPartiel(ongletId, vehiculeOngletDto);
     }
 
     @Override
-    public void ajouterVoyage(Long id, VehiculeDto vehiculeDto) {
-        vehiculeOngletManager.ajouterVoyage(id, vehiculeDto);
+    public void ajouterVehicule(Long ongletId, VehiculeDto vehiculeDto) {
+        vehiculeOngletManager.ajouterVehicule(ongletId, vehiculeDto);
     }
 
     @Override
-    public void supprimerVoyage(Long ongletId, Long vehiculeId) {
-        vehiculeOngletManager.supprimerVoyage(ongletId, vehiculeId);
+    public void supprimerVehicule(Long ongletId, Long vehiculeId) {
+        vehiculeOngletManager.supprimerVehicule(ongletId, vehiculeId);
     }
 
     @Override
-    public void updateVoyagePartiel(Long ongletId, Long voyageId, VehiculeDto dto) {
-        vehiculeOngletManager.updateVoyagePartiel(ongletId, voyageId, dto);
+    public void updateVehiculePartiel(Long ongletId, Long voyageId, VehiculeDto vehiculeDto) {
+        vehiculeOngletManager.updateVehiculePartiel(ongletId, voyageId, vehiculeDto);
     }
 }

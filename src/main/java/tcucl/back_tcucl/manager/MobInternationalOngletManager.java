@@ -1,21 +1,23 @@
 package tcucl.back_tcucl.manager;
 
 import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
-import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageVersUneDestinationMobInternationaleDto;
-import tcucl.back_tcucl.entity.onglet.MobInternationalOnglet;
-import tcucl.back_tcucl.entity.parametre.mobInternationale.VoyageVersUneDestinationMobInternationale;
+import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
+import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
+import tcucl.back_tcucl.entity.onglet.mobInternationale.Voyage;
 
 public interface MobInternationalOngletManager {
 
-    MobInternationalOnglet getMobInternationalOngletById(Long id);
+    MobInternationalOnglet getMobInternationalOngletById(Long ongletId);
 
-    VoyageVersUneDestinationMobInternationale getVoyageById(Long ongletId, Long voyageId);
+    Voyage getVoyageById(Long ongletId, Long voyageId);
 
-    void updateMobInternationalOngletPartiel(Long id, MobInternationalOngletDto dto);
+    void updateMobInternationalOngletPartiel(Long ongletId, MobInternationalOngletDto mobInternationalOngletDto);
 
-    void ajouterVoyage(Long id, VoyageVersUneDestinationMobInternationaleDto voyageDto);
+    void ajouterVoyage(Long ongletId, VoyageDto voyageDto);
 
     void supprimerVoyage(Long ongletId, Long voyageId);
 
-    void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageVersUneDestinationMobInternationaleDto dto);
+    void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageDto voyageDto);
+
+    void save(MobInternationalOnglet mobInternationalOnglet);
 }

@@ -2,10 +2,11 @@ package tcucl.back_tcucl.dto.onglet.vehicule;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.parametre.vehicule.Vehicule;
-import tcucl.back_tcucl.entity.parametre.vehicule.enums.EnumVehicule_Type;
+import tcucl.back_tcucl.entity.onglet.vehicule.Vehicule;
+import tcucl.back_tcucl.entity.onglet.vehicule.enums.EnumVehicule_Type;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -16,7 +17,7 @@ public class VehiculeDto {
     private EnumVehicule_Type typeVehicule;
     private Integer nombreVehiculesIdentiques;
     private Float nombreKilometresParVoitureMoyen;
-    private Date dateAjoutEnBase;
+    private LocalDate dateAjoutEnBase;
 
     public VehiculeDto() {
     }
@@ -70,11 +71,11 @@ public class VehiculeDto {
         this.nombreKilometresParVoitureMoyen = nombreKilometresParVoitureMoyen;
     }
 
-    public Date getDateAjoutEnBase() {
+    public LocalDate getDateAjoutEnBase() {
         return dateAjoutEnBase;
     }
 
-    public void setDateAjoutEnBase(Date dateAjoutEnBase) {
+    public void setDateAjoutEnBase(LocalDate dateAjoutEnBase) {
         this.dateAjoutEnBase = dateAjoutEnBase;
     }
 }

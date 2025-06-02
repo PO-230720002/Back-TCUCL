@@ -1,9 +1,9 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.autreMobFr.AutreMobFrOngletDto;
 import tcucl.back_tcucl.entity.onglet.AutreMobFrOnglet;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.AutreMobFrOngletManager;
 import tcucl.back_tcucl.repository.onglet.AutreMobFrOngletRepository;
 
@@ -17,14 +17,15 @@ public class AutreMobFrOngletManagerImpl implements AutreMobFrOngletManager {
     }
 
     @Override
-    public AutreMobFrOnglet getAutreMobFrOngletById(Long id) {
-        return autreMobFrOngletRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("AutreMobFrOnglet non trouvée avec l'id: " + id));
+    public AutreMobFrOnglet getAutreMobFrOngletById(Long ongletId) {
+        return autreMobFrOngletRepository.findById(ongletId).orElseThrow(
+                () -> new OngletNonTrouveIdException("AutreMobFrOnglet",ongletId));
     }
 
     @Override
-    public void updateAutreMobFrOngletPartiel(Long id, AutreMobFrOngletDto autreMobFrOngletDto) {
-        AutreMobFrOnglet autreMobFrOnglet = autreMobFrOngletRepository.getReferenceById(id);
+    public void updateAutreMobFrOngletPartiel(Long ongletId, AutreMobFrOngletDto autreMobFrOngletDto) {
+        AutreMobFrOnglet autreMobFrOnglet = getAutreMobFrOngletById(ongletId);
+
         if (autreMobFrOngletDto.getEstTermine() != null){
             autreMobFrOnglet.setEstTermine(autreMobFrOngletDto.getEstTermine());
         }

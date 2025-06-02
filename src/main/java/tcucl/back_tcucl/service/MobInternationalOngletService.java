@@ -1,19 +1,21 @@
 package tcucl.back_tcucl.service;
 
+import org.springframework.web.multipart.MultipartFile;
 import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
-import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageVersUneDestinationMobInternationaleDto;
-import tcucl.back_tcucl.entity.onglet.MobInternationalOnglet;
+import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
+import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
 
 public interface MobInternationalOngletService {
 
-    MobInternationalOnglet getMobInternationalOngletById(Long id);
+    MobInternationalOnglet getMobInternationalOngletById(Long ongletId);
 
-    void updateMobInternationalOngletPartiel(Long id, MobInternationalOngletDto mobInternationalOngletDto);
+    void updateMobInternationalOngletPartiel(Long ongletId, MobInternationalOngletDto mobInternationalOngletDto);
 
-    void ajouterVoyage(Long id, VoyageVersUneDestinationMobInternationaleDto voyageVersUneDestinationMobInternationaleDto);
+    void ajouterVoyage(Long ongletId, VoyageDto voyageDto);
 
     void supprimerVoyage(Long ongletId, Long voyageId);
 
-    void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageVersUneDestinationMobInternationaleDto dto);
+    void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageDto dto);
 
+    void importVoyagesFromExcel(Long ongletId, MultipartFile file, boolean rajouter);
 }

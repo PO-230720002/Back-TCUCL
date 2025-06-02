@@ -2,7 +2,7 @@ package tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.onglet.BatimentImmobilisationMobilierOnglet;
+import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOnglet;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BatimentImmobilisationMobilierOngletDto {
+
     private Long id;
     private Boolean estTermine;
     private String note;
@@ -17,6 +18,9 @@ public class BatimentImmobilisationMobilierOngletDto {
     List<BatimentExistantOuNeufConstruitDto> batimentsExistantOuNeufConstruits;
     List<EntretienCourantDto> entretiensCourants;
     List<MobilierElectromenagerDto> mobiliersElectromenagers;
+
+    public BatimentImmobilisationMobilierOngletDto() {
+    }
 
     public BatimentImmobilisationMobilierOngletDto(BatimentImmobilisationMobilierOnglet entity) {
         this.id = entity.getId();

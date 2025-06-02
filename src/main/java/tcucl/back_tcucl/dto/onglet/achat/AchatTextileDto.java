@@ -2,7 +2,7 @@ package tcucl.back_tcucl.dto.onglet.achat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.parametre.achat.AchatTextile;
+import tcucl.back_tcucl.entity.onglet.achat.AchatTextile;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

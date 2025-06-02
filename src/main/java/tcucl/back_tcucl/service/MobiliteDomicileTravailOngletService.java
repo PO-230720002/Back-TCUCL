@@ -4,7 +4,7 @@ import tcucl.back_tcucl.dto.onglet.mobiliteDomicileTravail.MobiliteDomicileTrava
 import tcucl.back_tcucl.entity.onglet.MobiliteDomicileTravailOnglet;
 
 public interface MobiliteDomicileTravailOngletService {
-    public MobiliteDomicileTravailOnglet getMobiliteDomicileTravailOngletById(Long id);
+    public MobiliteDomicileTravailOnglet getMobiliteDomicileTravailOngletById(Long ongletId);
 
-    public void updateMobiliteDomicileTravailOngletPartiel(Long id, MobiliteDomicileTravailOngletDto dto);
+    public void updateMobiliteDomicileTravailOngletPartiel(Long ongletId, MobiliteDomicileTravailOngletDto dto);
 }

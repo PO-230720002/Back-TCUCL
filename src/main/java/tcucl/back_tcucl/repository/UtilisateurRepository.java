@@ -34,8 +34,8 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> 
             FROM Utilisateur u
             LEFT JOIN u.entite e
             LEFT JOIN e.notesPermanentes np
-            WHERE u.email = :email
+            WHERE u.email = :utilisateurEmail
             """)
-    Optional<UtilisateurSecuriteDto> findUtilisateurSecurityDTOByEmail(@Param("email") String email);
+    Optional<UtilisateurSecuriteDto> findUtilisateurSecurityDTOByEmail(@Param("utilisateurEmail") String utilisateurEmail);
 
 }

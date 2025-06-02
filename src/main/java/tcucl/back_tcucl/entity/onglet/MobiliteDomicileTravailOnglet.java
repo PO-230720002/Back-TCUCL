@@ -7,33 +7,35 @@ import jakarta.persistence.*;
 @Table(name = "mobilite_domicile_travail_onglet")
 public class MobiliteDomicileTravailOnglet extends Onglet {
 
+    private Integer voitureThermiqueEtudiantKm = 0;
+    private Integer voitureElectriqueEtudiantKm = 0;
+    private Integer voitureHybrideEtudiantKm = 0;
+    private Integer motoEtudiantKm = 0;
+    private Integer trainRegionalEtudiantKm = 0;
+    private Integer busEtudiantKm = 0;
+    private Integer metroTramwayEtudiantKm = 0;
+    private Integer veloEtudiantKm = 0;
+    private Integer trottinetteElectriqueEtudiantKm = 0;
+    private Integer veloElectriqueEtudiantKm = 0;
+    private Integer marcheAPiedEtudiantKm = 0;
+    private Integer nbJoursDeplacementEtudiant = 0;
 
-    private Integer voitureThermiqueEtudiantKm;
-    private Integer voitureElectriqueEtudiantKm;
-    private Integer voitureHybrideEtudiantKm;
-    private Integer motoEtudiantKm;
-    private Integer trainRegionalEtudiantKm;
-    private Integer busEtudiantKm;
-    private Integer metroTramwayEtudiantKm;
-    private Integer veloEtudiantKm;
-    private Integer trottinetteElectriqueEtudiantKm;
-    private Integer veloElectriqueEtudiantKm;
-    private Integer marcheAPiedEtudiantKm;
-    private Integer nbJoursDeplacementEtudiant;
+    private Integer voitureThermiqueSalarieKm = 0;
+    private Integer voitureElectriqueSalarieKm = 0;
+    private Integer voitureHybrideSalarieKm = 0;
+    private Integer motoSalarieKm = 0;
+    private Integer trainRegionalSalarieKm = 0;
+    private Integer busSalarieKm = 0;
+    private Integer metroTramwaySalarieKm = 0;
+    private Integer veloSalarieKm = 0;
+    private Integer trottinetteElectriqueSalarieKm = 0;
+    private Integer veloElectriqueSalarieKm = 0;
+    private Integer marcheAPiedSalarieKm = 0;
+    private Integer nbJoursDeplacementSalarie = 0;
 
-    private Integer voitureThermiqueSalarieKm;
-    private Integer voitureElectriqueSalarieKm;
-    private Integer voitureHybrideSalarieKm;
-    private Integer motoSalarieKm;
-    private Integer trainRegionalSalarieKm;
-    private Integer busSalarieKm;
-    private Integer metroTramwaySalarieKm;
-    private Integer veloSalarieKm;
-    private Integer trottinetteElectriqueSalarieKm;
-    private Integer veloElectriqueSalarieKm;
-    private Integer marcheAPiedSalarieKm;
-    private Integer nbJoursDeplacementSalarie;
-
+    public MobiliteDomicileTravailOnglet() {
+        super();
+    }
 
     public Integer getVoitureThermiqueEtudiantKm() {
         return voitureThermiqueEtudiantKm;
@@ -227,23 +229,5 @@ public class MobiliteDomicileTravailOnglet extends Onglet {
         this.nbJoursDeplacementSalarie = nbJoursDeplacementSalarie;
     }
 
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public Boolean getEstTermine() {
-        return super.getEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(Boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
+    
 }

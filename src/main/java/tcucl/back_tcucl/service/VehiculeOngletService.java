@@ -2,20 +2,20 @@ package tcucl.back_tcucl.service;
 
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeDto;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeOngletDto;
-import tcucl.back_tcucl.entity.onglet.VehiculeOnglet;
-import tcucl.back_tcucl.entity.parametre.vehicule.Vehicule;
+import tcucl.back_tcucl.entity.onglet.vehicule.VehiculeOnglet;
+import tcucl.back_tcucl.entity.onglet.vehicule.Vehicule;
 
 public interface VehiculeOngletService {
 
-    VehiculeOnglet getVehiculeOngletById(Long idOnglet);
+    VehiculeOnglet getVehiculeOngletById(Long ongletId);
 
-    Vehicule getVehiculeById(Long idOnglet, Long idParking);
+    Vehicule getVehiculeById(Long ongletId, Long parkingId);
 
-    void updateVehiculeOngletPartiel(Long id, VehiculeOngletDto dto);
+    void updateVehiculeOngletPartiel(Long ongletId, VehiculeOngletDto dto);
 
-    void ajouterVoyage(Long id, VehiculeDto vehiculeDto);
+    void ajouterVehicule(Long ongletId, VehiculeDto vehiculeDto);
 
-    void supprimerVoyage(Long ongletId, Long vehiculeId);
+    void supprimerVehicule(Long ongletId, Long vehiculeId);
 
-    void updateVoyagePartiel(Long ongletId, Long voyageId, VehiculeDto dto);
+    void updateVehiculePartiel(Long ongletId, Long voyageId, VehiculeDto dto);
 }

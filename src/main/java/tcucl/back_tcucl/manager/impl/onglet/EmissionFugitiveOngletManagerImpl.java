@@ -1,17 +1,29 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveOngletDto;
-import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
-import tcucl.back_tcucl.entity.parametre.emissionFugitive.MachineEmissionFugitive;
+import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOnglet;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.MachineEmissionFugitive;
+import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
+import tcucl.back_tcucl.exceptionPersonnalisee.ValidationCustomException;
 import tcucl.back_tcucl.manager.EmissionFugitiveOngletManager;
 import tcucl.back_tcucl.repository.onglet.EmissionFugitiveOngletRepository;
+
+import java.util.Set;
 
 @Component
 public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOngletManager {
 
+    @Autowired
+    private Validator validator;
+    
+    
     private final EmissionFugitiveOngletRepository emissionFugitiveOngletRepository;
 
     public EmissionFugitiveOngletManagerImpl(EmissionFugitiveOngletRepository emissionFugitiveOngletRepository) {
@@ -19,23 +31,23 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
     }
 
     @Override
-    public EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long id) {
-        return emissionFugitiveOngletRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("EmissionFugitiveOnglet non trouvé avec l'Id : " + id));
+    public EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long ongletId) {
+        return emissionFugitiveOngletRepository.findById(ongletId)
+                .orElseThrow(() -> new OngletNonTrouveIdException("EmissionFugitiveOnglet", ongletId));
     }
 
     @Override
     public MachineEmissionFugitive getMachineById(Long ongletId, Long machineId) {
-        EmissionFugitiveOnglet onglet = getEmissionFugitiveOngletById(ongletId);
-        return onglet.getMachinesEmissionFugitive().stream()
+        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
+        return emissionFugitiveOnglet.getMachinesEmissionFugitive().stream()
                 .filter(m -> m.getId().equals(machineId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'Id: " + machineId));
+                .orElseThrow(() -> new ElementNontrouveException("MachineEmissionFugitive",machineId));
     }
 
     @Override
-    public void updateEmissionFugitiveOnglet(Long id, EmissionFugitiveOngletDto emissionFugitiveOngletDto) {
-        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(id);
+    public void updateEmissionFugitiveOnglet(Long ongletId, EmissionFugitiveOngletDto emissionFugitiveOngletDto) {
+        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
 
         if (emissionFugitiveOngletDto.getEstTermine() != null) {
             emissionFugitiveOnglet.setEstTermine(emissionFugitiveOngletDto.getEstTermine());
@@ -46,54 +58,63 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
         }
 
         if (emissionFugitiveOngletDto.getMachinesEmissionFugitive() != null) {
-            emissionFugitiveOngletDto.getMachinesEmissionFugitive().clear();
+            emissionFugitiveOnglet.getMachinesEmissionFugitive().clear();
             for (MachineEmissionFugitiveDto machineDto : emissionFugitiveOngletDto.getMachinesEmissionFugitive()) {
                 emissionFugitiveOnglet.ajouterMachineViaDto(machineDto);
             }
         }
-
+        
+        
+        Set<ConstraintViolation<EmissionFugitiveOnglet>> violations = validator.validate(emissionFugitiveOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
         emissionFugitiveOngletRepository.save(emissionFugitiveOnglet);
     }
 
     @Override
-    public void ajouterMachine(Long id, MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
-        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(id);
-        if (emissionFugitiveOnglet != null) {
-            emissionFugitiveOnglet.ajouterMachineViaDto(machineEmissionFugitiveDto);
-            emissionFugitiveOngletRepository.save(emissionFugitiveOnglet);
-        } else {
-            throw new EntityNotFoundException("EmissionFugitiveOnglet non trouvé avec l'Id: " + id);
+    public void ajouterMachine(Long ongletId, MachineEmissionFugitiveDto machineEmissionFugitiveDto) {
+        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
+        emissionFugitiveOnglet.ajouterMachineViaDto(machineEmissionFugitiveDto);
+        Set<ConstraintViolation<EmissionFugitiveOnglet>> violations = validator.validate(emissionFugitiveOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
         }
+        emissionFugitiveOngletRepository.save(emissionFugitiveOnglet);
     }
 
 
     @Override
     public void supprimerMachineFromOnglet(Long ongletId, Long machineId) {
-        EmissionFugitiveOnglet ongletById = getEmissionFugitiveOngletById(ongletId);
+        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
 
         // Trouver la machine à supprimer
-        MachineEmissionFugitive machineASupprimer = ongletById.getMachinesEmissionFugitive()
+        MachineEmissionFugitive machineASupprimer = emissionFugitiveOnglet.getMachinesEmissionFugitive()
                 .stream()
                 .filter(v -> v.getId().equals(machineId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'id : " + machineId));
+                .orElseThrow(() -> new ElementNontrouveException("MachineEmissionFugitive",machineId));
 
         // Retirer de la liste
-        ongletById.getMachinesEmissionFugitive().remove(machineASupprimer);
+        emissionFugitiveOnglet.getMachinesEmissionFugitive().remove(machineASupprimer);
 
         // Sauvegarder l'onglet
-        emissionFugitiveOngletRepository.save(ongletById);
+        Set<ConstraintViolation<EmissionFugitiveOnglet>> violations = validator.validate(emissionFugitiveOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
+        emissionFugitiveOngletRepository.save(emissionFugitiveOnglet);
     }
 
     @Override
     public void updateMachinePartiel(Long ongletId, Long machineId, MachineEmissionFugitiveDto dto) {
-        EmissionFugitiveOnglet onglet = getEmissionFugitiveOngletById(ongletId);
-        
-        MachineEmissionFugitive machine = onglet.getMachinesEmissionFugitive().stream()
+        EmissionFugitiveOnglet emissionFugitiveOnglet = getEmissionFugitiveOngletById(ongletId);
+
+        MachineEmissionFugitive machine = emissionFugitiveOnglet.getMachinesEmissionFugitive().stream()
                 .filter(m -> m.getId().equals(machineId))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Machine non trouvée avec l'Id: " + machineId));
-        
+                .orElseThrow(() -> new ElementNontrouveException("MachineEmissionFugitive",machineId));
+
 
         if (dto.getDescriptionMachine() != null) {
             machine.setDescriptionMachine(dto.getDescriptionMachine());
@@ -114,7 +135,11 @@ public class EmissionFugitiveOngletManagerImpl implements EmissionFugitiveOnglet
             machine.setTypeMachine(dto.getTypeMachine());
         }
 
-        emissionFugitiveOngletRepository.save(getEmissionFugitiveOngletById(ongletId)); // Hibernate met à jour via cascade
+        Set<ConstraintViolation<EmissionFugitiveOnglet>> violations = validator.validate(emissionFugitiveOnglet);
+        if(!violations.isEmpty()) {
+            throw new ValidationCustomException(violations);
+        }
+        emissionFugitiveOngletRepository.save(emissionFugitiveOnglet); // Hibernate met à jour via cascade
     }
 
 

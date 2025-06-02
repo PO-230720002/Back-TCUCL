@@ -1,21 +1,21 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.achat.AchatConsommableDto;
 import tcucl.back_tcucl.dto.onglet.achat.AchatOngletDto;
 import tcucl.back_tcucl.dto.onglet.achat.AchatRestaurationDto;
 import tcucl.back_tcucl.dto.onglet.achat.AchatTextileDto;
-import tcucl.back_tcucl.entity.onglet.AchatOnglet;
-import tcucl.back_tcucl.entity.parametre.achat.AchatConsommable;
-import tcucl.back_tcucl.entity.parametre.achat.AchatRestauration;
-import tcucl.back_tcucl.entity.parametre.achat.AchatTextile;
+import tcucl.back_tcucl.entity.onglet.achat.AchatOnglet;
+import tcucl.back_tcucl.entity.onglet.achat.AchatConsommable;
+import tcucl.back_tcucl.entity.onglet.achat.AchatRestauration;
+import tcucl.back_tcucl.entity.onglet.achat.AchatTextile;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.manager.AchatOngletManager;
 import tcucl.back_tcucl.repository.onglet.AchatOngletRepository;
 
 @Component
 public class AchatOngletManagerImpl implements AchatOngletManager {
-    
+
     private final AchatOngletRepository achatOngletRepository;
 
     public AchatOngletManagerImpl(AchatOngletRepository achatOngletRepository) {
@@ -24,104 +24,144 @@ public class AchatOngletManagerImpl implements AchatOngletManager {
 
 
     @Override
-    public AchatOnglet getAchatOngletById(Long id) {
-        return achatOngletRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("AchatOnglet non trouvé avec l'Id: " + id));
+    public AchatOnglet getAchatOngletById(Long ongletId) {
+        return achatOngletRepository.findById(ongletId).orElseThrow(() -> new OngletNonTrouveIdException("AchatOnglet", ongletId));
     }
 
 
-
     @Override
-    public void updateAchatOngletPartiel(Long id, AchatOngletDto dto) {
-        AchatOnglet onglet = getAchatOngletById(id);
+    public void updateAchatOngletPartiel(Long ongletId, AchatOngletDto achatOngletDto) {
+        AchatOnglet achatOnglet = getAchatOngletById(ongletId);
 
-        if (dto.getEstTermine() != null) {
-            onglet.setEstTermine(dto.getEstTermine());
+        if (achatOngletDto.getEstTermine() != null) {
+            achatOnglet.setEstTermine(achatOngletDto.getEstTermine());
         }
-        if (dto.getNote() != null) {
-            onglet.setNote(dto.getNote());
+        if (achatOngletDto.getNote() != null) {
+            achatOnglet.setNote(achatOngletDto.getNote());
         }
 
         // --- AchatConsommable ---
-        if (dto.getAchatConsommable() != null) {
-            AchatConsommable cible = onglet.getAchatConsommable();
-            if (cible == null) {
-                cible = new AchatConsommable();
-                onglet.setAchatConsommable(cible);
+        if (achatOngletDto.getAchatConsommable() != null) {
+            AchatConsommable achatConsommable = achatOnglet.getAchatConsommable();
+            if (achatConsommable == null) {
+                achatConsommable = new AchatConsommable();
+                achatOnglet.setAchatConsommable(achatConsommable);
             }
-            AchatConsommableDto source = dto.getAchatConsommable();
-            if (source.getPapier_T() != null) cible.setPapier_T(source.getPapier_T());
-            if (source.getPapier_nb() != null) cible.setPapier_nb(source.getPapier_nb());
-            if (source.getLivres_T() != null) cible.setLivres_T(source.getLivres_T());
-            if (source.getLivres_nb() != null) cible.setLivres_nb(source.getLivres_nb());
-            if (source.getCartonNeuf_T() != null) cible.setCartonNeuf_T(source.getCartonNeuf_T());
-            if (source.getCartonRecycle_T() != null) cible.setCartonRecycle_T(source.getCartonRecycle_T());
-            if (source.getPetitesFournitures_Eur() != null) cible.setPetitesFournitures_Eur(source.getPetitesFournitures_Eur());
-            if (source.getNbFeuillesImprimeesJetEncre_Nb() != null) cible.setNbFeuillesImprimeesJetEncre_Nb(source.getNbFeuillesImprimeesJetEncre_Nb());
-            if (source.getNbFeuillesImprimeesToner_Nb() != null) cible.setNbFeuillesImprimeesToner_Nb(source.getNbFeuillesImprimeesToner_Nb());
-            if (source.getProduitsPharmaceutiques_Eur() != null) cible.setProduitsPharmaceutiques_Eur(source.getProduitsPharmaceutiques_Eur());
+            AchatConsommableDto achatConsommableDto = achatOngletDto.getAchatConsommable();
+            if (achatConsommableDto.getPapier_T() != null)
+                achatConsommable.setPapier_T(achatConsommableDto.getPapier_T());
+            if (achatConsommableDto.getPapier_nb() != null)
+                achatConsommable.setPapier_nb(achatConsommableDto.getPapier_nb());
+            if (achatConsommableDto.getLivres_T() != null)
+                achatConsommable.setLivres_T(achatConsommableDto.getLivres_T());
+            if (achatConsommableDto.getLivres_nb() != null)
+                achatConsommable.setLivres_nb(achatConsommableDto.getLivres_nb());
+            if (achatConsommableDto.getCartonNeuf_T() != null)
+                achatConsommable.setCartonNeuf_T(achatConsommableDto.getCartonNeuf_T());
+            if (achatConsommableDto.getCartonRecycle_T() != null)
+                achatConsommable.setCartonRecycle_T(achatConsommableDto.getCartonRecycle_T());
+            if (achatConsommableDto.getPetitesFournitures_Eur() != null)
+                achatConsommable.setPetitesFournitures_Eur(achatConsommableDto.getPetitesFournitures_Eur());
+            if (achatConsommableDto.getNbFeuillesImprimeesJetEncre_Nb() != null)
+                achatConsommable.setNbFeuillesImprimeesJetEncre_Nb(achatConsommableDto.getNbFeuillesImprimeesJetEncre_Nb());
+            if (achatConsommableDto.getNbFeuillesImprimeesToner_Nb() != null)
+                achatConsommable.setNbFeuillesImprimeesToner_Nb(achatConsommableDto.getNbFeuillesImprimeesToner_Nb());
+            if (achatConsommableDto.getProduitsPharmaceutiques_Eur() != null)
+                achatConsommable.setProduitsPharmaceutiques_Eur(achatConsommableDto.getProduitsPharmaceutiques_Eur());
         }
 
         // --- AchatRestauration ---
-        if (dto.getAchatRestauration() != null) {
-            AchatRestauration cible = onglet.getAchatRestauration();
-            if (cible == null) {
-                cible = new AchatRestauration();
-                onglet.setAchatRestauration(cible);
+        if (achatOngletDto.getAchatRestauration() != null) {
+            AchatRestauration achatRestauration = achatOnglet.getAchatRestauration();
+            if (achatRestauration == null) {
+                achatRestauration = new AchatRestauration();
+                achatOnglet.setAchatRestauration(achatRestauration);
             }
-            AchatRestaurationDto source = dto.getAchatRestauration();
-            if (source.getMethode() != null) cible.setMethodeCalcul(source.getMethode());
-            if (source.getMethodeRapideNombrePersonnesServiesRegimeClassique() != null)
-                cible.setMethodeRapideNombrePersonnesServiesRegimeClassique(source.getMethodeRapideNombrePersonnesServiesRegimeClassique());
-            if (source.getMethodeRapideNombrePersonnesServiesRegimeFlexitarien() != null)
-                cible.setMethodeRapideNombrePersonnesServiesRegimeFlexitarien(source.getMethodeRapideNombrePersonnesServiesRegimeFlexitarien());
-            if (source.getNombreRepasServisDominanteAnimaleBoeuf() != null) cible.setNombreRepasServisDominanteAnimaleBoeuf(source.getNombreRepasServisDominanteAnimaleBoeuf());
-            if (source.getNombreRepasServisDominanteAnimalePoulet() != null) cible.setNombreRepasServisDominanteAnimalePoulet(source.getNombreRepasServisDominanteAnimalePoulet());
-            if (source.getNombreRepasServisDominanteVegetaleBoeuf() != null) cible.setNombreRepasServisDominanteVegetaleBoeuf(source.getNombreRepasServisDominanteVegetaleBoeuf());
-            if (source.getNombreRepasServisDominanteVegetalePoulet() != null) cible.setNombreRepasServisDominanteVegetalePoulet(source.getNombreRepasServisDominanteVegetalePoulet());
-            if (source.getNombreRepasServisDominanteClassiqueBoeuf() != null) cible.setNombreRepasServisDominanteClassiqueBoeuf(source.getNombreRepasServisDominanteClassiqueBoeuf());
-            if (source.getNombreRepasServisDominanteClassiquePoulet() != null) cible.setNombreRepasServisDominanteClassiquePoulet(source.getNombreRepasServisDominanteClassiquePoulet());
-            if (source.getNombreRepasServisRepasMoyen() != null) cible.setNombreRepasServisRepasMoyen(source.getNombreRepasServisRepasMoyen());
-            if (source.getNombreRepasServisRepasVegetarien() != null) cible.setNombreRepasServisRepasVegetarien(source.getNombreRepasServisRepasVegetarien());
-            if (source.getBoeufAgneauMouton_Tonnes() != null) cible.setBoeufAgneauMouton_Tonnes(source.getBoeufAgneauMouton_Tonnes());
-            if (source.getPoulet_Tonnes() != null) cible.setPoulet_Tonnes(source.getPoulet_Tonnes());
-            if (source.getCafe_Tonnes() != null) cible.setCafe_Tonnes(source.getCafe_Tonnes());
-            if (source.getChocolat_Tonnes() != null) cible.setChocolat_Tonnes(source.getChocolat_Tonnes());
-            if (source.getBeurre_Tonnes() != null) cible.setBeurre_Tonnes(source.getBeurre_Tonnes());
-            if (source.getViandesMoyenne_Tonnes() != null) cible.setViandesMoyenne_Tonnes(source.getViandesMoyenne_Tonnes());
-            if (source.getProduitsSucresMoyenne_Tonnes() != null) cible.setProduitsSucresMoyenne_Tonnes(source.getProduitsSucresMoyenne_Tonnes());
-            if (source.getPoissonsMoyenne_Tonnes() != null) cible.setPoissonsMoyenne_Tonnes(source.getPoissonsMoyenne_Tonnes());
-            if (source.getFromagesMoyenne_Tonnes() != null) cible.setFromagesMoyenne_Tonnes(source.getFromagesMoyenne_Tonnes());
-            if (source.getOleagineuxMoyenne_Tonnes() != null) cible.setOleagineuxMoyenne_Tonnes(source.getOleagineuxMoyenne_Tonnes());
-            if (source.getMatieresGrassesMoyenne_Tonnes() != null) cible.setMatieresGrassesMoyenne_Tonnes(source.getMatieresGrassesMoyenne_Tonnes());
-            if (source.getBoissonsMoyenne_Tonnes() != null) cible.setBoissonsMoyenne_Tonnes(source.getBoissonsMoyenne_Tonnes());
-            if (source.getOeufs_Tonnes() != null) cible.setOeufs_Tonnes(source.getOeufs_Tonnes());
-            if (source.getCerealesMoyenne_Tonnes() != null) cible.setCerealesMoyenne_Tonnes(source.getCerealesMoyenne_Tonnes());
-            if (source.getLegumesMoyenne_Tonnes() != null) cible.setLegumesMoyenne_Tonnes(source.getLegumesMoyenne_Tonnes());
-            if (source.getFruitsMoyenne_Tonnes() != null) cible.setFruitsMoyenne_Tonnes(source.getFruitsMoyenne_Tonnes());
-            if (source.getLegumineuseMoyenne_Tonnes() != null) cible.setLegumineuseMoyenne_Tonnes(source.getLegumineuseMoyenne_Tonnes());
+            AchatRestaurationDto achatRestaurationDto = achatOngletDto.getAchatRestauration();
+            if (achatRestaurationDto.getMethode() != null)
+                achatRestauration.setMethodeCalcul(achatRestaurationDto.getMethode());
+            if (achatRestaurationDto.getMethodeRapideNombrePersonnesServiesRegimeClassique() != null)
+                achatRestauration.setMethodeRapideNombrePersonnesServiesRegimeClassique(achatRestaurationDto.getMethodeRapideNombrePersonnesServiesRegimeClassique());
+            if (achatRestaurationDto.getMethodeRapideNombrePersonnesServiesRegimeFlexitarien() != null)
+                achatRestauration.setMethodeRapideNombrePersonnesServiesRegimeFlexitarien(achatRestaurationDto.getMethodeRapideNombrePersonnesServiesRegimeFlexitarien());
+            if (achatRestaurationDto.getNombreRepasServisDominanteAnimaleBoeuf() != null)
+                achatRestauration.setNombreRepasServisDominanteAnimaleBoeuf(achatRestaurationDto.getNombreRepasServisDominanteAnimaleBoeuf());
+            if (achatRestaurationDto.getNombreRepasServisDominanteAnimalePoulet() != null)
+                achatRestauration.setNombreRepasServisDominanteAnimalePoulet(achatRestaurationDto.getNombreRepasServisDominanteAnimalePoulet());
+            if (achatRestaurationDto.getNombreRepasServisDominanteVegetaleBoeuf() != null)
+                achatRestauration.setNombreRepasServisDominanteVegetaleBoeuf(achatRestaurationDto.getNombreRepasServisDominanteVegetaleBoeuf());
+            if (achatRestaurationDto.getNombreRepasServisDominanteVegetalePoulet() != null)
+                achatRestauration.setNombreRepasServisDominanteVegetalePoulet(achatRestaurationDto.getNombreRepasServisDominanteVegetalePoulet());
+            if (achatRestaurationDto.getNombreRepasServisDominanteClassiqueBoeuf() != null)
+                achatRestauration.setNombreRepasServisDominanteClassiqueBoeuf(achatRestaurationDto.getNombreRepasServisDominanteClassiqueBoeuf());
+            if (achatRestaurationDto.getNombreRepasServisDominanteClassiquePoulet() != null)
+                achatRestauration.setNombreRepasServisDominanteClassiquePoulet(achatRestaurationDto.getNombreRepasServisDominanteClassiquePoulet());
+            if (achatRestaurationDto.getNombreRepasServisRepasMoyen() != null)
+                achatRestauration.setNombreRepasServisRepasMoyen(achatRestaurationDto.getNombreRepasServisRepasMoyen());
+            if (achatRestaurationDto.getNombreRepasServisRepasVegetarien() != null)
+                achatRestauration.setNombreRepasServisRepasVegetarien(achatRestaurationDto.getNombreRepasServisRepasVegetarien());
+            if (achatRestaurationDto.getBoeufAgneauMouton_Tonnes() != null)
+                achatRestauration.setBoeufAgneauMouton_Tonnes(achatRestaurationDto.getBoeufAgneauMouton_Tonnes());
+            if (achatRestaurationDto.getPoulet_Tonnes() != null)
+                achatRestauration.setPoulet_Tonnes(achatRestaurationDto.getPoulet_Tonnes());
+            if (achatRestaurationDto.getCafe_Tonnes() != null)
+                achatRestauration.setCafe_Tonnes(achatRestaurationDto.getCafe_Tonnes());
+            if (achatRestaurationDto.getChocolat_Tonnes() != null)
+                achatRestauration.setChocolat_Tonnes(achatRestaurationDto.getChocolat_Tonnes());
+            if (achatRestaurationDto.getBeurre_Tonnes() != null)
+                achatRestauration.setBeurre_Tonnes(achatRestaurationDto.getBeurre_Tonnes());
+            if (achatRestaurationDto.getViandesMoyenne_Tonnes() != null)
+                achatRestauration.setViandesMoyenne_Tonnes(achatRestaurationDto.getViandesMoyenne_Tonnes());
+            if (achatRestaurationDto.getProduitsSucresMoyenne_Tonnes() != null)
+                achatRestauration.setProduitsSucresMoyenne_Tonnes(achatRestaurationDto.getProduitsSucresMoyenne_Tonnes());
+            if (achatRestaurationDto.getPoissonsMoyenne_Tonnes() != null)
+                achatRestauration.setPoissonsMoyenne_Tonnes(achatRestaurationDto.getPoissonsMoyenne_Tonnes());
+            if (achatRestaurationDto.getFromagesMoyenne_Tonnes() != null)
+                achatRestauration.setFromagesMoyenne_Tonnes(achatRestaurationDto.getFromagesMoyenne_Tonnes());
+            if (achatRestaurationDto.getOleagineuxMoyenne_Tonnes() != null)
+                achatRestauration.setOleagineuxMoyenne_Tonnes(achatRestaurationDto.getOleagineuxMoyenne_Tonnes());
+            if (achatRestaurationDto.getMatieresGrassesMoyenne_Tonnes() != null)
+                achatRestauration.setMatieresGrassesMoyenne_Tonnes(achatRestaurationDto.getMatieresGrassesMoyenne_Tonnes());
+            if (achatRestaurationDto.getBoissonsMoyenne_Tonnes() != null)
+                achatRestauration.setBoissonsMoyenne_Tonnes(achatRestaurationDto.getBoissonsMoyenne_Tonnes());
+            if (achatRestaurationDto.getOeufs_Tonnes() != null)
+                achatRestauration.setOeufs_Tonnes(achatRestaurationDto.getOeufs_Tonnes());
+            if (achatRestaurationDto.getCerealesMoyenne_Tonnes() != null)
+                achatRestauration.setCerealesMoyenne_Tonnes(achatRestaurationDto.getCerealesMoyenne_Tonnes());
+            if (achatRestaurationDto.getLegumesMoyenne_Tonnes() != null)
+                achatRestauration.setLegumesMoyenne_Tonnes(achatRestaurationDto.getLegumesMoyenne_Tonnes());
+            if (achatRestaurationDto.getFruitsMoyenne_Tonnes() != null)
+                achatRestauration.setFruitsMoyenne_Tonnes(achatRestaurationDto.getFruitsMoyenne_Tonnes());
+            if (achatRestaurationDto.getLegumineuseMoyenne_Tonnes() != null)
+                achatRestauration.setLegumineuseMoyenne_Tonnes(achatRestaurationDto.getLegumineuseMoyenne_Tonnes());
         }
 
         // --- AchatTextile ---
-        if (dto.getAchatTextile() != null) {
-            AchatTextile cible = onglet.getAchatTextile();
-            if (cible == null) {
-                cible = new AchatTextile();
-                onglet.setAchatTextile(cible);
+        if (achatOngletDto.getAchatTextile() != null) {
+            AchatTextile achatTextile = achatOnglet.getAchatTextile();
+            if (achatTextile == null) {
+                achatTextile = new AchatTextile();
+                achatOnglet.setAchatTextile(achatTextile);
             }
-            AchatTextileDto source = dto.getAchatTextile();
-            if (source.getChemise_nb() != null) cible.setChemise_nb(source.getChemise_nb());
-            if (source.getPolaire_nb() != null) cible.setPolaire_nb(source.getPolaire_nb());
-            if (source.getPull_Acrylique_nb() != null) cible.setPull_Acrylique_nb(source.getPull_Acrylique_nb());
-            if (source.getPull_Coton_nb() != null) cible.setPull_Coton_nb(source.getPull_Coton_nb());
-            if (source.getT_shirt_polyester_nb() != null) cible.setT_shirt_polyester_nb(source.getT_shirt_polyester_nb());
-            if (source.getJean_nb() != null) cible.setJean_nb(source.getJean_nb());
-            if (source.getSweat_nb() != null) cible.setSweat_nb(source.getSweat_nb());
-            if (source.getVeste_Anorak_nb() != null) cible.setVeste_Anorak_nb(source.getVeste_Anorak_nb());
-            if (source.getManteau_nb() != null) cible.setManteau_nb(source.getManteau_nb());
-            if (source.getChaussure_nb() != null) cible.setChaussure_nb(source.getChaussure_nb());
+            AchatTextileDto achatTextileDto = achatOngletDto.getAchatTextile();
+            if (achatTextileDto.getChemise_nb() != null) achatTextile.setChemise_nb(achatTextileDto.getChemise_nb());
+            if (achatTextileDto.getPolaire_nb() != null) achatTextile.setPolaire_nb(achatTextileDto.getPolaire_nb());
+            if (achatTextileDto.getPull_Acrylique_nb() != null)
+                achatTextile.setPull_Acrylique_nb(achatTextileDto.getPull_Acrylique_nb());
+            if (achatTextileDto.getPull_Coton_nb() != null)
+                achatTextile.setPull_Coton_nb(achatTextileDto.getPull_Coton_nb());
+            if (achatTextileDto.getT_shirt_polyester_nb() != null)
+                achatTextile.setT_shirt_polyester_nb(achatTextileDto.getT_shirt_polyester_nb());
+            if (achatTextileDto.getJean_nb() != null) achatTextile.setJean_nb(achatTextileDto.getJean_nb());
+            if (achatTextileDto.getSweat_nb() != null) achatTextile.setSweat_nb(achatTextileDto.getSweat_nb());
+            if (achatTextileDto.getVeste_Anorak_nb() != null)
+                achatTextile.setVeste_Anorak_nb(achatTextileDto.getVeste_Anorak_nb());
+            if (achatTextileDto.getManteau_nb() != null) achatTextile.setManteau_nb(achatTextileDto.getManteau_nb());
+            if (achatTextileDto.getChaussure_nb() != null)
+                achatTextile.setChaussure_nb(achatTextileDto.getChaussure_nb());
         }
 
-        achatOngletRepository.save(onglet); // Hibernate mettra à jour en cascade
+        achatOngletRepository.save(achatOnglet); // Hibernate mettra à jour en cascade
     }
 
 }

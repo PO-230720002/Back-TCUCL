@@ -4,15 +4,13 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "general_onglet")
-public class GeneralOnglet extends Onglet{
+public class GeneralOnglet extends Onglet {
 
-    private Integer nbSalarie;
-    private Integer nbEtudiant;
+    private Integer nbSalarie = 0;
+    private Integer nbEtudiant = 0;
 
     public GeneralOnglet(){
         super();
-        this.nbSalarie = 0;
-        this.nbEtudiant = 0;
     }
 
     public Integer getNbSalarie() {
@@ -31,23 +29,5 @@ public class GeneralOnglet extends Onglet{
         this.nbEtudiant = nbEtudiant;
     }
 
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
-    @Override
-    public Boolean getEstTermine() {
-        return super.getEstTermine();
-    }
-
-    @Override
-    public void setEstTermine(Boolean estTermine) {
-        super.setEstTermine(estTermine);
-    }
+    
 }

@@ -2,8 +2,8 @@ package tcucl.back_tcucl.dto.onglet.dechet;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.parametre.dechet.Dechet;
-import tcucl.back_tcucl.entity.parametre.dechet.enums.EnumDechet_Traitement;
+import tcucl.back_tcucl.entity.onglet.dechet.Dechet;
+import tcucl.back_tcucl.entity.onglet.dechet.enums.EnumDechet_Traitement;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

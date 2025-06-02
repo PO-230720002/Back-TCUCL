@@ -1,17 +1,11 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.energie.EnergieOngletDto;
-import tcucl.back_tcucl.entity.onglet.EnergieOnglet;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_NomReseauVille;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteBois;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteFioul;
-import tcucl.back_tcucl.entity.parametre.energie.enums.EnumEnergie_UniteGaz;
+import tcucl.back_tcucl.entity.onglet.energie.EnergieOnglet;
+import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.repository.onglet.EnergieOngletRepository;
 import tcucl.back_tcucl.manager.EnergieOngletManager;
-
-import java.util.Random;
 
 @Component
 public class EnergieOngletManagerImpl implements EnergieOngletManager {
@@ -23,58 +17,58 @@ public class EnergieOngletManagerImpl implements EnergieOngletManager {
     }
 
     @Override
-    public EnergieOnglet getEnergieOngletById(Long id) {
-        return energieOngletRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("EnergieOnglet non trouvé avec l'Id: " + id));
+    public EnergieOnglet getEnergieOngletById(Long ongletId) {
+        return energieOngletRepository.findById(ongletId).orElseThrow(() -> new OngletNonTrouveIdException("EnergieOnglet",ongletId));
     }
 
     @Override
-    public void updateEnergieOngletPartiel(Long id, EnergieOngletDto dto) {
-        EnergieOnglet onglet = getEnergieOngletById(id);
+    public void updateEnergieOngletPartiel(Long ongletId, EnergieOngletDto energieOngletDto) {
+        EnergieOnglet energieOnglet = getEnergieOngletById(ongletId);
 
-        if (dto.getEstTermine()){
-            onglet.setEstTermine(dto.getEstTermine());
+        if (energieOngletDto.getEstTermine()){
+            energieOnglet.setEstTermine(energieOngletDto.getEstTermine());
         }
-        if (dto.getNote() != null) {
-            onglet.setNote(dto.getNote());
+        if (energieOngletDto.getNote() != null) {
+            energieOnglet.setNote(energieOngletDto.getNote());
         }
 
-        if (dto.getConsoGaz() != null) {
-            onglet.setConsoGaz(dto.getConsoGaz());
+        if (energieOngletDto.getConsoGaz() != null) {
+            energieOnglet.setConsoGaz(energieOngletDto.getConsoGaz());
         }
-        if (dto.getConsoFioul() != null) {
-            onglet.setConsoFioul(dto.getConsoFioul());
+        if (energieOngletDto.getConsoFioul() != null) {
+            energieOnglet.setConsoFioul(energieOngletDto.getConsoFioul());
         }
-        if (dto.getConsoBois() != null) {
-            onglet.setConsoBois(dto.getConsoBois());
+        if (energieOngletDto.getConsoBois() != null) {
+            energieOnglet.setConsoBois(energieOngletDto.getConsoBois());
         }
-        if (dto.getConsoReseauVille() != null) {
-            onglet.setConsoReseauVille(dto.getConsoReseauVille());
+        if (energieOngletDto.getConsoReseauVille() != null) {
+            energieOnglet.setConsoReseauVille(energieOngletDto.getConsoReseauVille());
         }
-        if (dto.getConsoElecChauffage() != null) {
-            onglet.setConsoElecChauffage(dto.getConsoElecChauffage());
+        if (energieOngletDto.getConsoElecChauffage() != null) {
+            energieOnglet.setConsoElecChauffage(energieOngletDto.getConsoElecChauffage());
         }
-        if (dto.getConsoElecSpecifique() != null) {
-            onglet.setConsoElecSpecifique(dto.getConsoElecSpecifique());
+        if (energieOngletDto.getConsoElecSpecifique() != null) {
+            energieOnglet.setConsoElecSpecifique(energieOngletDto.getConsoElecSpecifique());
         }
-        if (dto.getConsoEau() != null) {
-            onglet.setConsoEau(dto.getConsoEau());
+        if (energieOngletDto.getConsoEau() != null) {
+            energieOnglet.setConsoEau(energieOngletDto.getConsoEau());
         }
-        if (dto.getNote() != null) {
-            onglet.setNote(dto.getNote());
+        if (energieOngletDto.getNote() != null) {
+            energieOnglet.setNote(energieOngletDto.getNote());
         }
-        if (dto.getNomReseauVille() != null) {
-            onglet.setNomReseauVille(dto.getNomReseauVille());
+        if (energieOngletDto.getNomReseauVille() != null) {
+            energieOnglet.setNomReseauVille(energieOngletDto.getNomReseauVille());
         }
-        if (dto.getUniteBois() != null) {
-            onglet.setUniteBois(dto.getUniteBois());
+        if (energieOngletDto.getUniteBois() != null) {
+            energieOnglet.setUniteBois(energieOngletDto.getUniteBois());
         }
-        if (dto.getUniteFioul() != null) {
-            onglet.setUniteFioul(dto.getUniteFioul());
+        if (energieOngletDto.getUniteFioul() != null) {
+            energieOnglet.setUniteFioul(energieOngletDto.getUniteFioul());
         }
-        if (dto.getUniteGaz() != null) {
-            onglet.setUniteGaz(dto.getUniteGaz());
+        if (energieOngletDto.getUniteGaz() != null) {
+            energieOnglet.setUniteGaz(energieOngletDto.getUniteGaz());
         }
-        energieOngletRepository.save(onglet); // Hibernate gère la mise à jour
+        energieOngletRepository.save(energieOnglet); // Hibernate gère la mise à jour
     }
 
 }

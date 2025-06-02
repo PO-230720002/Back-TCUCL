@@ -10,7 +10,7 @@ import tcucl.back_tcucl.service.GeneralOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_GENERAL_ONGLET + REST_ID)
+@RequestMapping(REST_GENERAL_ONGLET + REST_ONGLET_ID)
 public class GeneralOngletController {
 
     private final GeneralOngletService generalOngletService;
@@ -21,17 +21,17 @@ public class GeneralOngletController {
 
     @GetMapping()
     @checkRoleOnglet
-    public ResponseEntity<?> getGeneralOngletById(@PathVariable(value = "id") Long id) {
-        GeneralOnglet generalOngletById = generalOngletService.getGeneralOngletById(id);
-        GeneralOngletDto body = new GeneralOngletDto(generalOngletById);
-        return ResponseEntity.ok(body);
+    public ResponseEntity<?> getGeneralOngletById(@PathVariable(value = "ongletId") Long ongletId) {
+        GeneralOnglet generalOngletById = generalOngletService.getGeneralOngletById(ongletId);
+        GeneralOngletDto generalOngletDto = new GeneralOngletDto(generalOngletById);
+        return ResponseEntity.ok(generalOngletDto);
     }
 
     @PatchMapping()
     @checkRoleOnglet
-    public ResponseEntity<Void> updateGeneralOngletPartiel(@PathVariable(value = "id") Long id,
-                                                           @RequestBody GeneralOngletDto dto) {
-        generalOngletService.updateGeneralOngletPartiel(id, dto);
+    public ResponseEntity<Void> updateGeneralOngletPartiel(@PathVariable(value = "ongletId") Long ongletId,
+                                                           @RequestBody GeneralOngletDto generalOngletDto) {
+        generalOngletService.updateGeneralOngletPartiel(ongletId, generalOngletDto);
         return ResponseEntity.ok().build();
     }
 

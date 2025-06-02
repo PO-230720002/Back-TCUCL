@@ -13,7 +13,6 @@ import tcucl.back_tcucl.dto.InscriptionDto;
 import tcucl.back_tcucl.dto.UtilisateurDto;
 import tcucl.back_tcucl.entity.Utilisateur;
 import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisIdentifiantsException;
-import tcucl.back_tcucl.exceptionPersonnalisee.UtilisateurNonTrouveEmailException;
 import tcucl.back_tcucl.service.UtilisateurService;
 import tcucl.back_tcucl.service.AuthentificationService;
 
@@ -40,9 +39,10 @@ public class AuthentificationServiceImpl implements AuthentificationService {
         this.authenticationManager = authenticationManager;
     }
 
+    // todo à supprimer après Tests
     @Override
     public void inscription(InscriptionDto inscriptionDto) {
-        utilisateurService.inscrireUtilisateur2(inscriptionDto);
+        utilisateurService.inscrireUtilisateur(inscriptionDto);
     }
 
     @Override
@@ -70,26 +70,21 @@ public class AuthentificationServiceImpl implements AuthentificationService {
             );
             logger.info("Authentification Spring Security réussie");
 
-            // TODO
-            // ne pas connecter l'utilisateur pour le forcer à changer le mdp
+
             if (authentication.isAuthenticated()) {
                 Map<String, Object> authData = new HashMap<>();
-                authData.put(JETON, jwtUtils.generateToken(connexionDto.getEmail()));
-                logger.info("Token JWT généré");
 
-                UtilisateurDto utilisateurDto = new UtilisateurDto(
-                        utilisateur.getId(),
-                        utilisateur.getNom(),
-                        utilisateur.getPrenom(),
-                        utilisateur.getEmail(),
-                        utilisateur.getEstAdmin(),
-                        utilisateur.getEntite().getNom()
-                );
-
-                authData.put("user", utilisateurDto);
-
+                // si c'est sa première connexion, il n'est pas connecté
+                // afin de le forcer à changer son mot de passe
                 if (utilisateur.getEstPremiereConnexion()) {
                     authData.put(MESSAGE, MESSAGE_PREMIERE_CONNEXION);
+                }else {
+                    authData.put(JETON, jwtUtils.generateToken(connexionDto.getEmail()));
+                    logger.info("Token JWT généré");
+
+                    UtilisateurDto utilisateurDto = new UtilisateurDto(utilisateur);
+
+                    authData.put("user", utilisateurDto);
                 }
 
                 return authData;

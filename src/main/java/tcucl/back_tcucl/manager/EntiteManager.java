@@ -5,11 +5,11 @@ import tcucl.back_tcucl.entity.Entite;
 import java.util.List;
 
 public interface EntiteManager {
-    Entite getEntitebyId(Long id);
+    Entite getEntitebyId(Long entiteId);
 
     Entite save(Entite entite);
 
     List<Entite> getAll();
 
-    boolean existsEntiteByNomAndType(String nom, String type);
+    boolean existsEntiteByNomAndType(String nomEntite, String typeEntite);
 }

@@ -22,19 +22,19 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
     }
 
     @Override
-    public Utilisateur getUtilisateurParId(Long id) {
-        Optional<Utilisateur> utilisateur = utilisateurRepository.findById(id);
+    public Utilisateur getUtilisateurParId(Long utilisateurId) {
+        Optional<Utilisateur> utilisateur = utilisateurRepository.findById(utilisateurId);
         if(utilisateur.isEmpty()){
-            throw new UtilisateurNonTrouveIdException(id);
+            throw new UtilisateurNonTrouveIdException(utilisateurId);
         }
         return utilisateur.get();
     }
 
     @Override
-    public Utilisateur getUtilisateurParEmail(String email) {
-        Optional<Utilisateur> utilisateur = utilisateurRepository.findByEmail(email);
+    public Utilisateur getUtilisateurParEmail(String utilisateurEmail) {
+        Optional<Utilisateur> utilisateur = utilisateurRepository.findByEmail(utilisateurEmail);
         if(utilisateur.isEmpty()){
-            throw new UtilisateurNonTrouveEmailException(email);
+            throw new UtilisateurNonTrouveEmailException(utilisateurEmail);
         }
         return utilisateur.get();
     }
@@ -45,8 +45,8 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
     }
 
     @Override
-    public boolean emailDejaPris(String email){
-        return utilisateurRepository.existsUtilisateurByEmail(email);
+    public boolean isEmailDejaPris(String utilisateurEmail){
+        return utilisateurRepository.existsUtilisateurByEmail(utilisateurEmail);
     }
 
     @Override
@@ -55,15 +55,15 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
     }
 
     @Override
-    public void supprimerUtilisateur(Long id) {
-        utilisateurRepository.deleteById(id);
+    public void supprimerUtilisateur(Long utilisateurId) {
+        utilisateurRepository.deleteById(utilisateurId);
     }
 
     @Override
-    public UtilisateurSecuriteDto findUtilisateurSecurityDTOByEmail(String email) {
-        Optional<UtilisateurSecuriteDto> utilisateur = utilisateurRepository.findUtilisateurSecurityDTOByEmail(email);
+    public UtilisateurSecuriteDto findUtilisateurSecurityDTOByEmail(String utilisateurEmail) {
+        Optional<UtilisateurSecuriteDto> utilisateur = utilisateurRepository.findUtilisateurSecurityDTOByEmail(utilisateurEmail);
         if(utilisateur.isEmpty()){
-            throw new UtilisateurNonTrouveEmailException(email);
+            throw new UtilisateurNonTrouveEmailException(utilisateurEmail);
         }
         return utilisateur.get();
     }

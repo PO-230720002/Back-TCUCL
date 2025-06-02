@@ -24,9 +24,18 @@ public class Entite {
     private String nom;
     private String type;
 
+    // TODO
+    // créer ENUM pour les types d'entité
+    // 1. EDUC_SUP
+    // 2. LYCEE
+    // 3. SANTE
+    // 4. LOGEMENT
+    // 5.
+    // 6.
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "notes_permanentes_id")
-    private NotesPermanentes notesPermanentes;
+    private NotesPermanentes notesPermanentes = new NotesPermanentes();
 
     @OneToMany(mappedBy = "entite", cascade = CascadeType.ALL)
     private List<Annee> annees;
@@ -35,7 +44,6 @@ public class Entite {
     public Entite(String nom, String type) {
         this.nom = nom;
         this.type = type;
-        this.notesPermanentes = new NotesPermanentes();
 
         Annee annee = new Annee();
         annee.setEntite(this); // Liaison bidirectionnelle

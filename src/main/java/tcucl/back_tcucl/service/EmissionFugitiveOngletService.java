@@ -2,17 +2,17 @@ package tcucl.back_tcucl.service;
 
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveOngletDto;
-import tcucl.back_tcucl.entity.onglet.EmissionFugitiveOnglet;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
 
 public interface EmissionFugitiveOngletService {
 
-    EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long id);
+    EmissionFugitiveOnglet getEmissionFugitiveOngletById(Long ongletId);
 
-    void updateEmissionFugitiveOnglet(Long id, EmissionFugitiveOngletDto emissionFugitiveOngletDto);
+    void updateEmissionFugitiveOnglet(Long ongletId, EmissionFugitiveOngletDto emissionFugitiveOngletDto);
 
-    void ajouterMachine(Long id, MachineEmissionFugitiveDto machineEmissionFugitiveDto);
+    void ajouterMachine(Long ongletId, MachineEmissionFugitiveDto machineEmissionFugitiveDto);
 
-    void supprimerMachine(Long ongletId, Long idMachine);
+    void supprimerMachine(Long ongletId, Long machineId);
 
     void updateMachinePartiel(Long ongletId, Long machineId, MachineEmissionFugitiveDto machineEmissionFugitiveDto);
 

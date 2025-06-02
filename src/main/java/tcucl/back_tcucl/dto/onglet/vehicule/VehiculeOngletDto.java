@@ -2,8 +2,7 @@ package tcucl.back_tcucl.dto.onglet.vehicule;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.dto.onglet.parkingVoirie.ParkingVoirieDto;
-import tcucl.back_tcucl.entity.onglet.VehiculeOnglet;
+import tcucl.back_tcucl.entity.onglet.vehicule.VehiculeOnglet;
 
 import java.util.List;
 import java.util.stream.Collectors;

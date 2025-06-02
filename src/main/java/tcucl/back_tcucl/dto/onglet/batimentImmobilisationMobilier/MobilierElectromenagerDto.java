@@ -2,17 +2,18 @@ package tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import tcucl.back_tcucl.entity.parametre.batiment.MobilierElectromenager;
-import tcucl.back_tcucl.entity.parametre.batiment.enums.EnumBatiment_Mobilier;
+import tcucl.back_tcucl.entity.onglet.batiment.MobilierElectromenager;
+import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_Mobilier;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MobilierElectromenagerDto {
 
     private Long id;
-    private Date dateAjout;
+    private LocalDate dateAjout;
     private EnumBatiment_Mobilier mobilier;
     private Integer quantite;
     private Float poidsDuProduit;
@@ -30,7 +31,7 @@ public class MobilierElectromenagerDto {
         this.quantite = entity.getQuantite();
         this.poidsDuProduit = entity.getPoidsDuProduit();
         this.dureeAmortissement = entity.getDureeAmortissement();
-        this.emissionGesPrecisesConnues = entity.isEmissionGesPrecisesConnues();
+        this.emissionGesPrecisesConnues = entity.getEmissionGesPrecisesConnues();
         this.emissionsGesReelleskgCO2 = entity.getEmissionsGesReelleskgCO2();
     }
 
@@ -42,11 +43,11 @@ public class MobilierElectromenagerDto {
         this.id = id;
     }
 
-    public Date getDateAjout() {
+    public LocalDate getDateAjout() {
         return dateAjout;
     }
 
-    public void setDateAjout(Date dateAjout) {
+    public void setDateAjout(LocalDate dateAjout) {
         this.dateAjout = dateAjout;
     }
 

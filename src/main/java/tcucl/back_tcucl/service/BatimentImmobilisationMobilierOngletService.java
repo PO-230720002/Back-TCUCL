@@ -4,29 +4,29 @@ import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentExista
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentImmobilisationMobilierOngletDto;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.EntretienCourantDto;
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.MobilierElectromenagerDto;
-import tcucl.back_tcucl.entity.onglet.BatimentImmobilisationMobilierOnglet;
+import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOnglet;
 
 public interface BatimentImmobilisationMobilierOngletService {
 
-    BatimentImmobilisationMobilierOnglet getBatimentImmobilisationMobilierOngletById(Long id);
+    BatimentImmobilisationMobilierOnglet getBatimentImmobilisationMobilierOngletById(Long ongletId);
 
-    void updateBatimentImmobilisationMobilierOnglet(Long id, BatimentImmobilisationMobilierOngletDto batimentImmobilisationMobilierOngletDto);
+    void updateBatimentImmobilisationMobilierOnglet(Long ongletId, BatimentImmobilisationMobilierOngletDto batimentImmobilisationMobilierOngletDto);
 
-    void ajouterBatiment(Long id, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto);
+    void ajouterBatiment(Long ongletId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto);
 
-    void supprimerBatiment(Long ongletId, Long idBatiment);
+    void supprimerBatiment(Long ongletId, Long batimentId);
 
     void updateBatimentPartiel(Long ongletId, Long batimentId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto);
 
-    void ajouterEntretienCourant(Long id, EntretienCourantDto entretienCourantDto);
+    void ajouterEntretienCourant(Long ongletId, EntretienCourantDto entretienCourantDto);
 
-    void supprimerEntretienCourant(Long ongletId, Long idEntretienCourant);
+    void supprimerEntretienCourant(Long ongletId, Long entretienCourantId);
 
     void updateEntretienCourantPartiel(Long ongletId, Long entretienCourantId, EntretienCourantDto entretienCourantDto);
 
-    void ajouterMobilierElectromenager(Long id, MobilierElectromenagerDto mobilierElectromenagerDto);
+    void ajouterMobilierElectromenager(Long ongletId, MobilierElectromenagerDto mobilierElectromenagerDto);
 
-    void supprimerMobilierElectromenager(Long ongletId, Long idMobilierElectromenager);
+    void supprimerMobilierElectromenager(Long ongletId, Long mobilierElectromenagerId);
 
     void updateMobilierElectromenagerPartiel(Long ongletId, Long mobilierElectromenagerId, MobilierElectromenagerDto mobilierElectromenagerDto);
 }

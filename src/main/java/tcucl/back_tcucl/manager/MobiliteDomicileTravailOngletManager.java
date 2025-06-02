@@ -5,8 +5,8 @@ import tcucl.back_tcucl.entity.onglet.MobiliteDomicileTravailOnglet;
 
 public interface MobiliteDomicileTravailOngletManager {
 
-    MobiliteDomicileTravailOnglet getMobiliteDomicileTravailOngletById(Long id);
+    MobiliteDomicileTravailOnglet getMobiliteDomicileTravailOngletById(Long ongletId);
 
-    void updateMobiliteDomicileTravailOngletPartiel(Long id, MobiliteDomicileTravailOngletDto dto);
+    void updateMobiliteDomicileTravailOngletPartiel(Long ongletId, MobiliteDomicileTravailOngletDto mobiliteDomicileTravailOngletDto);
 
 }
