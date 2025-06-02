@@ -4,17 +4,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tcucl.back_tcucl.service.AnneeService;
-import tcucl.back_tcucl.service.EntiteService;
 
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
 @RequestMapping(REST_GENERAL + REST_ENTITE_ID)
-public class AccueilController {
+public class GeneralController {
 
     private final AnneeService anneeService;
 
-    public AccueilController(AnneeService entiteService) {
+    public GeneralController(AnneeService entiteService) {
         this.anneeService = entiteService;
     }
 

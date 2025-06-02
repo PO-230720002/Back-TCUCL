@@ -25,6 +25,8 @@ public class Constante {
     public static final String ERREUR_ENTITE_EXISTE_DEJA = "L'entité existe déjà avec ce nom et ce type.";
     public static final String ERREUR_ENTITE_NON_TROUVE = "Entite non trouvée en base";
     public static final String ERREUR_AUCUN_BATIMENT_CREE = "Aucun batiment n'est crée ou aucun n'a de surface";
+    public static final String ERREUR_AUCUN_SALARIE_ENREGISTRE = "Aucun salarié n'est enregistré dans l'application pour cette année";
+    public static final String ERREUR_AUCUN_ETUDIANT_ENREGISTRE = "Aucun étudiant n'est enregistré dans l'application pour cette année";
     public static final String ERREUR_NON_TROUVE_ID = " non trouvé en base avec l'id : ";
     public static final String ERREUR_VOYAGE_EXISTE_DEJA = "Un voyage existe déjà pour cette destination : ";
     public static final String ERREUR_INTERNE = "Une erreur interne s'est produite.";

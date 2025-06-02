@@ -42,7 +42,7 @@ public class SecurityConfig {
         return authenticationManagerBuilder.build();
     }
 
-    // todo supprimer les endpoints non sécurisés en production
+    // devTodo supprimer les endpoints non sécurisés en production
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http

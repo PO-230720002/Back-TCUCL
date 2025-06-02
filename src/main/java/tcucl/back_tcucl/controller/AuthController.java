@@ -29,14 +29,14 @@ public class AuthController {
         this.parametreService = parametreService;
     }
 
-    // TODO supprimer cette méthode en fin de dev
+    // devTodo supprimer cette méthode en fin de dev
     @PostMapping(REST_INSCRIPTION2)
     public ResponseEntity<?> inscription2(@RequestBody InscriptionDto inscriptionDto) {
         authentificationService.inscription(inscriptionDto);
         return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT);
     }
 
-    // TODO supprimer cette méthode en fin de dev
+    // devTodo supprimer cette méthode en fin de dev
     @PostMapping(REST_CREER_ENTITE)
     public ResponseEntity<?> creerEntite(@RequestBody CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
         parametreService.creerEntiteEtAdmin(creationEntiteEtAdminDto);

@@ -5,7 +5,7 @@ import tcucl.back_tcucl.entity.facteurEmission.FacteurEmission;
 
 public interface FacteurEmissionService {
 
-    void importFromExcel(MultipartFile file);
+    void importFacteurEmissionFromExcel(MultipartFile file);
 
     FacteurEmission findByCategorieAndTypeAndUnite(String categorie, String type, String unite);
     FacteurEmission findByCategorieAndType(String categorie, String type);
