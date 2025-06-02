@@ -8,14 +8,16 @@ public class EnergieResultatDto {
     private Float consoElecChauffage;
     private Float consoElecSpecifique;
     private Float consoEau;
+    private Float totalPosteFluides;
     private Float consoEnergieFinale;
     private Float consoEnergieChauffage;
-    private Float consoEnergieElecSpecifique;
+    private Float consoEnergieSpecifique;
     private Float consoEnergieFinaleParM2;
     private Float consoEnergiePrimaireParM2;
     private Float intensiteCarboneParM2;
     private Float intensiteCarboneMoyenne;
     private Float surfaceTotaleBatiments;
+
 
     public EnergieResultatDto() {
 
@@ -77,6 +79,14 @@ public class EnergieResultatDto {
         this.consoEau = consoEau;
     }
 
+    public Float getTotalPosteFluides() {
+        return totalPosteFluides;
+    }
+
+    public void setTotalPosteFluides(Float totalPosteFluides) {
+        this.totalPosteFluides = totalPosteFluides;
+    }
+
     public Float getConsoEnergieFinale() {
         return consoEnergieFinale;
     }
@@ -93,12 +103,12 @@ public class EnergieResultatDto {
         this.consoEnergieChauffage = consoEnergieChauffage;
     }
 
-    public Float getConsoEnergieElecSpecifique() {
-        return consoEnergieElecSpecifique;
+    public Float getconsoEnergieSpecifique() {
+        return consoEnergieSpecifique;
     }
 
-    public void setConsoEnergieElecSpecifique(Float consoEnergieElecSpecifique) {
-        this.consoEnergieElecSpecifique = consoEnergieElecSpecifique;
+    public void setconsoEnergieSpecifique(Float consoEnergieSpecifique) {
+        this.consoEnergieSpecifique = consoEnergieSpecifique;
     }
 
     public Float getConsoEnergieFinaleParM2() {

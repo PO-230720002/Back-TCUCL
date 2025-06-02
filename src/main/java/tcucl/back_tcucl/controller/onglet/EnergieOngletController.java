@@ -37,7 +37,10 @@ public class EnergieOngletController {
 
     @GetMapping(REST_RESULTAT)
     @checkRoleOnglet
-    public
+    public ResponseEntity<?> getEnergieResult(@PathVariable(value = "ongletId") Long ongletId,
+                                              @RequestParam(value = "batimentId") Long batimentId) {
+        return ResponseEntity.ok(energieOngletService.getEnergieResult(ongletId, batimentId));
+    }
 
 
 }
