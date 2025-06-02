@@ -34,4 +34,10 @@ public class AutreMobFrController {
         autreMobFrOngletService.updateAutreMobFrOngletPartiel(ongletId, autreMobFrOngletDto);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping(REST_RESULTAT)
+    @checkRoleOnglet
+    public ResponseEntity<?> getAutreMobFrResultat(@PathVariable(value = "ongletId") Long ongletId) {
+        return ResponseEntity.ok(autreMobFrOngletService.getAutreMobFrResultat(ongletId));
+    }
 }
