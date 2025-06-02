@@ -35,5 +35,11 @@ public class MobiliteDomicileTravailOngletController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping(REST_RESULTAT)
+    @checkRoleOnglet
+    public ResponseEntity<?> getMobiliteDomicileTravailResultat(@PathVariable(value = "ongletId") Long ongletId) {
+        return ResponseEntity.ok(mobiliteDomicileTravailOngletService.getMobiliteDomicileTravailResultat(ongletId));
+    }
+
 
 }

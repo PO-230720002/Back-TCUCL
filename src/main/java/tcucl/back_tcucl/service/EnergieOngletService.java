@@ -10,5 +10,5 @@ public interface EnergieOngletService {
 
     public void updateEnergieOngletPartiel(Long ongletId, EnergieOngletDto dto);
 
-    EnergieResultatDto getEnergieResult(Long ongletId, Long ongletBatimentId);
+    EnergieResultatDto getEnergieResultat(Long ongletId);
 }

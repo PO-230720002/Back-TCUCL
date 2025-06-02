@@ -67,7 +67,7 @@ public class GestionnaireErreurController {
     //Tout le reste
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {
-        // TODO  à changer en prod afin de ne pas afficher les messages d'erreurs
+        // devTodo  à changer en prod afin de ne pas afficher les messages d'erreurs
 //        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ERREUR_INTERNE);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
 

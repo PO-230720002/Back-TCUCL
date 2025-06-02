@@ -39,7 +39,7 @@ public class AuthentificationServiceImpl implements AuthentificationService {
         this.authenticationManager = authenticationManager;
     }
 
-    // todo à supprimer après Tests
+    // devTodo à supprimer après Tests
     @Override
     public void inscription(InscriptionDto inscriptionDto) {
         utilisateurService.inscrireUtilisateur(inscriptionDto);
@@ -59,6 +59,7 @@ public class AuthentificationServiceImpl implements AuthentificationService {
         try {
             utilisateur = utilisateurService.getUtilisateurParEmail(connexionDto.getEmail());
             logger.info("Utilisateur récupéré avec succès: " + utilisateur.getEmail());
+            logger.info("superAdmin : " + utilisateur.getEstSuperAdmin());
         } catch (Exception e) {
             logger.error("Erreur lors de la récupération de l'utilisateur", e);
             throw new MauvaisIdentifiantsException();

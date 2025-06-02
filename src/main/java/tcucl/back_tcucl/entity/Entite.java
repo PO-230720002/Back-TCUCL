@@ -24,8 +24,7 @@ public class Entite {
     private String nom;
     private String type;
 
-    // TODO
-    // créer ENUM pour les types d'entité
+    // todo créer ENUM pour les types d'enti
     // 1. EDUC_SUP
     // 2. LYCEE
     // 3. SANTE

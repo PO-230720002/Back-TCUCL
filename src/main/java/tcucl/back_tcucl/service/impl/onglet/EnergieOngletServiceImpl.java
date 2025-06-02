@@ -6,6 +6,7 @@ import tcucl.back_tcucl.dto.onglet.energie.EnergieResultatDto;
 import tcucl.back_tcucl.entity.facteurEmission.FacteurEmission;
 import tcucl.back_tcucl.entity.facteurEmission.FacteurEmissionParametre;
 import tcucl.back_tcucl.entity.onglet.batiment.BatimentExistantOuNeufConstruit;
+import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOnglet;
 import tcucl.back_tcucl.entity.onglet.energie.EnergieOnglet;
 import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_NomReseauVille;
 import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_UniteBois;
@@ -42,7 +43,7 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
     }
 
     @Override
-    public EnergieResultatDto getEnergieResult(Long ongletId, Long ongletBatimentId) {
+    public EnergieResultatDto getEnergieResultat(Long ongletId) {
         EnergieOnglet energieOnglet = energieOngletManager.getEnergieOngletById(ongletId);
         EnergieResultatDto energieResultatDto = new EnergieResultatDto();
 
@@ -123,7 +124,7 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
         energieResultatDto.setconsoEnergieSpecifique(energieOnglet.getConsoElecSpecifique());
         energieResultatDto.setConsoEnergieChauffage(energieResultatDto.getConsoEnergieFinale() - energieResultatDto.getconsoEnergieSpecifique());
 
-        Float surfaceBatiment = batimentImmobilisationMobilierOngletService.getBatimentImmobilisationMobilierOngletById(ongletBatimentId)
+        Float surfaceBatiment = energieOnglet.getOngletDeClass(BatimentImmobilisationMobilierOnglet.class)
                 .getBatimentExistantOuNeufConstruits()
                 .stream()
                 .filter(b -> b.getSurfaceEnM2() != null) // pour éviter les NullPointerException

@@ -1,11 +1,7 @@
 package tcucl.back_tcucl.entity.onglet;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.*;
+import tcucl.back_tcucl.entity.Annee;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -16,6 +12,10 @@ public class Onglet {
     private Long id;
     private String note;
     private Boolean estTermine;
+
+    @ManyToOne
+    @JoinColumn(name = "annee_id")
+    private Annee annee;
 
     public Onglet() {
         this.note = "";
@@ -44,5 +44,17 @@ public class Onglet {
 
     public void setEstTermine(Boolean estTermine) {
         this.estTermine = estTermine;
+    }
+
+    public Annee getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(Annee annee) {
+        this.annee = annee;
+    }
+
+    public <T extends Onglet> T getOngletDeClass(Class<T> clazz){
+        return this.getAnnee().getOngletByType(clazz);
     }
 }

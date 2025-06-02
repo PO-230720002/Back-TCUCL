@@ -10,6 +10,7 @@ import tcucl.back_tcucl.manager.AnneeManager;
 import tcucl.back_tcucl.repository.AnneeRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class AnneeManagerImpl implements AnneeManager {
@@ -20,9 +21,25 @@ public class AnneeManagerImpl implements AnneeManager {
         this.anneeRepository = anneeRepository;
     }
 
-    @Override
     public List<AnneeSecuriteDto> findAnneesSecurityByEntiteId(Long entiteId) {
-        return anneeRepository.findAnneesSecurityByEntiteId(entiteId);
+        return anneeRepository.findByEntiteId(entiteId).stream()
+                .map(annee -> new AnneeSecuriteDto(
+                        annee.getId(),
+                        getId(annee.getAchatOnglet()),
+                        getId(annee.getAutreImmobilisationOnglet()),
+                        getId(annee.getAutreMobFrOnglet()),
+                        getId(annee.getBatimentImmobilisationMobilierOnglet()),
+                        getId(annee.getDechetOnglet()),
+                        getId(annee.getEmissionFugitiveOnglet()),
+                        getId(annee.getEnergieOnglet()),
+                        getId(annee.getGeneralOnglet()),
+                        getId(annee.getMobiliteDomicileTravailOnglet()),
+                        getId(annee.getMobInternationalOnglet()),
+                        getId(annee.getNumeriqueOnglet()),
+                        getId(annee.getParkingVoirieOnglet()),
+                        getId(annee.getVehiculeOnglet())
+                ))
+                .collect(Collectors.toList());
     }
 
     @Override

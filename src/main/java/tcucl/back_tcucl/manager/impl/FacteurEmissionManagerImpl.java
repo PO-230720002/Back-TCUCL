@@ -27,12 +27,14 @@ public class FacteurEmissionManagerImpl implements FacteurEmissionManager {
     @Override
     public FacteurEmission findByCategorieAndTypeAndUnite(String categorie, String type, String unite){
         return facteurEmissionRepository.findByCategorieAndTypeAndUnite(categorie, type, unite)
-                .orElseThrow(() -> new NonTrouveGeneralCustomException("Ce facteur d'emission n'existe pas"));
+                .orElseThrow(() -> new NonTrouveGeneralCustomException("Ce facteur d'emission n'existe pas" +
+                        " pour la categorie : " + categorie + ", le type : " + type + " et l'unité : " + unite));
     }
 
     @Override
     public FacteurEmission findByCategorieAndType(String categorie, String type) {
         return facteurEmissionRepository.findByCategorieAndType(categorie, type)
-                .orElseThrow(() -> new NonTrouveGeneralCustomException("Ce facteur d'emission n'existe pas"));
+                .orElseThrow(() -> new NonTrouveGeneralCustomException("Ce facteur d'emission n'existe pas" +
+                        " pour la categorie : " + categorie + " et le type : " + type));
     }
 }

@@ -24,7 +24,7 @@ public class FacteurEmissionServiceImpl implements FacteurEmissionService {
     }
 
     @Override
-    public void importFromExcel(MultipartFile file) {
+    public void importFacteurEmissionFromExcel(MultipartFile file) {
         try (Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
             Sheet sheet = workbook.getSheetAt(0);
 

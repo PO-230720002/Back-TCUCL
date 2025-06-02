@@ -457,7 +457,7 @@ public class FacteurEmissionParametre {
             public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
         }
 
-        public static final String TROTINETTE_ELECTRIQUE = "Trotinette électrique";
+        public static final String TROTTINETTE_ELECTRIQUE = "Trotinette électrique";
         public static class TROTINETTE_ELECTRIQUE_ {
             public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
         }
