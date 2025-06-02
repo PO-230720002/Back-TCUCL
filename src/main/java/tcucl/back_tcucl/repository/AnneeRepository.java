@@ -8,6 +8,7 @@ import tcucl.back_tcucl.dto.securite.AnneeSecuriteDto;
 import tcucl.back_tcucl.entity.Annee;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AnneeRepository extends JpaRepository<Annee, Long> {
@@ -46,5 +47,8 @@ public interface AnneeRepository extends JpaRepository<Annee, Long> {
             WHERE a.entite.id = :entiteId
             """)
     List<AnneeSecuriteDto> findAnneesSecurityByEntiteId(@Param("entiteId") Long entiteId);
+
+    Optional<Annee> findByEntiteIdAndAnneeValeur(Long entiteId, int anneeValeur);
+
 
 }

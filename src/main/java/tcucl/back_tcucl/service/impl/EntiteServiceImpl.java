@@ -1,6 +1,7 @@
 package tcucl.back_tcucl.service.impl;
 
 import org.springframework.stereotype.Service;
+import tcucl.back_tcucl.dto.ListIdDto;
 import tcucl.back_tcucl.entity.Annee;
 import tcucl.back_tcucl.entity.Entite;
 import tcucl.back_tcucl.exceptionPersonnalisee.EntiteDejaExistantAvecNomTypeException;

@@ -6,14 +6,13 @@ public class FacteurEmissionParametre {
     public static final String ENERGIE = "ENERGIE";
 
     public static class ENERGIE_ {
-        public static final String GAZ = "Gaz";
 
+        public static final String GAZ = "Gaz";
         public static class GAZ_ {
             public static final String MWh_PCS = "kgCO2e/MWh PCS";
         }
 
         public static final String FIOUL = "Fioul";
-
         public static class FIOUL_ {
             public static final String TONNES = "kgCO2e/tonnes";
             public static final String MWh_PCS = "kgCO2e/MWh PCS";
@@ -21,50 +20,42 @@ public class FacteurEmissionParametre {
         }
 
         public static final String BOIS_GRANULE_FRANCAIS = "Bois granulé français";
-
         public static class BOIS_GRANULE_FRANCAIS_ {
             public static final String TONNES = "kgCO2e/tonnes";
             public static final String MWh_PCS = "kgCO2e/MWh PCS";
         }
 
         public static final String RESEAU_DE_CHALEUR_LAMBERSART = "Réseau de chaleur Lambersart";
-
         public static class RESEAU_DE_CHALEUR_LAMBERSART_ {
             public static final String MWh_PCS = "kgCO2e/MWh PCS";
         }
 
         public static final String RESEAU_DE_CHALEUR_LOMME_CAPINGHEM = "Réseau de chaleur Lomme - Capinghem";
-
         public static class RESEAU_DE_CHALEUR_LOMME_CAPINGHEM_ {
             public static final String MWh_PCS = "kgCO2e/MWh PCS";
         }
 
         public static final String RESEAU_DE_CHALEUR_LILLE = "Réseau de chaleur Lille";
-
         public static class RESEAU_DE_CHALEUR_LILLE_ {
             public static final String MWh_PCS = "kgCO2e/MWh PCS";
         }
 
         public static final String RESEAU_DE_CHALEUR_ROUBAIX = "Réseau de chaleur Roubaix";
-
         public static class RESEAU_DE_CHALEUR_ROUBAIX_ {
             public static final String MWh_PCS = "kgCO2e/MWh PCS";
         }
 
         public static final String ELECTRICITE_USAGE_CHAUFFAGE = "Electricité usage chauffage";
-
         public static class ELECTRICITE_USAGE_CHAUFFAGE_ {
             public static final String MWh_PCS = "kgCO2e/MWh PCS";
         }
 
         public static final String ELECTRICITE_TOUS_USAGE = "Electricité tous usage";
-
         public static class ELECTRICITE_TOUS_USAGE_ {
             public static final String MWh_PCS = "kgCO2e/MWh PCS";
         }
 
         public static final String EAU = "Eau";
-
         public static class EAU_ {
             public static final String M3 = "kgCO2e/m3";
         }
@@ -74,188 +65,158 @@ public class FacteurEmissionParametre {
     public static final String EMISSIONS_FUGITIVES = "EMISSIONS FUGITIVES";
 
     public static class EMISSIONS_FUGITIVES_ {
+        
         public static final String CH4 = "CH4";
-
         public static class CH4_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String N20 = "N20";
-
         public static class N20_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String R134A = "R134a";
-
         public static class R134A_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String R404A = "R404a";
-
         public static class R404A_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String R407A = "R407a";
-
         public static class R407A_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
-
+        
         public static final String R407C = "R407c";
-
         public static class R407C_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String R410A = "R410a";
-
         public static class R410A_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String R417A = "R417a";
-
         public static class R417A_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String R422A = "R422a";
-
         public static class R422A_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String R422D = "R422d";
-
         public static class R422D_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String R427A = "R427a";
-
         public static class R427A_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String R507 = "R507";
-
         public static class R507_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String R507A = "R507a";
-
         public static class R507A_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_125 = "HFC – 125";
-
         public static class HFC_125_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_134 = "HFC – 134";
-
         public static class HFC_134_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_134A = "HFC – 134a";
-
         public static class HFC_134A_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_143 = "HFC – 143";
-
         public static class HFC_143_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_143A = "HFC – 143a";
-
         public static class HFC_143A_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_152A = "HFC – 152a";
-
         public static class HFC_152A_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_227EA = "HFC – 227ea";
-
         public static class HFC_227EA_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_23 = "HFC – 23";
-
         public static class HFC_23_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_236FA = "HFC – 236fa";
-
         public static class HFC_236FA_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_245CA = "HFC – 245ca";
-
         public static class HFC_245CA_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_32 = "HFC – 32";
-
         public static class HFC_32_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_41 = "HFC – 41";
-
         public static class HFC_41_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String HFC_43_10MEE = "HFC – 43 – 10mee";
-
         public static class HFC_43_10MEE_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String PERFLUOROBUTANE_R3110 = "Perfluorobutane = R3110";
-
         public static class PERFLUOROBUTANE_R3110_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String PERFLUOROMETHANE_R14 = "Perfluoromethane = R14";
-
         public static class PERFLUOROMETHANE_R14_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String PERFLUOROPROPANE_R218 = "Perfluoropropane = R218";
-
         public static class PERFLUOROPROPANE_R218_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String PERFLUOROPENTANE_R4112 = "Perfluoropentane = R4112";
-
         public static class PERFLUOROPENTANE_R4112_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
         public static final String PERFLUOROCYCLOBUTANE_R318 = "Perfluorocyclobutane = R318";
-
         public static class PERFLUOROCYCLOBUTANE_R318_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
@@ -451,4 +412,67 @@ public class FacteurEmissionParametre {
         }
 
     }
+
+    public static final String MOBILITE_DOMICILE_TRAVAIL = "MOBILITE DOMICILE - TRAVAIL";
+
+    public static class MOBILITE_DOMICILE_TRAVAIL_ {
+
+        public static final String VOITURE_THERMIQUE = "Voiture thermique";
+        public static class VOITURE_THERMIQUE_ {
+            public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
+        }
+
+        public static final String VOITURE_ELECTRIQUE = "Voiture électrique";
+        public static class VOITURE_ELECTRIQUE_ {
+            public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
+        }
+
+        public static final String VOITURE_HYBRIDE = "Voiture hybride";
+        public static class VOITURE_HYBRIDE_ {
+            public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
+        }
+
+        public static final String MOTO = "Moto";
+        public static class MOTO_ {
+            public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
+        }
+
+        public static final String TRAIN_REGIONAL = "Train régional";
+        public static class TRAIN_REGIONAL_ {
+            public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
+        }
+
+        public static final String BUS = "Bus";
+        public static class BUS_ {
+            public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
+        }
+
+        public static final String METRO_TRAMWAY = "Métro-tramway";
+        public static class METRO_TRAMWAY_ {
+            public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
+        }
+
+        public static final String VELO = "Vélo";
+        public static class VELO_ {
+            public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
+        }
+
+        public static final String TROTINETTE_ELECTRIQUE = "Trotinette électrique";
+        public static class TROTINETTE_ELECTRIQUE_ {
+            public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
+        }
+
+        public static final String VELO_ELECTRIQUE = "Vélo électrique";
+        public static class VELO_ELECTRIQUE_ {
+            public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
+        }
+
+        public static final String MARCHE_A_PIED = "Marche à pied";
+        public static class MARCHE_A_PIED_ {
+            public static final String KG_CO2_PAR_PASSAGER_KM = "kgCO2e/passager.km";
+        }
+
+    }
+
+
 }

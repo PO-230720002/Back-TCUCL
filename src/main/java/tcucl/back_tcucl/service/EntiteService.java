@@ -1,5 +1,6 @@
 package tcucl.back_tcucl.service;
 
+import tcucl.back_tcucl.dto.ListIdDto;
 import tcucl.back_tcucl.entity.Entite;
 
 import java.util.List;

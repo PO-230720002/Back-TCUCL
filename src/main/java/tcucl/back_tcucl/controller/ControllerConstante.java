@@ -20,6 +20,9 @@ public class ControllerConstante {
     //messages
     public static final String REST_MESSAGE_MDP_BIEN_MIS_A_JOUR_PREMIERE_CONNEXION = "Le mot de passe a bien été mis à jour lors de sa première connexion.";
 
+    //   ------------         General          ------------
+    public static final String REST_GENERAL = "/general";
+
 
     //   ------------       PARAMETRE       ------------
     public static final String REST_PARAMETRE = "/parametre";

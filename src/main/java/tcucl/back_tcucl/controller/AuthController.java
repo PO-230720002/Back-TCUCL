@@ -21,10 +21,10 @@ public class AuthController {
 
     Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-   private final AuthentificationService authentificationService;
-   private final ParametreService parametreService;
+    private final AuthentificationService authentificationService;
+    private final ParametreService parametreService;
 
-    public AuthController(AuthentificationService authentificationService, ParametreService parametreService){
+    public AuthController(AuthentificationService authentificationService, ParametreService parametreService) {
         this.authentificationService = authentificationService;
         this.parametreService = parametreService;
     }
