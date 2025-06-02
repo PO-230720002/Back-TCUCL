@@ -1,8 +1,7 @@
 package tcucl.back_tcucl.manager.impl;
 
 import org.springframework.stereotype.Component;
-import tcucl.back_tcucl.entity.FacteurEmission;
-import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
+import tcucl.back_tcucl.entity.facteurEmission.FacteurEmission;
 import tcucl.back_tcucl.exceptionPersonnalisee.NonTrouveGeneralCustomException;
 import tcucl.back_tcucl.manager.FacteurEmissionManager;
 import tcucl.back_tcucl.repository.FacteurEmissionRepository;

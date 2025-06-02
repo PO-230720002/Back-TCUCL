@@ -4,7 +4,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import tcucl.back_tcucl.entity.FacteurEmission;
+import tcucl.back_tcucl.entity.facteurEmission.FacteurEmission;
 import tcucl.back_tcucl.manager.FacteurEmissionManager;
 import tcucl.back_tcucl.service.FacteurEmissionService;
 import net.objecthunter.exp4j.Expression;

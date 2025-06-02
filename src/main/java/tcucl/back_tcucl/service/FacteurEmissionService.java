@@ -1,7 +1,7 @@
 package tcucl.back_tcucl.service;
 
 import org.springframework.web.multipart.MultipartFile;
-import tcucl.back_tcucl.entity.FacteurEmission;
+import tcucl.back_tcucl.entity.facteurEmission.FacteurEmission;
 
 public interface FacteurEmissionService {
 

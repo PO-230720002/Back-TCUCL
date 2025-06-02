@@ -1,4 +1,4 @@
-package tcucl.back_tcucl.entity;
+package tcucl.back_tcucl.entity.facteurEmission;
 
 import jakarta.persistence.*;
 

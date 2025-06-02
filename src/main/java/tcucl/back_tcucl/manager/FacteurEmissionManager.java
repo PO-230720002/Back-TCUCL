@@ -1,6 +1,6 @@
 package tcucl.back_tcucl.manager;
 
-import tcucl.back_tcucl.entity.FacteurEmission;
+import tcucl.back_tcucl.entity.facteurEmission.FacteurEmission;
 
 public interface FacteurEmissionManager {
 
