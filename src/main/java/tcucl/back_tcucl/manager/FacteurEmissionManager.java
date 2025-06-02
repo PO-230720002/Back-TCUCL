@@ -9,4 +9,5 @@ public interface FacteurEmissionManager {
     void save(FacteurEmission facteurEmission);
 
     FacteurEmission findByCategorieAndTypeAndUnite(String categorie, String type, String unite);
+    FacteurEmission findByCategorieAndType(String categorie, String type);
 }

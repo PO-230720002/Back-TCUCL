@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface FacteurEmissionRepository extends JpaRepository<FacteurEmission, Long> {
 
     Optional<FacteurEmission> findByCategorieAndTypeAndUnite(String categorie, String type, String unite);
+    Optional<FacteurEmission> findByCategorieAndType(String categorie, String type);
 
 }
