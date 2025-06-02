@@ -69,6 +69,11 @@ public class FacteurEmissionServiceImpl implements FacteurEmissionService {
         return facteurEmissionManager.findByCategorieAndTypeAndUnite(categorie, type, unite);
     }
 
+    @Override
+    public FacteurEmission findByCategorieAndType(String categorie, String type) {
+        return facteurEmissionManager.findByCategorieAndType(categorie, type);
+    }
+
     private String getCellValue(Cell cell) {
         if (cell == null) return null;
 

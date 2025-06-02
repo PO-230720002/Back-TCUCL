@@ -7,6 +7,6 @@ public interface FacteurEmissionService {
 
     void importFromExcel(MultipartFile file);
 
-
     FacteurEmission findByCategorieAndTypeAndUnite(String categorie, String type, String unite);
+    FacteurEmission findByCategorieAndType(String categorie, String type);
 }
