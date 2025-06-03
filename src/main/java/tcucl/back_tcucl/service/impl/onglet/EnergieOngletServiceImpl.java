@@ -14,7 +14,6 @@ import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_UniteFioul;
 import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_UniteGaz;
 import tcucl.back_tcucl.exceptionPersonnalisee.AucunBatimentCreeException;
 import tcucl.back_tcucl.manager.EnergieOngletManager;
-import tcucl.back_tcucl.service.BatimentImmobilisationMobilierOngletService;
 import tcucl.back_tcucl.service.EnergieOngletService;
 import tcucl.back_tcucl.service.FacteurEmissionService;
 
