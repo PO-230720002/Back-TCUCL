@@ -71,4 +71,10 @@ public class MobInternationalOngletController {
         mobInternationalOngletService.importVoyagesFromExcel(ongletId, file, rajouter);
         return ResponseEntity.ok(REST_MESSAGE_IMPORT_VOYAGE);
     }
+
+    @GetMapping(REST_RESULTAT)
+    @checkRoleOnglet
+    public ResponseEntity<?> getMobInternationalResultat(@PathVariable(value = "ongletId") Long ongletId) {
+        return ResponseEntity.ok(mobInternationalOngletService.getMobInternationalResultat(ongletId));
+    }
 }

@@ -22,15 +22,15 @@ public class NumeriqueOnglet extends Onglet {
     private Boolean useMethodSimplifiee = false;
     private Float TraficCloudUtilisateur = 0f;
     private Float TraficTipUtilisateur = 0f;
-    private Integer PartTraficFranceEtranger = 55;
+    private Float PartTraficFranceEtranger = 0.55f;
 
     public NumeriqueOnglet() {
         super();
     }
 
-    @AssertTrue(message = "La part de Trafic en France doit être comprise entre 0 et 100.")
+    @AssertTrue(message = "La part de Trafic en France doit être comprise entre 0 et 1.")
     public Boolean assertPartTraficFranceEtrangerValid() {
-        return PartTraficFranceEtranger >= 0 && PartTraficFranceEtranger <= 100;
+        return PartTraficFranceEtranger >= 0 && PartTraficFranceEtranger <= 1;
     }
 
 
@@ -63,11 +63,11 @@ public class NumeriqueOnglet extends Onglet {
         TraficTipUtilisateur = traficTipUtilisateur;
     }
 
-    public Integer getPartTraficFranceEtranger() {
+    public Float getPartTraficFranceEtranger() {
         return PartTraficFranceEtranger;
     }
 
-    public void setPartTraficFranceEtranger(Integer partTraficFranceEtranger) {
+    public void setPartTraficFranceEtranger(Float partTraficFranceEtranger) {
         PartTraficFranceEtranger = partTraficFranceEtranger;
     }
 

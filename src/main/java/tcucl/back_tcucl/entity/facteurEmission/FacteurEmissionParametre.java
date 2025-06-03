@@ -737,4 +737,6 @@ public class FacteurEmissionParametre {
     public static final String PHOTOVOLTAIQUE = "PHOTOVOLTAIQUE";
     public static final String AUTRES_IMMOBILISATIONS = "AUTRES IMMOBILISATIONS";
 
+    public static final String NUMERIQUE = "NUMERIQUE";
+
 }

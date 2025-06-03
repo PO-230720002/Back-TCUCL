@@ -2,7 +2,9 @@ package tcucl.back_tcucl.service.impl.onglet;
 
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.dechet.DechetOngletDto;
+import tcucl.back_tcucl.dto.onglet.numerique.NumeriqueResultatDto;
 import tcucl.back_tcucl.entity.onglet.dechet.DechetOnglet;
+import tcucl.back_tcucl.entity.onglet.numerique.NumeriqueOnglet;
 import tcucl.back_tcucl.manager.DechetOngletManager;
 import tcucl.back_tcucl.service.DechetOngletService;
 
@@ -24,4 +26,6 @@ public class DechetOngletServiceImpl implements DechetOngletService {
     public void updateDechetOngletPartiel(Long ongletId, DechetOngletDto dechetOngletDto) {
         dechetOngletManager.updateDechetOngletPartiel(ongletId, dechetOngletDto);
     }
+
+
 }
