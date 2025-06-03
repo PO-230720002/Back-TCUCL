@@ -3,14 +3,14 @@ package tcucl.back_tcucl.dto.onglet.mobInternational;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.Voyage;
-import tcucl.back_tcucl.entity.onglet.mobInternationale.enums.EnumMobInternationale_NomPays;
+import tcucl.back_tcucl.entity.onglet.mobInternationale.enums.EnumMobInternationale_Pays;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VoyageDto {
 
     private Long id;
-    private EnumMobInternationale_NomPays nomPays;
+    private EnumMobInternationale_Pays nomPays;
     private Integer prosAvion;
     private Integer prosTrain;
     private Integer stagesEtudiantsAvion;
@@ -22,7 +22,7 @@ public class VoyageDto {
 
     public VoyageDto(Voyage entity) {
         this.id = entity.getId();
-        this.nomPays = entity.getNomPays();
+        this.nomPays = entity.getPays();
         this.prosAvion = entity.getProsAvion();
         this.prosTrain = entity.getProsTrain();
         this.stagesEtudiantsAvion = entity.getStagesEtudiantsAvion();
@@ -39,11 +39,11 @@ public class VoyageDto {
         this.id = id;
     }
 
-    public EnumMobInternationale_NomPays getNomPays() {
+    public EnumMobInternationale_Pays getNomPays() {
         return nomPays;
     }
 
-    public void setNomPays(EnumMobInternationale_NomPays nomPays) {
+    public void setNomPays(EnumMobInternationale_Pays nomPays) {
         this.nomPays = nomPays;
     }
 

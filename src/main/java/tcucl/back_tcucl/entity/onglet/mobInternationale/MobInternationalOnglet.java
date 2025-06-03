@@ -34,7 +34,7 @@ public class MobInternationalOnglet extends Onglet {
     public void ajouterVoyageViaDto(VoyageDto voyageDto) {
 
         Voyage voyage = new Voyage();
-        voyage.setNomPays(voyageDto.getNomPays());
+        voyage.setPays(voyageDto.getNomPays());
         voyage.setProsAvion(voyageDto.getProsAvion());
         voyage.setProsTrain(voyageDto.getProsTrain());
         voyage.setStagesEtudiantsAvion(voyageDto.getStagesEtudiantsAvion());
