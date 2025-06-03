@@ -243,9 +243,9 @@ public class FacteurEmissionParametre {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
-        public static final String PERFLUOROPROPANE_R218 = "Perfluoropropane = R218";
+        public static final String PERFLUOROPROPANE_R21_ = "Perfluoropropane = R21_";
 
-        public static class PERFLUOROPROPANE_R218_ {
+        public static class PERFLUOROPROPANE_R21__ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
@@ -255,9 +255,9 @@ public class FacteurEmissionParametre {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
-        public static final String PERFLUOROCYCLOBUTANE_R318 = "Perfluorocyclobutane = R318";
+        public static final String PERFLUOROCYCLOBUTANE_R31_ = "Perfluorocyclobutane = R31_";
 
-        public static class PERFLUOROCYCLOBUTANE_R318_ {
+        public static class PERFLUOROCYCLOBUTANE_R31__ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
@@ -405,9 +405,9 @@ public class FacteurEmissionParametre {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
-        public static final String R408A_HCFC_HORS_KYOTO = "R408a - HCFC hors kyoto";
+        public static final String R40_A_HCFC_HORS_KYOTO = "R40_a - HCFC hors kyoto";
 
-        public static class R408A_HCFC_HORS_KYOTO_ {
+        public static class R40_A_HCFC_HORS_KYOTO_ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
@@ -738,5 +738,92 @@ public class FacteurEmissionParametre {
     public static final String AUTRES_IMMOBILISATIONS = "AUTRES IMMOBILISATIONS";
 
     public static final String NUMERIQUE = "NUMERIQUE";
+
+    public static final String ACHATS_CONSOMMABLES ="ACHATS CONSOMMABLES";
+
+    public static class ACHATS_CONSOMMABLES_ {
+        public static final String PAPIER = "Papier ";
+        public static class PAPIER_{
+            public static final String kgCO2e_nombre_ramette = "kgCO2e/nombre ramette";
+            public static final String kgCO2e_tonnes = "kgCO2e/tonnes";
+        }
+
+        public static final String LIVRES = "Livres";
+        public static class LIVRES_{
+            public static final String kgCO2e_livre = "kgCO2e/livre";
+            public static final String kgCO2e_kg = "kgCO2e/kg";
+        }
+        
+        
+        public static final String CARTON_NEUF = "Carton neuf";
+        public static final String CARTON_RECYCLE = "Carton recyclé";
+        public static final String PETITES_FOURNITURES = "Petites fournitures";
+        public static final String NB_FEUILLES_IMPRIMEES_EN_JET_D_ENCRE = "Nb feuilles imprimées en jet d'encre ";
+        public static final String NB_FEUILLES_IMPRIMEES_EN_TONER = "Nb feuilles imprimées en toner ";
+        public static final String SERVICE_PRODUITS_PHARMACEUTIQUE = "Service - Produits pharmaceutiques";
+    }
+
+    public static final String TEXTILES ="TEXTILES";
+
+    public static class TEXTILES_ {
+        public static final String CHEMISE = "Chemise";
+        public static final String POLAIRE = "Polaire";
+        public static final String PULL_ACRYLIQUE = "Pull acrylique";
+        public static final String PULL_COTON = "Pull coton";
+        public static final String T_SHIRT_POLYESTER = "T-shirt polyester";
+        public static final String JEAN = "Jean ";
+        public static final String SWEAT = "Sweat";
+        public static final String VESTE_ANORAK = "Veste / Anorak";
+        public static final String MANTEAU = "Manteau";
+        public static final String CHAUSSURE = "Chaussure";
+        public static final String TEXTILE_ET_HABILLEMENT_EN_EURO = "Textile et habillement en euro";
+    }
+
+    public static final String RESTAURATION_METHODE_RAPIDE ="RESTAURATION - METHODE RAPIDEE";
+
+    public static class RESTAURATION_METHODE_RAPIDE_ {
+        public static final String ALIMENTATION_REGIME_CLASSIQUE = "Alimentation régime classique";
+        public static final String ALIMENTATION_REGIME_FLEXITARIEN = "Alimentation régime flexitarien";
+    }
+
+    public static final String RESTAURATION_METHODE_INTERMEDIAIRE ="RESTAURATION - METHODE INTERMEDIAIRE";
+
+    public static class RESTAURATION_METHODE_INTERMEDIAIRE_ {
+        public static final String NOMBRE_DE_REPAS_SERVIS_DOMINANTE_ANIMALE_BOEUF = "Nombre de repas servis - dominante animale boeuf";
+        public static final String NOMBRE_DE_REPAS_SERVIS_DOMINANTE_ANIMALE_POULET = "Nombre de repas servis - dominante animale poulet";
+        public static final String NOMBRE_DE_REPAS_SERVIS_DOMINANTE_VEGETALE_BOEUF = "Nombre de repas servis - dominante végétale boeuf";
+        public static final String NOMBRE_DE_REPAS_SERVIS_DOMINANTE_VEGETALE_POULET = "Nombre de repas servis - dominante végétale poulet";
+        public static final String NOMBRE_DE_REPAS_SERVIS_DOMINANTE_CLASSIQUE_BOEUF = "Nombre de repas servis - dominante classique bœuf";
+        public static final String NOMBRE_DE_REPAS_SERVIS_DOMINANTE_CLASSIQUE_POULET = "Nombre de repas servis - dominante classique poulet";
+        public static final String NOMBRE_DE_REPAS_SERVIS_REPAS_MOYEN = "Nombre de repas servis - repas moyen";
+        public static final String NOMBRE_DE_REPAS_SERVIS_REPAS_VEGETARIEN = "Nombre de repas servis - repas végétarien";
+    }
+
+    public static final String RESTAURATION_METHODE_DETAILLEE ="RESTAURATION - METHODE DETAILLEE";
+
+    public static class RESTAURATION_METHODE_DETAILLEE_ {
+
+        public static final String BOEUF_AGNEAU_POULET= "Bœuf/agneau / mouton";
+        public static final String POULET= "Poulet";
+        public static final String CAFE= "Café";
+        public static final String CHOCOLAT= "Chocolat";
+        public static final String BEURRE= "Beurre";
+        public static final String VIANDE_MOYENNE= "Viandes - moyenne";
+        public static final String PRODUITS_SUCRES_MOYENNE= "Produits sucrés - moyenne";
+        public static final String POISSONS_MOYENNE= "Poissons - moyenne";
+        public static final String FROMAGES_MOYENNE= "Fromages - moyenne";
+        public static final String OLEAGINEUX_MOYENNE= "Oléagineux - moyenne";
+        public static final String MATIERES_GRASSES_MOYENNE= "Matières grasses - moyenne";
+        public static final String BOISSONS_MOYENNE= "Boissons - moyenne";
+        public static final String OEUFS_MOYENNE= "Œufs";
+        public static final String CEREALES_MOYENNE= "Céréales - moyenne";
+        public static final String LEGUMES_MOYENNE= "Légumes - moyenne";
+        public static final String FRUITS_MOYENNE= "Fruits - moyenne";
+        public static final String LEGUMINEUSE_MOYENNE= "Légumineuse - moyenne";
+    }
+
+
+
+
 
 }
