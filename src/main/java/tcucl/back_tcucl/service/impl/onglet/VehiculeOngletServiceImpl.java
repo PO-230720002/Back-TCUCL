@@ -4,14 +4,9 @@ import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeResultatDto;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeDto;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeOngletDto;
-import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeResultatDto;
-import tcucl.back_tcucl.entity.facteurEmission.FacteurEmission;
-import tcucl.back_tcucl.entity.facteurEmission.FacteurEmissionParametre;
 import tcucl.back_tcucl.entity.onglet.vehicule.Vehicule;
 import tcucl.back_tcucl.entity.onglet.vehicule.VehiculeOnglet;
 import tcucl.back_tcucl.entity.onglet.vehicule.enums.EnumVehicule_Type;
-import tcucl.back_tcucl.entity.onglet.vehicule.VehiculeOnglet;
-import tcucl.back_tcucl.entity.onglet.vehicule.Vehicule;
 import tcucl.back_tcucl.manager.VehiculeOngletManager;
 import tcucl.back_tcucl.service.VehiculeOngletService;
 
