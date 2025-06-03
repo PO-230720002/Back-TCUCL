@@ -3,7 +3,6 @@ package tcucl.back_tcucl.service;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveResultatDto;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.MachineEmissionFugitiveDto;
 import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveOngletDto;
-import tcucl.back_tcucl.dto.onglet.energie.EnergieResultatDto;
 import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
 
 public interface EmissionFugitiveOngletService {

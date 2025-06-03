@@ -124,11 +124,11 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
         energieResultatDto.setconsoEnergieSpecifique(energieOnglet.getConsoElecSpecifique());
         energieResultatDto.setConsoEnergieChauffage(energieResultatDto.getConsoEnergieFinale() - energieResultatDto.getconsoEnergieSpecifique());
 
-        Float surfaceBatiment = energieOnglet.getOngletDeClass(BatimentImmobilisationMobilierOnglet.class)
+        float surfaceBatiment = energieOnglet.getOngletDeClass(BatimentImmobilisationMobilierOnglet.class)
                 .getBatimentExistantOuNeufConstruits()
                 .stream()
-                .filter(b -> b.getSurfaceEnM2() != null) // pour éviter les NullPointerException
-                .map(BatimentExistantOuNeufConstruit::getSurfaceEnM2)
+                .map(BatimentExistantOuNeufConstruit::getSurfaceEnM2) // pour éviter les NullPointerException
+                .filter(surfaceEnM2 -> surfaceEnM2 != null)
                 .reduce(0f, Float::sum);
         if (surfaceBatiment == 0) {
             throw new AucunBatimentCreeException();

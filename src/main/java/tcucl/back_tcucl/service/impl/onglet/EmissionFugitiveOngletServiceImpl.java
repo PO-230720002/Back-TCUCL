@@ -7,7 +7,6 @@ import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveResultatDto;
 import tcucl.back_tcucl.entity.facteurEmission.FacteurEmission;
 import tcucl.back_tcucl.entity.facteurEmission.FacteurEmissionParametre;
 import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
-import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.entity.onglet.emissionFugitive.MachineEmissionFugitive;
 import tcucl.back_tcucl.manager.EmissionFugitiveOngletManager;
 import tcucl.back_tcucl.service.EmissionFugitiveOngletService;

@@ -1,6 +1,5 @@
 package tcucl.back_tcucl.dto.onglet.emissionFugitive;
 
-import java.util.List;
 import java.util.Map;
 
 public class EmissionFugitiveResultatDto {
