@@ -61,4 +61,11 @@ public class EmissionFugitiveOngletController {
         emissionFugitiveOngletService.updateMachinePartiel(ongletId, machineId, machineEmissionFugitiveDto);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping(REST_RESULTAT)
+    @checkRoleOnglet
+    public ResponseEntity<?> getEmissionFugitiveResult(@PathVariable(value = "ongletId") Long ongletId) {
+        return ResponseEntity.ok(emissionFugitiveOngletService.getEmissionFugitiveResult(ongletId));
+    }
+
 }

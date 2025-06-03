@@ -151,7 +151,6 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
                 + energieResultatDto.getConsoElecChauffage()
                 + energieResultatDto.getConsoElecSpecifique()) * 1000000f / (energieResultatDto.getConsoEnergieFinale() * 1000f));
 
-
-        return null;
+        return energieResultatDto;
     }
 }
