@@ -61,4 +61,10 @@ public class VehiculeOngletController {
         vehiculeOngletService.updateVehiculePartiel(ongletId, vehiculeId, vehiculeDto);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping(REST_RESULTAT)
+    @checkRoleOnglet
+    public ResponseEntity<?> getVehiculeResult(@PathVariable(value = "ongletId") Long ongletId) {
+        return ResponseEntity.ok(vehiculeOngletService.getVehiculeResult(ongletId));
+    }
 }

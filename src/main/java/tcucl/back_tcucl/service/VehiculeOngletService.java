@@ -1,5 +1,6 @@
 package tcucl.back_tcucl.service;
 
+import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeResultatDto;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeDto;
 import tcucl.back_tcucl.dto.onglet.vehicule.VehiculeOngletDto;
 import tcucl.back_tcucl.entity.onglet.vehicule.VehiculeOnglet;
@@ -18,4 +19,7 @@ public interface VehiculeOngletService {
     void supprimerVehicule(Long ongletId, Long vehiculeId);
 
     void updateVehiculePartiel(Long ongletId, Long voyageId, VehiculeDto dto);
+
+    VehiculeResultatDto getVehiculeResult(Long ongletId);
+
 }
