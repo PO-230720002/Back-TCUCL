@@ -3,7 +3,9 @@ package tcucl.back_tcucl.entity.onglet.dechet.enums;
 public enum EnumDechet_Traitement {
     RECYCLAGE(0),
     INCINERATION(1),
-    STOCKAGE(2);
+    STOCKAGE(2),
+    COMPOSTAGE(3),
+    DECHARGE(4);
 
     private final int code;
 
