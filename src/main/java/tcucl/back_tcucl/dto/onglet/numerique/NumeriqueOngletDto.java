@@ -20,7 +20,7 @@ public class NumeriqueOngletDto {
     private Boolean useMethodSimplifiee;
     private Float TraficCloudUtilisateur;
     private Float TraficTipUtilisateur;
-    private Integer PartTraficFranceEtranger;
+    private Float PartTraficFranceEtranger;
 
     public NumeriqueOngletDto() {
     }
@@ -93,11 +93,11 @@ public class NumeriqueOngletDto {
         TraficTipUtilisateur = traficTipUtilisateur;
     }
 
-    public Integer getPartTraficFranceEtranger() {
+    public Float getPartTraficFranceEtranger() {
         return PartTraficFranceEtranger;
     }
 
-    public void setPartTraficFranceEtranger(Integer partTraficFranceEtranger) {
+    public void setPartTraficFranceEtranger(Float partTraficFranceEtranger) {
         PartTraficFranceEtranger = partTraficFranceEtranger;
     }
 

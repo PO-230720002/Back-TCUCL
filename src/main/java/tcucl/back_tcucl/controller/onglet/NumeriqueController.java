@@ -61,4 +61,10 @@ public class NumeriqueController {
         numeriqueOngletService.updateEquipementNumeriquePartiel(ongletId, equipementNumeriqueId, equipementNumeriqueDto);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping(REST_RESULTAT)
+    @checkRoleOnglet
+    public ResponseEntity<?> getNumeriqueResultat(@PathVariable(value = "ongletId") Long ongletId) {
+        return ResponseEntity.ok(numeriqueOngletService.getNumeriqueResultat(ongletId));
+    }
 }
