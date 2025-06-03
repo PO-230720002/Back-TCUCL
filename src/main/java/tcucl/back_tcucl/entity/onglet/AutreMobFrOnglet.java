@@ -2,45 +2,41 @@ package tcucl.back_tcucl.entity.onglet;
 
 import jakarta.persistence.*;
 
-import java.time.Year;
-
 @Entity
-@Table(name = "autre_mob_fr")
-public class AutreMobFrOnglet {
+@Table(name = "autre_mob_fr_onglet")
+public class AutreMobFrOnglet extends Onglet {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Year annee;
-    private boolean estTermine;
+    private Float salarieNbAllerSimple_VoitureThermique = 0f;
+    private Float salarieNbAllerSimple_VoitureElectrique = 0f;
+    private Float salarieNbAllerSimple_Avion = 0f;
+    private Float salarieNbAllerSimple_France_TrainRegional = 0f;
+    private Float salarieNbAllerSimple_France_TrainGrandesLignes = 0f;
+    private Float salarieNbAllerSimple_Autocar = 0f;
 
-    private Float salarieNbAllerSimple_VoitureThermique;
-    private Float salarieNbAllerSimple_VoitureElectrique;
-    private Float salarieNbAllerSimple_Avion;
-    private Float salarieNbAllerSimple_France_TrainRegional;
-    private Float salarieNbAllerSimple_France_TrainGrandesLignes;
-    private Float salarieNbAllerSimple_Autocar;
+    private Float salarieDistanceTotale_VoitureThermique = 0f;
+    private Float salarieDistanceTotale_VoitureElectrique = 0f;
+    private Float salarieDistanceTotale_Avion = 0f;
+    private Float salarieDistanceTotale_France_TrainRegional = 0f;
+    private Float salarieDistanceTotale_France_TrainGrandesLignes = 0f;
+    private Float salarieDistanceTotale_Autocar = 0f;
 
-    private Float salarieDistanceTotale_VoitureThermique;
-    private Float salarieDistanceTotale_VoitureElectrique;
-    private Float salarieDistanceTotale_Avion;
-    private Float salarieDistanceTotale_France_TrainRegional;
-    private Float salarieDistanceTotale_France_TrainGrandesLignes;
-    private Float salarieDistanceTotale_Autocar;
+    private Float etudiantNbAllerSimple_VoitureThermique = 0f;
+    private Float etudiantNbAllerSimple_VoitureElectrique = 0f;
+    private Float etudiantNbAllerSimple_Avion = 0f;
+    private Float etudiantNbAllerSimple_France_TrainRegional = 0f;
+    private Float etudiantNbAllerSimple_France_TrainGrandesLignes = 0f;
+    private Float etudiantNbAllerSimple_Autocar = 0f;
 
-    private Float etudiantNbAllerSimple_VoitureThermique;
-    private Float etudiantNbAllerSimple_VoitureElectrique;
-    private Float etudiantNbAllerSimple_Avion;
-    private Float etudiantNbAllerSimple_France_TrainRegional;
-    private Float etudiantNbAllerSimple_France_TrainGrandesLignes;
-    private Float etudiantNbAllerSimple_Autocar;
-                  
-    private Float etudiantDistanceTotale_VoitureThermique;
-    private Float etudiantDistanceTotale_VoitureElectrique;
-    private Float etudiantDistanceTotale_Avion;
-    private Float etudiantDistanceTotale_France_TrainRegional;
-    private Float etudiantDistanceTotale_France_TrainGrandesLignes;
-    private Float etudiantDistanceTotale_Autocar;
+    private Float etudiantDistanceTotale_VoitureThermique = 0f;
+    private Float etudiantDistanceTotale_VoitureElectrique = 0f;
+    private Float etudiantDistanceTotale_Avion = 0f;
+    private Float etudiantDistanceTotale_France_TrainRegional = 0f;
+    private Float etudiantDistanceTotale_France_TrainGrandesLignes = 0f;
+    private Float etudiantDistanceTotale_Autocar = 0f;
+
+    public AutreMobFrOnglet() {
+        super();
+    }
 
     public Float getSalarieNbAllerSimple_VoitureThermique() {
         return salarieNbAllerSimple_VoitureThermique;
@@ -234,27 +230,5 @@ public class AutreMobFrOnglet {
         this.etudiantDistanceTotale_Autocar = etudiantDistanceTotale_Autocar;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Year getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(Year annee) {
-        this.annee = annee;
-    }
-
-    public boolean isEstTermine() {
-        return estTermine;
-    }
-
-    public void setEstTermine(boolean estTermine) {
-        this.estTermine = estTermine;
-    }
+    
 }
