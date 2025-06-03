@@ -34,4 +34,10 @@ public class AchatController {
         achatOngletService.updateAchatOngletPartiel(ongletId, achatOngletDto);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping(REST_RESULTAT)
+    @checkRoleOnglet
+    public ResponseEntity<?> getAchatResultat(@PathVariable(value = "ongletId") Long ongletId) {
+        return ResponseEntity.ok(achatOngletService.getAchatResultat(ongletId));
+    }
 }
