@@ -37,5 +37,10 @@ public class AutreImmobilisationController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping(REST_RESULTAT)
+    @checkRoleOnglet
+    public ResponseEntity<?> getAutreImmobilisationResultat(@PathVariable(value = "ongletId") Long ongletId) {
+        return ResponseEntity.ok(autreImmobilisationOngletService.getAutreImmobilisationResultat(ongletId));
+    }
 
 }
