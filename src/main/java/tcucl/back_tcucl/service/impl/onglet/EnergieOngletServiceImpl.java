@@ -24,12 +24,9 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
     private final EnergieOngletManager energieOngletManager;
     private final FacteurEmissionService facteurEmissionService;
 
-    private final BatimentImmobilisationMobilierOngletService batimentImmobilisationMobilierOngletService;
-
-    public EnergieOngletServiceImpl(EnergieOngletManager energieOngletManager, FacteurEmissionService facteurEmissionService, BatimentImmobilisationMobilierOngletService batimentImmobilisationMobilierOngletService) {
+    public EnergieOngletServiceImpl(EnergieOngletManager energieOngletManager, FacteurEmissionService facteurEmissionService) {
         this.energieOngletManager = energieOngletManager;
         this.facteurEmissionService = facteurEmissionService;
-        this.batimentImmobilisationMobilierOngletService = batimentImmobilisationMobilierOngletService;
     }
 
     @Override

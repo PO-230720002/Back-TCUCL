@@ -83,9 +83,8 @@ public class EmissionFugitiveOngletServiceImpl implements EmissionFugitiveOnglet
                             }
 
                             float fuiteKg = (quantiteFluide != null ? quantiteFluide : 0f) * (tauxFuite / 100f);
-                            float emissionGES = (facteurEmission.getFacteurEmission() * fuiteKg) / 1000f;
 
-                            return emissionGES;
+                            return (facteurEmission.getFacteurEmission() * fuiteKg) / 1000f;
                         }
                 ));
 
