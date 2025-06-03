@@ -2,9 +2,7 @@ package tcucl.back_tcucl.entity.onglet.mobInternationale;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.AssertTrue;
-import tcucl.back_tcucl.entity.onglet.mobInternationale.enums.EnumMobInternationale_NomPays;
-
-import java.util.Set;
+import tcucl.back_tcucl.entity.onglet.mobInternationale.enums.EnumMobInternationale_Pays;
 
 @Entity
 @Table(name = "voyage_mob_internationale")
@@ -13,7 +11,7 @@ public class Voyage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer valeurEnumMobInternationale_NomPays;
+    private Integer valeurEnumMobInternationale_Pays;
     private Integer prosAvion;
     private Integer prosTrain;
     private Integer stagesEtudiantsAvion;
@@ -21,8 +19,8 @@ public class Voyage {
     private Integer semestresEtudiantsAvion;
     private Integer semestresEtudiantsTrain;
 
-    public Voyage(EnumMobInternationale_NomPays nomPays, Integer prosAvion, Integer prosTrain, Integer stagesEtudiantsAvion, Integer stagesEtudiantsTrain, Integer semestresEtudiantsAvion, Integer semestresEtudiantsTrain) {
-        this.valeurEnumMobInternationale_NomPays = nomPays.getCode();
+    public Voyage(EnumMobInternationale_Pays nomPays, Integer prosAvion, Integer prosTrain, Integer stagesEtudiantsAvion, Integer stagesEtudiantsTrain, Integer semestresEtudiantsAvion, Integer semestresEtudiantsTrain) {
+        this.valeurEnumMobInternationale_Pays = nomPays.getCode();
         this.prosAvion = prosAvion;
         this.prosTrain = prosTrain;
         this.stagesEtudiantsAvion = stagesEtudiantsAvion;
@@ -36,7 +34,7 @@ public class Voyage {
 
     @AssertTrue(message = "Les champs train ne doivent pas être remplis pour ce pays.")
     public Boolean assertTrainExistForThisDestination() {
-        if (!EnumMobInternationale_NomPays.fromCode(this.valeurEnumMobInternationale_NomPays).getAccessibleEnTrain()) {
+        if (!EnumMobInternationale_Pays.fromCode(this.valeurEnumMobInternationale_Pays).getIsAccessibleEnTrain()) {
             return prosTrain == 0 && stagesEtudiantsTrain == 0 && semestresEtudiantsTrain == 0;
         }
         return true;
@@ -50,12 +48,12 @@ public class Voyage {
         return id;
     }
 
-    public EnumMobInternationale_NomPays getNomPays() {
-        return this.valeurEnumMobInternationale_NomPays != null ? EnumMobInternationale_NomPays.fromCode(this.valeurEnumMobInternationale_NomPays) : null;
+    public EnumMobInternationale_Pays getPays() {
+        return this.valeurEnumMobInternationale_Pays != null ? EnumMobInternationale_Pays.fromCode(this.valeurEnumMobInternationale_Pays) : null;
     }
 
-    public void setNomPays(EnumMobInternationale_NomPays valeur) {
-        this.valeurEnumMobInternationale_NomPays = valeur.getCode();
+    public void setPays(EnumMobInternationale_Pays valeur) {
+        this.valeurEnumMobInternationale_Pays = valeur.getCode();
     }
 
     public Integer getProsAvion() {

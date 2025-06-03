@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.onglet.mobInternational.MobInternationalOngletDto;
 import tcucl.back_tcucl.dto.onglet.mobInternational.VoyageDto;
-import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.MobInternationalOnglet;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.Voyage;
 import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
@@ -76,7 +75,7 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
         // Vérification si le voyage existe déjà
         Voyage existingVoyage = mobInternationalOnglet.getVoyage()
                 .stream()
-                .filter(v -> v.getNomPays().equals(voyageDto.getNomPays()))
+                .filter(v -> v.getPays().equals(voyageDto.getNomPays()))
                 .findFirst()
                 .orElse(null);
 
