@@ -610,8 +610,10 @@ public class FacteurEmissionParametre {
         public static final String SUISSE = "Suisse";
 
     }
-
-
-
     //todo changer trottinette avion frrance dans le fichier
+
+    public static final String PARKING_ET_VOIRIES_PARKING = "PARKINGS ET VOIRIES - Parking";
+
+    public static final String PARKING_ET_VOIRIES_VOIRIES = "PARKINGS ET VOIRIES - Voirie";
+
 }

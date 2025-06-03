@@ -61,4 +61,10 @@ public class ParkingVoirieOngletController {
         parkingVoirieOngletService.updateParkingVoiriePartiel(ongletId, parkingVoirieId, parkingVoirieDto);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping(REST_RESULTAT)
+    @checkRoleOnglet
+    public ResponseEntity<?> getParkingVoirieResult(@PathVariable(value = "ongletId") Long ongletId) {
+        return ResponseEntity.ok(parkingVoirieOngletService.getParkingVoirieResult(ongletId));
+    }
 }
