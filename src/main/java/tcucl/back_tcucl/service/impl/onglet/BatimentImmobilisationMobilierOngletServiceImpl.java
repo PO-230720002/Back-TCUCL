@@ -14,16 +14,13 @@ import tcucl.back_tcucl.manager.BatimentImmobilisationMobilierOngletManager;
 import tcucl.back_tcucl.service.BatimentImmobilisationMobilierOngletService;
 import tcucl.back_tcucl.service.FacteurEmissionService;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 public class BatimentImmobilisationMobilierOngletServiceImpl implements BatimentImmobilisationMobilierOngletService {
-    
+
     private final BatimentImmobilisationMobilierOngletManager batimentImmobilisationMobilierOngletManager;
 
     private final FacteurEmissionService facteurEmissionService;
@@ -142,7 +139,7 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
                             if (Boolean.TRUE.equals(batiment.getAcvBatimentRealisee())){
                                 return batiment.getEmissionsGesReellesTCO2();
                             } else {
-                                if (batiment.getDateConstruction().isAfter(LocalDate.now().minusYears(50)) || batiment.getDateDerniereGrosseRenovation().isAfter(LocalDate.now().minusYears(50))){
+                                if (batiment.getDateConstruction().getYear() > (batimentImmobilisationMobilierOnglet.getAnnee().getAnneeValeur() - 50) || batiment.getDateDerniereGrosseRenovation().getYear() > (batimentImmobilisationMobilierOnglet.getAnnee().getAnneeValeur() - 50)){
                                     return facteurEmission.getFacteurEmission() * batiment.getSurfaceEnM2() / (50 * 1000);
                                 } else {
                                     return 0f;
@@ -158,26 +155,55 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
         resultatDto.setTotalPosteBatiment(totalPosteBatiment);
 
 
-//        Map<Long, Float> emissionsParEntretienCourants = entretienCourants.stream()
-//                .collect(Collectors.toMap(
-//                        EntretienCourant::getId,
-//                        entretienCourant -> {
-////                            FacteurEmission facteurEmission = facteurEmissionService.findByCategorieAndType(
-////                                    FacteurEmissionParametre.BATIMENTS_BUREAUX,
-////                                    entretienCourant.getTypeStructure().toString()
-////                            );
-//
-//
-//                            return facteurEmission.getFacteurEmission() * entretienCourant.getSurfaceConcernee()) / (entretienCourant.getDureeAmortissement() * 1000;
-//
-//                            }
-//                ));
-//
-//        float totalPosteEntretien = emissionsParEntretienCourants.values().stream()
-//                .reduce(0f, Float::sum);
-//        resultatDto.setTotalPosteEntretien(totalPosteEntretien);
+        Map<Long, Float> emissionsParEntretienCourants = entretienCourants.stream()
+                .collect(Collectors.toMap(
+                        EntretienCourant::getId,
+                        entretienCourant -> {
+                            FacteurEmission facteurEmission = null;
+                            if (entretienCourant.getTypeBatiment() == EnumBatiment_TypeBatiment.BUREAUX) {
+                                facteurEmission = facteurEmissionService.findByCategorieAndType(
+                                        FacteurEmissionParametre.ENTRETIEN_BUREAUX,
+                                        entretienCourant.getTypeTravaux().toString());
+                            } else if (entretienCourant.getTypeBatiment() == EnumBatiment_TypeBatiment.ENSEIGNEMENT){
+                                facteurEmission = facteurEmissionService.findByCategorieAndType(
+                                        FacteurEmissionParametre.ENTRETIEN_ENSEIGNEMENT,
+                                        entretienCourant.getTypeTravaux().toString());
+                            } else if (entretienCourant.getTypeBatiment() == EnumBatiment_TypeBatiment.EQUIPEMENT_SPORTIF){
+                                facteurEmission = facteurEmissionService.findByCategorieAndType(
+                                        FacteurEmissionParametre.ENTRETIEN_EQUIP_SPORTIF,
+                                        entretienCourant.getTypeTravaux().toString());
+                            } else if (entretienCourant.getTypeBatiment() == EnumBatiment_TypeBatiment.HOPITAL){
+                                facteurEmission = facteurEmissionService.findByCategorieAndType(
+                                        FacteurEmissionParametre.ENTRETIEN_HOPITAL,
+                                        entretienCourant.getTypeTravaux().toString());
+                            } else if (entretienCourant.getTypeBatiment() == EnumBatiment_TypeBatiment.LOGEMENT_COLLECTIF){
+                                facteurEmission = facteurEmissionService.findByCategorieAndType(
+                                        FacteurEmissionParametre.ENTRETIEN_LOGEMENT_COLLECTIF,
+                                        entretienCourant.getTypeTravaux().toString());
+                            } else if (entretienCourant.getTypeBatiment() == EnumBatiment_TypeBatiment.RESTAURATION){
+                                facteurEmission = facteurEmissionService.findByCategorieAndType(
+                                        FacteurEmissionParametre.ENTRETIEN_RESTAURATION,
+                                        entretienCourant.getTypeTravaux().toString());
+                            } else if (entretienCourant.getTypeBatiment() == EnumBatiment_TypeBatiment.AUTRE){
+                                facteurEmission = facteurEmissionService.findByCategorieAndType(
+                                        FacteurEmissionParametre.ENTRETIEN_AUTRES,
+                                        entretienCourant.getTypeTravaux().toString());
+                            }
 
-    Map<Long, Float> emissionsParMobilierElectromenager = mobilierElectromenagers.stream()
+                            if (entretienCourant.getDateTravaux().getYear() > (batimentImmobilisationMobilierOnglet.getAnnee().getAnneeValeur() - entretienCourant.getDureeAmortissement())){
+                                return facteurEmission.getFacteurEmission() * entretienCourant.getSurfaceConcernee() / (entretienCourant.getDureeAmortissement() * 1000);
+                            } else {
+                                return 0f;
+                            }
+
+                        }
+                ));
+
+        float totalPosteEntretien = emissionsParEntretienCourants.values().stream()
+                .reduce(0f, Float::sum);
+        resultatDto.setTotalPosteEntretien(totalPosteEntretien);
+
+        Map<Long, Float> emissionsParMobilierElectromenager = mobilierElectromenagers.stream()
                 .collect(Collectors.toMap(
                         MobilierElectromenager::getId,
                         mobilierElectromenager -> {
@@ -192,11 +218,16 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
                                     FacteurEmissionParametre.MOBILIER_.KG_CO2E_PAR_KG_PRODUIT
                             );
 
-                            if (mobilierElectromenager.getPoidsDuProduit()!=null) {
-                                return (mobilierElectromenager.getQuantite() * mobilierElectromenager.getPoidsDuProduit() * facteurEmissionKgProduit.getFacteurEmission() /1000) / mobilierElectromenager.getDureeAmortissement();
+                            if (mobilierElectromenager.getDateAjout().getYear() > (batimentImmobilisationMobilierOnglet.getAnnee().getAnneeValeur() - mobilierElectromenager.getDureeAmortissement())){
+                                if (mobilierElectromenager.getPoidsDuProduit()!=null) {
+                                    return (mobilierElectromenager.getQuantite() * mobilierElectromenager.getPoidsDuProduit() * facteurEmissionKgProduit.getFacteurEmission() /1000) / mobilierElectromenager.getDureeAmortissement();
+                                } else {
+                                    return (facteurEmissionProduit.getFacteurEmission() * mobilierElectromenager.getQuantite() / 1000) / mobilierElectromenager.getDureeAmortissement();
+                                }
                             } else {
-                                return (facteurEmissionProduit.getFacteurEmission() * mobilierElectromenager.getQuantite() / 1000) / mobilierElectromenager.getDureeAmortissement();
+                                return 0f;
                             }
+
                         }
                 ));
 
