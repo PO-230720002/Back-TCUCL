@@ -739,6 +739,14 @@ public class FacteurEmissionParametre {
     public static final String BATIMENTS_RESTAURATION = "BATIMENTS - Restauration";
     public static final String BATIMENTS_AUTRES = "BATIMENTS - Autres";
 
+    public static final String ENTRETIEN_BUREAUX = "ENTRETIEN - Bureaux";
+    public static final String ENTRETIEN_ENSEIGNEMENT = "ENTRETIEN - Enseignement";
+    public static final String ENTRETIEN_EQUIP_SPORTIF = "ENTRETIEN - Equip sportif";
+    public static final String ENTRETIEN_HOPITAL = "ENTRETIEN - Hôpital";
+    public static final String ENTRETIEN_LOGEMENT_COLLECTIF = "ENTRETIEN - Logement collectif";
+    public static final String ENTRETIEN_RESTAURATION = "ENTRETIEN - Restauration";
+    public static final String ENTRETIEN_AUTRES = "ENTRETIEN - Autres";
+
     public static final String MOBILIER = "MOBILIER";
     public static class MOBILIER_ {
         public static final String KG_CO2E_PAR_PRODUIT = "kgCO2e/produit";
