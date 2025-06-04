@@ -17,8 +17,6 @@ public class EntretienCourantDto {
     private String nom_adresse;
     private EnumBatiment_TypeTravaux typeTravaux;
     private LocalDate dateTravaux;
-    private Boolean acvRenovationRealisee;
-    private Float emissionsGesReellesTCO2;
     private EnumBatiment_TypeBatiment typeBatiment;
     private Float surfaceConcernee;
     private Integer dureeAmortissement;
@@ -32,8 +30,6 @@ public class EntretienCourantDto {
         this.nom_adresse = entity.getNom_adresse();
         this.typeTravaux = entity.getTypeTravaux();
         this.dateTravaux = entity.getDateTravaux();
-        this.acvRenovationRealisee = entity.getAcvRenovationRealisee();
-        this.emissionsGesReellesTCO2 = entity.getEmissionsGesReellesTCO2();
         this.typeBatiment = entity.getTypeBatiment();
         this.surfaceConcernee = entity.getSurfaceConcernee();
         this.dureeAmortissement = entity.getDureeAmortissement();
@@ -77,22 +73,6 @@ public class EntretienCourantDto {
 
     public void setDateTravaux(LocalDate dateTravaux) {
         this.dateTravaux = dateTravaux;
-    }
-
-    public Boolean getAcvRenovationRealisee() {
-        return acvRenovationRealisee;
-    }
-
-    public void setAcvRenovationRealisee(Boolean acvRenovationRealisee) {
-        this.acvRenovationRealisee = acvRenovationRealisee;
-    }
-
-    public Float getEmissionsGesReellesTCO2() {
-        return emissionsGesReellesTCO2;
-    }
-
-    public void setEmissionsGesReellesTCO2(Float emissionsGesReellesTCO2) {
-        this.emissionsGesReellesTCO2 = emissionsGesReellesTCO2;
     }
 
     public EnumBatiment_TypeBatiment getTypeBatiment() {

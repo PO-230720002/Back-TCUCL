@@ -1,9 +1,7 @@
 package tcucl.back_tcucl.service;
 
-import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentExistantOuNeufConstruitDto;
-import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentImmobilisationMobilierOngletDto;
-import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.EntretienCourantDto;
-import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.MobilierElectromenagerDto;
+import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.*;
+import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveResultatDto;
 import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOnglet;
 
 public interface BatimentImmobilisationMobilierOngletService {
@@ -29,4 +27,7 @@ public interface BatimentImmobilisationMobilierOngletService {
     void supprimerMobilierElectromenager(Long ongletId, Long mobilierElectromenagerId);
 
     void updateMobilierElectromenagerPartiel(Long ongletId, Long mobilierElectromenagerId, MobilierElectromenagerDto mobilierElectromenagerDto);
+
+    BatimentImmobilisationMobilierResultatDto getBatimentImmobilisationMobilierResult(Long ongletId);
+
 }
