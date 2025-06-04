@@ -18,40 +18,9 @@ public class EntretienCourant {
     private String nom_adresse;
     private Integer valeurEnumTypeTravaux;
     private LocalDate dateTravaux;
-    private Boolean acvRenovationRealisee;
-    private Float emissionsGesReellesTCO2; // en TCO2e
     private Integer valeurEnumTypeBatiment;
     private Float surfaceConcernee;
     private Integer dureeAmortissement;
-
-    @AssertTrue(message = "Le type de bâtiment doit être vide ou 'NA' si une ACV rénovation est réalisée.")
-    public Boolean assertTypeBatimentVideSiAcv() {
-        if (Boolean.TRUE.equals(acvRenovationRealisee)) {
-            return valeurEnumTypeBatiment == null
-                    || valeurEnumTypeBatiment == 0
-                    || valeurEnumTypeBatiment.equals(EnumBatiment_TypeStructure.NA.getCode());
-        }
-        return true;
-    }
-    @AssertTrue(message = "La surface concernée doit être vide ou 0 si une ACV rénovation est réalisée.")
-    public Boolean assertSurfaceVideSiAcv() {
-        if (Boolean.TRUE.equals(acvRenovationRealisee)) {
-            return surfaceConcernee == null || surfaceConcernee == 0;
-        }
-        return true;
-    }
-    @AssertTrue(message = "Les émissions GES réelles doivent être nulles ou 0 si aucune ACV rénovation n'est réalisée.")
-    public Boolean assertEmissionVideSiPasAcv() {
-        if (Boolean.FALSE.equals(acvRenovationRealisee)) {
-            return emissionsGesReellesTCO2 == null || emissionsGesReellesTCO2 == 0;
-        }
-        return true;
-    }
-    @AssertTrue(message = "L'information sur la réalisation d'une ACV rénovation doit être renseignée.")
-    public Boolean assertAcvRenseignee() {
-        return acvRenovationRealisee != null;
-    }
-
 
 
     // Getters et Setters
@@ -87,23 +56,6 @@ public class EntretienCourant {
     public void setDateTravaux(LocalDate dateTravaux) {
         this.dateTravaux = dateTravaux;
     }
-
-    public Boolean getAcvRenovationRealisee() {
-        return acvRenovationRealisee;
-    }
-
-    public void setAcvRenovationRealisee(Boolean acvRenovationRealisee) {
-        this.acvRenovationRealisee = acvRenovationRealisee;
-    }
-
-    public Float getEmissionsGesReellesTCO2() {
-        return emissionsGesReellesTCO2;
-    }
-
-    public void setEmissionsGesReellesTCO2(Float emissionsGesReelles) {
-        this.emissionsGesReellesTCO2 = emissionsGesReelles;
-    }
-
 
     public Float getSurfaceConcernee() {
         return surfaceConcernee;
