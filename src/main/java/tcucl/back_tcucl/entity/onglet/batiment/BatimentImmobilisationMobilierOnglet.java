@@ -79,8 +79,6 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
         entretienCourant.setNom_adresse(entretienCourantDto.getNom_adresse());
         entretienCourant.setTypeTravaux(entretienCourantDto.getTypeTravaux());
         entretienCourant.setDateTravaux(entretienCourantDto.getDateTravaux());
-        entretienCourant.setAcvRenovationRealisee(entretienCourantDto.getAcvRenovationRealisee());
-        entretienCourant.setEmissionsGesReellesTCO2(entretienCourantDto.getEmissionsGesReellesTCO2());
         entretienCourant.setTypeBatiment(entretienCourantDto.getTypeBatiment());
         entretienCourant.setSurfaceConcernee(entretienCourantDto.getSurfaceConcernee());
         entretienCourant.setDureeAmortissement(entretienCourantDto.getDureeAmortissement());
@@ -95,8 +93,6 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
         mobilierElectromenager.setQuantite(mobilierElectromenagerDto.getQuantite());
         mobilierElectromenager.setPoidsDuProduit(mobilierElectromenagerDto.getPoidsDuProduit());
         mobilierElectromenager.setDureeAmortissement(mobilierElectromenagerDto.getDureeAmortissement());
-        mobilierElectromenager.setEmissionGesPrecisesConnues(mobilierElectromenagerDto.getEmissionGesPrecisesConnues());
-        mobilierElectromenager.setEmissionsGesReelleskgCO2(mobilierElectromenagerDto.getEmissionsGesReelleskgCO2());
 
         this.mobiliersElectromenagers.add(mobilierElectromenager);
     }

@@ -229,12 +229,6 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         if (dto.getDateTravaux() != null) {
             entretienCourant.setDateTravaux(dto.getDateTravaux());
         }
-        if (dto.getAcvRenovationRealisee() != null) {
-            entretienCourant.setAcvRenovationRealisee(dto.getAcvRenovationRealisee());
-        }
-        if (dto.getEmissionsGesReellesTCO2() != null) {
-            entretienCourant.setEmissionsGesReellesTCO2(dto.getEmissionsGesReellesTCO2());
-        }
         if (dto.getSurfaceConcernee() != null) {
             entretienCourant.setSurfaceConcernee(dto.getSurfaceConcernee());
         }
@@ -326,12 +320,6 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         }
         if (mobilierElectromenagerDto.getDureeAmortissement() != null) {
             mobilierElectromenager.setDureeAmortissement(mobilierElectromenagerDto.getDureeAmortissement());
-        }
-        if (mobilierElectromenagerDto.getEmissionGesPrecisesConnues() != null) {
-            mobilierElectromenager.setEmissionGesPrecisesConnues(mobilierElectromenagerDto.getEmissionGesPrecisesConnues());
-        }
-        if (mobilierElectromenagerDto.getEmissionsGesReelleskgCO2() != null) {
-            mobilierElectromenager.setEmissionsGesReelleskgCO2(mobilierElectromenagerDto.getEmissionsGesReelleskgCO2());
         }
 
         Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);

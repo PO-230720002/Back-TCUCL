@@ -731,6 +731,22 @@ public class FacteurEmissionParametre {
     }
     //todo changer trottinette avion frrance dans le fichier
 
+    public static final String BATIMENTS_BUREAUX = "BATIMENTS - Bureaux";
+    public static final String BATIMENTS_ENSEIGNEMENT = "BATIMENTS - Enseignement";
+    public static final String BATIMENTS_EQUIP_SPORTIF = "BATIMENTS - Equip sportif";
+    public static final String BATIMENTS_HOPITAL = "BATIMENTS - Hôpital";
+    public static final String BATIMENTS_LOGEMENT_COLLECTIF = "BATIMENTS - Logement collectif";
+    public static final String BATIMENTS_RESTAURATION = "BATIMENTS - Restauration";
+    public static final String BATIMENTS_AUTRES = "BATIMENTS - Autres";
+
+    public static final String MOBILIER = "MOBILIER";
+    public static class MOBILIER_ {
+        public static final String KG_CO2E_PAR_PRODUIT = "kgCO2e/produit";
+        public static final String KG_CO2E_PAR_KG_PRODUIT = "kgCO2e/kg produit";
+    }
+
+
+
     public static final String PARKING_ET_VOIRIES_PARKING = "PARKINGS ET VOIRIES - Parking";
     public static final String PARKING_ET_VOIRIES_VOIRIES = "PARKINGS ET VOIRIES - Voirie";
 

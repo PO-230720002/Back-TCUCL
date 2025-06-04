@@ -108,4 +108,10 @@ public class BatimentImmobilisationMobilierOngletController {
         batimentImmobilisationMobilierOngletService.updateMobilierElectromenagerPartiel(ongletId, mobilierElectromenagerId, mobilierElectromenagerDto);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping(REST_RESULTAT)
+    @checkRoleOnglet
+    public ResponseEntity<?> getBatimentImmobilisationMobilierResult(@PathVariable(value = "ongletId") Long ongletId) {
+        return ResponseEntity.ok(batimentImmobilisationMobilierOngletService.getBatimentImmobilisationMobilierResult(ongletId));
+    }
 }
