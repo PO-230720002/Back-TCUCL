@@ -742,7 +742,7 @@ public class FacteurEmissionParametre {
     public static final String ACHATS_CONSOMMABLES ="ACHATS CONSOMMABLES";
 
     public static class ACHATS_CONSOMMABLES_ {
-        public static final String PAPIER = "Papier ";
+        public static final String PAPIER = "Papier";
         public static class PAPIER_{
             public static final String kgCO2e_nombre_ramette = "kgCO2e/nombre ramette";
             public static final String kgCO2e_tonnes = "kgCO2e/tonnes";
@@ -758,8 +758,8 @@ public class FacteurEmissionParametre {
         public static final String CARTON_NEUF = "Carton neuf";
         public static final String CARTON_RECYCLE = "Carton recyclé";
         public static final String PETITES_FOURNITURES = "Petites fournitures";
-        public static final String NB_FEUILLES_IMPRIMEES_EN_JET_D_ENCRE = "Nb feuilles imprimées en jet d'encre ";
-        public static final String NB_FEUILLES_IMPRIMEES_EN_TONER = "Nb feuilles imprimées en toner ";
+        public static final String NB_FEUILLES_IMPRIMEES_EN_JET_D_ENCRE = "Nb feuilles imprimées en jet d'encre";
+        public static final String NB_FEUILLES_IMPRIMEES_EN_TONER = "Nb feuilles imprimées en toner";
         public static final String SERVICE_PRODUITS_PHARMACEUTIQUE = "Service - Produits pharmaceutiques";
     }
 
@@ -771,7 +771,7 @@ public class FacteurEmissionParametre {
         public static final String PULL_ACRYLIQUE = "Pull acrylique";
         public static final String PULL_COTON = "Pull coton";
         public static final String T_SHIRT_POLYESTER = "T-shirt polyester";
-        public static final String JEAN = "Jean ";
+        public static final String JEAN = "Jean";
         public static final String SWEAT = "Sweat";
         public static final String VESTE_ANORAK = "Veste / Anorak";
         public static final String MANTEAU = "Manteau";

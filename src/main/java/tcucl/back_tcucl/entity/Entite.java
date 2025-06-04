@@ -29,7 +29,7 @@ public class Entite {
     // 2. LYCEE
     // 3. SANTE
     // 4. LOGEMENT
-    // 5.
+    // 5. RESTAURATION
     // 6.
 
     @OneToOne(cascade = CascadeType.ALL)

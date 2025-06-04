@@ -47,10 +47,10 @@ public class FacteurEmissionServiceImpl implements FacteurEmissionService {
                     }
 
                     FacteurEmission fe = new FacteurEmission();
-                    fe.setCategorie(categorie);
-                    fe.setType(type);
+                    fe.setCategorie(categorie.strip());
+                    fe.setType(type.strip());
                     fe.setFacteurEmission(facteur);
-                    fe.setUnite(unite);
+                    fe.setUnite(unite.strip());
                     // fe.setPourcentage(pourcentage); // si applicable
 
                     facteurEmissionManager.save(fe);
