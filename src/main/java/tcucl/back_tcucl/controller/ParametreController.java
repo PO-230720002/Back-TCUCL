@@ -26,7 +26,7 @@ public class ParametreController {
     }
 
     //    Parametre perso
-    @PreAuthorize("hasRole('ROLE_UTILISATEUR' + #utilisateurId)")
+    @PreAuthorize("hasRole('ROLE_UTILISATEUR_' + #utilisateurId)")
     @PatchMapping(REST_MODIFIER_UTILISATEUR_UTILISATEUR + REST_UTILISATEUR_ID)
     public ResponseEntity<?> modifierUtilisateurParUtilisateur(@PathVariable("utilisateurId") Long utilisateurId, @RequestBody ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto) {
         parametreService.modifierUtilisateurParUtilisateur(utilisateurId, modificationUtilisateurParUtilisateurDto);
