@@ -420,18 +420,18 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
                 }
 
                 //Récupération des valeurs des trajets pour la destination
-                Integer prosAvion = getCellValueAsInteger(row.getCell(1));
+                Integer prosAvion = getCellValueAsInteger(row.getCell(5));
                 Integer stagesEtudiantsAvion = getCellValueAsInteger(row.getCell(3));
-                Integer semestresEtudiantsAvion = getCellValueAsInteger(row.getCell(5));
+                Integer semestresEtudiantsAvion = getCellValueAsInteger(row.getCell(1));
+
                 Integer stagesEtudiantsTrain = 0;
                 Integer semestresEtudiantsTrain = 0;
                 Integer prosTrain = 0;
-
                 // Si le pays est accessible en train, on récupère les valeurs des trajets en train
                 if (pays.getIsAccessibleEnTrain()) {
+                    prosTrain = getCellValueAsInteger(row.getCell(6));
                     stagesEtudiantsTrain = getCellValueAsInteger(row.getCell(4));
-                    semestresEtudiantsTrain = getCellValueAsInteger(row.getCell(6));
-                    prosTrain = getCellValueAsInteger(row.getCell(2));
+                    semestresEtudiantsTrain = getCellValueAsInteger(row.getCell(2));
                 }
 
                 // Si nous sommes en mode ajout  et que le pays existe déjà,
