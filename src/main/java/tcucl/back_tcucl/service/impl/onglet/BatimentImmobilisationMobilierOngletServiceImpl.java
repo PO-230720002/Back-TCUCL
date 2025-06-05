@@ -9,6 +9,7 @@ import tcucl.back_tcucl.entity.onglet.batiment.BatimentExistantOuNeufConstruit;
 import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOnglet;
 import tcucl.back_tcucl.entity.onglet.batiment.EntretienCourant;
 import tcucl.back_tcucl.entity.onglet.batiment.MobilierElectromenager;
+import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_Mobilier;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeBatiment;
 import tcucl.back_tcucl.manager.BatimentImmobilisationMobilierOngletManager;
 import tcucl.back_tcucl.service.BatimentImmobilisationMobilierOngletService;
@@ -209,20 +210,29 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
                         mobilierElectromenager -> {
                             FacteurEmission facteurEmissionProduit = facteurEmissionService.findByCategorieAndTypeAndUnite(
                                     FacteurEmissionParametre.MOBILIER,
-                                    mobilierElectromenager.getMobilier().toString(),
+                                    mobilierElectromenager.getMobilier().getLibelle(),
                                     FacteurEmissionParametre.MOBILIER_.KG_CO2E_PAR_PRODUIT
                             );
                             FacteurEmission facteurEmissionKgProduit = facteurEmissionService.findByCategorieAndTypeAndUnite(
                                     FacteurEmissionParametre.MOBILIER,
-                                    mobilierElectromenager.getMobilier().toString(),
+                                    mobilierElectromenager.getMobilier().getLibelle(),
                                     FacteurEmissionParametre.MOBILIER_.KG_CO2E_PAR_KG_PRODUIT
+                            );
+                            FacteurEmission facteurEmissionAutre = facteurEmissionService.findByCategorieAndType(
+                                    FacteurEmissionParametre.MOBILIER,
+                                    mobilierElectromenager.getMobilier().getLibelle()
                             );
 
                             if (mobilierElectromenager.getDateAjout().getYear() > (batimentImmobilisationMobilierOnglet.getAnnee().getAnneeValeur() - mobilierElectromenager.getDureeAmortissement())){
-                                if (mobilierElectromenager.getPoidsDuProduit()!=null) {
+
+                                if (mobilierElectromenager.getPoidsDuProduit()!=null || mobilierElectromenager.getPoidsDuProduit()!= 0) {
                                     return (mobilierElectromenager.getQuantite() * mobilierElectromenager.getPoidsDuProduit() * facteurEmissionKgProduit.getFacteurEmission() /1000) / mobilierElectromenager.getDureeAmortissement();
                                 } else {
-                                    return (facteurEmissionProduit.getFacteurEmission() * mobilierElectromenager.getQuantite() / 1000) / mobilierElectromenager.getDureeAmortissement();
+                                    if (mobilierElectromenager.getMobilier() == EnumBatiment_Mobilier.AUTRE_MOBILIER_EN_EUROS || (mobilierElectromenager.getMobilier() == EnumBatiment_Mobilier.AUTRE_MOBILIER_EN_TONNES)){
+                                        return (facteurEmissionAutre.getFacteurEmission() * mobilierElectromenager.getQuantite() / 1000) / mobilierElectromenager.getDureeAmortissement();
+                                    } else {
+                                        return (facteurEmissionProduit.getFacteurEmission() * mobilierElectromenager.getQuantite() / 1000) / mobilierElectromenager.getDureeAmortissement();
+                                    }
                                 }
                             } else {
                                 return 0f;

@@ -748,9 +748,12 @@ public class FacteurEmissionParametre {
     public static final String ENTRETIEN_AUTRES = "ENTRETIEN - Autres";
 
     public static final String MOBILIER = "MOBILIER";
+
     public static class MOBILIER_ {
         public static final String KG_CO2E_PAR_PRODUIT = "kgCO2e/produit";
         public static final String KG_CO2E_PAR_KG_PRODUIT = "kgCO2e/kg produit";
+        public static final String KG_CO2E_PAR_EUROS = "kgCO2e/€";
+        public static final String KG_CO2E_PAR_TONNES = "kgCO2e/tonnes";
     }
 
 
