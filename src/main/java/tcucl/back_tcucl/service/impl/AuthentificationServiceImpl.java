@@ -58,8 +58,6 @@ public class AuthentificationServiceImpl implements AuthentificationService {
         Utilisateur utilisateur;
         try {
             utilisateur = utilisateurService.getUtilisateurParEmail(connexionDto.getEmail());
-            logger.info("Utilisateur récupéré avec succès: " + utilisateur.getEmail());
-            logger.info("superAdmin : " + utilisateur.getEstSuperAdmin());
         } catch (Exception e) {
             logger.error("Erreur lors de la récupération de l'utilisateur", e);
             throw new MauvaisIdentifiantsException();
