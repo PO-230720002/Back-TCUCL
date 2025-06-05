@@ -18,8 +18,6 @@ public class MobilierElectromenagerDto {
     private Integer quantite;
     private Float poidsDuProduit;
     private Integer dureeAmortissement;
-    private Boolean emissionGesPrecisesConnues;
-    private Float emissionsGesReelleskgCO2;
 
     public MobilierElectromenagerDto() {
     }
@@ -31,8 +29,6 @@ public class MobilierElectromenagerDto {
         this.quantite = entity.getQuantite();
         this.poidsDuProduit = entity.getPoidsDuProduit();
         this.dureeAmortissement = entity.getDureeAmortissement();
-        this.emissionGesPrecisesConnues = entity.getEmissionGesPrecisesConnues();
-        this.emissionsGesReelleskgCO2 = entity.getEmissionsGesReelleskgCO2();
     }
 
     public Long getId() {
@@ -81,21 +77,5 @@ public class MobilierElectromenagerDto {
 
     public void setDureeAmortissement(Integer dureeAmortissement) {
         this.dureeAmortissement = dureeAmortissement;
-    }
-
-    public Boolean getEmissionGesPrecisesConnues() {
-        return emissionGesPrecisesConnues;
-    }
-
-    public void setEmissionGesPrecisesConnues(Boolean emissionGesPrecisesConnues) {
-        this.emissionGesPrecisesConnues = emissionGesPrecisesConnues;
-    }
-
-    public Float getEmissionsGesReelleskgCO2() {
-        return emissionsGesReelleskgCO2;
-    }
-
-    public void setEmissionsGesReelleskgCO2(Float emissionsGesReelleskgCO2) {
-        this.emissionsGesReelleskgCO2 = emissionsGesReelleskgCO2;
     }
 }

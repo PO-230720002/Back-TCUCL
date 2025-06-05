@@ -731,6 +731,33 @@ public class FacteurEmissionParametre {
     }
     //todo changer trottinette avion frrance dans le fichier
 
+    public static final String BATIMENTS_BUREAUX = "BATIMENTS - Bureaux";
+    public static final String BATIMENTS_ENSEIGNEMENT = "BATIMENTS - Enseignement";
+    public static final String BATIMENTS_EQUIP_SPORTIF = "BATIMENTS - Equip sportif";
+    public static final String BATIMENTS_HOPITAL = "BATIMENTS - Hôpital";
+    public static final String BATIMENTS_LOGEMENT_COLLECTIF = "BATIMENTS - Logement collectif";
+    public static final String BATIMENTS_RESTAURATION = "BATIMENTS - Restauration";
+    public static final String BATIMENTS_AUTRES = "BATIMENTS - Autres";
+
+    public static final String ENTRETIEN_BUREAUX = "ENTRETIEN - Bureaux";
+    public static final String ENTRETIEN_ENSEIGNEMENT = "ENTRETIEN - Enseignement";
+    public static final String ENTRETIEN_EQUIP_SPORTIF = "ENTRETIEN - Equip sportif";
+    public static final String ENTRETIEN_HOPITAL = "ENTRETIEN - Hôpital";
+    public static final String ENTRETIEN_LOGEMENT_COLLECTIF = "ENTRETIEN - Logement collectif";
+    public static final String ENTRETIEN_RESTAURATION = "ENTRETIEN - Restauration";
+    public static final String ENTRETIEN_AUTRES = "ENTRETIEN - Autres";
+
+    public static final String MOBILIER = "MOBILIER";
+
+    public static class MOBILIER_ {
+        public static final String KG_CO2E_PAR_PRODUIT = "kgCO2e/produit";
+        public static final String KG_CO2E_PAR_KG_PRODUIT = "kgCO2e/kg produit";
+        public static final String KG_CO2E_PAR_EUROS = "kgCO2e/€";
+        public static final String KG_CO2E_PAR_TONNES = "kgCO2e/tonnes";
+    }
+
+
+
     public static final String PARKING_ET_VOIRIES_PARKING = "PARKINGS ET VOIRIES - Parking";
     public static final String PARKING_ET_VOIRIES_VOIRIES = "PARKINGS ET VOIRIES - Voirie";
 

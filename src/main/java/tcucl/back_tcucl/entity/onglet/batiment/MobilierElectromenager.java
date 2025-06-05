@@ -22,19 +22,7 @@ public class MobilierElectromenager {
     private Integer quantite;
     private Float poidsDuProduit;
     private Integer dureeAmortissement;
-    private Boolean emissionGesPrecisesConnues;
-    private Float emissionsGesReelleskgCO2;
 
-
-    @AssertTrue(message = "Si 'emissionGesPrecisesConnues' est false, 'emissionsGesReelleskgCO2' doit être nul ou indéfini.")
-    public Boolean assertEmissionsGesValid() {
-        // Si 'emissionGesPrecisesConnues' est false, 'emissionsGesReelleskgCO2' doit être nul ou indéfini
-        if (!emissionGesPrecisesConnues) {
-            return emissionsGesReelleskgCO2 == null || emissionsGesReelleskgCO2 == 0.0f;
-        }
-        // Si 'emissionGesPrecisesConnues' est true, aucune contrainte sur 'emissionsGesReelleskgCO2'
-        return true;
-    }
 
     @AssertTrue(message = "Si le produit fait partie de la liste spécifiée, le poids du produit ne doit pas être rempli.")
     public Boolean assertPoidsProduitValide() {
@@ -45,15 +33,6 @@ public class MobilierElectromenager {
         }
         // Si le produit n'est pas dans la liste, aucune contrainte sur poidsDuProduit
         return true;
-    }
-
-    @AssertTrue(message = "Si le produit est 'Autre mobilier en € ou en tonnes', les émissions réelles doivent rester vides.")
-    public Boolean assertEmissionsGesReellesValide() {
-        if (EnumBatiment_Mobilier.AUTRE_MOBILIER_EN_EUROS.getCode().equals(valeurEnumMobilier)  
-            || EnumBatiment_Mobilier.AUTRE_MOBILIER_EN_TONNES.getCode().equals(valeurEnumMobilier)) {
-            return emissionsGesReelleskgCO2 == 0.0f; // Vérifie si les émissions réelles sont vides
-        }
-        return true; // Si le produit n'est pas "Autre mobilier en €", aucune contrainte
     }
 
     public void setMobilier(EnumBatiment_Mobilier valeur) {
@@ -102,22 +81,6 @@ public class MobilierElectromenager {
 
     public void setDureeAmortissement(Integer dureeAmortissement) {
         this.dureeAmortissement = dureeAmortissement;
-    }
-
-    public Boolean getEmissionGesPrecisesConnues() {
-        return emissionGesPrecisesConnues;
-    }
-
-    public void setEmissionGesPrecisesConnues(boolean emissionGesPrecisesConnues) {
-        this.emissionGesPrecisesConnues = emissionGesPrecisesConnues;
-    }
-
-    public Float getEmissionsGesReelleskgCO2() {
-        return emissionsGesReelleskgCO2;
-    }
-
-    public void setEmissionsGesReelleskgCO2(Float emissionsGesReelleskgCO2) {
-        this.emissionsGesReelleskgCO2 = emissionsGesReelleskgCO2;
     }
 
 

@@ -87,10 +87,10 @@ public class AutreImmobilisationOngletServiceImpl implements AutreImmobilisation
             autreImmobilisationResultatDto.setAutresMachineEnEurosDachats(autreImmobilisationOnglet.getAutresMachinesEur_EmissionReelle() * autreImmobilisationOnglet.getAutresMachinesEur_Nombre() / (autreImmobilisationOnglet.getAutresMachinesEur_DureeAmortissement() * 1000));
         } else {
             FacteurEmission facteurEmission = facteurEmissionService.findByCategorieAndType(FacteurEmissionParametre.AUTRES_IMMOBILISATIONS, "Autres machines en € d'achats");
-            autreImmobilisationResultatDto.setAutresMachineEnEurosDachats((facteurEmission.getFacteurEmission() * autreImmobilisationOnglet.getAutresMachinesEur_Nombre() * autreImmobilisationOnglet.getAutresMachinesEur_PoidsDuProduit() / (autreImmobilisationOnglet.getAutresMachinesEur_DureeAmortissement() * 1000)));
+            autreImmobilisationResultatDto.setAutresMachineEnEurosDachats((facteurEmission.getFacteurEmission() * autreImmobilisationOnglet.getAutresMachinesEur_Nombre() / (autreImmobilisationOnglet.getAutresMachinesEur_DureeAmortissement() * 1000)));
         }
 
-        autreImmobilisationResultatDto.setTotalPostePhotovoltaique(
+        autreImmobilisationResultatDto.setTotalPosteBatiment(
                 autreImmobilisationResultatDto.getGroupesElectrogenes()
                         + autreImmobilisationResultatDto.getMoteurElectrique()
                         + autreImmobilisationResultatDto.getAutresMachinesEnKgDeMachine()
