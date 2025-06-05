@@ -788,6 +788,13 @@ public class FacteurEmissionParametre {
         public static final String NB_FEUILLES_IMPRIMEES_EN_JET_D_ENCRE = "Nb feuilles imprimées en jet d'encre";
         public static final String NB_FEUILLES_IMPRIMEES_EN_TONER = "Nb feuilles imprimées en toner";
         public static final String SERVICE_PRODUITS_PHARMACEUTIQUE = "Service - Produits pharmaceutiques";
+        public static final String SERVICE_AUTRE = "Services (imprimerie, publicité, architecture et ingénierie, maintenance multi-technique des bâtiments)";
+        public static final String SERVICE_ENSEIGNEMENT = "Service/Enseignement";
+        public static final String SERVICE_INFORMATIQUE_ELECTRONIQUE_OPTIQUE = "Service/Produits informatiques, électroniques et optiques";
+        public static final String SERVICE_REPARATION_INSTALLATION = "Service/Réparation et installation de machines et d'équipements";
+        public static final String SERVICE_TRANSPORT_TERRESTRES = "Service/Transport terrestre";
+        public static final String SERVICE_HEBERGEMENT_RESTAURATION = "Service / \"hébergement et restauration\"";
+        public static final String SERVICE_TELECOMMUNICATIONS = "Service de télécommunications";
     }
 
     public static final String TEXTILES ="TEXTILES";

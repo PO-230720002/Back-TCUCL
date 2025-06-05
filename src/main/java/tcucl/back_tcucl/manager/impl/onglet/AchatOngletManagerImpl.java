@@ -68,9 +68,24 @@ public class AchatOngletManagerImpl implements AchatOngletManager {
                 achatConsommable.setNbFeuillesImprimeesToner_Nb(achatConsommableDto.getNbFeuillesImprimeesToner_Nb());
             if (achatConsommableDto.getProduitsPharmaceutiques_Eur() != null)
                 achatConsommable.setProduitsPharmaceutiques_Eur(achatConsommableDto.getProduitsPharmaceutiques_Eur());
+            if (achatConsommableDto.getServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments() != null)
+                achatConsommable.setServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments(
+                        achatConsommableDto.getServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments());
+            if (achatConsommableDto.getService_Enseignement() != null)
+                achatConsommable.setService_Enseignement(achatConsommableDto.getService_Enseignement());
+            if (achatConsommableDto.getService_Produits_informatiques_electroniques_et_optiques() != null)
+                achatConsommable.setService_Produits_informatiques_electroniques_et_optiques(achatConsommableDto.getService_Produits_informatiques_electroniques_et_optiques());
+            if(achatConsommableDto.getService_Reparation_et_installation_de_machines_et_d_equipements() != null)
+                achatConsommable.setService_Reparation_et_installation_de_machines_et_d_equipements(achatConsommableDto.getService_Reparation_et_installation_de_machines_et_d_equipements());
+            if (achatConsommableDto.getService_Transport_terrestre() != null)
+                achatConsommable.setService_Transport_terrestre(achatConsommableDto.getService_Transport_terrestre());
+            if (achatConsommableDto.getService_hebergement_et_restauration() != null)
+                achatConsommable.setService_hebergement_et_restauration(achatConsommableDto.getService_hebergement_et_restauration());
+            if (achatConsommableDto.getService_de_telecommunications() != null)
+                achatConsommable.setService_de_telecommunications(achatConsommableDto.getService_de_telecommunications());
         }
 
-        // --- AchatRestauration ---
+                    // --- AchatRestauration ---
         if (achatOngletDto.getAchatRestauration() != null) {
             AchatRestauration achatRestauration = achatOnglet.getAchatRestauration();
             if (achatRestauration == null) {

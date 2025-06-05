@@ -24,6 +24,14 @@ public class AchatConsommable {
     private Float nbFeuillesImprimeesJetEncre_Nb = 0f;
     private Float nbFeuillesImprimeesToner_Nb = 0f;
     private Float produitsPharmaceutiques_Eur = 0f;
+    private Float services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments = 0f;
+    private Float service_Enseignement = 0f;
+    private Float service_Produits_informatiques_electroniques_et_optiques = 0f;
+    private Float service_Reparation_et_installation_de_machines_et_d_equipements = 0f;
+    private Float service_Transport_terrestre = 0f;
+    private Float service_hebergement_et_restauration = 0f;
+    private Float service_de_telecommunications = 0f;
+
 
     public AchatConsommable() {
     }
@@ -114,5 +122,61 @@ public class AchatConsommable {
 
     public void setProduitsPharmaceutiques_Eur(Float produitsPharmaceutiques_Eur) {
         this.produitsPharmaceutiques_Eur = produitsPharmaceutiques_Eur;
+    }
+
+    public Float getServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments() {
+        return services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments;
+    }
+
+    public void setServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments(Float services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments) {
+        this.services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments = services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments;
+    }
+
+    public Float getService_Enseignement() {
+        return service_Enseignement;
+    }
+
+    public void setService_Enseignement(Float service_Enseignement) {
+        this.service_Enseignement = service_Enseignement;
+    }
+
+    public Float getService_Produits_informatiques_electroniques_et_optiques() {
+        return service_Produits_informatiques_electroniques_et_optiques;
+    }
+
+    public void setService_Produits_informatiques_electroniques_et_optiques(Float service_Produits_informatiques_electroniques_et_optiques) {
+        this.service_Produits_informatiques_electroniques_et_optiques = service_Produits_informatiques_electroniques_et_optiques;
+    }
+
+    public Float getService_Reparation_et_installation_de_machines_et_d_equipements() {
+        return service_Reparation_et_installation_de_machines_et_d_equipements;
+    }
+
+    public void setService_Reparation_et_installation_de_machines_et_d_equipements(Float service_Reparation_et_installation_de_machines_et_d_equipements) {
+        this.service_Reparation_et_installation_de_machines_et_d_equipements = service_Reparation_et_installation_de_machines_et_d_equipements;
+    }
+
+    public Float getService_Transport_terrestre() {
+        return service_Transport_terrestre;
+    }
+
+    public void setService_Transport_terrestre(Float service_Transport_terrestre) {
+        this.service_Transport_terrestre = service_Transport_terrestre;
+    }
+
+    public Float getService_hebergement_et_restauration() {
+        return service_hebergement_et_restauration;
+    }
+
+    public void setService_hebergement_et_restauration(Float service_hebergement_et_restauration) {
+        this.service_hebergement_et_restauration = service_hebergement_et_restauration;
+    }
+
+    public Float getService_de_telecommunications() {
+        return service_de_telecommunications;
+    }
+
+    public void setService_de_telecommunications(Float service_de_telecommunications) {
+        this.service_de_telecommunications = service_de_telecommunications;
     }
 }
