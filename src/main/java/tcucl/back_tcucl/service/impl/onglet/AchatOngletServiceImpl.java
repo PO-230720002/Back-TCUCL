@@ -101,6 +101,54 @@ public class AchatOngletServiceImpl implements AchatOngletService {
         resultat.setProduitsPharmaceutiques_Eur(
                 onglet.getAchatConsommable().getProduitsPharmaceutiques_Eur() * facteurEmissionParametre/1000f);
 
+        facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES,
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES_.SERVICE_PRODUITS_PHARMACEUTIQUE).getFacteurEmission();
+        resultat.setProduitsPharmaceutiques_Eur(
+                onglet.getAchatConsommable().getProduitsPharmaceutiques_Eur() * facteurEmissionParametre/1000f);
+
+        facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES,
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES_.SERVICE_AUTRE).getFacteurEmission();
+        resultat.setServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments(
+                onglet.getAchatConsommable().getServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments() * facteurEmissionParametre/1000f);
+
+        facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES,
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES_.SERVICE_ENSEIGNEMENT).getFacteurEmission();
+        resultat.setService_Enseignement(
+                onglet.getAchatConsommable().getService_Enseignement() * facteurEmissionParametre/1000f);
+
+        facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES,
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES_.SERVICE_INFORMATIQUE_ELECTRONIQUE_OPTIQUE).getFacteurEmission();
+        resultat.setService_Produits_informatiques_electroniques_et_optiques(
+                onglet.getAchatConsommable().getService_Produits_informatiques_electroniques_et_optiques() * facteurEmissionParametre/1000f);
+
+        facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES,
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES_.SERVICE_REPARATION_INSTALLATION).getFacteurEmission();
+        resultat.setService_Reparation_et_installation_de_machines_et_d_equipements(
+                onglet.getAchatConsommable().getService_Reparation_et_installation_de_machines_et_d_equipements() * facteurEmissionParametre/1000f);
+
+        facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES,
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES_.SERVICE_TRANSPORT_TERRESTRES).getFacteurEmission();
+        resultat.setService_Transport_terrestre(
+                onglet.getAchatConsommable().getService_Transport_terrestre() * facteurEmissionParametre/1000f);
+
+        facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES,
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES_.SERVICE_HEBERGEMENT_RESTAURATION).getFacteurEmission();
+        resultat.setService_hebergement_et_restauration(
+                onglet.getAchatConsommable().getService_hebergement_et_restauration() * facteurEmissionParametre/1000f);
+
+        facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES,
+                FacteurEmissionParametre.ACHATS_CONSOMMABLES_.SERVICE_TELECOMMUNICATIONS).getFacteurEmission();
+        resultat.setService_de_telecommunications(
+                onglet.getAchatConsommable().getService_de_telecommunications() * facteurEmissionParametre/1000f);
+
 
         // TEXTILES
         facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
