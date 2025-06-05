@@ -101,6 +101,9 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
         List<EntretienCourant> entretienCourants = batimentImmobilisationMobilierOnglet.getEntretienCourants();
         List<MobilierElectromenager> mobilierElectromenagers = batimentImmobilisationMobilierOnglet.getMobilierElectromenagers();
 
+        float[] emissionsReellesDivisees = {0f};
+        float[] emissionsCalculees = {0f};
+
         Map<Long, Float> emissionsParBatiment = batiments.stream()
                 .collect(Collectors.toMap(
                         BatimentExistantOuNeufConstruit::getId,
@@ -138,9 +141,11 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
                             }
 
                             if (Boolean.TRUE.equals(batiment.getAcvBatimentRealisee())){
+                                emissionsReellesDivisees[0] += batiment.getEmissionsGesReellesTCO2() / 50f;
                                 return batiment.getEmissionsGesReellesTCO2();
                             } else {
                                 if (batiment.getDateConstruction().getYear() > (batimentImmobilisationMobilierOnglet.getAnnee().getAnneeValeur() - 50) || batiment.getDateDerniereGrosseRenovation().getYear() > (batimentImmobilisationMobilierOnglet.getAnnee().getAnneeValeur() - 50)){
+                                    emissionsCalculees[0] = facteurEmission.getFacteurEmission() * batiment.getSurfaceEnM2() / (50 * 1000);
                                     return facteurEmission.getFacteurEmission() * batiment.getSurfaceEnM2() / (50 * 1000);
                                 } else {
                                     return 0f;
@@ -149,10 +154,10 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
                         }
                 ));
 
-        float totalPosteBatiment = emissionsParBatiment.values().stream()
-                .reduce(0f, Float::sum);
-
         BatimentImmobilisationMobilierResultatDto resultatDto = new BatimentImmobilisationMobilierResultatDto();
+        resultatDto.setEmissionGESBatimentExistantOuNeufConstruit(emissionsParBatiment);
+
+        float totalPosteBatiment = emissionsReellesDivisees[0] + emissionsCalculees[0];
         resultatDto.setTotalPosteBatiment(totalPosteBatiment);
 
 
@@ -200,6 +205,7 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
                         }
                 ));
 
+        resultatDto.setEmissionGESEntretienCourant(emissionsParEntretienCourants);
         float totalPosteEntretien = emissionsParEntretienCourants.values().stream()
                 .reduce(0f, Float::sum);
         resultatDto.setTotalPosteEntretien(totalPosteEntretien);
@@ -208,29 +214,28 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
                 .collect(Collectors.toMap(
                         MobilierElectromenager::getId,
                         mobilierElectromenager -> {
-                            FacteurEmission facteurEmissionProduit = facteurEmissionService.findByCategorieAndTypeAndUnite(
-                                    FacteurEmissionParametre.MOBILIER,
-                                    mobilierElectromenager.getMobilier().getLibelle(),
-                                    FacteurEmissionParametre.MOBILIER_.KG_CO2E_PAR_PRODUIT
-                            );
-                            FacteurEmission facteurEmissionKgProduit = facteurEmissionService.findByCategorieAndTypeAndUnite(
-                                    FacteurEmissionParametre.MOBILIER,
-                                    mobilierElectromenager.getMobilier().getLibelle(),
-                                    FacteurEmissionParametre.MOBILIER_.KG_CO2E_PAR_KG_PRODUIT
-                            );
-                            FacteurEmission facteurEmissionAutre = facteurEmissionService.findByCategorieAndType(
-                                    FacteurEmissionParametre.MOBILIER,
-                                    mobilierElectromenager.getMobilier().getLibelle()
-                            );
 
                             if (mobilierElectromenager.getDateAjout().getYear() > (batimentImmobilisationMobilierOnglet.getAnnee().getAnneeValeur() - mobilierElectromenager.getDureeAmortissement())){
-
-                                if (mobilierElectromenager.getPoidsDuProduit()!=null || mobilierElectromenager.getPoidsDuProduit()!= 0) {
+                                if (mobilierElectromenager.getPoidsDuProduit()!= 0.0f) {
+                                    FacteurEmission facteurEmissionKgProduit = facteurEmissionService.findByCategorieAndTypeAndUnite(
+                                            FacteurEmissionParametre.MOBILIER,
+                                            mobilierElectromenager.getMobilier().getLibelle(),
+                                            FacteurEmissionParametre.MOBILIER_.KG_CO2E_PAR_KG_PRODUIT
+                                    );
                                     return (mobilierElectromenager.getQuantite() * mobilierElectromenager.getPoidsDuProduit() * facteurEmissionKgProduit.getFacteurEmission() /1000) / mobilierElectromenager.getDureeAmortissement();
                                 } else {
                                     if (mobilierElectromenager.getMobilier() == EnumBatiment_Mobilier.AUTRE_MOBILIER_EN_EUROS || (mobilierElectromenager.getMobilier() == EnumBatiment_Mobilier.AUTRE_MOBILIER_EN_TONNES)){
+                                        FacteurEmission facteurEmissionAutre = facteurEmissionService.findByCategorieAndType(
+                                                FacteurEmissionParametre.MOBILIER,
+                                                mobilierElectromenager.getMobilier().getLibelle()
+                                        );
                                         return (facteurEmissionAutre.getFacteurEmission() * mobilierElectromenager.getQuantite() / 1000) / mobilierElectromenager.getDureeAmortissement();
                                     } else {
+                                        FacteurEmission facteurEmissionProduit = facteurEmissionService.findByCategorieAndTypeAndUnite(
+                                                FacteurEmissionParametre.MOBILIER,
+                                                mobilierElectromenager.getMobilier().getLibelle(),
+                                                FacteurEmissionParametre.MOBILIER_.KG_CO2E_PAR_PRODUIT
+                                        );
                                         return (facteurEmissionProduit.getFacteurEmission() * mobilierElectromenager.getQuantite() / 1000) / mobilierElectromenager.getDureeAmortissement();
                                     }
                                 }
@@ -241,10 +246,11 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
                         }
                 ));
 
+        resultatDto.setEmissionGESMobilierElectromenager(emissionsParMobilierElectromenager);
+
         float totalPosteMobilier = emissionsParMobilierElectromenager.values().stream()
                 .reduce(0f, Float::sum);
         resultatDto.setTotalPosteMobilier(totalPosteMobilier);
-
 
         return resultatDto;
     }

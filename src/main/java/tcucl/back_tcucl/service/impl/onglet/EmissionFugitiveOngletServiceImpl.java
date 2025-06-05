@@ -70,7 +70,7 @@ public class EmissionFugitiveOngletServiceImpl implements EmissionFugitiveOnglet
                             );
                             FacteurEmission tauxDeFuite = facteurEmissionService.findByCategorieAndType(
                                     FacteurEmissionParametre.EMISSIONS_FUGITIVES,
-                                    machine.getTypeMachine().toString()
+                                    machine.getTypeMachine().getLibelle()
                             );
 
                             Float quantiteFluide = machine.getQuantiteFluideKg();

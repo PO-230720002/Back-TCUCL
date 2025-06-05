@@ -43,13 +43,13 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
         EnergieOnglet energieOnglet = energieOngletManager.getEnergieOngletById(ongletId);
         EnergieResultatDto energieResultatDto = new EnergieResultatDto();
 
-        FacteurEmission facteurEmission = facteurEmissionService.findByCategorieAndTypeAndUnite(FacteurEmissionParametre.ENERGIE, FacteurEmissionParametre.ENERGIE_.GAZ, "kgCO2e/" + energieOnglet.getUniteGaz().toString());
+        FacteurEmission facteurEmission = facteurEmissionService.findByCategorieAndTypeAndUnite(FacteurEmissionParametre.ENERGIE, FacteurEmissionParametre.ENERGIE_.GAZ, energieOnglet.getUniteGaz().getLibelle());
         energieResultatDto.setConsoGaz((facteurEmission.getFacteurEmission() * energieOnglet.getConsoGaz()) / 1000);
 
-        facteurEmission = facteurEmissionService.findByCategorieAndTypeAndUnite(FacteurEmissionParametre.ENERGIE, FacteurEmissionParametre.ENERGIE_.FIOUL, "kgCO2e/" + energieOnglet.getUniteFioul().toString());
+        facteurEmission = facteurEmissionService.findByCategorieAndTypeAndUnite(FacteurEmissionParametre.ENERGIE, FacteurEmissionParametre.ENERGIE_.FIOUL, energieOnglet.getUniteFioul().getLibelle());
         energieResultatDto.setConsoFioul((facteurEmission.getFacteurEmission() * energieOnglet.getConsoFioul()) / 1000);
 
-        facteurEmission = facteurEmissionService.findByCategorieAndTypeAndUnite(FacteurEmissionParametre.ENERGIE, FacteurEmissionParametre.ENERGIE_.BOIS_GRANULE_FRANCAIS, "kgCO2e/" + energieOnglet.getUniteBois().toString());
+        facteurEmission = facteurEmissionService.findByCategorieAndTypeAndUnite(FacteurEmissionParametre.ENERGIE, FacteurEmissionParametre.ENERGIE_.BOIS_GRANULE_FRANCAIS, energieOnglet.getUniteBois().getLibelle());
         energieResultatDto.setConsoBois((facteurEmission.getFacteurEmission() * energieOnglet.getConsoBois()) / 1000);
 
         if (energieOnglet.getNomReseauVille() == EnumEnergie_NomReseauVille.LILLE) {
@@ -132,7 +132,7 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
         energieResultatDto.setSurfaceTotaleBatiments(surfaceBatiment);
 
         energieResultatDto.setConsoEnergieFinaleParM2(energieResultatDto.getConsoEnergieFinale() * 1000 / surfaceBatiment);
-        energieResultatDto.setConsoEnergiePrimaireParM2((energieOnglet.getConsoElecChauffage() + energieOnglet.getConsoElecSpecifique()) * 2.3f + (energieResultatDto.getConsoEnergieChauffage() - energieOnglet.getConsoElecChauffage()) * 1000 / surfaceBatiment);
+        energieResultatDto.setConsoEnergiePrimaireParM2(((energieOnglet.getConsoElecChauffage() + energieOnglet.getConsoElecSpecifique()) * 2.3f + (energieResultatDto.getConsoEnergieChauffage() - energieOnglet.getConsoElecChauffage())) * 1000f / energieResultatDto.getSurfaceTotaleBatiments());
         energieResultatDto.setIntensiteCarboneParM2((energieResultatDto.getConsoGaz()
                 + energieResultatDto.getConsoFioul()
                 + energieResultatDto.getConsoBois()
