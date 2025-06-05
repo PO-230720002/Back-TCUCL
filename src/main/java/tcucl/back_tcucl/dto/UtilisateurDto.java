@@ -9,9 +9,9 @@ public class UtilisateurDto {
     private String prenom;
     private String email;
     private Boolean estAdmin;
+    private Boolean isSuperAdmin;
     private String entiteNom;
     private Long entiteId;
-
 
     public UtilisateurDto() {
     }
@@ -24,6 +24,7 @@ public class UtilisateurDto {
         this.estAdmin = utilisateur.getEstAdmin();
         this.entiteNom = utilisateur.getEntite().getNom();
         this.entiteId = utilisateur.getEntite().getId();
+        this.isSuperAdmin = utilisateur.getEstSuperAdmin();
 
     }
 
@@ -67,6 +68,14 @@ public class UtilisateurDto {
         this.estAdmin = estAdmin;
     }
 
+    public Boolean getSuperAdmin() {
+        return isSuperAdmin;
+    }
+
+    public void setSuperAdmin(Boolean superAdmin) {
+        isSuperAdmin = superAdmin;
+    }
+
     public String getEntiteNom() {
         return entiteNom;
     }
@@ -82,4 +91,5 @@ public class UtilisateurDto {
     public void setEntiteId(Long entiteId) {
         this.entiteId = entiteId;
     }
+
 }
