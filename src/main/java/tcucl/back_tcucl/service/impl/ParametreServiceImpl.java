@@ -86,6 +86,7 @@ public class ParametreServiceImpl implements ParametreService {
         utilisateurService.modifierUtilisateurParUtilisateur(utilisateurId, modificationUtilisateurParUtilisateurDto);
     }
 
+    @Scheduled(cron = "0 1 0 1 9 *")
     @Transactional
     @Override
     public void creerAnneeSuivante() {
