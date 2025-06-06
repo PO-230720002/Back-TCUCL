@@ -613,121 +613,121 @@ public class FacteurEmissionParametre {
     public static final String MOBILITE_LONGUE_DISTANCE_AVION = "MOBILITE LONGUE DISTANCE - Avion";
 
     public static class MOBILITE_LONGUE_DISTANCE_AVION_ {
-        public static final String AFRIQUE_DU_SUD= "Afrique du Sud";
-        public static final String ALBANIE= "Albanie";
-        public static final String ALGERIE= "Algérie";
-        public static final String ALLEMAGNE= "Allemagne";
-        public static final String ANGOLA= "Angola";
-        public static final String ARABIE_SAOUDITE= "Arabie saoudite";
-        public static final String ARGENTINE= "Argentine";
-        public static final String AUSTRALIE= "Australie";
-        public static final String AUTRICHE= "Autriche";
-        public static final String AZERBAIDJAN= "Azerbaïdjan";
-        public static final String BAHREIN= "Bahrein";
-        public static final String BANGLADESH= "Bangladesh";
-        public static final String BELGIQUE= "Belgique";
-        public static final String BENIN= "Benin";
-        public static final String BOLIVIE= "Bolivie";
-        public static final String BRESIL= "Brésil";
-        public static final String BULGARIE= "Bulgarie";
-        public static final String BURKINA_FASO= "Burkina Faso";
-        public static final String CAMBODGE= "Cambodge";
-        public static final String CAMEROUN= "Cameroun";
-        public static final String CANADA= "Canada";
-        public static final String CHILI= "Chili";
-        public static final String CHINE= "Chine";
-        public static final String CHYPRE= "Chypre";
-        public static final String COLOMBIE= "Colombie";
-        public static final String CONGO= "Congo";
-        public static final String COMORES= "Comores";
-        public static final String COREE_DU_SUD= "Corée du Sud";
-        public static final String COSTA_RICA= "Costa Rica";
-        public static final String COTE_D_IVOIRE= "Cote d'Ivoire";
-        public static final String CROATIE= "Croatie";
-        public static final String DANEMARK= "Danemark";
-        public static final String ECOSSE= "Ecosse";
-        public static final String EGYPTE= "Egypte";
-        public static final String EMIRATS_ARABES_UNIS= "Emirats Arabes Unis";
-        public static final String EQUATEUR= "Equateur";
-        public static final String ESPAGNE= "Espagne";
-        public static final String ESTONIE= "Estonie";
-        public static final String ETATS_UNIS= "Etats Unis";
-        public static final String ETHIOPIE= "Ethiophie";
-        public static final String GUATEMALA= "Guatelama";
-        public static final String FIDJI= "Fidji";
-        public static final String FINLANDE= "Finlande";
-        public static final String GABON= "Gabon";
-        public static final String GEORGIE= "Géorgie";
-        public static final String GHANA= "Ghana";
-        public static final String GRECE= "Grèce";
-        public static final String HONG_KONG= "Hong Kong";
-        public static final String HONGRIE= "Hongrie";
-        public static final String INDE= "Inde";
-        public static final String INDONESIE= "Indonesie";
-        public static final String IRLANDE= "Irlande";
-        public static final String ISLANDE= "Islande";
-        public static final String ISRAEL= "Israel";
-        public static final String ITALIE= "Italie";
-        public static final String JAPON= "Japon";
-        public static final String JORDANIE= "Jordanie";
-        public static final String KAZAKHSTAN= "Kazakhstan";
-        public static final String KIRGHIZISTAN= "Kirghizistan";
-        public static final String KENYA= "Kenya";
-        public static final String LAOS= "Laos";
-        public static final String KOSOVO= "Kosovo";
-        public static final String LETTONIE= "Lettonie";
-        public static final String LIBAN= "Liban";
-        public static final String LITUANIE= "Lituanie";
-        public static final String LUXEMBOURG= "Luxembourg";
-        public static final String MACEDOINE= "Macédoine";
-        public static final String MADAGASCAR= "Madagascar";
-        public static final String MALAISIE= "Malaisie";
-        public static final String MALI= "Mali";
-        public static final String MALTE= "Malte";
-        public static final String MAROC= "Maroc";
-        public static final String MAURICE= "Maurice";
-        public static final String MAURITANIE= "Mauritanie";
-        public static final String MEXIQUE= "Mexique";
-        public static final String MONACO= "Monaco";
-        public static final String MONGOLIE= "Mongolie";
-        public static final String MOZAMBIQUE= "Mozambique";
-        public static final String NAMIBIE= "Namibie";
-        public static final String NEPAL= "Nepal";
-        public static final String NICARAGUA= "Nicaragua";
-        public static final String NIGERIA= "Nigéria";
-        public static final String NORVEGE= "Norvège";
-        public static final String NOUVELLE_ZELANDE= "Nouvelle Zélande";
-        public static final String PANAMA= "Panama";
-        public static final String PAYS_BAS= "Pays bas";
-        public static final String PEROU= "Pérou";
-        public static final String PHILIPPINES= "Philippines";
-        public static final String POLOGNE= "Pologne";
-        public static final String POLYNESIE_FRANCAISE= "Polynésie Française";
-        public static final String PORTUGAL= "Portugal";
-        public static final String QATAR= "Qatar";
-        public static final String REPUBLIQUE_DOMINICAINE= "République dominicaine";
-        public static final String REPUBLIQUE_CENTRAFICAINE= "Republique Centrafriquaine";
-        public static final String REPUBLIQUE_TECHQUE= "République Tchèque";
-        public static final String RWANDA= "Rwanda";
-        public static final String ROUMANIE= "Roumanie";
-        public static final String ROYAUME_UNI= "Royaume Uni";
-        public static final String RUSSIE= "Russie";
-        public static final String SENEGAL= "Sénégal";
-        public static final String SINGAPOUR= "Singapour";
-        public static final String SLOVAQUIE= "Slovaquie";
-        public static final String SLOVENIE= "Slovénie";
-        public static final String SRI_LANKA= "Sri Lanka";
-        public static final String SUEDE= "Suède";
-        public static final String SUISSE= "Suisse";
-        public static final String TAIWAN= "Taiwan";
-        public static final String THAILANDE= "Thailande";
-        public static final String TOGO= "Togo";
-        public static final String TUNISIE= "Tunisie";
-        public static final String TURQUIE= "Turquie";
-        public static final String UKRAINE= "Ukraine";
-        public static final String URUGUAY= "Uruguay";
-        public static final String VIETNAM= "Vietnam";
-        public static final String ZIMBABWE= "Zimbabwe";
+        public static final String AFRIQUE_DU_SUD = "Afrique du Sud";
+        public static final String ALBANIE = "Albanie";
+        public static final String ALGERIE = "Algérie";
+        public static final String ALLEMAGNE = "Allemagne";
+        public static final String ANGOLA = "Angola";
+        public static final String ARABIE_SAOUDITE = "Arabie saoudite";
+        public static final String ARGENTINE = "Argentine";
+        public static final String AUSTRALIE = "Australie";
+        public static final String AUTRICHE = "Autriche";
+        public static final String AZERBAIDJAN = "Azerbaïdjan";
+        public static final String BAHREIN = "Bahrein";
+        public static final String BANGLADESH = "Bangladesh";
+        public static final String BELGIQUE = "Belgique";
+        public static final String BENIN = "Benin";
+        public static final String BOLIVIE = "Bolivie";
+        public static final String BRESIL = "Brésil";
+        public static final String BULGARIE = "Bulgarie";
+        public static final String BURKINA_FASO = "Burkina Faso";
+        public static final String CAMBODGE = "Cambodge";
+        public static final String CAMEROUN = "Cameroun";
+        public static final String CANADA = "Canada";
+        public static final String CHILI = "Chili";
+        public static final String CHINE = "Chine";
+        public static final String CHYPRE = "Chypre";
+        public static final String COLOMBIE = "Colombie";
+        public static final String CONGO = "Congo";
+        public static final String COMORES = "Comores";
+        public static final String COREE_DU_SUD = "Corée du Sud";
+        public static final String COSTA_RICA = "Costa Rica";
+        public static final String COTE_D_IVOIRE = "Cote d'Ivoire";
+        public static final String CROATIE = "Croatie";
+        public static final String DANEMARK = "Danemark";
+        public static final String ECOSSE = "Ecosse";
+        public static final String EGYPTE = "Egypte";
+        public static final String EMIRATS_ARABES_UNIS = "Emirats Arabes Unis";
+        public static final String EQUATEUR = "Equateur";
+        public static final String ESPAGNE = "Espagne";
+        public static final String ESTONIE = "Estonie";
+        public static final String ETATS_UNIS = "Etats Unis";
+        public static final String ETHIOPIE = "Ethiophie";
+        public static final String GUATEMALA = "Guatelama";
+        public static final String FIDJI = "Fidji";
+        public static final String FINLANDE = "Finlande";
+        public static final String GABON = "Gabon";
+        public static final String GEORGIE = "Géorgie";
+        public static final String GHANA = "Ghana";
+        public static final String GRECE = "Grèce";
+        public static final String HONG_KONG = "Hong Kong";
+        public static final String HONGRIE = "Hongrie";
+        public static final String INDE = "Inde";
+        public static final String INDONESIE = "Indonesie";
+        public static final String IRLANDE = "Irlande";
+        public static final String ISLANDE = "Islande";
+        public static final String ISRAEL = "Israel";
+        public static final String ITALIE = "Italie";
+        public static final String JAPON = "Japon";
+        public static final String JORDANIE = "Jordanie";
+        public static final String KAZAKHSTAN = "Kazakhstan";
+        public static final String KIRGHIZISTAN = "Kirghizistan";
+        public static final String KENYA = "Kenya";
+        public static final String LAOS = "Laos";
+        public static final String KOSOVO = "Kosovo";
+        public static final String LETTONIE = "Lettonie";
+        public static final String LIBAN = "Liban";
+        public static final String LITUANIE = "Lituanie";
+        public static final String LUXEMBOURG = "Luxembourg";
+        public static final String MACEDOINE = "Macédoine";
+        public static final String MADAGASCAR = "Madagascar";
+        public static final String MALAISIE = "Malaisie";
+        public static final String MALI = "Mali";
+        public static final String MALTE = "Malte";
+        public static final String MAROC = "Maroc";
+        public static final String MAURICE = "Maurice";
+        public static final String MAURITANIE = "Mauritanie";
+        public static final String MEXIQUE = "Mexique";
+        public static final String MONACO = "Monaco";
+        public static final String MONGOLIE = "Mongolie";
+        public static final String MOZAMBIQUE = "Mozambique";
+        public static final String NAMIBIE = "Namibie";
+        public static final String NEPAL = "Nepal";
+        public static final String NICARAGUA = "Nicaragua";
+        public static final String NIGERIA = "Nigéria";
+        public static final String NORVEGE = "Norvège";
+        public static final String NOUVELLE_ZELANDE = "Nouvelle Zélande";
+        public static final String PANAMA = "Panama";
+        public static final String PAYS_BAS = "Pays bas";
+        public static final String PEROU = "Pérou";
+        public static final String PHILIPPINES = "Philippines";
+        public static final String POLOGNE = "Pologne";
+        public static final String POLYNESIE_FRANCAISE = "Polynésie Française";
+        public static final String PORTUGAL = "Portugal";
+        public static final String QATAR = "Qatar";
+        public static final String REPUBLIQUE_DOMINICAINE = "République dominicaine";
+        public static final String REPUBLIQUE_CENTRAFICAINE = "Republique Centrafriquaine";
+        public static final String REPUBLIQUE_TECHQUE = "République Tchèque";
+        public static final String RWANDA = "Rwanda";
+        public static final String ROUMANIE = "Roumanie";
+        public static final String ROYAUME_UNI = "Royaume Uni";
+        public static final String RUSSIE = "Russie";
+        public static final String SENEGAL = "Sénégal";
+        public static final String SINGAPOUR = "Singapour";
+        public static final String SLOVAQUIE = "Slovaquie";
+        public static final String SLOVENIE = "Slovénie";
+        public static final String SRI_LANKA = "Sri Lanka";
+        public static final String SUEDE = "Suède";
+        public static final String SUISSE = "Suisse";
+        public static final String TAIWAN = "Taiwan";
+        public static final String THAILANDE = "Thailande";
+        public static final String TOGO = "Togo";
+        public static final String TUNISIE = "Tunisie";
+        public static final String TURQUIE = "Turquie";
+        public static final String UKRAINE = "Ukraine";
+        public static final String URUGUAY = "Uruguay";
+        public static final String VIETNAM = "Vietnam";
+        public static final String ZIMBABWE = "Zimbabwe";
     }
     //todo changer trottinette avion frrance dans le fichier
 
@@ -757,7 +757,6 @@ public class FacteurEmissionParametre {
     }
 
 
-
     public static final String PARKING_ET_VOIRIES_PARKING = "PARKINGS ET VOIRIES - Parking";
     public static final String PARKING_ET_VOIRIES_VOIRIES = "PARKINGS ET VOIRIES - Voirie";
 
@@ -766,22 +765,24 @@ public class FacteurEmissionParametre {
 
     public static final String NUMERIQUE = "NUMERIQUE";
 
-    public static final String ACHATS_CONSOMMABLES ="ACHATS CONSOMMABLES";
+    public static final String ACHATS_CONSOMMABLES = "ACHATS CONSOMMABLES";
 
     public static class ACHATS_CONSOMMABLES_ {
         public static final String PAPIER = "Papier";
-        public static class PAPIER_{
+
+        public static class PAPIER_ {
             public static final String kgCO2e_nombre_ramette = "kgCO2e/nombre ramette";
             public static final String kgCO2e_tonnes = "kgCO2e/tonnes";
         }
 
         public static final String LIVRES = "Livres";
-        public static class LIVRES_{
+
+        public static class LIVRES_ {
             public static final String kgCO2e_livre = "kgCO2e/livre";
             public static final String kgCO2e_kg = "kgCO2e/kg";
         }
-        
-        
+
+
         public static final String CARTON_NEUF = "Carton neuf";
         public static final String CARTON_RECYCLE = "Carton recyclé";
         public static final String PETITES_FOURNITURES = "Petites fournitures";
@@ -797,7 +798,7 @@ public class FacteurEmissionParametre {
         public static final String SERVICE_TELECOMMUNICATIONS = "Service de télécommunications";
     }
 
-    public static final String TEXTILES ="TEXTILES";
+    public static final String TEXTILES = "TEXTILES";
 
     public static class TEXTILES_ {
         public static final String CHEMISE = "Chemise";
@@ -813,14 +814,14 @@ public class FacteurEmissionParametre {
         public static final String TEXTILE_ET_HABILLEMENT_EN_EURO = "Textile et habillement en euro";
     }
 
-    public static final String RESTAURATION_METHODE_RAPIDE ="RESTAURATION - METHODE RAPIDEE";
+    public static final String RESTAURATION_METHODE_RAPIDE = "RESTAURATION - METHODE RAPIDEE";
 
     public static class RESTAURATION_METHODE_RAPIDE_ {
         public static final String ALIMENTATION_REGIME_CLASSIQUE = "Alimentation régime classique";
         public static final String ALIMENTATION_REGIME_FLEXITARIEN = "Alimentation régime flexitarien";
     }
 
-    public static final String RESTAURATION_METHODE_INTERMEDIAIRE ="RESTAURATION - METHODE INTERMEDIAIRE";
+    public static final String RESTAURATION_METHODE_INTERMEDIAIRE = "RESTAURATION - METHODE INTERMEDIAIRE";
 
     public static class RESTAURATION_METHODE_INTERMEDIAIRE_ {
         public static final String NOMBRE_DE_REPAS_SERVIS_DOMINANTE_ANIMALE_BOEUF = "Nombre de repas servis - dominante animale boeuf";
@@ -833,31 +834,128 @@ public class FacteurEmissionParametre {
         public static final String NOMBRE_DE_REPAS_SERVIS_REPAS_VEGETARIEN = "Nombre de repas servis - repas végétarien";
     }
 
-    public static final String RESTAURATION_METHODE_DETAILLEE ="RESTAURATION - METHODE DETAILLEE";
+    public static final String RESTAURATION_METHODE_DETAILLEE = "RESTAURATION - METHODE DETAILLEE";
 
     public static class RESTAURATION_METHODE_DETAILLEE_ {
 
-        public static final String BOEUF_AGNEAU_POULET= "Bœuf/agneau / mouton";
-        public static final String POULET= "Poulet";
-        public static final String CAFE= "Café";
-        public static final String CHOCOLAT= "Chocolat";
-        public static final String BEURRE= "Beurre";
-        public static final String VIANDE_MOYENNE= "Viandes - moyenne";
-        public static final String PRODUITS_SUCRES_MOYENNE= "Produits sucrés - moyenne";
-        public static final String POISSONS_MOYENNE= "Poissons - moyenne";
-        public static final String FROMAGES_MOYENNE= "Fromages - moyenne";
-        public static final String OLEAGINEUX_MOYENNE= "Oléagineux - moyenne";
-        public static final String MATIERES_GRASSES_MOYENNE= "Matières grasses - moyenne";
-        public static final String BOISSONS_MOYENNE= "Boissons - moyenne";
-        public static final String OEUFS_MOYENNE= "Œufs";
-        public static final String CEREALES_MOYENNE= "Céréales - moyenne";
-        public static final String LEGUMES_MOYENNE= "Légumes - moyenne";
-        public static final String FRUITS_MOYENNE= "Fruits - moyenne";
-        public static final String LEGUMINEUSE_MOYENNE= "Légumineuse - moyenne";
+        public static final String BOEUF_AGNEAU_POULET = "Bœuf/agneau / mouton";
+        public static final String POULET = "Poulet";
+        public static final String CAFE = "Café";
+        public static final String CHOCOLAT = "Chocolat";
+        public static final String BEURRE = "Beurre";
+        public static final String VIANDE_MOYENNE = "Viandes - moyenne";
+        public static final String PRODUITS_SUCRES_MOYENNE = "Produits sucrés - moyenne";
+        public static final String POISSONS_MOYENNE = "Poissons - moyenne";
+        public static final String FROMAGES_MOYENNE = "Fromages - moyenne";
+        public static final String OLEAGINEUX_MOYENNE = "Oléagineux - moyenne";
+        public static final String MATIERES_GRASSES_MOYENNE = "Matières grasses - moyenne";
+        public static final String BOISSONS_MOYENNE = "Boissons - moyenne";
+        public static final String OEUFS_MOYENNE = "Œufs";
+        public static final String CEREALES_MOYENNE = "Céréales - moyenne";
+        public static final String LEGUMES_MOYENNE = "Légumes - moyenne";
+        public static final String FRUITS_MOYENNE = "Fruits - moyenne";
+        public static final String LEGUMINEUSE_MOYENNE = "Légumineuse - moyenne";
     }
 
 
+    public static final String ORDURES_MENAGERES = "Ordures ménagères";
 
+    public static class ORDURES_MENAGERES_ {
+        public static final String DEFAUT = "Defaut";
+
+        public static class DEFAUT_ {
+            public static final String PRODUIT = "produit";
+            public static final String EVITE = "evite";
+        }
+
+    }
+
+    public static final String CARTONS = "Cartons";
+
+    public static class CARTONS_ {
+        public static final String RECYCLAGE = "Recyclage";
+
+        public static class RECYCLAGE_ {
+            public static final String PRODUIT = "produit";
+            public static final String EVITE = "evite";
+        }
+
+        public static final String INCINERATION = "Incinération";
+
+        public static class INCINERATION_ {
+            public static final String PRODUIT = "produit";
+            public static final String EVITE = "evite";
+        }
+
+        public static final String STOCKAGE = "Stockage";
+
+        public static class STOCKAGE_ {
+            public static final String PRODUIT = "produit";
+            public static final String EVITE = "evite";
+        }
+    }
+
+    public static final String VERRE = "Verre";
+
+    public static class VERRE_ {
+        public static final String RECYCLAGE = "Recyclage";
+
+        public static class RECYCLAGE_ {
+            public static final String PRODUIT = "produit";
+            public static final String EVITE = "evite";
+        }
+
+        public static final String INCINERATION = "Incinération";
+
+        public static class INCINERATION_ {
+            public static final String PRODUIT = "produit";
+            public static final String EVITE = "evite";
+        }
+
+        public static final String STOCKAGE = "Stockage";
+
+        public static class STOCKAGE_ {
+            public static final String PRODUIT = "produit";
+            public static final String EVITE = "evite";
+        }
+    }
+
+    public static final String METAUX = "Métaux";
+
+    public static class METAUX_ {
+        public static final String RECYCLAGE = "Recyclage";
+
+        public static class RECYCLAGE_ {
+            public static final String PRODUIT = "produit";
+            public static final String EVITE = "evite";
+        }
+
+        public static final String INCINERATION = "Incinération";
+
+        public static class INCINERATION_ {
+            public static final String PRODUIT = "produit";
+            public static final String EVITE = "evite";
+        }
+
+        public static final String STOCKAGE = "Stockage";
+
+        public static class STOCKAGE_ {
+            public static final String PRODUIT = "produit";
+            public static final String EVITE = "evite";
+        }
+    }
+
+
+    public static final String DECHET_TEXTILE = "Textile";
+
+    public static class DECHET_TEXTILE_ {
+        public static final String DEFAUT = "Defaut";
+
+        public static class DEFAUT_ {
+            public static final String PRODUIT = "produit";
+            public static final String EVITE = "evite";
+        }
+    }
 
 
 }

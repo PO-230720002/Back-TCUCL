@@ -35,5 +35,11 @@ public class DechetOngletController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping(REST_RESULTAT)
+    @checkRoleOnglet
+    public ResponseEntity<?> getDechetResultat(@PathVariable(value = "ongletId") Long ongletId) {
+        return ResponseEntity.ok(dechetOngletService.getDechetResultat(ongletId));
+    }
+
 
 }
