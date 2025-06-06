@@ -19,6 +19,7 @@ import tcucl.back_tcucl.entity.onglet.mobInternationale.Voyage;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.enums.EnumMobInternationale_Pays;
 import tcucl.back_tcucl.exceptionPersonnalisee.AucunEtudiantEnregistre;
 import tcucl.back_tcucl.exceptionPersonnalisee.AucunSalarieEnregistre;
+import tcucl.back_tcucl.exceptionPersonnalisee.NonTrouveGeneralCustomException;
 import tcucl.back_tcucl.exceptionPersonnalisee.ValidationCustomException;
 import tcucl.back_tcucl.manager.MobInternationalOngletManager;
 import tcucl.back_tcucl.service.FacteurEmissionService;
@@ -156,61 +157,77 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
                     FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_AVION,
                     voyage.getPays().getLibelle()
             ).getFacteurEmission();
+
             Float KegesMoyenAvionTrainees = JegesMoyenAvion;
             if (voyage.getPays() != EnumMobInternationale_Pays.BELGIQUE
-                    || voyage.getPays() != EnumMobInternationale_Pays.LUXEMBOURG
-                    || voyage.getPays() != EnumMobInternationale_Pays.MONACO
-                    || voyage.getPays() != EnumMobInternationale_Pays.PAYS_BAS) {
+                    && voyage.getPays() != EnumMobInternationale_Pays.LUXEMBOURG
+                    && voyage.getPays() != EnumMobInternationale_Pays.MONACO
+                    && voyage.getPays() != EnumMobInternationale_Pays.PAYS_BAS) {
                 KegesMoyenAvionTrainees = JegesMoyenAvion * 1.7f;
             }
+
             Float LegesMoyenTrainNombre = 0f;
             if (voyage.getPays().getIsAccessibleEnTrain()) {
+                try{
                 LegesMoyenTrainNombre = facteurEmissionService.findByCategorieAndType(
                         FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_TRAIN_NOMBRE,
                         voyage.getPays().getLibelle()
                 ).getFacteurEmission();
+                }catch(NonTrouveGeneralCustomException ignored){
+                    System.out.println(ignored.getMessage());
+                    // Si le facteur d'émission n'est pas trouvé, on laisse la valeur à 0
+                    // Cas spécifique au train car il y a une possibilité d'aller en train très compmiqué
+                    // Elle sont donc autorisés
+                }
             }
             Float MegesMoyenTrainDistance = 0f;
             if (voyage.getPays().getIsAccessibleEnTrain()) {
-                MegesMoyenTrainDistance = facteurEmissionService.findByCategorieAndType(
-                        FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_TRAIN_DISTANCE,
-                        voyage.getPays().getLibelle()
-                ).getFacteurEmission();
+                try {
+                    MegesMoyenTrainDistance = facteurEmissionService.findByCategorieAndType(
+                            FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_TRAIN_DISTANCE,
+                            voyage.getPays().getLibelle()
+                    ).getFacteurEmission();
+                }catch (NonTrouveGeneralCustomException ignored) {
+                    System.out.println(ignored.getMessage());
+                    // Si le facteur d'émission n'est pas trouvé, on laisse la valeur à 0
+                    // Cas spécifique au train car il y a une possibilité d'aller en train très compmiqué
+                    // Elle sont donc autorisés
+                }
             }
             Float NegesTotal = (
-                    (CprosAvion + EstagesEtudiantsAvion + GsemestresEtudiantsAvion) * JegesMoyenAvion * 2 +
-                            (DprosTrain + FstagesEtudiantsTrain + HsemestresEtudiantsTrain) * LegesMoyenTrainNombre * 2)
-                    / 1000;
+                    (CprosAvion + EstagesEtudiantsAvion + GsemestresEtudiantsAvion) * JegesMoyenAvion * 2f +
+                            (DprosTrain + FstagesEtudiantsTrain + HsemestresEtudiantsTrain) * LegesMoyenTrainNombre * 2f)
+                    / 1000f;
             Float OegesTotalTrainees = (
-                    (CprosAvion + EstagesEtudiantsAvion + GsemestresEtudiantsAvion) * KegesMoyenAvionTrainees * 2 +
-                            (DprosTrain + FstagesEtudiantsTrain + HsemestresEtudiantsTrain) * LegesMoyenTrainNombre * 2)
-                    / 1000;
-            Float PegesPros = (CprosAvion * KegesMoyenAvionTrainees * 2 + DprosTrain * LegesMoyenTrainNombre * 2) / 1000;
-            Float QegesStagesEtudiants = (EstagesEtudiantsAvion * KegesMoyenAvionTrainees * 2 + FstagesEtudiantsTrain * LegesMoyenTrainNombre * 2) / 1000;
-            Float RegesSemestresEtudiants = (GsemestresEtudiantsAvion * KegesMoyenAvionTrainees * 2 + HsemestresEtudiantsTrain * LegesMoyenTrainNombre * 2) / 1000;
-            Float SegesProsAvion = (CprosAvion * KegesMoyenAvionTrainees) / 1000;
-            Float TegesProsTrain = (DprosTrain * LegesMoyenTrainNombre) / 1000;
-            Float UegesStagesEtudiantsAvion = (EstagesEtudiantsAvion * KegesMoyenAvionTrainees) / 1000;
-            Float VegesStagesEtudiantsTrain = (FstagesEtudiantsTrain * LegesMoyenTrainNombre) / 1000;
-            Float WegesSemestresEtudiantsAvion = (GsemestresEtudiantsAvion * KegesMoyenAvionTrainees) / 1000;
-            Float XegesSemestresEtudiantsTrain = (HsemestresEtudiantsTrain * LegesMoyenTrainNombre) / 1000;
+                    (CprosAvion + EstagesEtudiantsAvion + GsemestresEtudiantsAvion) * KegesMoyenAvionTrainees * 2f +
+                            (DprosTrain + FstagesEtudiantsTrain + HsemestresEtudiantsTrain) * LegesMoyenTrainNombre * 2f)
+                    / 1000f;
+            Float PegesPros = (CprosAvion * KegesMoyenAvionTrainees * 2f + DprosTrain * LegesMoyenTrainNombre * 2f) / 1000f;
+            Float QegesStagesEtudiants = (EstagesEtudiantsAvion * KegesMoyenAvionTrainees * 2f + FstagesEtudiantsTrain * LegesMoyenTrainNombre * 2f) / 1000f;
+            Float RegesSemestresEtudiants = (GsemestresEtudiantsAvion * KegesMoyenAvionTrainees * 2f + HsemestresEtudiantsTrain * LegesMoyenTrainNombre * 2f) / 1000f;
+            Float SegesProsAvion = (CprosAvion * KegesMoyenAvionTrainees) / 1000f;
+            Float TegesProsTrain = (DprosTrain * LegesMoyenTrainNombre) / 1000f;
+            Float UegesStagesEtudiantsAvion = (EstagesEtudiantsAvion * KegesMoyenAvionTrainees) / 1000f;
+            Float VegesStagesEtudiantsTrain = (FstagesEtudiantsTrain * LegesMoyenTrainNombre) / 1000f;
+            Float WegesSemestresEtudiantsAvion = (GsemestresEtudiantsAvion * KegesMoyenAvionTrainees) / 1000f;
+            Float XegesSemestresEtudiantsTrain = (HsemestresEtudiantsTrain * LegesMoyenTrainNombre) / 1000f;
             Float YdistanceTotale = ((CprosAvion + EstagesEtudiantsAvion + GsemestresEtudiantsAvion) * (IDistanceMoyenneVolDOiseau + 100)) * 2
-                    + (DprosTrain + FstagesEtudiantsTrain + HsemestresEtudiantsTrain) * (IDistanceMoyenneVolDOiseau * 2 * 1.2f);
+                    + (DprosTrain + FstagesEtudiantsTrain + HsemestresEtudiantsTrain) * (IDistanceMoyenneVolDOiseau * 2f * 1.2f);
             Float ZdistancePros = ((CprosAvion) * (IDistanceMoyenneVolDOiseau + 100)) * 2
-                    + (DprosTrain) * (IDistanceMoyenneVolDOiseau * 2 * 1.2f);
+                    + (DprosTrain) * (IDistanceMoyenneVolDOiseau * 2f * 1.2f);
             Float AAdistanceStagesEtudiants = ((EstagesEtudiantsAvion) * (IDistanceMoyenneVolDOiseau + 100)) * 2
-                    + (FstagesEtudiantsTrain) * (IDistanceMoyenneVolDOiseau * 2 * 1.2f);
+                    + (FstagesEtudiantsTrain) * (IDistanceMoyenneVolDOiseau * 2f * 1.2f);
             Float ABdistanceSemestresEtudiants = ((GsemestresEtudiantsAvion) * (IDistanceMoyenneVolDOiseau + 100)) * 2
-                    + (HsemestresEtudiantsTrain) * (IDistanceMoyenneVolDOiseau * 2 * 1.2f);
+                    + (HsemestresEtudiantsTrain) * (IDistanceMoyenneVolDOiseau * 2f * 1.2f);
             Float ACdistanceProsAvion = (CprosAvion * (IDistanceMoyenneVolDOiseau + 100)) * 2;
-            Float ADdistanceProsTrain = (DprosTrain * IDistanceMoyenneVolDOiseau * 2 * 1.2f);
+            Float ADdistanceProsTrain = (DprosTrain * IDistanceMoyenneVolDOiseau * 2f * 1.2f);
             Float AEdistanceStagesEtudiantsAvion = (EstagesEtudiantsAvion * (IDistanceMoyenneVolDOiseau + 100)) * 2;
-            Float AFdistanceStagesEtudiantsTrain = (FstagesEtudiantsTrain * IDistanceMoyenneVolDOiseau * 2 * 1.2f);
+            Float AFdistanceStagesEtudiantsTrain = (FstagesEtudiantsTrain * IDistanceMoyenneVolDOiseau * 2f * 1.2f);
             Float AGdistanceSemestresEtudiantsAvion = (GsemestresEtudiantsAvion * (IDistanceMoyenneVolDOiseau + 100)) * 2;
-            Float AHdistanceSemestresEtudiantsTrain = (HsemestresEtudiantsTrain * IDistanceMoyenneVolDOiseau * 2 * 1.2f);
+            Float AHdistanceSemestresEtudiantsTrain = (HsemestresEtudiantsTrain * IDistanceMoyenneVolDOiseau * 2f * 1.2f);
 
             // On ajoute les EGES du voyage avec son ID dans la map
-            resultat.addEmissionGesParPays(voyage.getId(), OegesTotalTrainees);
+            resultat.addEmissionGesParPays(voyage.getPays(), OegesTotalTrainees);
 
             // On va mettre à jour les sommes pour chaque Colonne qui est utilisé pour une somme
             // Syntaxe reprise de l'excel
@@ -269,28 +286,28 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
 
         // PREMIER TABLEAU
         // Emission de Ges - Europe Train
-        resultat.setEmissionGesProEuropeTrain(T9T39sumProsEuropeTrain.get() * 2);
-        resultat.setEmissionGesStagesEuropeTrain(V9V39sumStagesEtudiantsEuropeTrain.get() * 2);
-        resultat.setEmissionGesSemestresEuropeTrain(X9X39sumSemestresEtudiantsEuropeTrain.get() * 2);
+        resultat.setEmissionGesProEuropeTrain(T9T39sumProsEuropeTrain.get() * 2f);
+        resultat.setEmissionGesStagesEuropeTrain(V9V39sumStagesEtudiantsEuropeTrain.get() * 2f);
+        resultat.setEmissionGesSemestresEuropeTrain(X9X39sumSemestresEtudiantsEuropeTrain.get() * 2f);
 
         // Emission de Ges - Europe Avion
-        resultat.setEmissionGesProEuropeAvion(S9S39sumProsEuropeAvion.get() * 2);
-        resultat.setEmissionGesStagesEuropeAvion(U9U39sumStagesEtudiantsEuropeAvion.get() * 2);
-        resultat.setEmissionGesSemestresEuropeAvion(W9W39sumSemestresEtudiantsEuropeAvion.get() * 2);
+        resultat.setEmissionGesProEuropeAvion(S9S39sumProsEuropeAvion.get() * 2f);
+        resultat.setEmissionGesStagesEuropeAvion(U9U39sumStagesEtudiantsEuropeAvion.get() * 2f);
+        resultat.setEmissionGesSemestresEuropeAvion(W9W39sumSemestresEtudiantsEuropeAvion.get() * 2f);
 
         // Emission de Ges - Hors Europe
-        resultat.setEmissionGesProHorsEurope(P41P124sumProsHorsEurope.get() * 2);
-        resultat.setEmissionGesStagesHorsEurope(Q41Q124sumStagesEtudiantsHorsEurope.get() * 2);
-        resultat.setEmissionGesSemestresHorsEurope(R41R124sumSemestresEtudiantsHorsEurope.get() * 2);
+        resultat.setEmissionGesProHorsEurope(P41P124sumProsHorsEurope.get());
+        resultat.setEmissionGesStagesHorsEurope(Q41Q124sumStagesEtudiantsHorsEurope.get());
+        resultat.setEmissionGesSemestresHorsEurope(R41R124sumSemestresEtudiantsHorsEurope.get());
 
         // SECOND TABLEAU
         // Proportion de departs
-        if (nbSalaries != 0) {
+        if (nbSalaries != 0f) {
             resultat.setProsProportionDeDeparts(C9D124sumProsDepart.get() / nbSalaries);
         } else {
             throw new AucunSalarieEnregistre();
         }
-        if (nbEtudiants != 0) {
+        if (nbEtudiants != 0f) {
             resultat.setStagesProportionDeDeparts(E9F124sumStagesEtudiantsDepart.get() / nbEtudiants);
             resultat.setSemestresProportionDeDeparts(G9H124sumSemestresEtudiantsDepart.get() / nbEtudiants);
         } else {
@@ -298,80 +315,80 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
         }
 
         // Part Europe vs Non Europe
-        if (C9D124sumProsDepart.get() != 0) {
+        if (C9D124sumProsDepart.get() != 0f) {
             resultat.setProsPartEuropeVsNonEurope(C9D39sumProsDepartEurope.get() / C9D124sumProsDepart.get());
         }
-        if (E9F124sumStagesEtudiantsDepart.get() != 0) {
+        if (E9F124sumStagesEtudiantsDepart.get() != 0f) {
             resultat.setStagesPartEuropeVsNonEurope(E9F39sumStagesEtudiantsDepartEurope.get() / E9F124sumStagesEtudiantsDepart.get());
         }
-        if (G9H124sumSemestresEtudiantsDepart.get() != 0) {
+        if (G9H124sumSemestresEtudiantsDepart.get() != 0f) {
             resultat.setSemestresPartEuropeVsNonEurope(G9H39sumSemestresEtudiantsDepartEurope.get() / G9H124sumSemestresEtudiantsDepart.get());
         }
 
         // Distance Moyenne Hors Europe
-        if (C41C124sumProsDepartHorsEurope.get() != 0) {
-            resultat.setProsDistanceMoyenneHorsEurope(Z41Z124sumProsDistanceHorsEurope.get() / C41C124sumProsDepartHorsEurope.get());
+        if (C41C124sumProsDepartHorsEurope.get() != 0f) {
+            resultat.setProsDistanceMoyenneHorsEurope(Z41Z124sumProsDistanceHorsEurope.get() / 2 / C41C124sumProsDepartHorsEurope.get());
         }
-        if (E41E124sumStagesEtudiantsDepartHorsEurope.get() != 0) {
-            resultat.setStagesDistanceMoyenneHorsEurope(AA41AA124sumStagesEtudiantsDistanceHorsEurope.get() / E41E124sumStagesEtudiantsDepartHorsEurope.get());
+        if (E41E124sumStagesEtudiantsDepartHorsEurope.get() != 0f) {
+            resultat.setStagesDistanceMoyenneHorsEurope(AA41AA124sumStagesEtudiantsDistanceHorsEurope.get() / 2 / E41E124sumStagesEtudiantsDepartHorsEurope.get());
         }
-        if (G41G124sumSemestresEtudiantsDepartHorsEurope.get() != 0) {
-            resultat.setSemestresDistanceMoyenneHorsEurope(AB41AB124sumSemestresEtudiantsDistanceHorsEurope.get() / G41G124sumSemestresEtudiantsDepartHorsEurope.get());
+        if (G41G124sumSemestresEtudiantsDepartHorsEurope.get() != 0f) {
+            resultat.setSemestresDistanceMoyenneHorsEurope(AB41AB124sumSemestresEtudiantsDistanceHorsEurope.get() / 2 / G41G124sumSemestresEtudiantsDepartHorsEurope.get());
         }
 
         // Part Train Europe
-        if (C9D39sumProsDepartEurope.get() != 0) {
+        if (C9D39sumProsDepartEurope.get() != 0f) {
             resultat.setProsPartTrainEnEurope(D9D39sumProsDepartEuropeTrain.get() / C9D39sumProsDepartEurope.get());
         }
-        if (E9F39sumStagesEtudiantsDepartEurope.get() != 0) {
+        if (E9F39sumStagesEtudiantsDepartEurope.get() != 0f) {
             resultat.setStagesPartTrainEnEurope(F9F39sumStagesEtudiantsDepartEuropeTrain.get() / E9F39sumStagesEtudiantsDepartEurope.get());
         }
-        if (G9H39sumSemestresEtudiantsDepartEurope.get() != 0) {
+        if (G9H39sumSemestresEtudiantsDepartEurope.get() != 0f) {
             resultat.setSemestresPartTrainEnEurope(H9H39sumSemestresEtudiantsDepartEuropeTrain.get() / G9H39sumSemestresEtudiantsDepartEurope.get());
         }
 
         // Distance Moyenne Europe Avion
-        if (C9C39sumProsDepartEuropeAvion.get() != 0) {
-            resultat.setProsDistancemoyenneEuropeAvion(AC9AC39sumProsDistanceEuropeAvion.get() / C9C39sumProsDepartEuropeAvion.get());
+        if (C9C39sumProsDepartEuropeAvion.get() != 0f) {
+            resultat.setProsDistancemoyenneEuropeAvion(AC9AC39sumProsDistanceEuropeAvion.get() / 2 /  C9C39sumProsDepartEuropeAvion.get());
         }
-        if (E9E39sumStagesEtudiantsDepartEuropeAvion.get() != 0) {
-            resultat.setStagesDistancemoyenneEuropeAvion(AE9AE39sumStagesEtudiantsDistanceEuropeAvion.get() / E9E39sumStagesEtudiantsDepartEuropeAvion.get());
+        if (E9E39sumStagesEtudiantsDepartEuropeAvion.get() != 0f) {
+            resultat.setStagesDistancemoyenneEuropeAvion(AE9AE39sumStagesEtudiantsDistanceEuropeAvion.get() / 2 / E9E39sumStagesEtudiantsDepartEuropeAvion.get());
         }
-        if (G9G39sumSemestresEtudiantsDepartEuropeAvion.get() != 0) {
-            resultat.setSemestresDistancemoyenneEuropeAvion(AG9AG39sumSemestresEtudiantsDistanceEuropeAvion.get() / G9G39sumSemestresEtudiantsDepartEuropeAvion.get());
+        if (G9G39sumSemestresEtudiantsDepartEuropeAvion.get() != 0f) {
+            resultat.setSemestresDistancemoyenneEuropeAvion(AG9AG39sumSemestresEtudiantsDistanceEuropeAvion.get() / 2 / G9G39sumSemestresEtudiantsDepartEuropeAvion.get());
         }
 
         // Distance Moyenne Europe Train
-        if (D9D39sumProsDepartEuropeTrain.get() != 0) {
-            resultat.setProsDistanceMoyenneEuropeTrain(AD9AD39sumProsDistanceEuropeTrain.get() / D9D39sumProsDepartEuropeTrain.get());
+        if (D9D39sumProsDepartEuropeTrain.get() != 0f) {
+            resultat.setProsDistanceMoyenneEuropeTrain(AD9AD39sumProsDistanceEuropeTrain.get() / 2 /D9D39sumProsDepartEuropeTrain.get());
         }
-        if (F9F39sumStagesEtudiantsDepartEuropeTrain.get() != 0) {
-            resultat.setStagesDistanceMoyenneEuropeTrain(AF9AF39sumStagesEtudiantsDistanceEuropeTrain.get() / F9F39sumStagesEtudiantsDepartEuropeTrain.get());
+        if (F9F39sumStagesEtudiantsDepartEuropeTrain.get() != 0f) {
+            resultat.setStagesDistanceMoyenneEuropeTrain(AF9AF39sumStagesEtudiantsDistanceEuropeTrain.get() / 2/ F9F39sumStagesEtudiantsDepartEuropeTrain.get());
         }
-        if (H9H39sumSemestresEtudiantsDepartEuropeTrain.get() != 0) {
-            resultat.setSemestresDistanceMoyenneEuropeTrain(AH9AH39sumSemestresEtudiantsDistanceEuropeTrain.get() / H9H39sumSemestresEtudiantsDepartEuropeTrain.get());
+        if (H9H39sumSemestresEtudiantsDepartEuropeTrain.get() != 0f) {
+            resultat.setSemestresDistanceMoyenneEuropeTrain(AH9AH39sumSemestresEtudiantsDistanceEuropeTrain.get() / 2 / H9H39sumSemestresEtudiantsDepartEuropeTrain.get());
         }
 
         // Intensite carbone des déplacements gCO2e/km
-        if (Z9Z124sumDistancePros.get() != 0) {
-            resultat.setProsIntensiteCarboneDesDeplacemeents_gCo2eParKm(P9P124sumEgesPros.get() * 1000000 / Z9Z124sumDistancePros.get());
+        if (Z9Z124sumDistancePros.get() != 0f) {
+            resultat.setProsIntensiteCarboneDesDeplacemeents_gCo2eParKm(P9P124sumEgesPros.get() * 1000000f / Z9Z124sumDistancePros.get());
         }
-        if (AA9AA124sumDistanceStagesEtudiants.get() != 0) {
-            resultat.setStagesIntensiteCarboneDesDeplacemeents_gCo2eParKm(Q9Q124sumEgesStagesEtudiants.get() * 1000000 / AA9AA124sumDistanceStagesEtudiants.get());
+        if (AA9AA124sumDistanceStagesEtudiants.get() != 0f) {
+            resultat.setStagesIntensiteCarboneDesDeplacemeents_gCo2eParKm(Q9Q124sumEgesStagesEtudiants.get() * 1000000f / AA9AA124sumDistanceStagesEtudiants.get());
         }
-        if (AB9AB124sumDistanceSemestresEtudiants.get() != 0) {
-            resultat.setSemestresIntensiteCarboneDesDeplacemeents_gCo2eParKm(R9R124sumEgesSemestresEtudiants.get() * 1000000 / AB9AB124sumDistanceSemestresEtudiants.get());
+        if (AB9AB124sumDistanceSemestresEtudiants.get() != 0f) {
+            resultat.setSemestresIntensiteCarboneDesDeplacemeents_gCo2eParKm(R9R124sumEgesSemestresEtudiants.get() * 1000000f / AB9AB124sumDistanceSemestresEtudiants.get());
         }
 
         // Intensité carbone des déplacements kgCO2e/départ
-        if (C9D124sumProsDepart.get() != 0) {
-            resultat.setProsIntensiteCarboneDesDeplacemeents_kgCo2eParDepart(P9P124sumEgesPros.get() * 1000 / 2 / C9D124sumProsDepart.get());
+        if (C9D124sumProsDepart.get() != 0f) {
+            resultat.setProsIntensiteCarboneDesDeplacemeents_kgCo2eParDepart(((P9P124sumEgesPros.get() * 1000f) / 2f) / C9D124sumProsDepart.get());
         }
-        if (E9F124sumStagesEtudiantsDepart.get() != 0) {
-            resultat.setStagesIntensiteCarboneDesDeplacemeents_kgCo2eParDepart(Q9Q124sumEgesStagesEtudiants.get() * 1000 / 2 / E9F124sumStagesEtudiantsDepart.get());
+        if (E9F124sumStagesEtudiantsDepart.get() != 0f) {
+            resultat.setStagesIntensiteCarboneDesDeplacemeents_kgCo2eParDepart(((Q9Q124sumEgesStagesEtudiants.get() * 1000f) / 2f) / E9F124sumStagesEtudiantsDepart.get());
         }
-        if (G9H124sumSemestresEtudiantsDepart.get() != 0) {
-            resultat.setSemestresIntensiteCarboneDesDeplacemeents_kgCo2eParDepart(R9R124sumEgesSemestresEtudiants.get() * 1000 / 2 / G9H124sumSemestresEtudiantsDepart.get());
+        if (G9H124sumSemestresEtudiantsDepart.get() != 0f) {
+            resultat.setSemestresIntensiteCarboneDesDeplacemeents_kgCo2eParDepart(((R9R124sumEgesSemestresEtudiants.get() * 1000f) / 2f) / G9H124sumSemestresEtudiantsDepart.get());
         }
 
         return resultat;
@@ -497,7 +514,7 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
     private boolean isRowEmpty(Row row) {
         for (int i = 1; i < row.getLastCellNum(); i++) {
             Cell cell = row.getCell(i);
-            if (cell != null && cell.getCellType() != CellType.BLANK) {
+            if (cell != null && cell.getCellType() == CellType.NUMERIC && cell.getCellType() != CellType.BLANK) {
                 return false;
             }
         }
