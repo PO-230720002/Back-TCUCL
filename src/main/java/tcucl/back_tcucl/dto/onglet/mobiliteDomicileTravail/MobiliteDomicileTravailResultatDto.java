@@ -17,20 +17,20 @@ public class MobiliteDomicileTravailResultatDto {
     public Float totalEtudiants;
     public Float totalSalaries;
 
-    public Float DistanceAnnuelleParUsagerSalaries;
-    public Float DistanceAnnuelleParUsagerEtudiants;
-    public Float NombreDeJoursDeDeplacementSalaries;
-    public Float NombreDeJoursDeDeplacementEtudiants;
-    public Float DistanceDomicileTravailMoyenneSalaries;
-    public Float DistanceDomicileTravailMoyenneEtudiants;
-    public Float PartModaleVoitureThermiqueSalaries;
-    public Float PartModaleVoitureThermiqueEtudiants;
-    public Float PartModaleVoitureElectriqueSalaries;
-    public Float PartModaleVoitureElectriqueEtudiants;
-    public Float PartModaleModesDouxSalaries;
-    public Float PartModaleModesDouxEtudiants;
-    public Float IntensiteCarboneMoyenSalaries;
-    public Float IntensiteCarboneMoyenEtudiants;
+    public Float distanceAnnuelleParUsagerSalaries;
+    public Float distanceAnnuelleParUsagerEtudiants;
+    public Float nombreDeJoursDeDeplacementSalaries;
+    public Float nombreDeJoursDeDeplacementEtudiants;
+    public Float distanceDomicileTravailMoyenneSalaries;
+    public Float distanceDomicileTravailMoyenneEtudiants;
+    public Float partModaleVoitureThermiqueSalaries;
+    public Float partModaleVoitureThermiqueEtudiants;
+    public Float partModaleVoitureElectriqueSalaries;
+    public Float partModaleVoitureElectriqueEtudiants;
+    public Float partModaleModesDouxSalaries;
+    public Float partModaleModesDouxEtudiants;
+    public Float intensiteCarboneMoyenSalaries;
+    public Float intensiteCarboneMoyenEtudiants;
 
 
     public MobiliteDomicileTravailResultatDto() {
@@ -141,114 +141,114 @@ public class MobiliteDomicileTravailResultatDto {
     }
 
     public Float getDistanceAnnuelleParUsagerEtudiants() {
-        return DistanceAnnuelleParUsagerEtudiants;
+        return distanceAnnuelleParUsagerEtudiants;
     }
 
     public void setDistanceAnnuelleParUsagerEtudiants(Float distanceAnnuelleParUsagerEtudiants) {
-        DistanceAnnuelleParUsagerEtudiants = distanceAnnuelleParUsagerEtudiants;
+        this.distanceAnnuelleParUsagerEtudiants = distanceAnnuelleParUsagerEtudiants;
     }
 
     public Float getNombreDeJoursDeDeplacementEtudiants() {
-        return NombreDeJoursDeDeplacementEtudiants;
+        return nombreDeJoursDeDeplacementEtudiants;
     }
 
     public void setNombreDeJoursDeDeplacementEtudiants(Float nombreDeJoursDeDeplacementEtudiants) {
-        NombreDeJoursDeDeplacementEtudiants = nombreDeJoursDeDeplacementEtudiants;
+        this.nombreDeJoursDeDeplacementEtudiants = nombreDeJoursDeDeplacementEtudiants;
     }
 
     public Float getDistanceDomicileTravailMoyenneEtudiants() {
-        return DistanceDomicileTravailMoyenneEtudiants;
+        return distanceDomicileTravailMoyenneEtudiants;
     }
 
     public void setDistanceDomicileTravailMoyenneEtudiants(Float distanceDomicileTravailMoyenneEtudiants) {
-        DistanceDomicileTravailMoyenneEtudiants = distanceDomicileTravailMoyenneEtudiants;
+        this.distanceDomicileTravailMoyenneEtudiants = distanceDomicileTravailMoyenneEtudiants;
     }
 
     public Float getPartModaleVoitureThermiqueEtudiants() {
-        return PartModaleVoitureThermiqueEtudiants;
+        return partModaleVoitureThermiqueEtudiants;
     }
 
     public void setPartModaleVoitureThermiqueEtudiants(Float partModaleVoitureThermiqueEtudiants) {
-        PartModaleVoitureThermiqueEtudiants = partModaleVoitureThermiqueEtudiants;
+        this.partModaleVoitureThermiqueEtudiants = partModaleVoitureThermiqueEtudiants;
     }
 
     public Float getPartModaleVoitureElectriqueEtudiants() {
-        return PartModaleVoitureElectriqueEtudiants;
+        return partModaleVoitureElectriqueEtudiants;
     }
 
     public void setPartModaleVoitureElectriqueEtudiants(Float partModaleVoitureElectriqueEtudiants) {
-        PartModaleVoitureElectriqueEtudiants = partModaleVoitureElectriqueEtudiants;
+        this.partModaleVoitureElectriqueEtudiants = partModaleVoitureElectriqueEtudiants;
     }
 
     public Float getPartModaleModesDouxEtudiants() {
-        return PartModaleModesDouxEtudiants;
+        return partModaleModesDouxEtudiants;
     }
 
     public void setPartModaleModesDouxEtudiants(Float partModaleModesDouxEtudiants) {
-        PartModaleModesDouxEtudiants = partModaleModesDouxEtudiants;
+        this.partModaleModesDouxEtudiants = partModaleModesDouxEtudiants;
     }
 
     public Float getIntensiteCarboneMoyenEtudiants() {
-        return IntensiteCarboneMoyenEtudiants;
+        return intensiteCarboneMoyenEtudiants;
     }
 
     public void setIntensiteCarboneMoyenEtudiants(Float intensiteCarboneMoyenEtudiants) {
-        IntensiteCarboneMoyenEtudiants = intensiteCarboneMoyenEtudiants;
+        this.intensiteCarboneMoyenEtudiants = intensiteCarboneMoyenEtudiants;
     }
 
     public Float getDistanceAnnuelleParUsagerSalaries() {
-        return DistanceAnnuelleParUsagerSalaries;
+        return distanceAnnuelleParUsagerSalaries;
     }
 
     public void setDistanceAnnuelleParUsagerSalaries(Float distanceAnnuelleParUsagerSalaries) {
-        DistanceAnnuelleParUsagerSalaries = distanceAnnuelleParUsagerSalaries;
+        this.distanceAnnuelleParUsagerSalaries = distanceAnnuelleParUsagerSalaries;
     }
 
     public Float getNombreDeJoursDeDeplacementSalaries() {
-        return NombreDeJoursDeDeplacementSalaries;
+        return nombreDeJoursDeDeplacementSalaries;
     }
 
     public void setNombreDeJoursDeDeplacementSalaries(Float nombreDeJoursDeDeplacementSalaries) {
-        NombreDeJoursDeDeplacementSalaries = nombreDeJoursDeDeplacementSalaries;
+        this.nombreDeJoursDeDeplacementSalaries = nombreDeJoursDeDeplacementSalaries;
     }
 
     public Float getDistanceDomicileTravailMoyenneSalaries() {
-        return DistanceDomicileTravailMoyenneSalaries;
+        return distanceDomicileTravailMoyenneSalaries;
     }
 
     public void setDistanceDomicileTravailMoyenneSalaries(Float distanceDomicileTravailMoyenneSalaries) {
-        DistanceDomicileTravailMoyenneSalaries = distanceDomicileTravailMoyenneSalaries;
+        this.distanceDomicileTravailMoyenneSalaries = distanceDomicileTravailMoyenneSalaries;
     }
 
     public Float getPartModaleVoitureThermiqueSalaries() {
-        return PartModaleVoitureThermiqueSalaries;
+        return partModaleVoitureThermiqueSalaries;
     }
 
     public void setPartModaleVoitureThermiqueSalaries(Float partModaleVoitureThermiqueSalaries) {
-        PartModaleVoitureThermiqueSalaries = partModaleVoitureThermiqueSalaries;
+        this.partModaleVoitureThermiqueSalaries = partModaleVoitureThermiqueSalaries;
     }
 
     public Float getPartModaleVoitureElectriqueSalaries() {
-        return PartModaleVoitureElectriqueSalaries;
+        return partModaleVoitureElectriqueSalaries;
     }
 
     public void setPartModaleVoitureElectriqueSalaries(Float partModaleVoitureElectriqueSalaries) {
-        PartModaleVoitureElectriqueSalaries = partModaleVoitureElectriqueSalaries;
+        this.partModaleVoitureElectriqueSalaries = partModaleVoitureElectriqueSalaries;
     }
 
     public Float getPartModaleModesDouxSalaries() {
-        return PartModaleModesDouxSalaries;
+        return partModaleModesDouxSalaries;
     }
 
     public void setPartModaleModesDouxSalaries(Float partModaleModesDouxSalaries) {
-        PartModaleModesDouxSalaries = partModaleModesDouxSalaries;
+        this.partModaleModesDouxSalaries = partModaleModesDouxSalaries;
     }
 
     public Float getIntensiteCarboneMoyenSalaries() {
-        return IntensiteCarboneMoyenSalaries;
+        return intensiteCarboneMoyenSalaries;
     }
 
     public void setIntensiteCarboneMoyenSalaries(Float intensiteCarboneMoyenSalaries) {
-        IntensiteCarboneMoyenSalaries = intensiteCarboneMoyenSalaries;
+        this.intensiteCarboneMoyenSalaries = intensiteCarboneMoyenSalaries;
     }
 }

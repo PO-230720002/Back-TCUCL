@@ -165,8 +165,42 @@ public class MobiliteDomicileTravailOngletServiceImpl implements MobiliteDomicil
 //        Integer nbSalarie = generalOngletService.getGeneralOngletById(ongletGeneralId).getNbSalarie();
 //        Integer nbEtudiant = generalOngletService.getGeneralOngletById(ongletGeneralId).getNbEtudiant();
 
-        Integer nbSalarie = mobiliteOnglet.getOngletDeClass(GeneralOnglet.class).getNbSalarie();
-        Integer nbEtudiant = mobiliteOnglet.getOngletDeClass(GeneralOnglet.class).getNbEtudiant();
+        GeneralOnglet ongletDeClass = mobiliteOnglet.getOngletDeClass(GeneralOnglet.class);
+        Float nbSalarie = (float) ongletDeClass.getNbSalarie();
+        Float nbEtudiant = (float) ongletDeClass.getNbEtudiant();
+
+        Float totalEmissionEtudiants =
+                (mobiliteOnglet.getVoitureThermiqueEtudiantKm() * facteurEmissionVoitureThermique
+                        + mobiliteOnglet.getVoitureElectriqueEtudiantKm() * facteurEmissionVoitureElectrique
+                        + mobiliteOnglet.getVoitureHybrideEtudiantKm() * facteurEmissionVoitureHybride
+                        + mobiliteOnglet.getMotoEtudiantKm() * facteurEmissionMoto
+                        + mobiliteOnglet.getTrainRegionalEtudiantKm() * facteurEmissionTrainRegional
+                        + mobiliteOnglet.getBusEtudiantKm() * facteurEmissionBus
+                        + mobiliteOnglet.getMetroTramwayEtudiantKm() * facteurEmissionMetroTramway
+                        + mobiliteOnglet.getVeloEtudiantKm() * facteurEmissionVelo
+                        + mobiliteOnglet.getTrottinetteElectriqueEtudiantKm() * facteurEmissionTrotinetteElectrique
+                        + mobiliteOnglet.getVeloElectriqueEtudiantKm() * facteurEmissionVeloElectrique
+                        + mobiliteOnglet.getMarcheAPiedEtudiantKm() * facteurEmissionMarcheAPied) / 1000;
+
+        mobiliteResultatDto.setTotalEtudiants(totalEmissionEtudiants);
+
+        Float totalEmissionSalaries =
+                (mobiliteOnglet.getVoitureThermiqueSalarieKm() * facteurEmissionVoitureThermique +
+                        mobiliteOnglet.getVoitureElectriqueSalarieKm() * facteurEmissionVoitureElectrique +
+                        mobiliteOnglet.getVoitureHybrideSalarieKm() * facteurEmissionVoitureHybride +
+                        mobiliteOnglet.getMotoSalarieKm() * facteurEmissionMoto +
+                        mobiliteOnglet.getTrainRegionalSalarieKm() * facteurEmissionTrainRegional +
+                        mobiliteOnglet.getBusSalarieKm() * facteurEmissionBus +
+                        mobiliteOnglet.getMetroTramwaySalarieKm() * facteurEmissionMetroTramway +
+                        mobiliteOnglet.getVeloSalarieKm() * facteurEmissionVelo +
+                        mobiliteOnglet.getTrottinetteElectriqueSalarieKm() * facteurEmissionTrotinetteElectrique +
+                        mobiliteOnglet.getVeloElectriqueSalarieKm() * facteurEmissionVeloElectrique +
+                        mobiliteOnglet.getMarcheAPiedSalarieKm() * facteurEmissionMarcheAPied) / 1000;
+
+        mobiliteResultatDto.setTotalSalaries(totalEmissionSalaries);
+
+        mobiliteResultatDto.setNombreDeJoursDeDeplacementEtudiants((float) mobiliteOnglet.getNbJoursDeplacementEtudiant());
+        mobiliteResultatDto.setNombreDeJoursDeDeplacementSalaries((float) mobiliteOnglet.getNbJoursDeplacementSalarie());
 
         Float sommeDistanceSalarie = (float) mobiliteOnglet.getVoitureThermiqueSalarieKm() +
                 mobiliteOnglet.getVoitureElectriqueSalarieKm() +
@@ -228,12 +262,10 @@ public class MobiliteDomicileTravailOngletServiceImpl implements MobiliteDomicil
         );
 
         mobiliteResultatDto.setPartModaleVoitureElectriqueSalaries((float)
-                (mobiliteOnglet.getVoitureElectriqueSalarieKm()
-                        + mobiliteOnglet.getVoitureElectriqueEtudiantKm()) / sommeDistanceSalarie
+                (mobiliteOnglet.getVoitureElectriqueSalarieKm()) / sommeDistanceSalarie
         );
         mobiliteResultatDto.setPartModaleVoitureElectriqueEtudiants((float)
-                (mobiliteOnglet.getVoitureElectriqueEtudiantKm()
-                        + mobiliteOnglet.getVoitureElectriqueSalarieKm()) / sommeDistanceEtudiant
+                (mobiliteOnglet.getVoitureElectriqueEtudiantKm()) / sommeDistanceEtudiant
         );
 
         mobiliteResultatDto.setPartModaleModesDouxSalaries((float)
@@ -256,10 +288,10 @@ public class MobiliteDomicileTravailOngletServiceImpl implements MobiliteDomicil
         );
 
         mobiliteResultatDto.setIntensiteCarboneMoyenSalaries(
-                nbSalarie*1000000f/sommeDistanceSalarie
+                mobiliteResultatDto.totalSalaries*1000000f/sommeDistanceSalarie
         );
         mobiliteResultatDto.setIntensiteCarboneMoyenEtudiants(
-                nbEtudiant*1000000f/sommeDistanceEtudiant
+                mobiliteResultatDto.totalEtudiants*1000000f/sommeDistanceEtudiant
         );
 
 
