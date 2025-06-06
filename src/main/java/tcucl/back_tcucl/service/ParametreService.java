@@ -28,4 +28,6 @@ public interface ParametreService {
     List<Utilisateur> getAllUtilisateurParEntiteId(Long entiteId);
 
     Boolean peutCreerUneNouvelleAnnee();
+
+    List<EntiteNomIdDto> getAllEntiteNomId();
 }
