@@ -20,11 +20,6 @@ public class DechetOngletDto {
     private DechetDto textile;
 
     public DechetOngletDto() {
-        this.ordures_menageres = new DechetDto();
-        this.cartons = new DechetDto();
-        this.verre = new DechetDto();
-        this.metaux = new DechetDto();
-        this.textile = new DechetDto();
     }
 
     public DechetOngletDto(DechetOnglet entity) {

@@ -20,7 +20,7 @@ public class DechetOngletManagerImpl implements DechetOngletManager {
 
     @Override
     public DechetOnglet getDechetOngletById(Long ongletId) {
-        return dechetOngletRepository.findById(ongletId).orElseThrow(() -> new OngletNonTrouveIdException("DechetOnglet",ongletId));
+        return dechetOngletRepository.findById(ongletId).orElseThrow(() -> new OngletNonTrouveIdException("DechetOnglet", ongletId));
     }
 
     @Override
