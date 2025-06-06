@@ -37,16 +37,13 @@ public class Entite {
     private NotesPermanentes notesPermanentes = new NotesPermanentes();
 
     @OneToMany(mappedBy = "entite", cascade = CascadeType.ALL)
-    private List<Annee> annees;
+    private List<Annee> annees = new ArrayList<>();
 
 
     public Entite(String nom, String type) {
         this.nom = nom;
         this.type = type;
 
-        Annee annee = new Annee();
-        annee.setEntite(this); // Liaison bidirectionnelle
-        this.annees = new ArrayList<>(Collections.singletonList(annee));
     }
 
     public Entite() {

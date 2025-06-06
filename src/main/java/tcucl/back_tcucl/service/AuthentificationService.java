@@ -7,7 +7,6 @@ import tcucl.back_tcucl.dto.InscriptionDto;
 import java.util.Map;
 
 public interface AuthentificationService {
-    void inscription(InscriptionDto inscriptionDto);
 
     void changePassword(ChangePasswordDto requete);
 

@@ -4,4 +4,6 @@ public interface ApplicationParamManager {
     Integer getDerniereAnneeCreee();
 
     void setDerniereAnneeCreee(Integer annee);
+
+    Boolean isDerniereAnneeCreee();
 }

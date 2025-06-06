@@ -729,7 +729,6 @@ public class FacteurEmissionParametre {
         public static final String VIETNAM = "Vietnam";
         public static final String ZIMBABWE = "Zimbabwe";
     }
-    //todo changer trottinette avion frrance dans le fichier
 
     public static final String BATIMENTS_BUREAUX = "BATIMENTS - Bureaux";
     public static final String BATIMENTS_ENSEIGNEMENT = "BATIMENTS - Enseignement";

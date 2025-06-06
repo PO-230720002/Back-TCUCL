@@ -7,10 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.config.JwtUtils;
-import tcucl.back_tcucl.dto.ChangePasswordDto;
-import tcucl.back_tcucl.dto.ConnexionDto;
-import tcucl.back_tcucl.dto.InscriptionDto;
-import tcucl.back_tcucl.dto.UtilisateurDto;
+import tcucl.back_tcucl.dto.*;
 import tcucl.back_tcucl.entity.Utilisateur;
 import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisIdentifiantsException;
 import tcucl.back_tcucl.service.UtilisateurService;
@@ -37,12 +34,6 @@ public class AuthentificationServiceImpl implements AuthentificationService {
         this.utilisateurService = utilisateurService;
         this.jwtUtils = jwtUtils;
         this.authenticationManager = authenticationManager;
-    }
-
-    // devTodo à supprimer après Tests
-    @Override
-    public void inscription(InscriptionDto inscriptionDto) {
-        utilisateurService.inscrireUtilisateur(inscriptionDto);
     }
 
     @Override

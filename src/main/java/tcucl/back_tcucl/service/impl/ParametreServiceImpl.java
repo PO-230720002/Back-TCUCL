@@ -1,5 +1,8 @@
 package tcucl.back_tcucl.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tcucl.back_tcucl.config.AnneeConfig;
@@ -7,15 +10,17 @@ import tcucl.back_tcucl.dto.*;
 import tcucl.back_tcucl.entity.Annee;
 import tcucl.back_tcucl.entity.Entite;
 import tcucl.back_tcucl.entity.Utilisateur;
+import tcucl.back_tcucl.exceptionPersonnalisee.AnneeUniversitaireDejaCreeException;
 import tcucl.back_tcucl.service.*;
 
 import java.util.List;
 
-import static tcucl.back_tcucl.Constante.ADMIN_TRUE;
+import static tcucl.back_tcucl.Constante.*;
 
 @Service
 public class ParametreServiceImpl implements ParametreService {
 
+    private static final Logger log = LoggerFactory.getLogger(ParametreServiceImpl.class);
     private final EntiteService entiteService;
     private final UtilisateurService utilisateurService;
     private final ApplicationParamService applicationParamService;
@@ -27,8 +32,8 @@ public class ParametreServiceImpl implements ParametreService {
     }
 
     @Override
-    public void inscrireUtilisateur(InscriptionDto inscriptionDto) {
-        utilisateurService.inscrireUtilisateur(inscriptionDto);
+    public void inscrireUtilisateur(InscriptionDto_SuperAdmin inscriptionDtoSuperAdmin) {
+        utilisateurService.inscrireUtilisateur(inscriptionDtoSuperAdmin);
     }
 
     @Override
@@ -52,27 +57,23 @@ public class ParametreServiceImpl implements ParametreService {
     }
 
 
-    @Override
-    public void ajouterAnneeEntite(Long entiteId, Integer anneeUniversitaire) {
-        entiteService.ajouterAnneeEntite(entiteId, anneeUniversitaire);
-    }
-
     //Le transactionnal permet le rollback de l'opération si une exception est levée
     //ex: si l'inscription de l'utilisateur échoue, l'entité ne sera pas créée
     @Transactional
     @Override
-    public void creerEntiteEtAdmin(CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
+    public void creerEntiteEtAdmin(CreationEntiteEtAdminDto_SuperAdmin creationEntiteEtAdminDto_superAdmin) {
 
         //Creation puis récupération de l'entite
-        Entite entite = entiteService.creerEntite(creationEntiteEtAdminDto.getNom(), creationEntiteEtAdminDto.getType());
+        Entite entite = entiteService.creerEntite(creationEntiteEtAdminDto_superAdmin.getNom(), creationEntiteEtAdminDto_superAdmin.getType(), creationEntiteEtAdminDto_superAdmin.getEstSuperAdmin());
 
         //Inscription de l'utilisateur
-        utilisateurService. inscrireUtilisateur(new InscriptionDto(
-                        creationEntiteEtAdminDto.getNomUtilisateur(),
-                        creationEntiteEtAdminDto.getPrenomUtilisateur(),
-                        creationEntiteEtAdminDto.getEmailUtilisateur(),
-                        ADMIN_TRUE,
-                        entite.getId()
+        utilisateurService.inscrireUtilisateur(new InscriptionDto_SuperAdmin(
+                creationEntiteEtAdminDto_superAdmin.getNomUtilisateur(),
+                creationEntiteEtAdminDto_superAdmin.getPrenomUtilisateur(),
+                creationEntiteEtAdminDto_superAdmin.getEmailUtilisateur(),
+                creationEntiteEtAdminDto_superAdmin.getEstSuperAdmin() ? ADMIN_FALSE : ADMIN_TRUE,
+                creationEntiteEtAdminDto_superAdmin.getEstSuperAdmin() ? SUPERADMIN_TRUE : SUPERADMIN_FALSE,
+                entite.getId()
         ));
     }
 
@@ -95,19 +96,19 @@ public class ParametreServiceImpl implements ParametreService {
 
         //On vérifie si l'année universitaire courante est déjà créée
         if (applicationParamService.getDerniereAnneeCreee() == anneeUniversitaire) {
-            throw new IllegalStateException("L'année universitaire " + anneeUniversitaire + " est déjà créée.");
+            throw new AnneeUniversitaireDejaCreeException(anneeUniversitaire);
         }
 
-        List<Entite> entites = entiteService.getAllEntites();
+        List<Entite> entites = entiteService.getAllEntites().stream().filter(entite -> entite.getId() != 1).toList();
         for (Entite entite : entites) {
 
             Annee annee = new Annee(anneeUniversitaire);
-            annee.setEntite(entite);
-            entite.getAnnees().add(annee);
+            entite.addAnnee(annee); // gère la liaison bidirectionnelle
 
             entiteService.saveEntite(entite);
         }
         applicationParamService.setDerniereAnneeCreee(anneeUniversitaire);
+        log.info("Année universitaire {} créée pour toutes les entités.", anneeUniversitaire);
     }
 
     @Override

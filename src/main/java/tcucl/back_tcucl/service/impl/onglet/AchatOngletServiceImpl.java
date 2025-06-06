@@ -111,7 +111,7 @@ public class AchatOngletServiceImpl implements AchatOngletService {
                 FacteurEmissionParametre.ACHATS_CONSOMMABLES,
                 FacteurEmissionParametre.ACHATS_CONSOMMABLES_.SERVICE_AUTRE).getFacteurEmission();
         resultat.setServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments(
-                onglet.getAchatConsommable().getServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments() * facteurEmissionParametre/1000f);
+                onglet.getAchatConsommable().getServices_impPubArchiIngeMaintTechBat() * facteurEmissionParametre/1000f);
 
         facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
                 FacteurEmissionParametre.ACHATS_CONSOMMABLES,
@@ -211,7 +211,7 @@ public class AchatOngletServiceImpl implements AchatOngletService {
         resultat.setChaussure_nb(
                 onglet.getAchatTextile().getChaussure_nb() * facteurEmissionParametre /1000f);
 
-        //todo textile et habillage en euro n'est pas dans l'app mais dans les facteurs
+        // todo textile et habillage en euro n'est pas dans l'app mais dans les facteurs
 
         // RESTAURATION
         switch (onglet.getAchatRestauration().getMethodeCalcul()){
