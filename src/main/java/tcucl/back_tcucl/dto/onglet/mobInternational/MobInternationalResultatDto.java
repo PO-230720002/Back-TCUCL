@@ -1,10 +1,12 @@
 package tcucl.back_tcucl.dto.onglet.mobInternational;
 
+import tcucl.back_tcucl.entity.onglet.mobInternationale.enums.EnumMobInternationale_Pays;
+
 import java.util.Map;
 
 public class MobInternationalResultatDto {
 
-    private Map<Long, Float> emissionGesParPays;
+    private Map<EnumMobInternationale_Pays, Float> emissionGesParPays;
 
     private Float emissionGesProEuropeTrain=0f;
     private Float emissionGesProEuropeAvion=0f;
@@ -51,15 +53,15 @@ public class MobInternationalResultatDto {
     public MobInternationalResultatDto() {
     }
 
-    public Map<Long, Float> getEmissionGesParPays() {
+    public Map<EnumMobInternationale_Pays, Float> getEmissionGesParPays() {
         return emissionGesParPays;
     }
 
-    public void setEmissionGesParPays(Map<Long, Float> emissionGesParPays) {
+    public void setEmissionGesParPays(Map<EnumMobInternationale_Pays, Float> emissionGesParPays) {
         this.emissionGesParPays = emissionGesParPays;
     }
 
-    public void addEmissionGesParPays(Long paysId, Float emission) {
+    public void addEmissionGesParPays(EnumMobInternationale_Pays paysId, Float emission) {
         if (this.emissionGesParPays == null) {
             this.emissionGesParPays = new java.util.HashMap<>();
         }
