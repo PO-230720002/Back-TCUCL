@@ -18,7 +18,7 @@ public class GeneralController {
     }
 
     @GetMapping()
-    @PreAuthorize("hasRole('ROLE_ENTITE_' + #entiteId)")
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or hasRole('ROLE_ENTITE_' + #entiteId)")
     public ResponseEntity<?> getongletIdListForEntiteAndAnnee(@PathVariable(value = "entiteId") Long entiteId,
                                                               @RequestParam(value="annee") Integer annee) {
         return ResponseEntity.ok(anneeService.getongletIdListForEntiteAndAnnee(entiteId, annee));
