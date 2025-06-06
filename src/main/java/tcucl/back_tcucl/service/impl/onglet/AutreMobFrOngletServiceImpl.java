@@ -3,7 +3,6 @@ package tcucl.back_tcucl.service.impl.onglet;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.onglet.autreMobFr.AutreMobFrOngletDto;
 import tcucl.back_tcucl.dto.onglet.autreMobFr.AutreMobFrResultatDto;
-import tcucl.back_tcucl.entity.facteurEmission.FacteurEmission;
 import tcucl.back_tcucl.entity.facteurEmission.FacteurEmissionParametre;
 import tcucl.back_tcucl.entity.onglet.AutreMobFrOnglet;
 import tcucl.back_tcucl.manager.AutreMobFrOngletManager;
@@ -41,42 +40,55 @@ public class AutreMobFrOngletServiceImpl implements AutreMobFrOngletService {
                 FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_.VOITURE_THERMIQUE).getFacteurEmission();
         Float egesVoitureThermiqueSalarie = autreMobFrOnglet.getSalarieDistanceTotale_VoitureThermique() * facteurEmissionVoitureThermique / 1000f;
         Float egesVoitureThermiqueEtudiant = autreMobFrOnglet.getEtudiantDistanceTotale_VoitureThermique() * facteurEmissionVoitureThermique / 1000f;
-        autreMobFrResultatDto.setEmissionGesVoitureThermique(egesVoitureThermiqueSalarie + egesVoitureThermiqueEtudiant);
+        Float egesVoitureThermique = egesVoitureThermiqueSalarie + egesVoitureThermiqueEtudiant;
+        autreMobFrResultatDto.setEmissionGesVoitureThermique(egesVoitureThermique);
 
         Float facteurEmissionVoitureElectrique = facteurEmissionService.findByCategorieAndType(
                 FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE,
                 FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_.VOITURE_ELECTRIQUE).getFacteurEmission();
         Float egesVoitureElectriqueSalarie = autreMobFrOnglet.getSalarieDistanceTotale_VoitureElectrique() * facteurEmissionVoitureElectrique / 1000f;
         Float egesVoitureElectriqueEtudiant = autreMobFrOnglet.getEtudiantDistanceTotale_VoitureElectrique() * facteurEmissionVoitureElectrique / 1000f;
-        autreMobFrResultatDto.setEmissionGesVoitureElectrique(egesVoitureElectriqueSalarie + egesVoitureElectriqueEtudiant);
+        Float egesVoitureElectrique = egesVoitureElectriqueSalarie + egesVoitureElectriqueEtudiant;
+        autreMobFrResultatDto.setEmissionGesVoitureElectrique(egesVoitureElectrique);
 
         Float facteurEmissionAvion = facteurEmissionService.findByCategorieAndType(
                 FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_TRAIN_DISTANCE,
                 FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_TRAIN_DISTANCE_.AVION_FRANCE).getFacteurEmission();
         Float egesAvionSalarie = autreMobFrOnglet.getSalarieDistanceTotale_Avion() * facteurEmissionAvion / 1000f;
         Float egesAvionEtudiant = autreMobFrOnglet.getEtudiantDistanceTotale_Avion() * facteurEmissionAvion / 1000f;
-        autreMobFrResultatDto.setEmissionGesAvion(egesAvionSalarie + egesAvionEtudiant);
+        Float egesAvion = egesAvionSalarie + egesAvionEtudiant;
+        autreMobFrResultatDto.setEmissionGesAvion(egesAvion);
 
         Float facteurEmissionFranceTrainRegional = facteurEmissionService.findByCategorieAndType(
                 FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_TRAIN_DISTANCE,
                 FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_TRAIN_DISTANCE_.TRAIN_FRANCE_TER).getFacteurEmission();
         Float egesFranceTrainRegionalSalarie = autreMobFrOnglet.getSalarieDistanceTotale_France_TrainRegional() * facteurEmissionFranceTrainRegional / 1000f;
         Float egesFranceTrainRegionalEtudiant = autreMobFrOnglet.getEtudiantDistanceTotale_France_TrainRegional() * facteurEmissionFranceTrainRegional / 1000f;
-        autreMobFrResultatDto.setEmissionGesFranceTrainRegional(egesFranceTrainRegionalSalarie + egesFranceTrainRegionalEtudiant);
+        Float egesFranceTrainRegional = egesFranceTrainRegionalSalarie + egesFranceTrainRegionalEtudiant;
+        autreMobFrResultatDto.setEmissionGesFranceTrainRegional(egesFranceTrainRegional);
 
         Float facteurEmissionFranceTrainGrandesLignes = facteurEmissionService.findByCategorieAndType(
                 FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_TRAIN_DISTANCE,
                 FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_TRAIN_DISTANCE_.TRAIN_FRANCE_TGV).getFacteurEmission();
         Float egesFranceTrainGrandesLignesSalarie = autreMobFrOnglet.getSalarieDistanceTotale_France_TrainGrandesLignes() * facteurEmissionFranceTrainGrandesLignes / 1000f;
         Float egesFranceTrainGrandesLignesEtudiant = autreMobFrOnglet.getEtudiantDistanceTotale_France_TrainGrandesLignes() * facteurEmissionFranceTrainGrandesLignes / 1000f;
-        autreMobFrResultatDto.setEmissionGesFranceTrainGrandesLignes(egesFranceTrainGrandesLignesSalarie + egesFranceTrainGrandesLignesEtudiant);
+        Float egesFranceTrainGrandesLignes = egesFranceTrainGrandesLignesSalarie + egesFranceTrainGrandesLignesEtudiant;
+        autreMobFrResultatDto.setEmissionGesFranceTrainGrandesLignes(egesFranceTrainGrandesLignes);
 
         Float facteurEmissionAutocar = facteurEmissionService.findByCategorieAndType(
                 FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_TRAIN_DISTANCE,
                 FacteurEmissionParametre.MOBILITE_LONGUE_DISTANCE_TRAIN_DISTANCE_.AUTOCAR).getFacteurEmission();
         Float egesAutocarSalarie = autreMobFrOnglet.getSalarieDistanceTotale_Autocar() * facteurEmissionAutocar / 1000f;
         Float egesAutocarEtudiant = autreMobFrOnglet.getEtudiantDistanceTotale_Autocar() * facteurEmissionAutocar / 1000f;
-        autreMobFrResultatDto.setEmissionGesAutocar(egesAutocarSalarie + egesAutocarEtudiant);
+        Float egesAutocar = egesAutocarSalarie + egesAutocarEtudiant;
+        autreMobFrResultatDto.setEmissionGesAutocar(egesAutocar);
+
+        autreMobFrResultatDto.setTotalPosteMobiliteFrance(egesVoitureThermique
+                + egesVoitureElectrique
+                + egesAvion
+                + egesFranceTrainRegional
+                + egesFranceTrainGrandesLignes
+                + egesAutocar);
 
         autreMobFrResultatDto.setTotalEtudiants(egesVoitureThermiqueEtudiant
                 + egesVoitureElectriqueEtudiant

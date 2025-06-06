@@ -10,14 +10,17 @@ public class MobInternationalResultatDto {
 
     private Float emissionGesProEuropeTrain=0f;
     private Float emissionGesProEuropeAvion=0f;
+    private Float emissionGesProEurope=0f;
     private Float emissionGesProHorsEurope=0f;
 
     private Float emissionGesStagesEuropeTrain=0f;
     private Float emissionGesStagesEuropeAvion=0f;
+    private Float emissionGesStageEurope=0f;
     private Float emissionGesStagesHorsEurope=0f;
 
     private Float emissionGesSemestresEuropeTrain=0f;
     private Float emissionGesSemestresEuropeAvion=0f;
+    private Float emissionGesSemestreEurope=0f;
     private Float emissionGesSemestresHorsEurope=0f;
 
 
@@ -84,6 +87,14 @@ public class MobInternationalResultatDto {
         this.emissionGesProEuropeAvion = emissionGesProEuropeAvion;
     }
 
+    public Float getEmissionGesProEurope() {
+        return emissionGesProEurope;
+    }
+
+    public void setEmissionGesProEurope(Float emissionGesProEurope) {
+        this.emissionGesProEurope = emissionGesProEurope;
+    }
+
     public Float getEmissionGesProHorsEurope() {
         return emissionGesProHorsEurope;
     }
@@ -108,6 +119,14 @@ public class MobInternationalResultatDto {
         this.emissionGesStagesEuropeAvion = emissionGesStagesEuropeAvion;
     }
 
+    public Float getEmissionGesStageEurope() {
+        return emissionGesStageEurope;
+    }
+
+    public void setEmissionGesStageEurope(Float emissionGesStageEurope) {
+        this.emissionGesStageEurope = emissionGesStageEurope;
+    }
+
     public Float getEmissionGesStagesHorsEurope() {
         return emissionGesStagesHorsEurope;
     }
@@ -130,6 +149,14 @@ public class MobInternationalResultatDto {
 
     public void setEmissionGesSemestresEuropeAvion(Float emissionGesSemestresEuropeAvion) {
         this.emissionGesSemestresEuropeAvion = emissionGesSemestresEuropeAvion;
+    }
+
+    public Float getEmissionGesSemestreEurope() {
+        return emissionGesSemestreEurope;
+    }
+
+    public void setEmissionGesSemestreEurope(Float emissionGesSemestreEurope) {
+        this.emissionGesSemestreEurope = emissionGesSemestreEurope;
     }
 
     public Float getEmissionGesSemestresHorsEurope() {

@@ -68,10 +68,6 @@ public class EmissionFugitiveOngletServiceImpl implements EmissionFugitiveOnglet
                                     FacteurEmissionParametre.EMISSIONS_FUGITIVES,
                                     machine.getTypeFluide().toString()
                             );
-                            FacteurEmission tauxDeFuite = facteurEmissionService.findByCategorieAndType(
-                                    FacteurEmissionParametre.EMISSIONS_FUGITIVES,
-                                    machine.getTypeMachine().getLibelle()
-                            );
 
                             Float quantiteFluide = machine.getQuantiteFluideKg();
                             Float tauxFuite = 0f;
@@ -79,6 +75,11 @@ public class EmissionFugitiveOngletServiceImpl implements EmissionFugitiveOnglet
                             if (Boolean.TRUE.equals(machine.getTauxDeFuiteConnu()) && machine.getTauxDeFuite() != null) {
                                 tauxFuite = machine.getTauxDeFuite();
                             } else if (machine.getTauxDeFuite() != null) {
+                                FacteurEmission tauxDeFuite = facteurEmissionService.findByCategorieAndType(
+                                        FacteurEmissionParametre.EMISSIONS_FUGITIVES,
+                                        machine.getTypeMachine().getLibelle()
+                                );
+
                                 tauxFuite = tauxDeFuite.getFacteurEmission();
                             }
 

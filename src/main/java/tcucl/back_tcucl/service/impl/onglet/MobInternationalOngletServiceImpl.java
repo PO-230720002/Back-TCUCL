@@ -91,14 +91,17 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
         //premier tableau
         AtomicReference<Float> T9T39sumProsEuropeTrain = new AtomicReference<>(0f);
         AtomicReference<Float> S9S39sumProsEuropeAvion = new AtomicReference<>(0f);
+        AtomicReference<Float> P9P39sumProsEurope = new AtomicReference<>(0f);
         AtomicReference<Float> P41P124sumProsHorsEurope = new AtomicReference<>(0f);
 
         AtomicReference<Float> V9V39sumStagesEtudiantsEuropeTrain = new AtomicReference<>(0f);
         AtomicReference<Float> U9U39sumStagesEtudiantsEuropeAvion = new AtomicReference<>(0f);
+        AtomicReference<Float> Q9Q39sumStagesEtudiantsEurope = new AtomicReference<>(0f);
         AtomicReference<Float> Q41Q124sumStagesEtudiantsHorsEurope = new AtomicReference<>(0f);
 
         AtomicReference<Float> X9X39sumSemestresEtudiantsEuropeTrain = new AtomicReference<>(0f);
         AtomicReference<Float> W9W39sumSemestresEtudiantsEuropeAvion = new AtomicReference<>(0f);
+        AtomicReference<Float> R9R39sumSemestresEtudiantsEurope = new AtomicReference<>(0f);
         AtomicReference<Float> R41R124sumSemestresEtudiantsHorsEurope = new AtomicReference<>(0f);
 
         //second tableau
@@ -254,6 +257,9 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
                 G9H39sumSemestresEtudiantsDepartEurope.updateAndGet(v -> v + GsemestresEtudiantsAvion + HsemestresEtudiantsTrain);
                 G9G39sumSemestresEtudiantsDepartEuropeAvion.updateAndGet(v -> v + GsemestresEtudiantsAvion);
                 H9H39sumSemestresEtudiantsDepartEuropeTrain.updateAndGet(v -> v + HsemestresEtudiantsTrain);
+                P9P39sumProsEurope.updateAndGet(v -> v + PegesPros);
+                Q9Q39sumStagesEtudiantsEurope.updateAndGet(v -> v + QegesStagesEtudiants);
+                R9R39sumSemestresEtudiantsEurope.updateAndGet(v -> v + RegesSemestresEtudiants);
 
                 S9S39sumProsEuropeAvion.updateAndGet(v -> v + SegesProsAvion);
                 T9T39sumProsEuropeTrain.updateAndGet(v -> v + TegesProsTrain);
@@ -294,6 +300,11 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
         resultat.setEmissionGesProEuropeAvion(S9S39sumProsEuropeAvion.get() * 2f);
         resultat.setEmissionGesStagesEuropeAvion(U9U39sumStagesEtudiantsEuropeAvion.get() * 2f);
         resultat.setEmissionGesSemestresEuropeAvion(W9W39sumSemestresEtudiantsEuropeAvion.get() * 2f);
+
+        // Emission de Ges - Europe
+        resultat.setEmissionGesProEurope(P9P39sumProsEurope.get());
+        resultat.setEmissionGesStageEurope(Q9Q39sumStagesEtudiantsEurope.get());
+        resultat.setEmissionGesSemestreEurope(R9R39sumSemestresEtudiantsEurope.get());
 
         // Emission de Ges - Hors Europe
         resultat.setEmissionGesProHorsEurope(P41P124sumProsHorsEurope.get());

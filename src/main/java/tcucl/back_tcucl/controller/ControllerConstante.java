@@ -26,6 +26,9 @@ public class ControllerConstante {
 
     //   ------------       PARAMETRE       ------------
     public static final String REST_PARAMETRE = "/parametre";
+
+    //   ------------       SYNTHESE_EGES       ------------
+    public static final String REST_SYNTHESE_EGES = "/synthese-eges";
     //Endpoints
     public static final String REST_MODIFIER_UTILISATEUR_UTILISATEUR = "/modifier-utilisateur-utilisateur";
     public static final String REST_CHANGE_MDP = "/change-mdp";

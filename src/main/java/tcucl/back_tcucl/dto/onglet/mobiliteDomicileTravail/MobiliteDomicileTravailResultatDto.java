@@ -14,6 +14,7 @@ public class MobiliteDomicileTravailResultatDto {
     public Float emissionGesVeloElectrique;
     public Float emissionGesMarcheAPied;
 
+    public Float totalPosteMobiliteFrance;
     public Float totalEtudiants;
     public Float totalSalaries;
 
@@ -122,6 +123,14 @@ public class MobiliteDomicileTravailResultatDto {
 
     public void setEmissionGesMarcheAPied(Float emissionGesMarcheAPied) {
         this.emissionGesMarcheAPied = emissionGesMarcheAPied;
+    }
+
+    public Float getTotalPosteMobiliteFrance() {
+        return totalPosteMobiliteFrance;
+    }
+
+    public void setTotalPosteMobiliteFrance(Float totalPosteMobiliteFrance) {
+        this.totalPosteMobiliteFrance = totalPosteMobiliteFrance;
     }
 
     public Float getTotalEtudiants() {

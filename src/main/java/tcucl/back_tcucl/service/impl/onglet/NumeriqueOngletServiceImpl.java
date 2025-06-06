@@ -62,9 +62,9 @@ public class NumeriqueOngletServiceImpl implements NumeriqueOngletService {
         AtomicReference<Float> sumEgesEquipementsNumeriques = new AtomicReference<>(0f);
 
         onglet.getEquipementNumeriqueList().forEach(equipement -> {
-            Float egesEquipement = 0f;
+            float egesEquipement;
             if (equipement.getNombre() > 0) {
-                Float facteurEmission = 0f;
+                Float facteurEmission;
                 if (equipement.getEmissionsGesPrecisesConnues()) {
                     facteurEmission = equipement.getEmissionsReellesParProduitKgCO2e();
                 } else {
@@ -91,7 +91,7 @@ public class NumeriqueOngletServiceImpl implements NumeriqueOngletService {
         });
 
         resultat.setMethodeSimplifieeResultat((sumEgesEquipementsNumeriques.get() / 0.81f) * 0.19f);
-        Float trafficCloudReel = onglet.getTraficCloudUtilisateur() + (onglet.getTraficTipUtilisateur() / 0.15f);
+        float trafficCloudReel = onglet.getTraficCloudUtilisateur() + (onglet.getTraficTipUtilisateur() / 0.15f);
         Float partTraficFranceEtranger = onglet.getPartTraficFranceEtranger();
         Float empreinteCarboneDataCenter = (trafficCloudReel * partTraficFranceEtranger * 0.007f * 493f +
                 trafficCloudReel * (1 - partTraficFranceEtranger)
@@ -102,14 +102,13 @@ public class NumeriqueOngletServiceImpl implements NumeriqueOngletService {
 
         if(trafficCloudReel == 0){
             resultat.setEmpreinteCarboneDataCenterEtReseaux(0f);
+            resultat.setTotalNumerique(sumEgesEquipementsNumeriques.get() + resultat.getMethodeSimplifieeResultat());
         }else{
             Float reseau = (sumEgesEquipementsNumeriques.get()/0.81f)*0.05f;
             Float phaseAmont = (1-partTraficFranceEtranger)*trafficCloudReel*0.0669f*2.58f*0.15f*213.8f/1000000f;
             resultat.setEmpreinteCarboneDataCenterEtReseaux(empreinteCarboneDataCenter + phaseAmont + reseau);
+            resultat.setTotalNumerique(sumEgesEquipementsNumeriques.get() + resultat.getEmpreinteCarboneDataCenterEtReseaux());
         }
-
-        resultat.setTotalNumerique(sumEgesEquipementsNumeriques.get()+
-                trafficCloudReel==0?resultat.getMethodeSimplifieeResultat(): resultat.getEmpreinteCarboneDataCenterEtReseaux());
 
         return resultat;
     }

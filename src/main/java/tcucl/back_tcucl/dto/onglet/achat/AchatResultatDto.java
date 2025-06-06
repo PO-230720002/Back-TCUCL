@@ -19,6 +19,7 @@ public class AchatResultatDto {
     private Float service_Transport_terrestre;
     private Float service_hebergement_et_restauration;
     private Float service_de_telecommunications;
+    private Float totalPosteAchat;
 
     private Float Chemise_nb;
     private Float Polaire_nb;
@@ -30,6 +31,7 @@ public class AchatResultatDto {
     private Float Veste_Anorak_nb;
     private Float Manteau_nb;
     private Float Chaussure_nb;
+    private Float totalPosteTextile;
 
     private Float methodeRapideNombrePersonnesServiesRegimeClassique;
     private Float methodeRapideNombrePersonnesServiesRegimeFlexitarien;
@@ -60,6 +62,7 @@ public class AchatResultatDto {
     private Float legumesMoyenne_Tonnes;
     private Float fruitsMoyenne_Tonnes;
     private Float legumineuseMoyenne_Tonnes;
+    private Float totalPosteRestauration;
 
     public AchatResultatDto() {
     }
@@ -200,6 +203,14 @@ public class AchatResultatDto {
         this.service_de_telecommunications = service_de_telecommunications;
     }
 
+    public Float getTotalPosteAchat() {
+        return totalPosteAchat;
+    }
+
+    public void setTotalPosteAchat(Float totalPosteAchat) {
+        this.totalPosteAchat = totalPosteAchat;
+    }
+
     public Float getChemise_nb() {
         return Chemise_nb;
     }
@@ -278,6 +289,14 @@ public class AchatResultatDto {
 
     public void setChaussure_nb(Float chaussure_nb) {
         Chaussure_nb = chaussure_nb;
+    }
+
+    public Float getTotalPosteTextile() {
+        return totalPosteTextile;
+    }
+
+    public void setTotalPosteTextile(Float totalPosteTextile) {
+        this.totalPosteTextile = totalPosteTextile;
     }
 
     public Float getMethodeRapideNombrePersonnesServiesRegimeClassique() {
@@ -494,5 +513,13 @@ public class AchatResultatDto {
 
     public void setLegumineuseMoyenne_Tonnes(Float legumineuseMoyenne_Tonnes) {
         this.legumineuseMoyenne_Tonnes = legumineuseMoyenne_Tonnes;
+    }
+
+    public Float getTotalPosteRestauration() {
+        return totalPosteRestauration;
+    }
+
+    public void setTotalPosteRestauration(Float totalPosteRestauration) {
+        this.totalPosteRestauration = totalPosteRestauration;
     }
 }

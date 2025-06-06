@@ -58,34 +58,45 @@ public class VehiculeOngletServiceImpl implements VehiculeOngletService {
         VehiculeOnglet vehiculeOnglet = vehiculeOngletManager.getVehiculeOngletById(ongletId);
         List<Vehicule> vehicules = vehiculeOnglet.getVehiculeList();
 
+        final Float[] emissionGesVehiculesFabrication = {0f};
+        final Float[] emissionGesVehiculesPetrole = {0f};
+        final Float[] emissionGesVehiculesElectrique = {0f};
+
         Map<Long, Float> emissionsParVehicules = vehicules.stream()
                 .collect(Collectors.toMap(
                         Vehicule::getId,
                         vehicule -> {
-                            float emissionGesVehiculesFabrication = 0f;
-                            float emissionGesVehiculesUtilisation = 0f;
+                            float fabrication = 0f;
+                            float petrole = 0f;
+                            float electrique = 0f;
 
                             if (vehicule.getTypeVehicule() == EnumVehicule_Type.VEHICULE_ELECTRIQUE) {
-                                emissionGesVehiculesFabrication = vehicule.getNombreKilometresParVoitureMoyen() * vehicule.getNombreVehiculesIdentiques() * 0.096f / 1000f;
-                                emissionGesVehiculesUtilisation = vehicule.getNombreKilometresParVoitureMoyen() * vehicule.getNombreVehiculesIdentiques() * 0.022f / 1000f;
+                                fabrication = vehicule.getNombreKilometresParVoitureMoyen() * vehicule.getNombreVehiculesIdentiques() * 0.096f / 1000f;
+                                electrique = vehicule.getNombreKilometresParVoitureMoyen() * vehicule.getNombreVehiculesIdentiques() * 0.022f / 1000f;
                             } else if (vehicule.getTypeVehicule() == EnumVehicule_Type.VEHICULE_THERMIQUE) {
-                                emissionGesVehiculesFabrication = vehicule.getNombreKilometresParVoitureMoyen() * vehicule.getNombreVehiculesIdentiques() * 0.026f / 1000f;
-                                emissionGesVehiculesUtilisation = vehicule.getNombreKilometresParVoitureMoyen() * vehicule.getNombreVehiculesIdentiques() * 0.192f / 1000f;
+                                fabrication = vehicule.getNombreKilometresParVoitureMoyen() * vehicule.getNombreVehiculesIdentiques() * 0.026f / 1000f;
+                                petrole = vehicule.getNombreKilometresParVoitureMoyen() * vehicule.getNombreVehiculesIdentiques() * 0.192f / 1000f;
                             } else if (vehicule.getTypeVehicule() == EnumVehicule_Type.VEHICULE_HYBRIDE){
-                                emissionGesVehiculesFabrication = vehicule.getNombreKilometresParVoitureMoyen() * vehicule.getNombreVehiculesIdentiques() * 0.051f / 1000f;
-                                emissionGesVehiculesUtilisation = vehicule.getNombreKilometresParVoitureMoyen() * vehicule.getNombreVehiculesIdentiques() * 0.138f / 1000f;
+                                fabrication = vehicule.getNombreKilometresParVoitureMoyen() * vehicule.getNombreVehiculesIdentiques() * 0.051f / 1000f;
+                                petrole = vehicule.getNombreKilometresParVoitureMoyen() * vehicule.getNombreVehiculesIdentiques() * 0.138f / 1000f;
 
                             }
-                            return emissionGesVehiculesFabrication + emissionGesVehiculesUtilisation;
+
+                            emissionGesVehiculesFabrication[0] += fabrication;
+                            emissionGesVehiculesPetrole[0] += petrole;
+                            emissionGesVehiculesElectrique[0] += electrique;
+                            return fabrication + electrique + petrole;
                         }
                 ));
 
-        float total = emissionsParVehicules.values().stream()
-                .reduce(0f, Float::sum);
+        Float total = emissionGesVehiculesFabrication[0] + emissionGesVehiculesPetrole[0] + emissionGesVehiculesElectrique[0];
 
         VehiculeResultatDto resultatDto = new VehiculeResultatDto();
         resultatDto.setEmissionGESVehicule(emissionsParVehicules);
         resultatDto.setTotalEmissionGES(total);
+        resultatDto.setTotalEmissionGESFabrication(emissionGesVehiculesFabrication[0]);
+        resultatDto.setTotalEmissionGESElectrique(emissionGesVehiculesElectrique[0]);
+        resultatDto.setTotalEmissionGESPetrole(emissionGesVehiculesPetrole[0]);
 
         return resultatDto;
     }

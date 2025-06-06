@@ -9,6 +9,7 @@ public class AutreMobFrResultatDto {
     private Float emissionGesFranceTrainGrandesLignes;
     private Float emissionGesAutocar;
 
+    private Float totalPosteMobiliteFrance;
     private Float totalEtudiants;
     private Float totalSalaries;
 
@@ -75,6 +76,14 @@ public class AutreMobFrResultatDto {
 
     public void setEmissionGesAutocar(Float emissionGesAutocar) {
         this.emissionGesAutocar = emissionGesAutocar;
+    }
+
+    public Float getTotalPosteMobiliteFrance() {
+        return totalPosteMobiliteFrance;
+    }
+
+    public void setTotalPosteMobiliteFrance(Float totalPosteMobiliteFrance) {
+        this.totalPosteMobiliteFrance = totalPosteMobiliteFrance;
     }
 
     public Float getTotalEtudiants() {

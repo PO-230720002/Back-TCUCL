@@ -149,6 +149,25 @@ public class AchatOngletServiceImpl implements AchatOngletService {
         resultat.setService_de_telecommunications(
                 onglet.getAchatConsommable().getService_de_telecommunications() * facteurEmissionParametre/1000f);
 
+        resultat.setTotalPosteAchat(
+                resultat.getPapier_nb()
+                        + resultat.getPapier_T()
+                        + resultat.getLivres_nb()
+                        + resultat.getLivres_T()
+                        + resultat.getCartonNeuf_T()
+                        + resultat.getCartonRecycle_T()
+                        + resultat.getPetitesFournitures_Eur()
+                        + resultat.getNbFeuillesImprimeesJetEncre_Nb()
+                        + resultat.getNbFeuillesImprimeesToner_Nb()
+                        + resultat.getProduitsPharmaceutiques_Eur()
+                        + resultat.getServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments()
+                        + resultat.getService_Enseignement()
+                        + resultat.getService_Produits_informatiques_electroniques_et_optiques()
+                        + resultat.getService_Reparation_et_installation_de_machines_et_d_equipements()
+                        + resultat.getService_Transport_terrestre()
+                        + resultat.getService_hebergement_et_restauration()
+                        + resultat.getService_de_telecommunications()
+        );
 
         // TEXTILES
         facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
@@ -211,6 +230,19 @@ public class AchatOngletServiceImpl implements AchatOngletService {
         resultat.setChaussure_nb(
                 onglet.getAchatTextile().getChaussure_nb() * facteurEmissionParametre /1000f);
 
+        resultat.setTotalPosteTextile(
+                resultat.getChemise_nb()
+                        + resultat.getPolaire_nb()
+                        + resultat.getPull_Acrylique_nb()
+                        + resultat.getPull_Coton_nb()
+                        + resultat.getT_shirt_polyester_nb()
+                        + resultat.getJean_nb()
+                        + resultat.getSweat_nb()
+                        + resultat.getVeste_Anorak_nb()
+                        + resultat.getManteau_nb()
+                        + resultat.getChaussure_nb()
+        );
+
         //todo textile et habillage en euro n'est pas dans l'app mais dans les facteurs
 
         // RESTAURATION
@@ -227,6 +259,11 @@ public class AchatOngletServiceImpl implements AchatOngletService {
                         FacteurEmissionParametre.RESTAURATION_METHODE_RAPIDE_.ALIMENTATION_REGIME_FLEXITARIEN).getFacteurEmission();
                 resultat.setMethodeRapideNombrePersonnesServiesRegimeFlexitarien(
                         onglet.getAchatRestauration().getMethodeRapideNombrePersonnesServiesRegimeFlexitarien() * facteurEmissionParametre /1000f);
+
+                resultat.setTotalPosteRestauration(
+                        resultat.getMethodeRapideNombrePersonnesServiesRegimeClassique()
+                                + resultat.getMethodeRapideNombrePersonnesServiesRegimeFlexitarien()
+                );
             }
             case METHODE_INTERMEDIAIRE -> {
                 facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
@@ -276,6 +313,17 @@ public class AchatOngletServiceImpl implements AchatOngletService {
                         FacteurEmissionParametre.RESTAURATION_METHODE_INTERMEDIAIRE_.NOMBRE_DE_REPAS_SERVIS_REPAS_VEGETARIEN).getFacteurEmission();
                 resultat.setNombreRepasServisRepasVegetarien(
                         onglet.getAchatRestauration().getNombreRepasServisRepasVegetarien() * facteurEmissionParametre /1000f);
+
+                resultat.setTotalPosteRestauration(
+                        resultat.getNombreRepasServisDominanteAnimaleBoeuf()
+                                + resultat.getNombreRepasServisDominanteAnimalePoulet()
+                                + resultat.getNombreRepasServisDominanteVegetaleBoeuf()
+                                + resultat.getNombreRepasServisDominanteVegetalePoulet()
+                                + resultat.getNombreRepasServisDominanteClassiqueBoeuf()
+                                + resultat.getNombreRepasServisDominanteClassiquePoulet()
+                                + resultat.getNombreRepasServisRepasMoyen()
+                                + resultat.getNombreRepasServisRepasVegetarien()
+                );
             }
             case METHODE_DETAILLE -> {
                 facteurEmissionParametre = facteurEmissionService.findByCategorieAndType(
@@ -380,8 +428,26 @@ public class AchatOngletServiceImpl implements AchatOngletService {
                 resultat.setLegumineuseMoyenne_Tonnes(
                         onglet.getAchatRestauration().getLegumineuseMoyenne_Tonnes() * facteurEmissionParametre);
 
+                resultat.setTotalPosteRestauration(
+                        resultat.getBoeufAgneauMouton_Tonnes()
+                                + resultat.getPoulet_Tonnes()
+                                + resultat.getCafe_Tonnes()
+                                + resultat.getChocolat_Tonnes()
+                                + resultat.getBeurre_Tonnes()
+                                + resultat.getViandesMoyenne_Tonnes()
+                                + resultat.getProduitsSucresMoyenne_Tonnes()
+                                + resultat.getPoissonsMoyenne_Tonnes()
+                                + resultat.getFromagesMoyenne_Tonnes()
+                                + resultat.getOleagineuxMoyenne_Tonnes()
+                                + resultat.getMatieresGrassesMoyenne_Tonnes()
+                                + resultat.getBoissonsMoyenne_Tonnes()
+                                + resultat.getOeufs_Tonnes()
+                                + resultat.getCerealesMoyenne_Tonnes()
+                                + resultat.getLegumesMoyenne_Tonnes()
+                                + resultat.getFruitsMoyenne_Tonnes()
+                                + resultat.getLegumineuseMoyenne_Tonnes()
+                );
             }
-
         }
 
         return resultat;
