@@ -42,17 +42,19 @@ public class SecurityConfig {
         return authenticationManagerBuilder.build();
     }
 
-    // devTodo supprimer les endpoints non sécurisés en production
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> {}) // ✅ Ajout obligatoire pour que CORS fonctionne avec Spring Security
+                .cors(cors -> {
+                }) // ✅ Ajout obligatoire pour que CORS fonctionne avec Spring Security
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers(REST_AUTH + REST_CONNEXION, REST_AUTH + REST_CHANGE_MDP_PREMIERE_CONNEXION,
-                                        REST_AUTH + REST_INSCRIPTION2,
-                                        REST_AUTH+REST_CREER_ENTITE, "/test/**",
-                                        "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                                        // devTodo commenter les endpoints non sécurisés en production
+                                        "/test/**", // ici
+                                        "/swagger-ui/**", // ici
+                                        "/v3/api-docs/**" // ici
+                                ).permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtFilter(customUserDetailsService, jwtUtils), UsernamePasswordAuthenticationFilter.class);
@@ -64,7 +66,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT","PATCH", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

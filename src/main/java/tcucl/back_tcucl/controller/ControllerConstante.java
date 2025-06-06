@@ -11,6 +11,9 @@ public class ControllerConstante {
     public static final String REST_ENTITE_ID = "/{entiteId}";
     public static final String REST_RESULTAT = "/resultat";
 
+    //   TRAJECTOIRE
+    public static final String REST_TRAJECTOIRE = "/trajectoire";
+
     //   ------------         AUTH          ------------
     public static final String REST_AUTH = "/auth";
     //Endpoints

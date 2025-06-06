@@ -12,9 +12,7 @@ public interface EntiteService {
 
     Entite saveEntite(Entite entite);
 
-    Entite creerEntite(String nomEntite, String typeEntite);
-
-    Entite ajouterAnneeEntite(Long entiteId, Integer anneeUniversitaire);
+    Entite creerEntite(String entiteNom, String entiteType, Boolean isSuperAdmin);
 
     List<Entite> getAllEntites();
 

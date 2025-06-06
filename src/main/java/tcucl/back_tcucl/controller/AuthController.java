@@ -4,43 +4,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tcucl.back_tcucl.dto.ChangePasswordDto;
-import tcucl.back_tcucl.dto.ConnexionDto;
-import tcucl.back_tcucl.dto.CreationEntiteEtAdminDto;
-import tcucl.back_tcucl.dto.InscriptionDto;
+import tcucl.back_tcucl.dto.*;
 import tcucl.back_tcucl.service.AuthentificationService;
 import tcucl.back_tcucl.service.ParametreService;
 
-import java.net.CacheRequest;
-
+import static tcucl.back_tcucl.Constante.SUPERADMIN_FALSE;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
 @RequestMapping(REST_AUTH)
 public class AuthController {
 
-    Logger logger = LoggerFactory.getLogger(AuthController.class);
-
     private final AuthentificationService authentificationService;
-    private final ParametreService parametreService;
 
-    public AuthController(AuthentificationService authentificationService, ParametreService parametreService) {
+    public AuthController(AuthentificationService authentificationService) {
         this.authentificationService = authentificationService;
-        this.parametreService = parametreService;
-    }
-
-    // devTodo supprimer cette méthode en fin de dev
-    @PostMapping(REST_INSCRIPTION2)
-    public ResponseEntity<?> inscription2(@RequestBody InscriptionDto inscriptionDto) {
-        authentificationService.inscription(inscriptionDto);
-        return ResponseEntity.ok(REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT);
-    }
-
-    // devTodo supprimer cette méthode en fin de dev
-    @PostMapping(REST_CREER_ENTITE)
-    public ResponseEntity<?> creerEntite(@RequestBody CreationEntiteEtAdminDto creationEntiteEtAdminDto) {
-        parametreService.creerEntiteEtAdmin(creationEntiteEtAdminDto);
-        return ResponseEntity.ok(REST_MESSAGE_ENTITE_CREEE);
     }
 
     //connexion de base

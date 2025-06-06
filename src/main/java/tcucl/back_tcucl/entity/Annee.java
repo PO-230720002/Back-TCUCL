@@ -26,7 +26,7 @@ public class Annee {
     private int anneeValeur;
 
     @OneToMany(mappedBy = "annee", cascade = CascadeType.ALL)
-    private List<Onglet> onglets = new ArrayList<>();
+    private List<Onglet> onglets;
 
 
     @ManyToOne
@@ -35,7 +35,9 @@ public class Annee {
 
     public Annee() {
         this.anneeValeur = AnneeConfig.getAnneeCourante();
-        this.onglets = List.of(
+        // ne pas retirer le ArrayList autour du list.of sinon l'objet devient immutable et ça coince avec spring jpa
+        // ¯\_(ツ)_/¯
+        this.onglets = new ArrayList<>(List.of(
                 new AchatOnglet(),
                 new AutreImmobilisationOnglet(),
                 new AutreMobFrOnglet(),
@@ -49,14 +51,17 @@ public class Annee {
                 new NumeriqueOnglet(),
                 new ParkingVoirieOnglet(),
                 new VehiculeOnglet()
-        );
+        ));
 
         this.onglets.forEach(o -> o.setAnnee(this));
     }
 
     public Annee(int anneeValeur) {
         this.anneeValeur = anneeValeur;
-        this.onglets = List.of(
+
+        // ne pas retirer le ArrayList autour du list.of sinon l'objet devient immutable et ça coince avec spring jpa
+        // ¯\_(ツ)_/¯
+        this.onglets = new ArrayList<>(List.of(
                 new GeneralOnglet(),
                 new EnergieOnglet(),
                 new AchatOnglet(),
@@ -70,7 +75,7 @@ public class Annee {
                 new NumeriqueOnglet(),
                 new ParkingVoirieOnglet(),
                 new VehiculeOnglet()
-        );
+        ));
 
         this.onglets.forEach(o -> o.setAnnee(this));
     }

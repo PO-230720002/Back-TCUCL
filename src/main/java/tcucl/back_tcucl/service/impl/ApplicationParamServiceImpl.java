@@ -14,6 +14,11 @@ public class ApplicationParamServiceImpl implements ApplicationParamService {
     }
 
     @Override
+    public Boolean isDerniereAnneeCreee() {
+        return applicationParamManager.isDerniereAnneeCreee();
+    }
+
+    @Override
     public Integer getDerniereAnneeCreee() {
         return applicationParamManager.getDerniereAnneeCreee();
     }

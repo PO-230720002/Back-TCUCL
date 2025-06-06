@@ -24,7 +24,7 @@ public class AchatConsommable {
     private Float nbFeuillesImprimeesJetEncre_Nb = 0f;
     private Float nbFeuillesImprimeesToner_Nb = 0f;
     private Float produitsPharmaceutiques_Eur = 0f;
-    private Float services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments = 0f;
+    private Float services_impPubArchiIngeMaintTechBat = 0f; // services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments
     private Float service_Enseignement = 0f;
     private Float service_Produits_informatiques_electroniques_et_optiques = 0f;
     private Float service_Reparation_et_installation_de_machines_et_d_equipements = 0f;
@@ -124,12 +124,12 @@ public class AchatConsommable {
         this.produitsPharmaceutiques_Eur = produitsPharmaceutiques_Eur;
     }
 
-    public Float getServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments() {
-        return services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments;
+    public Float getServices_impPubArchiIngeMaintTechBat() {
+        return services_impPubArchiIngeMaintTechBat;
     }
 
-    public void setServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments(Float services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments) {
-        this.services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments = services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments;
+    public void setServices_impPubArchiIngeMaintTechBat(Float services_impPubArchiIngeMaintTechBat) {
+        this.services_impPubArchiIngeMaintTechBat = services_impPubArchiIngeMaintTechBat;
     }
 
     public Float getService_Enseignement() {
@@ -144,16 +144,16 @@ public class AchatConsommable {
         return service_Produits_informatiques_electroniques_et_optiques;
     }
 
-    public void setService_Produits_informatiques_electroniques_et_optiques(Float service_Produits_informatiques_electroniques_et_optiques) {
-        this.service_Produits_informatiques_electroniques_et_optiques = service_Produits_informatiques_electroniques_et_optiques;
+    public void setService_Produits_informatiques_electroniques_et_optiques(Float services_impPubArchiIngeMaintTechBat) {
+        this.service_Produits_informatiques_electroniques_et_optiques = services_impPubArchiIngeMaintTechBat;
     }
 
     public Float getService_Reparation_et_installation_de_machines_et_d_equipements() {
         return service_Reparation_et_installation_de_machines_et_d_equipements;
     }
 
-    public void setService_Reparation_et_installation_de_machines_et_d_equipements(Float service_Reparation_et_installation_de_machines_et_d_equipements) {
-        this.service_Reparation_et_installation_de_machines_et_d_equipements = service_Reparation_et_installation_de_machines_et_d_equipements;
+    public void setService_Reparation_et_installation_de_machines_et_d_equipements(Float services_impPubArchiIngeMaintTechBat) {
+        this.service_Reparation_et_installation_de_machines_et_d_equipements = services_impPubArchiIngeMaintTechBat;
     }
 
     public Float getService_Transport_terrestre() {

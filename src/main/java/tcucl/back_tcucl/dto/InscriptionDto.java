@@ -6,15 +6,12 @@ public class InscriptionDto {
     private String prenom;
     private String email;
     private boolean estAdmin;
-    private Long entiteId;
 
-
-    public InscriptionDto(String nom, String prenom, String email, boolean estAdmin, Long entiteId) {
+    public InscriptionDto(String nom, String prenom, String email, boolean estAdmin) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.estAdmin = estAdmin;
-        this.entiteId = entiteId;
     }
 
     public String getNom() {
@@ -41,7 +38,7 @@ public class InscriptionDto {
         this.email = email;
     }
 
-    public boolean isEstAdmin() {
+    public boolean getEstAdmin() {
         return estAdmin;
     }
 
@@ -49,11 +46,4 @@ public class InscriptionDto {
         this.estAdmin = estAdmin;
     }
 
-    public Long getEntiteId() {
-        return entiteId;
-    }
-
-    public void setEntiteId(Long entiteId) {
-        this.entiteId = entiteId;
-    }
 }
