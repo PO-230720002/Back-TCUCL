@@ -38,6 +38,9 @@ public class ControllerConstante {
     public static final String REST_IMPORT_FACTEURS_EMISSION = "/import-facteurs-emission";
     public static final String REST_CREER_ANNEE_SUIVANTE = "/creer-annee-suivante";
     public static final String REST_UTILISATEUR_ENTITE = "/utilisateur-entite";
+    public static final String REST_PEUT_CREER_NOUVELLE_ANNEE = "/peut-creer-nouvelle-annee";
+    public static final String REST_ALL_ENTITE_NOM_ID = "/all-entite-nom-id";
+
     //messages
     public static final String REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT = "Le compte utilisateur a bien créé.";
     public static final String REST_MESSAGE_UTILISATEUR_MODIFIE = "L'utilisateur a été correctement mis à jour.";

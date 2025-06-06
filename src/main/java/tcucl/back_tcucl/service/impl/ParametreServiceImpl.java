@@ -114,4 +114,9 @@ public class ParametreServiceImpl implements ParametreService {
         return applicationParamService.getDerniereAnneeCreee() != AnneeConfig.getAnneeCourante();
     }
 
+    @Override
+    public List<EntiteNomIdDto> getAllEntiteNomId() {
+        return entiteService.getAllEntites().stream().map(EntiteNomIdDto::new)
+                .toList();
+    }
 }

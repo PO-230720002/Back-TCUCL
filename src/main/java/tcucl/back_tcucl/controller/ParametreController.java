@@ -109,9 +109,16 @@ public class ParametreController {
     }
 
     @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
-    @GetMapping()
+    @GetMapping(REST_PEUT_CREER_NOUVELLE_ANNEE)
     public ResponseEntity<?> peutCreerUneNouvelleAnnee() {
         return ResponseEntity.ok(parametreService.peutCreerUneNouvelleAnnee());
+    }
+
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
+    @GetMapping(REST_ALL_ENTITE_NOM_ID)
+    public ResponseEntity<?> getAllEntiteNomId() {
+        List<EntiteNomIdDto> allEntiteNomId = parametreService.getAllEntiteNomId();
+        return ResponseEntity.ok(allEntiteNomId);
     }
 
 }
