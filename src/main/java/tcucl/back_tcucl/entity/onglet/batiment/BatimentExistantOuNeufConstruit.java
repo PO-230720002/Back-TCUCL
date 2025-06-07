@@ -24,6 +24,19 @@ public class BatimentExistantOuNeufConstruit {
     private Float surfaceEnM2;
     private Integer valeurEnumTypeStructure;
 
+    public BatimentExistantOuNeufConstruit() {
+    }
+
+    public BatimentExistantOuNeufConstruit(String nom_ou_adresse, LocalDate dateConstruction, LocalDate dateDerniereGrosseRenovation, Boolean acvBatimentRealisee, Float emissionsGesReellesTCO2, Integer valeurEnumTypeBatiment, Float surfaceEnM2, Integer valeurEnumTypeStructure) {
+        this.nom_ou_adresse = nom_ou_adresse;
+        this.dateConstruction = dateConstruction;
+        this.dateDerniereGrosseRenovation = dateDerniereGrosseRenovation;
+        this.acvBatimentRealisee = acvBatimentRealisee;
+        this.emissionsGesReellesTCO2 = emissionsGesReellesTCO2;
+        this.valeurEnumTypeBatiment = valeurEnumTypeBatiment;
+        this.surfaceEnM2 = surfaceEnM2;
+        this.valeurEnumTypeStructure = valeurEnumTypeStructure;
+    }
 
     @AssertTrue(message = "Le type de bâtiment doit être vide ou 'NA' si une ACV bâtiment est réalisée.")
     public Boolean assertTypeBatimentVideSiAcv() {

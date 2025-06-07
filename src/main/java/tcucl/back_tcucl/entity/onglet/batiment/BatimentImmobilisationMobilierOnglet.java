@@ -57,6 +57,19 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
         this.mobiliersElectromenagers = mobilierElectromenagers;
     }
 
+    public void ajouterBatimentExistantOuNeufConstruit(BatimentExistantOuNeufConstruit batimentExistantOuNeufConstruit) {
+        this.batimentsExistantOuNeufConstruits.add(new BatimentExistantOuNeufConstruit(
+                batimentExistantOuNeufConstruit.getNom_ou_adresse(),
+                batimentExistantOuNeufConstruit.getDateConstruction(),
+                batimentExistantOuNeufConstruit.getDateDerniereGrosseRenovation(),
+                batimentExistantOuNeufConstruit.getAcvBatimentRealisee(),
+                batimentExistantOuNeufConstruit.getEmissionsGesReellesTCO2(),
+                batimentExistantOuNeufConstruit.getTypeBatiment().getCode(),
+                batimentExistantOuNeufConstruit.getSurfaceEnM2(),
+                batimentExistantOuNeufConstruit.getTypeStructure().getCode()
+        ));
+    }
+
     public void ajouterBatimentViaDto(BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
         BatimentExistantOuNeufConstruit batimentExistantOuNeufConstruit = new BatimentExistantOuNeufConstruit();
 
@@ -72,6 +85,16 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
         this.batimentsExistantOuNeufConstruits.add(batimentExistantOuNeufConstruit);
     }
 
+    public void ajouterEntretienCourant(EntretienCourant entretienCourant) {
+        this.entretiensCourants.add(new EntretienCourant(entretienCourant.getDateAjout(),
+                entretienCourant.getNom_adresse(),
+                entretienCourant.getTypeTravaux().getCode(),
+                entretienCourant.getDateTravaux(),
+                entretienCourant.getTypeBatiment().getCode(),
+                entretienCourant.getSurfaceConcernee(),
+                entretienCourant.getDureeAmortissement()));
+    }
+
     public void ajouterEntretienCourantViaDto(EntretienCourantDto entretienCourantDto) {
         EntretienCourant entretienCourant = new EntretienCourant();
 
@@ -85,6 +108,11 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
 
         this.entretiensCourants.add(entretienCourant);
     }
+
+    public void ajouterMobilierElectromenager(MobilierElectromenager mobilierElectromenager) {
+        this.mobiliersElectromenagers.add(mobilierElectromenager);
+    }
+
     public void ajouterMobilierElectromenagerViaDto(MobilierElectromenagerDto mobilierElectromenagerDto) {
         MobilierElectromenager mobilierElectromenager = new MobilierElectromenager();
 

@@ -22,6 +22,18 @@ public class EntretienCourant {
     private Float surfaceConcernee;
     private Integer dureeAmortissement;
 
+    public EntretienCourant() {
+    }
+
+    public EntretienCourant(LocalDate dateAjout, String nom_adresse, Integer valeurEnumTypeTravaux, LocalDate dateTravaux, Integer valeurEnumTypeBatiment, Float surfaceConcernee, Integer dureeAmortissement) {
+        this.dateAjout = dateAjout;
+        this.nom_adresse = nom_adresse;
+        this.valeurEnumTypeTravaux = valeurEnumTypeTravaux;
+        this.dateTravaux = dateTravaux;
+        this.valeurEnumTypeBatiment = valeurEnumTypeBatiment;
+        this.surfaceConcernee = surfaceConcernee;
+        this.dureeAmortissement = dureeAmortissement;
+    }
 
     // Getters et Setters
 

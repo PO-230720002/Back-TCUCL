@@ -1,8 +1,10 @@
 package tcucl.back_tcucl.config;
 
+import org.slf4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import tcucl.back_tcucl.dto.CreationEntiteEtAdminDto_SuperAdmin;
+import tcucl.back_tcucl.exceptionPersonnalisee.AnneeUniversitaireDejaCreeException;
 import tcucl.back_tcucl.service.ApplicationParamService;
 import tcucl.back_tcucl.service.EntiteService;
 import tcucl.back_tcucl.service.ParametreService;
@@ -11,6 +13,8 @@ import static tcucl.back_tcucl.Constante.SUPERADMIN_TRUE;
 
 @Component
 public class InitialisateurBdd implements CommandLineRunner {
+
+    Logger logger = org.slf4j.LoggerFactory.getLogger(InitialisateurBdd.class);
 
     private final ApplicationParamService applicationParamService;
     private final ParametreService parametreService;
@@ -28,9 +32,9 @@ public class InitialisateurBdd implements CommandLineRunner {
         if (!applicationParamService.isDerniereAnneeCreee()) {
             int annee = AnneeConfig.getAnneeCourante();
             applicationParamService.setDerniereAnneeCreee(annee);
-            System.out.println("Année " + annee + " enregistrée au démarrage.");
+            logger.info("Année " + annee + " enregistrée au démarrage.");
         } else {
-            System.out.println("Aucune action nécessaire, année déjà créée : " + applicationParamService.getDerniereAnneeCreee());
+            logger.info("Aucune action nécessaire, année déjà créée : " + applicationParamService.getDerniereAnneeCreee());
         }
 
         // Création de l'entité SUPERADMIN + userTechniqueSuperAdmin SuperAdmin
@@ -46,11 +50,22 @@ public class InitialisateurBdd implements CommandLineRunner {
                                 SUPERADMIN_TRUE                      // EstSuperAdmin
                         )
                 );
-                System.out.println("Entité SUPERADMIN créée avec succès.");
+                logger.info("Entité SUPERADMIN créée avec succès.");
             }
+            logger.info("Entité SUPERADMIN déjà créée.");
         } catch (Exception e) {
-            System.err.println("Erreur lors de la création de l'entité SUPERADMIN : " + e.getMessage());
+            logger.error("Erreur lors de la création de l'entité SUPERADMIN : " + e.getMessage());
         }
+
+        // vérification que l'ajout d'année a bien été fait cette année au redéarrage de l'app
+        // au cas où l'app a planté pendant l'éxecution de la cron
+        try{
+        parametreService.creerAnneeSuivante();
+        }catch (AnneeUniversitaireDejaCreeException e){
+            logger.info(e.getMessage());
+        }
+
+        logger.info("\n\n ----------------  Initialisation de la base de données terminée.  ----------------  \n\n");
 
 
     }
