@@ -2,7 +2,6 @@ package tcucl.back_tcucl.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tcucl.back_tcucl.config.AnneeConfig;
@@ -10,9 +9,11 @@ import tcucl.back_tcucl.dto.*;
 import tcucl.back_tcucl.entity.Annee;
 import tcucl.back_tcucl.entity.Entite;
 import tcucl.back_tcucl.entity.Utilisateur;
+import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOnglet;
 import tcucl.back_tcucl.exceptionPersonnalisee.AnneeUniversitaireDejaCreeException;
 import tcucl.back_tcucl.service.*;
 
+import java.util.Comparator;
 import java.util.List;
 
 import static tcucl.back_tcucl.Constante.*;
@@ -87,7 +88,6 @@ public class ParametreServiceImpl implements ParametreService {
         utilisateurService.modifierUtilisateurParUtilisateur(utilisateurId, modificationUtilisateurParUtilisateurDto);
     }
 
-    @Scheduled(cron = "0 1 0 1 9 *")
     @Transactional
     @Override
     public void creerAnneeSuivante() {
@@ -99,11 +99,29 @@ public class ParametreServiceImpl implements ParametreService {
             throw new AnneeUniversitaireDejaCreeException(anneeUniversitaire);
         }
 
+        //on récupère toutes les entités except l'entité superAdmin créé à l'initialisation donc id = 1
         List<Entite> entites = entiteService.getAllEntites().stream().filter(entite -> entite.getId() != 1).toList();
         for (Entite entite : entites) {
 
-            Annee annee = new Annee(anneeUniversitaire);
-            entite.addAnnee(annee); // gère la liaison bidirectionnelle
+            Annee anneeActu = new Annee(anneeUniversitaire);
+            Annee anneePrec = entite.getAnnees()
+                    .stream()
+                    .max(Comparator.comparingInt(Annee::getAnneeValeur))
+                    .orElse(null);
+
+            assert anneePrec != null;
+            BatimentImmobilisationMobilierOnglet anneePrecBatOnglet = anneePrec.getBatimentImmobilisationMobilierOnglet();
+            BatimentImmobilisationMobilierOnglet anneeActuBatOnglet = anneeActu.getBatimentImmobilisationMobilierOnglet();
+
+            // On ajoute les bâtiments existants de l'année précédente à l'année actuelle
+            anneePrecBatOnglet.getBatimentExistantOuNeufConstruits()
+                    .forEach(anneeActuBatOnglet::ajouterBatimentExistantOuNeufConstruit);
+
+            // On ajoute les Entretiens courants de l'année précédente à l'année actuelle
+            anneePrecBatOnglet.getEntretienCourants()
+                    .forEach(anneeActuBatOnglet::ajouterEntretienCourant);
+
+            entite.addAnnee(anneeActu); // gère la liaison bidirectionnelle
 
             entiteService.saveEntite(entite);
         }

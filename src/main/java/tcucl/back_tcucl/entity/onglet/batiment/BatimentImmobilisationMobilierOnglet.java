@@ -14,13 +14,23 @@ import java.util.List;
 @Table(name = "batiment_onglet")
 public class BatimentImmobilisationMobilierOnglet extends Onglet {
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "batiment_onglet_id")
+    //CascadeType.ALL sans remove car remove sur un enfant retirerait également l'onglet parent
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "batiment_onglet_associe_batiment",
+            joinColumns = @JoinColumn(name = "batiment_onglet_id"),
+            inverseJoinColumns = @JoinColumn(name = "batiment_id")
+    )
     @Valid
     private List<BatimentExistantOuNeufConstruit> batimentsExistantOuNeufConstruits = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "batiment_onglet_id")
+    //CascadeType.ALL sans remove car remove sur un enfant retirerait également l'onglet parent
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "batiment_onglet_associe_entretien",
+            joinColumns = @JoinColumn(name = "batiment_onglet_id"),
+            inverseJoinColumns = @JoinColumn(name = "entretien_id")
+    )
     @Valid
     private List<EntretienCourant> entretiensCourants = new ArrayList<>();
 
@@ -57,6 +67,10 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
         this.mobiliersElectromenagers = mobilierElectromenagers;
     }
 
+    public void ajouterBatimentExistantOuNeufConstruit(BatimentExistantOuNeufConstruit batimentExistantOuNeufConstruit) {
+        this.batimentsExistantOuNeufConstruits.add(batimentExistantOuNeufConstruit);
+    }
+
     public void ajouterBatimentViaDto(BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
         BatimentExistantOuNeufConstruit batimentExistantOuNeufConstruit = new BatimentExistantOuNeufConstruit();
 
@@ -72,6 +86,10 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
         this.batimentsExistantOuNeufConstruits.add(batimentExistantOuNeufConstruit);
     }
 
+    public void ajouterEntretienCourant(EntretienCourant entretienCourant) {
+        this.entretiensCourants.add(entretienCourant);
+    }
+
     public void ajouterEntretienCourantViaDto(EntretienCourantDto entretienCourantDto) {
         EntretienCourant entretienCourant = new EntretienCourant();
 
@@ -85,6 +103,11 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
 
         this.entretiensCourants.add(entretienCourant);
     }
+
+    public void ajouterMobilierElectromenager(MobilierElectromenager mobilierElectromenager) {
+        this.mobiliersElectromenagers.add(mobilierElectromenager);
+    }
+
     public void ajouterMobilierElectromenagerViaDto(MobilierElectromenagerDto mobilierElectromenagerDto) {
         MobilierElectromenager mobilierElectromenager = new MobilierElectromenager();
 
@@ -97,5 +120,5 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
         this.mobiliersElectromenagers.add(mobilierElectromenager);
     }
 
-    
+
 }

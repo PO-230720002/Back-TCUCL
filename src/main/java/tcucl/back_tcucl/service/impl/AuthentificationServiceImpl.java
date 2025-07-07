@@ -43,14 +43,12 @@ public class AuthentificationServiceImpl implements AuthentificationService {
 
     @Override
     public Map<String, Object> connexion(ConnexionDto connexionDto) {
-        logger.info("Connexion de l'utilisateur: " + connexionDto.getEmail());
-        logger.info("mdp de l'utilisateur: " + connexionDto.getMdp());
-
+    
         Utilisateur utilisateur;
         try {
             utilisateur = utilisateurService.getUtilisateurParEmail(connexionDto.getEmail());
         } catch (Exception e) {
-            logger.error("Erreur lors de la récupération de l'utilisateur", e);
+            logger.error("Authentification : Erreur lors de la récupération de l'utilisateur : " + connexionDto.getEmail());
             throw new MauvaisIdentifiantsException();
         }
 
@@ -58,7 +56,7 @@ public class AuthentificationServiceImpl implements AuthentificationService {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(connexionDto.getEmail(), connexionDto.getMdp())
             );
-            logger.info("Authentification Spring Security réussie");
+            logger.info("Authentification Spring Security réussie pour l'utilisateur: " + connexionDto.getEmail());
 
 
             if (authentication.isAuthenticated()) {
@@ -70,7 +68,7 @@ public class AuthentificationServiceImpl implements AuthentificationService {
                     authData.put(MESSAGE, MESSAGE_PREMIERE_CONNEXION);
                 }else {
                     authData.put(JETON, jwtUtils.generateToken(connexionDto.getEmail()));
-                    logger.info("Token JWT généré");
+                    logger.info("Token JWT généré pour l'utilisateur: " + connexionDto.getEmail());
 
                     UtilisateurDto utilisateurDto = new UtilisateurDto(utilisateur);
 
@@ -79,11 +77,11 @@ public class AuthentificationServiceImpl implements AuthentificationService {
 
                 return authData;
             } else {
-                logger.error("Échec d'authentification");
+                logger.error("Échec d'authentification pour l'utilisateur : " + connexionDto.getEmail());
                 throw new MauvaisIdentifiantsException();
             }
         } catch (Exception e) {
-            logger.error("Erreur lors de l'authentification", e);
+            logger.error("Erreur lors de l'authentification pour l'utilisateur : " + connexionDto.getEmail());
             throw new MauvaisIdentifiantsException();
         }
     }

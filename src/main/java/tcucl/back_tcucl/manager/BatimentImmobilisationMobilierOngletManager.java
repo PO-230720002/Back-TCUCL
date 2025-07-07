@@ -17,7 +17,7 @@ public interface BatimentImmobilisationMobilierOngletManager {
 
     BatimentExistantOuNeufConstruit getBatimentById(Long ongletId, Long batimentId);
 
-    void ajouterBatiment(Long ongletId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto);
+    void ajouterBatiment(BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet, BatimentExistantOuNeufConstruit batimentExistantOuNeufConstruit);
 
     void supprimerBatimentFromOnglet(Long ongletId, Long batimentId);
 
@@ -25,7 +25,7 @@ public interface BatimentImmobilisationMobilierOngletManager {
 
     EntretienCourant getEntretienCourantById(Long ongletId, Long entretienCourantId);
 
-    void ajouterEntretienCourant(Long ongletId, EntretienCourantDto entretienCourantDto);
+    void ajouterEntretienCourant(BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet, EntretienCourant entretienCourant);
 
     void supprimerEntretienCourantFromOnglet(Long ongletId, Long entretienCourantId);
 

@@ -47,7 +47,7 @@ public class Constante {
 
 //Message Mail
     public static final String MAIL_SUJET_INSCRIPTION_DEBUT = "Création de votre compte sur TCUCL";
-    public static final String MAIL_MESSAGE_INSCRIPTION_DEBUT = "Bonjour, ";
+    public static final String MAIL_MESSAGE_INSCRIPTION_DEBUT = "Bonjour ";
     public static final String MAIL_MESSAGE_INSCRIPTION_MILIEU = ",\n\n" +
             "Bienvenue sur TCUCL, votre compte a été créé avec succès.\n" +
             "Pour activer votre compte, connectez-vous avec votre e-mail et ce mot de passe : ";

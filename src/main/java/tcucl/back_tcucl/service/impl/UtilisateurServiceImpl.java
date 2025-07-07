@@ -105,7 +105,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
                 entiteService.getEntiteById(inscriptionDto_superAdmin.getEntiteId()));
 
         //envoi du mail
-        emailService.sendSimpleEmail(inscriptionDto_superAdmin.getPrenom(), email, mdpAleatoire);
+        emailService.sendSimpleEmail(
+                inscriptionDto_superAdmin.getPrenom(),
+                inscriptionDto_superAdmin.getNom(),
+                email,
+                mdpAleatoire);
         utilisateurManager.save(nouvelUtilisateur);
     }
 

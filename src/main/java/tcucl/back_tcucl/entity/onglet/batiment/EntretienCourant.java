@@ -2,6 +2,7 @@ package tcucl.back_tcucl.entity.onglet.batiment;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.AssertTrue;
+import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.EntretienCourantDto;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeBatiment;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeStructure;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeTravaux;
@@ -22,6 +23,29 @@ public class EntretienCourant {
     private Float surfaceConcernee;
     private Integer dureeAmortissement;
 
+    public EntretienCourant() {
+    }
+
+    public EntretienCourant(LocalDate dateAjout, String nom_adresse, Integer valeurEnumTypeTravaux, LocalDate dateTravaux, Integer valeurEnumTypeBatiment, Float surfaceConcernee, Integer dureeAmortissement) {
+        this.dateAjout = dateAjout;
+        this.nom_adresse = nom_adresse;
+        this.valeurEnumTypeTravaux = valeurEnumTypeTravaux;
+        this.dateTravaux = dateTravaux;
+        this.valeurEnumTypeBatiment = valeurEnumTypeBatiment;
+        this.surfaceConcernee = surfaceConcernee;
+        this.dureeAmortissement = dureeAmortissement;
+    }
+
+    public EntretienCourant(EntretienCourantDto entretienCourantDto) {
+        this.setDateAjout(entretienCourantDto.getDateAjout());
+        this.setNom_adresse(entretienCourantDto.getNom_adresse());
+        this.setTypeTravaux(entretienCourantDto.getTypeTravaux());
+        this.setDateTravaux(entretienCourantDto.getDateTravaux());
+        this.setTypeBatiment(entretienCourantDto.getTypeBatiment());
+        this.setSurfaceConcernee(entretienCourantDto.getSurfaceConcernee());
+        this.setDureeAmortissement(entretienCourantDto.getDureeAmortissement());
+
+    }
 
     // Getters et Setters
 

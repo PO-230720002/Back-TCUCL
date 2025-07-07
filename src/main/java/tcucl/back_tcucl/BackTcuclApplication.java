@@ -8,6 +8,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 public class BackTcuclApplication {
 
+	// todo : ajouter 4ème colonne MobInternationale
+	// todo : Enum Entite
+
 	public static void main(String[] args) {
 		SpringApplication.run(BackTcuclApplication.class, args);
 	}
