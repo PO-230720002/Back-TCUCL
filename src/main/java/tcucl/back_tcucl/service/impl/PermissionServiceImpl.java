@@ -3,8 +3,7 @@ package tcucl.back_tcucl.service.impl;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.ChangePasswordDto;
-import tcucl.back_tcucl.dto.InscriptionDto;
-import tcucl.back_tcucl.dto.ModificationUtilisateurParAdminDto;
+import tcucl.back_tcucl.dto.InscriptionDto_SuperAdmin;
 import tcucl.back_tcucl.entity.Entite;
 import tcucl.back_tcucl.manager.UtilisateurManager;
 import tcucl.back_tcucl.service.EntiteService;
@@ -27,19 +26,18 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public boolean utlisateurOuAdminPeutChangerMdp(Authentication authentication, ChangePasswordDto changePasswordDto) {
-        return authentication.getName().equals(changePasswordDto.getEmail()) ||
-               estAdminDe(authentication.getName(), changePasswordDto.getEmail());
+    public boolean utilisateurOuAdminPeutChangerMdp(Authentication authentication, ChangePasswordDto changePasswordDto) {
+        return authentication.getName().equals(changePasswordDto.getEmail());
     }
 
     @Override
-    public boolean adminPeutInscrireUtilisateur(Authentication authentication, InscriptionDto inscriptionDto) {
-        return estAdminDe(authentication.getName(),inscriptionDto.getEmail());
+    public boolean adminPeutInscrireUtilisateur(Authentication authentication, InscriptionDto_SuperAdmin inscriptionDtoSuperAdmin) {
+        return estAdminDeEntite(authentication.getName(), inscriptionDtoSuperAdmin.getEntiteId());
     }
 
     @Override
-    public boolean adminPeutModifierUtilisateur(Authentication authentication, ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto){
-        return  estAdminDe(authentication.getName(), modificationUtilisateurParAdminDto.getEmail());
+    public boolean adminPeutModifierUtilisateur(Authentication authentication, Long utilisateurId) {
+        return estAdminDe(authentication.getName(), utilisateurId);
     }
 
     @Override

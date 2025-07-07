@@ -43,7 +43,7 @@ public class AchatConsommableDto {
         this.nbFeuillesImprimeesJetEncre_Nb = entity.getNbFeuillesImprimeesJetEncre_Nb();
         this.nbFeuillesImprimeesToner_Nb = entity.getNbFeuillesImprimeesToner_Nb();
         this.produitsPharmaceutiques_Eur = entity.getProduitsPharmaceutiques_Eur();
-        this.services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments = entity.getServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments();
+        this.services_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments = entity.getServices_impPubArchiIngeMaintTechBat();
         this.service_Enseignement = entity.getService_Enseignement();
         this.service_Produits_informatiques_electroniques_et_optiques = entity.getService_Produits_informatiques_electroniques_et_optiques();
         this.service_Reparation_et_installation_de_machines_et_d_equipements = entity.getService_Reparation_et_installation_de_machines_et_d_equipements();

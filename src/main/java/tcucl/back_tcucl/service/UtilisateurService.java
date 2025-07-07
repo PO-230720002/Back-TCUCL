@@ -19,7 +19,7 @@ public interface UtilisateurService {
 
     void modifierUtilisateurParAdmin(Long utilisateurId, ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto);
 
-    void inscrireUtilisateur(InscriptionDto inscriptionDto);
+    void inscrireUtilisateur(InscriptionDto_SuperAdmin inscriptionDto_superAdmin);
 
     void supprimerUtilisateur(Long utilisateurId);
 

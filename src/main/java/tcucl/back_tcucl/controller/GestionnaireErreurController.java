@@ -2,6 +2,7 @@ package tcucl.back_tcucl.controller;
 
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.ConstraintViolation;
+import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
@@ -69,6 +70,7 @@ public class GestionnaireErreurController {
     public ResponseEntity<String> handleException(Exception ex) {
         // devTodo  à changer en prod afin de ne pas afficher les messages d'erreurs
 //        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ERREUR_INTERNE);
+        ex.printStackTrace();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
 
     }

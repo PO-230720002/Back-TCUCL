@@ -9,7 +9,7 @@ public interface EntiteManager {
 
     Entite save(Entite entite);
 
-    List<Entite> getAll();
+    List<Entite> getAllEntites();
 
     boolean existsEntiteByNomAndType(String nomEntite, String typeEntite);
 }

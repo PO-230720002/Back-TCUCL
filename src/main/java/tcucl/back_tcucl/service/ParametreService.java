@@ -1,5 +1,6 @@
 package tcucl.back_tcucl.service;
 
+import org.springframework.transaction.annotation.Transactional;
 import tcucl.back_tcucl.dto.*;
 import tcucl.back_tcucl.entity.Utilisateur;
 
@@ -11,7 +12,7 @@ public interface ParametreService {
 
     void modifierUtilisateurParUtilisateur(Long utilisateurId, ModificationUtilisateurParUtilisateurDto modificationUtilisateurParUtilisateurDto);
 
-    void inscrireUtilisateur(InscriptionDto inscriptionDto);
+    void inscrireUtilisateur(InscriptionDto_SuperAdmin inscriptionDtoSuperAdmin);
 
     void modifierUtilisateurParAdmin(Long utilisateurId, ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto);
 
@@ -19,9 +20,7 @@ public interface ParametreService {
 
     void supprimerUtilisateur(Long utilisateurId);
 
-    void creerEntiteEtAdmin(CreationEntiteEtAdminDto creationEntiteEtAdminDto);
-
-    void ajouterAnneeEntite(Long entiteId, Integer anneeUniversitaire);
+    void creerEntiteEtAdmin(CreationEntiteEtAdminDto_SuperAdmin creationEntiteEtAdminDto_superAdmin);
 
     void creerAnneeSuivante();
 

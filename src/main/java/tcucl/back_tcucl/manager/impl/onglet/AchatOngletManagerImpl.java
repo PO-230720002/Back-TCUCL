@@ -69,7 +69,7 @@ public class AchatOngletManagerImpl implements AchatOngletManager {
             if (achatConsommableDto.getProduitsPharmaceutiques_Eur() != null)
                 achatConsommable.setProduitsPharmaceutiques_Eur(achatConsommableDto.getProduitsPharmaceutiques_Eur());
             if (achatConsommableDto.getServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments() != null)
-                achatConsommable.setServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments(
+                achatConsommable.setServices_impPubArchiIngeMaintTechBat(
                         achatConsommableDto.getServices_imprimerie_publicite_architecture_ingenierie_maintenance_multi_technique_des_batiments());
             if (achatConsommableDto.getService_Enseignement() != null)
                 achatConsommable.setService_Enseignement(achatConsommableDto.getService_Enseignement());

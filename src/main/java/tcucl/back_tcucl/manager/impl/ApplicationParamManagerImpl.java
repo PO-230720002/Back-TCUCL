@@ -15,6 +15,11 @@ public class ApplicationParamManagerImpl implements ApplicationParamManager {
     }
 
     @Override
+    public Boolean isDerniereAnneeCreee() {
+        return !applicationParamRepository.findAll().isEmpty();
+    }
+
+    @Override
     public Integer getDerniereAnneeCreee() {
         return applicationParamRepository.findById(1L)
                 .map(ApplicationParam::getDerniereAnneeCreee)

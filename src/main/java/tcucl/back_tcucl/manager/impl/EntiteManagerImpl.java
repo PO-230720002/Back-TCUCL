@@ -34,7 +34,7 @@ public class EntiteManagerImpl implements EntiteManager {
     }
 
     @Override
-    public List<Entite> getAll() {
+    public List<Entite> getAllEntites() {
         return entiteRepository.findAll();
     }
 

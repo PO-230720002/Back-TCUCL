@@ -81,9 +81,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public void inscrireUtilisateur(InscriptionDto inscriptionDto){
+    public void inscrireUtilisateur(InscriptionDto_SuperAdmin inscriptionDto_superAdmin){
         //Est ce que le mail est déjà pris
-        String email = inscriptionDto.getEmail();
+        String email = inscriptionDto_superAdmin.getEmail();
         if (utilisateurManager.isEmailDejaPris(email)){
             throw new EmailDejaPrisException(email);
         }
@@ -94,20 +94,21 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
         //Création de l'utilisateur
         Utilisateur nouvelUtilisateur = new Utilisateur(
-                inscriptionDto.getNom(),
-                inscriptionDto.getPrenom(),
+                inscriptionDto_superAdmin.getNom(),
+                inscriptionDto_superAdmin.getPrenom(),
                 passwordEncoder.encode(mdpAleatoire),
                 email,
                 PREMIERE_CONNEXION_TRUE,
                 ROLE_USER,
-                inscriptionDto.isEstAdmin(),
-                SUPERADMIN_FALSE,
-                entiteService.getEntiteById(inscriptionDto.getEntiteId()));
+                inscriptionDto_superAdmin.isEstAdmin(),
+                inscriptionDto_superAdmin.isEstSuperAdmin(),
+                entiteService.getEntiteById(inscriptionDto_superAdmin.getEntiteId()));
 
         //envoi du mail
-        emailService.sendSimpleEmail(inscriptionDto.getPrenom(), email, mdpAleatoire);
+        emailService.sendSimpleEmail(inscriptionDto_superAdmin.getPrenom(), email, mdpAleatoire);
         utilisateurManager.save(nouvelUtilisateur);
     }
+
 
     @Override
     public void modifierEstAdmin(Long utilisateurId, Boolean estAdmin) {

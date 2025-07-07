@@ -1,10 +1,8 @@
 package tcucl.back_tcucl.service;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.ChangePasswordDto;
-import tcucl.back_tcucl.dto.InscriptionDto;
-import tcucl.back_tcucl.dto.ModificationUtilisateurParAdminDto;
+import tcucl.back_tcucl.dto.InscriptionDto_SuperAdmin;
 
 
 public interface PermissionService {
@@ -14,11 +12,11 @@ public interface PermissionService {
 
     boolean utilisateurPeutModifierUtilisateur(Authentication authentication, Long UtilisateurId);
 
-    boolean utlisateurOuAdminPeutChangerMdp(Authentication authentication, ChangePasswordDto changePasswordDto);
+    boolean utilisateurOuAdminPeutChangerMdp(Authentication authentication, ChangePasswordDto changePasswordDto);
 
-    boolean adminPeutInscrireUtilisateur(Authentication authentication, InscriptionDto inscriptionDto);
+    boolean adminPeutInscrireUtilisateur(Authentication authentication, InscriptionDto_SuperAdmin inscriptionDtoSuperAdmin);
 
-    boolean adminPeutModifierUtilisateur(Authentication authentication, ModificationUtilisateurParAdminDto modificationUtilisateurParAdminDto);
+    boolean adminPeutModifierUtilisateur(Authentication authentication, Long utilisateurId);
 
     boolean adminPeutModifierEstAdmin(Authentication authentication, Long utilisateurId);
 
