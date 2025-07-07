@@ -1,7 +1,6 @@
 package tcucl.back_tcucl.manager.impl.onglet;
 
 import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,15 +12,16 @@ import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOng
 import tcucl.back_tcucl.entity.onglet.batiment.BatimentExistantOuNeufConstruit;
 import tcucl.back_tcucl.entity.onglet.batiment.EntretienCourant;
 import tcucl.back_tcucl.entity.onglet.batiment.MobilierElectromenager;
-import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_Mobilier;
-import tcucl.back_tcucl.entity.onglet.parkingVoirie.ParkingVoirieOnglet;
 import tcucl.back_tcucl.exceptionPersonnalisee.ElementNontrouveException;
 import tcucl.back_tcucl.exceptionPersonnalisee.OngletNonTrouveIdException;
 import tcucl.back_tcucl.exceptionPersonnalisee.ValidationCustomException;
+import tcucl.back_tcucl.manager.BatimentExistantOuNeufConstruitManager;
 import tcucl.back_tcucl.manager.BatimentImmobilisationMobilierOngletManager;
+import tcucl.back_tcucl.manager.EntretienCourantManager;
 import tcucl.back_tcucl.repository.onglet.BatimentImmobilisationMobilierOngletRepository;
 
-import java.time.LocalDate;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Component
@@ -31,9 +31,13 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     private Validator validator;
 
     private final BatimentImmobilisationMobilierOngletRepository batimentImmobilisationMobilierOngletRepository;
+    private final EntretienCourantManager entretienCourantManager;
+    private final BatimentExistantOuNeufConstruitManager batimentExistantOuNeufConstruitManager;
 
-    public BatimentImmobilisationMobilierOngletManagerImpl(BatimentImmobilisationMobilierOngletRepository batimentImmobilisationMobilierOngletRepository) {
+    public BatimentImmobilisationMobilierOngletManagerImpl(BatimentImmobilisationMobilierOngletRepository batimentImmobilisationMobilierOngletRepository, EntretienCourantManager entretienCourantManager, BatimentExistantOuNeufConstruitManager batimentExistantOuNeufConstruitManager) {
         this.batimentImmobilisationMobilierOngletRepository = batimentImmobilisationMobilierOngletRepository;
+        this.entretienCourantManager = entretienCourantManager;
+        this.batimentExistantOuNeufConstruitManager = batimentExistantOuNeufConstruitManager;
     }
 
     @Override
@@ -54,18 +58,30 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
             batimentImmobilisationMobilierOnglet.setNote(batimentImmobilisationMobilierOngletDto.getNote());
         }
 
-        if (batimentImmobilisationMobilierOngletDto.getBatimentsExistantOuNeufConstruits() != null) {
-            batimentImmobilisationMobilierOnglet.getBatimentExistantOuNeufConstruits().clear();
-            for (BatimentExistantOuNeufConstruitDto batimentDto : batimentImmobilisationMobilierOngletDto.getBatimentsExistantOuNeufConstruits()) {
-                batimentImmobilisationMobilierOnglet.ajouterBatimentViaDto(batimentDto);
-            }
+        List<BatimentExistantOuNeufConstruitDto> batimentDtoList = batimentImmobilisationMobilierOngletDto.getBatimentsExistantOuNeufConstruits();
+        if (batimentDtoList != null) {
+            List<BatimentExistantOuNeufConstruit> batimentOngletList = batimentImmobilisationMobilierOnglet.getBatimentExistantOuNeufConstruits();
+            batimentOngletList.forEach(batimentOnglet -> {
+                        batimentDtoList.stream().filter(b -> Objects.equals(b.getId(), batimentOnglet.getId()))
+                                .findFirst()
+                                .ifPresent(batimentDto -> {
+                                    updateBatimentPartiel_withObject(batimentDto, batimentOnglet, batimentImmobilisationMobilierOnglet);
+                                });
+                    }
+            );
         }
 
-        if (batimentImmobilisationMobilierOngletDto.getEntretiensCourants() != null) {
-            batimentImmobilisationMobilierOnglet.getEntretienCourants().clear();
-            for (EntretienCourantDto entretienCourantDto : batimentImmobilisationMobilierOngletDto.getEntretiensCourants()) {
-                batimentImmobilisationMobilierOnglet.ajouterEntretienCourantViaDto(entretienCourantDto);
-            }
+        List<EntretienCourantDto> entretienDtoList = batimentImmobilisationMobilierOngletDto.getEntretiensCourants();
+        if (entretienDtoList != null) {
+            List<EntretienCourant> entretienOngletList = batimentImmobilisationMobilierOnglet.getEntretienCourants();
+            entretienOngletList.forEach(entretienOnglet -> {
+                        entretienDtoList.stream().filter(e -> Objects.equals(e.getId(), entretienOnglet.getId()))
+                                .findFirst()
+                                .ifPresent(entretienDto -> {
+                                    updateEntretienCourantPartiel_withObject(entretienDto, entretienOnglet, batimentImmobilisationMobilierOnglet);
+                                });
+                    }
+            );
         }
 
         if (batimentImmobilisationMobilierOngletDto.getMobiliersElectromenagers() != null) {
@@ -75,9 +91,9 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
             }
         }
 
-        
+
         Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
-        if(!violations.isEmpty()) {
+        if (!violations.isEmpty()) {
             throw new ValidationCustomException(violations);
         }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
@@ -93,14 +109,24 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     }
 
     @Override
-    public void ajouterBatiment(Long ongletId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
-        BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
-        batimentImmobilisationMobilierOnglet.ajouterBatimentViaDto(batimentExistantOuNeufConstruitDto);
-        Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
-        if(!violations.isEmpty()) {
-            throw new ValidationCustomException(violations);
+    public void ajouterBatiment(BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet, BatimentExistantOuNeufConstruit batimentExistantOuNeufConstruit) {
+        // 1. S'assurer que le batiment courant est attaché au contexte
+        BatimentExistantOuNeufConstruit batimentExistantOuNeufConstruitAttache;
+        if (batimentExistantOuNeufConstruit.getId() == null) {
+            batimentExistantOuNeufConstruitAttache = batimentExistantOuNeufConstruitManager.save(batimentExistantOuNeufConstruit);
+        } else {
+            batimentExistantOuNeufConstruitAttache = batimentExistantOuNeufConstruitManager.findBatimentExistantOuNeufConstruitById(batimentExistantOuNeufConstruit.getId());
         }
-        batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
+
+        // 2. Ajouter uniquement s'il n'est pas déjà présent
+        if (!batimentImmobilisationMobilierOnglet.getBatimentExistantOuNeufConstruits().contains(batimentExistantOuNeufConstruitAttache)) {
+            batimentImmobilisationMobilierOnglet.ajouterBatimentExistantOuNeufConstruit(batimentExistantOuNeufConstruitAttache);
+            Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
+            if (!violations.isEmpty()) {
+                throw new ValidationCustomException(violations);
+            }
+            batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
+        }
     }
 
     @Override
@@ -119,7 +145,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
 
         // Sauvegarder l'onglet
         Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
-        if(!violations.isEmpty()) {
+        if (!violations.isEmpty()) {
             throw new ValidationCustomException(violations);
         }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
@@ -135,6 +161,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
                 .orElseThrow(() -> new ElementNontrouveException("BatimentExistantOuNeufConstruit", batimentId));
 
 
+        updateBatimentPartiel_withObject(dto, batiment, batimentImmobilisationMobilierOnglet);
+    }
+
+    private void updateBatimentPartiel_withObject(BatimentExistantOuNeufConstruitDto dto, BatimentExistantOuNeufConstruit batiment, BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet) {
         if (dto.getNom_ou_adresse() != null) {
             batiment.setNom_ou_adresse(dto.getNom_ou_adresse());
         }
@@ -161,7 +191,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         }
 
         Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
-        if(!violations.isEmpty()) {
+        if (!violations.isEmpty()) {
             throw new ValidationCustomException(violations);
         }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet); // Hibernate met à jour via cascade
@@ -178,14 +208,25 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
     }
 
     @Override
-    public void ajouterEntretienCourant(Long ongletId, EntretienCourantDto entretienCourantDto) {
-        BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
-        batimentImmobilisationMobilierOnglet.ajouterEntretienCourantViaDto(entretienCourantDto);
-        Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
-        if(!violations.isEmpty()) {
-            throw new ValidationCustomException(violations);
+    public void ajouterEntretienCourant(BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet, EntretienCourant entretienCourant) {
+
+        // 1. S'assurer que l'entretien courant est attaché au contexte
+        EntretienCourant entretienAttache;
+        if (entretienCourant.getId() == null) {
+            entretienAttache = entretienCourantManager.save(entretienCourant);
+        } else {
+            entretienAttache = entretienCourantManager.findEntretienCourantById(entretienCourant.getId());
         }
-        batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
+
+        // 2. Ajouter uniquement s'il n'est pas déjà présent
+        if (!batimentImmobilisationMobilierOnglet.getEntretienCourants().contains(entretienAttache)) {
+            batimentImmobilisationMobilierOnglet.ajouterEntretienCourant(entretienAttache);
+            Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
+            if (!violations.isEmpty()) {
+                throw new ValidationCustomException(violations);
+            }
+            batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
+        }
     }
 
     @Override
@@ -204,7 +245,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
 
         // Sauvegarder l'onglet
         Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
-        if(!violations.isEmpty()) {
+        if (!violations.isEmpty()) {
             throw new ValidationCustomException(violations);
         }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
@@ -220,6 +261,11 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
                 .orElseThrow(() -> new ElementNontrouveException("EntretienCourant", entretienCourantId));
 
 
+        updateEntretienCourantPartiel_withObject(dto, entretienCourant, batimentImmobilisationMobilierOnglet);
+
+    }
+
+    private void updateEntretienCourantPartiel_withObject(EntretienCourantDto dto, EntretienCourant entretienCourant, BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet) {
         if (dto.getDateAjout() != null) {
             entretienCourant.setDateAjout(dto.getDateAjout());
         }
@@ -243,11 +289,10 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         }
 
         Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
-        if(!violations.isEmpty()) {
+        if (!violations.isEmpty()) {
             throw new ValidationCustomException(violations);
         }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet); // Hibernate met à jour via cascade
-
     }
 
     @Override
@@ -266,7 +311,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         BatimentImmobilisationMobilierOnglet batimentImmobilisationMobilierOnglet = getBatimentImmobilisationMobilierOngletById(ongletId);
         batimentImmobilisationMobilierOnglet.ajouterMobilierElectromenagerViaDto(mobilierElectromenagerDto);
         Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
-        if(!violations.isEmpty()) {
+        if (!violations.isEmpty()) {
             throw new ValidationCustomException(violations);
         }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
@@ -289,7 +334,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
 
         // Sauvegarder l'onglet
         Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
-        if(!violations.isEmpty()) {
+        if (!violations.isEmpty()) {
             throw new ValidationCustomException(violations);
         }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);
@@ -323,7 +368,7 @@ public class BatimentImmobilisationMobilierOngletManagerImpl implements Batiment
         }
 
         Set<ConstraintViolation<BatimentImmobilisationMobilierOnglet>> violations = validator.validate(batimentImmobilisationMobilierOnglet);
-        if(!violations.isEmpty()) {
+        if (!violations.isEmpty()) {
             throw new ValidationCustomException(violations);
         }
         batimentImmobilisationMobilierOngletRepository.save(batimentImmobilisationMobilierOnglet);

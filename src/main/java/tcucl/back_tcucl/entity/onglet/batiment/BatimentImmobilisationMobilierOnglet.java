@@ -14,13 +14,23 @@ import java.util.List;
 @Table(name = "batiment_onglet")
 public class BatimentImmobilisationMobilierOnglet extends Onglet {
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "batiment_onglet_id")
+    //CascadeType.ALL sans remove car remove sur un enfant retirerait également l'onglet parent
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "batiment_onglet_associe_batiment",
+            joinColumns = @JoinColumn(name = "batiment_onglet_id"),
+            inverseJoinColumns = @JoinColumn(name = "batiment_id")
+    )
     @Valid
     private List<BatimentExistantOuNeufConstruit> batimentsExistantOuNeufConstruits = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "batiment_onglet_id")
+    //CascadeType.ALL sans remove car remove sur un enfant retirerait également l'onglet parent
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "batiment_onglet_associe_entretien",
+            joinColumns = @JoinColumn(name = "batiment_onglet_id"),
+            inverseJoinColumns = @JoinColumn(name = "entretien_id")
+    )
     @Valid
     private List<EntretienCourant> entretiensCourants = new ArrayList<>();
 
@@ -58,16 +68,7 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
     }
 
     public void ajouterBatimentExistantOuNeufConstruit(BatimentExistantOuNeufConstruit batimentExistantOuNeufConstruit) {
-        this.batimentsExistantOuNeufConstruits.add(new BatimentExistantOuNeufConstruit(
-                batimentExistantOuNeufConstruit.getNom_ou_adresse(),
-                batimentExistantOuNeufConstruit.getDateConstruction(),
-                batimentExistantOuNeufConstruit.getDateDerniereGrosseRenovation(),
-                batimentExistantOuNeufConstruit.getAcvBatimentRealisee(),
-                batimentExistantOuNeufConstruit.getEmissionsGesReellesTCO2(),
-                batimentExistantOuNeufConstruit.getTypeBatiment().getCode(),
-                batimentExistantOuNeufConstruit.getSurfaceEnM2(),
-                batimentExistantOuNeufConstruit.getTypeStructure().getCode()
-        ));
+        this.batimentsExistantOuNeufConstruits.add(batimentExistantOuNeufConstruit);
     }
 
     public void ajouterBatimentViaDto(BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
@@ -86,13 +87,7 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
     }
 
     public void ajouterEntretienCourant(EntretienCourant entretienCourant) {
-        this.entretiensCourants.add(new EntretienCourant(entretienCourant.getDateAjout(),
-                entretienCourant.getNom_adresse(),
-                entretienCourant.getTypeTravaux().getCode(),
-                entretienCourant.getDateTravaux(),
-                entretienCourant.getTypeBatiment().getCode(),
-                entretienCourant.getSurfaceConcernee(),
-                entretienCourant.getDureeAmortissement()));
+        this.entretiensCourants.add(entretienCourant);
     }
 
     public void ajouterEntretienCourantViaDto(EntretienCourantDto entretienCourantDto) {
@@ -125,5 +120,5 @@ public class BatimentImmobilisationMobilierOnglet extends Onglet {
         this.mobiliersElectromenagers.add(mobilierElectromenager);
     }
 
-    
+
 }

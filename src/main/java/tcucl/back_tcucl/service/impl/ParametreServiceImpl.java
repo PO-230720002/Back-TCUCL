@@ -2,7 +2,6 @@ package tcucl.back_tcucl.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tcucl.back_tcucl.config.AnneeConfig;
@@ -89,53 +88,45 @@ public class ParametreServiceImpl implements ParametreService {
         utilisateurService.modifierUtilisateurParUtilisateur(utilisateurId, modificationUtilisateurParUtilisateurDto);
     }
 
-    @Scheduled(cron = "0 1 0 1 9 *")
     @Transactional
     @Override
     public void creerAnneeSuivante() {
 
-        try {
+        int anneeUniversitaire = AnneeConfig.getAnneeCourante();
 
-            int anneeUniversitaire = AnneeConfig.getAnneeCourante();
-
-            //On vérifie si l'année universitaire courante est déjà créée
-            if (applicationParamService.getDerniereAnneeCreee() == anneeUniversitaire) {
-                throw new AnneeUniversitaireDejaCreeException(anneeUniversitaire);
-            }
-
-            //on récupère toutes les entités except l'entité superAdmin créé à l'initialisation donc id = 1
-            List<Entite> entites = entiteService.getAllEntites().stream().filter(entite -> entite.getId() != 1).toList();
-            for (Entite entite : entites) {
-
-                Annee anneeActu = new Annee(anneeUniversitaire);
-                Annee anneePrec = entite.getAnnees()
-                        .stream()
-                        .max(Comparator.comparingInt(Annee::getAnneeValeur))
-                        .orElse(null);
-
-                assert anneePrec != null;
-                BatimentImmobilisationMobilierOnglet anneePrecBatOnglet = anneePrec.getBatimentImmobilisationMobilierOnglet();
-                BatimentImmobilisationMobilierOnglet anneeActuBatOnglet = anneeActu.getBatimentImmobilisationMobilierOnglet();
-
-                // On copie les bâtiments existants de l'année précédente vers l'année actuelle
-                anneePrecBatOnglet.getBatimentExistantOuNeufConstruits()
-                        .forEach(anneeActuBatOnglet::ajouterBatimentExistantOuNeufConstruit);
-
-                anneePrecBatOnglet.getEntretienCourants()
-                        .forEach(anneeActuBatOnglet::ajouterEntretienCourant);
-
-                entite.addAnnee(anneeActu); // gère la liaison bidirectionnelle
-
-
-                entiteService.saveEntite(entite);
-            }
-            applicationParamService.setDerniereAnneeCreee(anneeUniversitaire);
-            log.info("Année universitaire {} créée pour toutes les entités.", anneeUniversitaire);
-        } catch (Exception e) {
-            log.error("Erreur lors de la création de l'année universitaire : {}", e.getMessage(), e);
-            throw new RuntimeException("Erreur lors de la création de l'année universitaire.", e);
+        //On vérifie si l'année universitaire courante est déjà créée
+        if (applicationParamService.getDerniereAnneeCreee() == anneeUniversitaire) {
+            throw new AnneeUniversitaireDejaCreeException(anneeUniversitaire);
         }
 
+        //on récupère toutes les entités except l'entité superAdmin créé à l'initialisation donc id = 1
+        List<Entite> entites = entiteService.getAllEntites().stream().filter(entite -> entite.getId() != 1).toList();
+        for (Entite entite : entites) {
+
+            Annee anneeActu = new Annee(anneeUniversitaire);
+            Annee anneePrec = entite.getAnnees()
+                    .stream()
+                    .max(Comparator.comparingInt(Annee::getAnneeValeur))
+                    .orElse(null);
+
+            assert anneePrec != null;
+            BatimentImmobilisationMobilierOnglet anneePrecBatOnglet = anneePrec.getBatimentImmobilisationMobilierOnglet();
+            BatimentImmobilisationMobilierOnglet anneeActuBatOnglet = anneeActu.getBatimentImmobilisationMobilierOnglet();
+
+            // On ajoute les bâtiments existants de l'année précédente à l'année actuelle
+            anneePrecBatOnglet.getBatimentExistantOuNeufConstruits()
+                    .forEach(anneeActuBatOnglet::ajouterBatimentExistantOuNeufConstruit);
+
+            // On ajoute les Entretiens courants de l'année précédente à l'année actuelle
+            anneePrecBatOnglet.getEntretienCourants()
+                    .forEach(anneeActuBatOnglet::ajouterEntretienCourant);
+
+            entite.addAnnee(anneeActu); // gère la liaison bidirectionnelle
+
+            entiteService.saveEntite(entite);
+        }
+        applicationParamService.setDerniereAnneeCreee(anneeUniversitaire);
+        log.info("Année universitaire {} créée pour toutes les entités.", anneeUniversitaire);
     }
 
     @Override

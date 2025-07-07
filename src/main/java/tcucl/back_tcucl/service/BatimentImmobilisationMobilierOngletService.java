@@ -1,7 +1,6 @@
 package tcucl.back_tcucl.service;
 
 import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.*;
-import tcucl.back_tcucl.dto.onglet.emissionFugitive.EmissionFugitiveResultatDto;
 import tcucl.back_tcucl.entity.onglet.batiment.BatimentImmobilisationMobilierOnglet;
 
 public interface BatimentImmobilisationMobilierOngletService {
@@ -10,13 +9,13 @@ public interface BatimentImmobilisationMobilierOngletService {
 
     void updateBatimentImmobilisationMobilierOnglet(Long ongletId, BatimentImmobilisationMobilierOngletDto batimentImmobilisationMobilierOngletDto);
 
-    void ajouterBatiment(Long ongletId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto);
+    void ajouterBatiment(Long ongletId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto, Integer anneeMaxAjout);
 
     void supprimerBatiment(Long ongletId, Long batimentId);
 
     void updateBatimentPartiel(Long ongletId, Long batimentId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto);
 
-    void ajouterEntretienCourant(Long ongletId, EntretienCourantDto entretienCourantDto);
+    void ajouterEntretienCourant(Long ongletId, EntretienCourantDto entretienCourantDto,Integer anneeMaxAjout);
 
     void supprimerEntretienCourant(Long ongletId, Long entretienCourantId);
 

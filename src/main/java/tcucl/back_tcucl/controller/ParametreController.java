@@ -4,8 +4,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import tcucl.back_tcucl.config.AnneeConfig;
 import tcucl.back_tcucl.dto.*;
 import tcucl.back_tcucl.entity.Utilisateur;
+import tcucl.back_tcucl.exceptionPersonnalisee.AnneeUniversitaireDejaCreeException;
 import tcucl.back_tcucl.service.FacteurEmissionService;
 import tcucl.back_tcucl.service.ParametreService;
 
@@ -17,6 +19,8 @@ import static tcucl.back_tcucl.controller.ControllerConstante.*;
 @RestController
 @RequestMapping(REST_PARAMETRE)
 public class ParametreController {
+
+    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ParametreController.class);
 
     private final ParametreService parametreService;
     private final FacteurEmissionService facteurEmissionService;
@@ -90,7 +94,18 @@ public class ParametreController {
     @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
     @PostMapping(REST_CREER_ANNEE_SUIVANTE)
     public ResponseEntity<?> creerAnneeSuivante() {
-        parametreService.creerAnneeSuivante();
+        try {
+            parametreService.creerAnneeSuivante();
+        } catch (AnneeUniversitaireDejaCreeException e) {
+            logger.warn("PARAMETRE CONTROLLER : L'année universitaire {} est déjà créée pour toutes les entités, aucune action effectuée.", AnneeConfig.getAnneeCourante());
+            throw e;
+        } catch (Exception e) {
+            if(e instanceof AnneeUniversitaireDejaCreeException) {
+                throw e; // Lancement de l'exception pour que le message soit géré par le GestionnaireErreurController
+            }else{
+                logger.error("PARAMETRE CONTROLLER : Erreur lors de la création de l'année universitaire pour toutes les entités: {}", e.getMessage());
+            }
+        }
         return ResponseEntity.ok(REST_MESSAGE_ANNEE_SUIVANTE_CREEE);
     }
 

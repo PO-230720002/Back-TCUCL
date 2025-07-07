@@ -2,6 +2,7 @@ package tcucl.back_tcucl.entity.onglet.batiment;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.AssertTrue;
+import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.EntretienCourantDto;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeBatiment;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeStructure;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeTravaux;
@@ -33,6 +34,17 @@ public class EntretienCourant {
         this.valeurEnumTypeBatiment = valeurEnumTypeBatiment;
         this.surfaceConcernee = surfaceConcernee;
         this.dureeAmortissement = dureeAmortissement;
+    }
+
+    public EntretienCourant(EntretienCourantDto entretienCourantDto) {
+        this.setDateAjout(entretienCourantDto.getDateAjout());
+        this.setNom_adresse(entretienCourantDto.getNom_adresse());
+        this.setTypeTravaux(entretienCourantDto.getTypeTravaux());
+        this.setDateTravaux(entretienCourantDto.getDateTravaux());
+        this.setTypeBatiment(entretienCourantDto.getTypeBatiment());
+        this.setSurfaceConcernee(entretienCourantDto.getSurfaceConcernee());
+        this.setDureeAmortissement(entretienCourantDto.getDureeAmortissement());
+
     }
 
     // Getters et Setters

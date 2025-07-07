@@ -26,24 +26,25 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendSimpleEmail(String prenom, String to, String mdp) {
+    public void sendSimpleEmail(String prenom, String nom, String to, String mdp) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setSubject(MAIL_SUJET_INSCRIPTION_DEBUT);
             message.setFrom(fromEmail);
             message.setTo(to);
-            message.setText(ecrireMail(prenom, mdp));
+            message.setText(ecrireMail(prenom, nom, mdp));
             emailSender.send(message);
-            logger.info(" Email envoyé à : " + to);
+            logger.info("Email envoyé à : " + to);
         } catch (Exception e) {
-            logger.error(" Erreur lors de l'envoi de l'email à :  " + to + "\n" + e.getMessage());
+            logger.error("Erreur lors de l'envoi de l'email à : " + to + "\n" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
 
-    private String ecrireMail(String nom, String mdp){
+    private String ecrireMail(String prenom, String nom, String mdp){
 
-        return MAIL_MESSAGE_INSCRIPTION_DEBUT + nom + MAIL_MESSAGE_INSCRIPTION_MILIEU + mdp + MAIL_MESSAGE_INSCRIPTION_FIN;
+        return MAIL_MESSAGE_INSCRIPTION_DEBUT + prenom + " " + nom + MAIL_MESSAGE_INSCRIPTION_MILIEU + mdp + MAIL_MESSAGE_INSCRIPTION_FIN;
 
     }
 

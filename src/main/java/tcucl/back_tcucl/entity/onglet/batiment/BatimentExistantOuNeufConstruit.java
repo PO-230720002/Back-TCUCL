@@ -2,6 +2,7 @@ package tcucl.back_tcucl.entity.onglet.batiment;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.AssertTrue;
+import tcucl.back_tcucl.dto.onglet.batimentImmobilisationMobilier.BatimentExistantOuNeufConstruitDto;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeBatiment;
 import tcucl.back_tcucl.entity.onglet.batiment.enums.EnumBatiment_TypeStructure;
 
@@ -36,6 +37,18 @@ public class BatimentExistantOuNeufConstruit {
         this.valeurEnumTypeBatiment = valeurEnumTypeBatiment;
         this.surfaceEnM2 = surfaceEnM2;
         this.valeurEnumTypeStructure = valeurEnumTypeStructure;
+    }
+
+    public BatimentExistantOuNeufConstruit(BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
+        this.setId(batimentExistantOuNeufConstruitDto.getId());
+        this.setNom_ou_adresse(batimentExistantOuNeufConstruitDto.getNom_ou_adresse());
+        this.setDateConstruction(batimentExistantOuNeufConstruitDto.getDateConstruction());
+        this.setDateDerniereGrosseRenovation(batimentExistantOuNeufConstruitDto.getDateDerniereGrosseRenovation());
+        this.setAcvBatimentRealisee(batimentExistantOuNeufConstruitDto.getAcvBatimentRealisee());
+        this.setEmissionsGesReellesTCO2(batimentExistantOuNeufConstruitDto.getEmissionsGesReellesTCO2());
+        this.setTypeBatiment(batimentExistantOuNeufConstruitDto.getTypeBatiment());
+        this.setSurfaceEnM2(batimentExistantOuNeufConstruitDto.getSurfaceEnM2());
+        this.setTypeStructure(batimentExistantOuNeufConstruitDto.getTypeStructure());
     }
 
     @AssertTrue(message = "Le type de bâtiment doit être vide ou 'NA' si une ACV bâtiment est réalisée.")

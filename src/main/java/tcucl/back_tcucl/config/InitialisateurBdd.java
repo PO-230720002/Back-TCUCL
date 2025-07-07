@@ -32,41 +32,43 @@ public class InitialisateurBdd implements CommandLineRunner {
         if (!applicationParamService.isDerniereAnneeCreee()) {
             int annee = AnneeConfig.getAnneeCourante();
             applicationParamService.setDerniereAnneeCreee(annee);
-            logger.info("Année " + annee + " enregistrée au démarrage.");
+            logger.info("INIT : Année " + annee + " enregistrée au démarrage en bdd en tant que dernière année créée.");
         } else {
-            logger.info("Aucune action nécessaire, année déjà créée : " + applicationParamService.getDerniereAnneeCreee());
+            logger.info("INIT : Aucune action nécessaire : la valeur de la dernière année créée est déjà enregistrée : " + applicationParamService.getDerniereAnneeCreee());
         }
 
         // Création de l'entité SUPERADMIN + userTechniqueSuperAdmin SuperAdmin
         try {
-            if(entiteService.getAllEntites().isEmpty()){
+            if (entiteService.getAllEntites().isEmpty()) {
                 parametreService.creerEntiteEtAdmin(
                         new CreationEntiteEtAdminDto_SuperAdmin(
                                 "Entité SUPERADMIN",            // NomEntité
                                 "SUPERADMIN",                        // Type
-                                "",                                  // NomUtilisateur
-                                "User Technique Super Admin",        // PrenomUtilisateur
+                                "Super Admin",                       // NomUtilisateur
+                                "Utilisateur Technique 1",           // PrenomUtilisateur
                                 "trajectoirecarbone.ucl@gmail.com",  // Mail
                                 SUPERADMIN_TRUE                      // EstSuperAdmin
                         )
                 );
-                logger.info("Entité SUPERADMIN créée avec succès.");
+                logger.info("INIT : Entité SUPERADMIN créée avec succès.");
+            } else {
+                logger.info("INIT : Entité SUPERADMIN déjà créée.");
             }
-            logger.info("Entité SUPERADMIN déjà créée.");
         } catch (Exception e) {
-            logger.error("Erreur lors de la création de l'entité SUPERADMIN : " + e.getMessage());
+            logger.error("INIT : Erreur lors de la création de l'entité SUPERADMIN : " + e.getMessage());
         }
 
-        // vérification que l'ajout d'année a bien été fait cette année au redéarrage de l'app
+        // vérification que l'ajout d'année a bien été fait cette année au redémarrage de l'app
         // au cas où l'app a planté pendant l'éxecution de la cron
-        try{
-        parametreService.creerAnneeSuivante();
-        }catch (AnneeUniversitaireDejaCreeException e){
-            logger.info(e.getMessage());
+        try {
+            parametreService.creerAnneeSuivante();
+        } catch (AnneeUniversitaireDejaCreeException e) {
+            logger.warn("INIT : L'année universitaire {} est déjà créée pour toutes les entités, aucune action effectuée.", AnneeConfig.getAnneeCourante());
+        } catch (Exception e) {
+            logger.error("INIT : Erreur lors de la création de l'année universitaire pour toutes les entités: {}", e.getMessage());
         }
 
-        logger.info("\n\n ----------------  Initialisation de la base de données terminée.  ----------------  \n\n");
-
+        logger.info("----------------  Initialisation de l'application terminée.  ----------------  \n\n");
 
     }
 }
