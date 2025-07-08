@@ -4,6 +4,7 @@ import tcucl.back_tcucl.dto.ListIdDto;
 import tcucl.back_tcucl.dto.securite.AnneeSecuriteDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface AnneeService {
 
@@ -11,4 +12,5 @@ public interface AnneeService {
 
     ListIdDto getongletIdListForEntiteAndAnnee(Long entiteId, Integer anneeUniversitaire);
 
+    Map<Long, Boolean> getAllEstTermineParAnneParEntite(Long entiteId, Integer anneeUniversitaire);
 }

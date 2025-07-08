@@ -7,6 +7,7 @@ import tcucl.back_tcucl.manager.AnneeManager;
 import tcucl.back_tcucl.service.AnneeService;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AnneeServiceImpl implements AnneeService {
@@ -25,5 +26,10 @@ public class AnneeServiceImpl implements AnneeService {
     @Override
     public ListIdDto getongletIdListForEntiteAndAnnee(Long entiteId, Integer anneeUniversitaire) {
         return anneeManager.getongletIdListForEntiteAndAnnee(entiteId, anneeUniversitaire);
+    }
+
+    @Override
+    public Map<Long, Boolean> getAllEstTermineParAnneParEntite(Long entiteId, Integer anneeUniversitaire) {
+       return anneeManager.getAllEstTermineParAnneParEntite(entiteId, anneeUniversitaire);
     }
 }
