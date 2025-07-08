@@ -6,10 +6,14 @@ import tcucl.back_tcucl.dto.ListIdDto;
 import tcucl.back_tcucl.dto.securite.AnneeSecuriteDto;
 import tcucl.back_tcucl.entity.Annee;
 import tcucl.back_tcucl.entity.onglet.Onglet;
+import tcucl.back_tcucl.exceptionPersonnalisee.NonTrouveGeneralCustomException;
 import tcucl.back_tcucl.manager.AnneeManager;
 import tcucl.back_tcucl.repository.AnneeRepository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -63,6 +67,27 @@ public class AnneeManagerImpl implements AnneeManager {
                 getId(annee.getVehiculeOnglet())
         );
     }
+
+    public Annee findByEntiteIdAndAnneeValeur(Long entiteId, Integer anneeUniversitaire){
+        Optional<Annee> optionalAnnee = anneeRepository.findByEntiteIdAndAnneeValeur(entiteId, anneeUniversitaire);
+        if(optionalAnnee.isPresent()){
+            return optionalAnnee.get();
+        }else{
+            throw new NonTrouveGeneralCustomException("Annee non trouvée avec entite Id : " + entiteId + " et anneeUniversitaire : " + anneeUniversitaire);
+        }
+    }
+
+    @Override
+    public Map<Long, Boolean> getAllEstTermineParAnneParEntite(Long entiteId, Integer anneeUniversitaire) {
+        Map<Long, Boolean> mapResult = new HashMap<>();
+        this.findByEntiteIdAndAnneeValeur(entiteId, anneeUniversitaire)
+                .getOnglets()
+                .forEach((onglet -> {
+                    mapResult.put(onglet.getId(), onglet.getEstTermine());
+                }));
+        return mapResult;
+    }
+
 
     private Long getId(Onglet onglet) {
         return onglet != null ? onglet.getId() : null;

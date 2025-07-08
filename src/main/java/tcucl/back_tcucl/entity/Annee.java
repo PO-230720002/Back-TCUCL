@@ -28,7 +28,6 @@ public class Annee {
     @OneToMany(mappedBy = "annee", cascade = CascadeType.ALL)
     private List<Onglet> onglets;
 
-
     @ManyToOne
     @JoinColumn(name = "entite_id")
     private Entite entite;
@@ -94,6 +93,10 @@ public class Annee {
 
     public void setAnneeValeur(int annee) {
         this.anneeValeur = annee;
+    }
+
+    public List<Onglet> getOnglets(){
+        return this.onglets;
     }
 
     public GeneralOnglet getGeneralOnglet() {

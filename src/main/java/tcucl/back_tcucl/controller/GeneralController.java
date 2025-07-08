@@ -23,4 +23,11 @@ public class GeneralController {
                                                               @RequestParam(value="annee") Integer annee) {
         return ResponseEntity.ok(anneeService.getongletIdListForEntiteAndAnnee(entiteId, annee));
     }
+
+    @GetMapping("/estTermineAnnee/{annee}" )
+    @PreAuthorize("hasRole('ROLE_ENTITE_' + #entiteId)")
+    public ResponseEntity<?> getAllEstTermineParAnneParEntite(@PathVariable(value = "entiteId") Long entiteId,
+                                                              @PathVariable(value="annee") Integer annee) {
+        return ResponseEntity.ok(anneeService.getAllEstTermineParAnneParEntite(entiteId, annee));
+    }
 }
