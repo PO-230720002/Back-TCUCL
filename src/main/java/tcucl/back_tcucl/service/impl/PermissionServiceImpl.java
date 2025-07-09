@@ -21,43 +21,13 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public boolean utilisateurPeutModifierUtilisateur(Authentication authentication, Long UtilisateurId) {
-        return authentication.getName().equals(utilisateurManager.getUtilisateurParId(UtilisateurId).getEmail());
-    }
-
-    @Override
-    public boolean utilisateurOuAdminPeutChangerMdp(Authentication authentication, ChangePasswordDto changePasswordDto) {
+    public boolean utilisateurPeutChangerMdp(Authentication authentication, ChangePasswordDto changePasswordDto) {
         return authentication.getName().equals(changePasswordDto.getEmail());
-    }
-
-    @Override
-    public boolean adminPeutInscrireUtilisateur(Authentication authentication, InscriptionDto_SuperAdmin inscriptionDtoSuperAdmin) {
-        return estAdminDeEntite(authentication.getName(), inscriptionDtoSuperAdmin.getEntiteId());
     }
 
     @Override
     public boolean adminPeutModifierUtilisateur(Authentication authentication, Long utilisateurId) {
         return estAdminDe(authentication.getName(), utilisateurId);
-    }
-
-    @Override
-    public boolean adminPeutModifierEstAdmin(Authentication authentication, Long utilisateurId){
-        return estAdminDe(authentication.getName(), utilisateurId);
-    }
-
-    @Override
-    public boolean adminPeutAccéderAEntite(Authentication authentication, Long entiteId){
-        return estAdminDeEntite(authentication.getName(),entiteId);
-    }
-
-    @Override
-    public boolean adminPeutSupprimerUtilisateur(Authentication authentication, Long utilisateurId){
-        return estAdminDe(authentication.getName(), utilisateurId);
-    }
-
-    @Override
-    public boolean adminPeutAjouterAnneeEntite(Authentication authentication, Long entiteId) {
-        return estAdminDeEntite(authentication.getName(),entiteId);
     }
 
     private boolean estAdminDe(String adminEmail, String utilisateurEmail) {
