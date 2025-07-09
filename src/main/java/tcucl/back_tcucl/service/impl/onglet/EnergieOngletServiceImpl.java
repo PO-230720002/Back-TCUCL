@@ -116,7 +116,7 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
                 consoElecChauffage +
                 consoElecSpecifique);
 
-        energieResultatDto.setconsoEnergieSpecifique(energieOnglet.getConsoElecSpecifique());
+        energieResultatDto.setconsoEnergieSpecifique(energieOnglet.getConsoElecSpecifique() );
         energieResultatDto.setConsoEnergieChauffage(energieResultatDto.getConsoEnergieFinale() - energieResultatDto.getconsoEnergieSpecifique());
 
         float surfaceBatiment = energieOnglet.getOngletDeClass(BatimentImmobilisationMobilierOnglet.class)
@@ -127,7 +127,7 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
                 .reduce(0f, Float::sum);
         if (surfaceBatiment != 0) {
             energieResultatDto.setConsoEnergieFinaleParM2(energieResultatDto.getConsoEnergieFinale() * 1000 / surfaceBatiment);
-            energieResultatDto.setConsoEnergiePrimaireParM2(((energieOnglet.getConsoElecChauffage() + energieOnglet.getConsoElecSpecifique()) * 2.3f + (energieResultatDto.getConsoEnergieChauffage() - energieOnglet.getConsoElecChauffage())) * 1000f / energieResultatDto.getSurfaceTotaleBatiments());
+            energieResultatDto.setConsoEnergiePrimaireParM2(((energieOnglet.getConsoElecChauffage() + energieOnglet.getConsoElecSpecifique()) * 2.3f + (energieResultatDto.getConsoEnergieChauffage() - energieOnglet.getConsoElecChauffage())) * 1000f / surfaceBatiment);
             energieResultatDto.setIntensiteCarboneParM2((energieResultatDto.getConsoGaz()
                     + energieResultatDto.getConsoFioul()
                     + energieResultatDto.getConsoBois()
