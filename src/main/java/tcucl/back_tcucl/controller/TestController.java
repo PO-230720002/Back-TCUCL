@@ -13,11 +13,6 @@ public class TestController {
 
     @GetMapping
     public int testget() {
-
-        System.out.println(FacteurEmissionParametre.ENERGIE);
-        System.out.println(FacteurEmissionParametre.ENERGIE_.GAZ);
-        System.out.println(FacteurEmissionParametre.ENERGIE_.GAZ_.MWh_PCS);
-
         return 0;
     }
 
