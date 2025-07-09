@@ -12,7 +12,6 @@ import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_NomReseauVille;
 import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_UniteBois;
 import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_UniteFioul;
 import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_UniteGaz;
-import tcucl.back_tcucl.exceptionPersonnalisee.AucunBatimentCreeException;
 import tcucl.back_tcucl.manager.EnergieOngletManager;
 import tcucl.back_tcucl.service.EnergieOngletService;
 import tcucl.back_tcucl.service.FacteurEmissionService;
@@ -126,19 +125,21 @@ public class EnergieOngletServiceImpl implements EnergieOngletService {
                 .map(BatimentExistantOuNeufConstruit::getSurfaceEnM2) // pour éviter les NullPointerException
                 .filter(surfaceEnM2 -> surfaceEnM2 != null)
                 .reduce(0f, Float::sum);
-        if (surfaceBatiment == 0) {
-            throw new AucunBatimentCreeException();
+        if (surfaceBatiment != 0) {
+            energieResultatDto.setConsoEnergieFinaleParM2(energieResultatDto.getConsoEnergieFinale() * 1000 / surfaceBatiment);
+            energieResultatDto.setConsoEnergiePrimaireParM2(((energieOnglet.getConsoElecChauffage() + energieOnglet.getConsoElecSpecifique()) * 2.3f + (energieResultatDto.getConsoEnergieChauffage() - energieOnglet.getConsoElecChauffage())) * 1000f / energieResultatDto.getSurfaceTotaleBatiments());
+            energieResultatDto.setIntensiteCarboneParM2((energieResultatDto.getConsoGaz()
+                    + energieResultatDto.getConsoFioul()
+                    + energieResultatDto.getConsoBois()
+                    + energieResultatDto.getConsoReseauVille()
+                    + energieResultatDto.getConsoElecChauffage()
+                    + energieResultatDto.getConsoElecSpecifique()) * 1000f / surfaceBatiment);
+        } else {
+            energieResultatDto.setConsoEnergieFinaleParM2(0F);
+            energieResultatDto.setConsoEnergiePrimaireParM2(0F);
+            energieResultatDto.setIntensiteCarboneParM2(0F);
         }
         energieResultatDto.setSurfaceTotaleBatiments(surfaceBatiment);
-
-        energieResultatDto.setConsoEnergieFinaleParM2(energieResultatDto.getConsoEnergieFinale() * 1000 / surfaceBatiment);
-        energieResultatDto.setConsoEnergiePrimaireParM2(((energieOnglet.getConsoElecChauffage() + energieOnglet.getConsoElecSpecifique()) * 2.3f + (energieResultatDto.getConsoEnergieChauffage() - energieOnglet.getConsoElecChauffage())) * 1000f / energieResultatDto.getSurfaceTotaleBatiments());
-        energieResultatDto.setIntensiteCarboneParM2((energieResultatDto.getConsoGaz()
-                + energieResultatDto.getConsoFioul()
-                + energieResultatDto.getConsoBois()
-                + energieResultatDto.getConsoReseauVille()
-                + energieResultatDto.getConsoElecChauffage()
-                + energieResultatDto.getConsoElecSpecifique()) * 1000f / surfaceBatiment);
 
         energieResultatDto.setIntensiteCarboneMoyenne((energieResultatDto.getConsoGaz()
                 + energieResultatDto.getConsoFioul()
