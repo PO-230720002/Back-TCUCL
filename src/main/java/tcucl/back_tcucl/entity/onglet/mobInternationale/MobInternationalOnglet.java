@@ -15,18 +15,18 @@ public class MobInternationalOnglet extends Onglet {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "voyage_mob_internationale_id")
     @Valid
-    private List<Voyage> voyage = new ArrayList<>();
+    private List<Voyage> voyages = new ArrayList<>();
 
     public MobInternationalOnglet() {
         super();
     }
 
-    public List<Voyage> getVoyage() {
-        return voyage;
+    public List<Voyage> getVoyages() {
+        return voyages;
     }
 
-    public void setVoyage(List<Voyage> voyage) {
-        this.voyage = voyage;
+    public void setVoyages(List<Voyage> voyage) {
+        this.voyages = voyage;
     }
 
     
@@ -44,6 +44,6 @@ public class MobInternationalOnglet extends Onglet {
         voyage.setFormationContinueAvion(voyageDto.getFormationContinueAvion());
         voyage.setFormationContinueTrain(voyageDto.getFormationContinueTrain());
 
-        this.voyage.add(voyage);
+        this.voyages.add(voyage);
     }
 }

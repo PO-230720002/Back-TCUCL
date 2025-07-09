@@ -23,8 +23,8 @@ public class MobInternationalOngletDto {
         this.estTermine = entity.getEstTermine();
         this.note = entity.getNote();
 
-        if (entity.getVoyage() != null) {
-            this.voyageVersUneDestinationMobInternationale = entity.getVoyage().stream()
+        if (entity.getVoyages() != null) {
+            this.voyageVersUneDestinationMobInternationale = entity.getVoyages().stream()
                     .map(VoyageDto::new)
                     .collect(Collectors.toList());
         }
