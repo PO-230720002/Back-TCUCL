@@ -41,17 +41,15 @@ public class BatimentImmobilisationMobilierOngletController {
     @PostMapping(REST_BATIMENT_EXISTANT_OU_NEUF_CONSTRUIT)
     @checkRoleOnglet
     public ResponseEntity<Void> ajouterBatiment(@PathVariable(name = "ongletId") Long ongletId,
-                                                @RequestBody BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto,
-                                                @RequestParam(name="anneeMaxAjout") Integer anneeMaxAjout) {
-        batimentImmobilisationMobilierOngletService.ajouterBatiment(ongletId, batimentExistantOuNeufConstruitDto,anneeMaxAjout);
+                                                @RequestBody BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
+        batimentImmobilisationMobilierOngletService.ajouterBatiment(ongletId, batimentExistantOuNeufConstruitDto);
         return ResponseEntity.ok().build();
     }
     @PostMapping(REST_ENTRETIEN_COURANT)
     @checkRoleOnglet
     public ResponseEntity<Void> ajouterEntretienCourant(@PathVariable(name = "ongletId") Long ongletId,
-                                                        @RequestBody EntretienCourantDto entretienCourantDto,
-                                                        @RequestParam(name="anneeMaxAjout") Integer anneeMaxAjout) {
-        batimentImmobilisationMobilierOngletService.ajouterEntretienCourant(ongletId, entretienCourantDto, anneeMaxAjout);
+                                                        @RequestBody EntretienCourantDto entretienCourantDto) {
+        batimentImmobilisationMobilierOngletService.ajouterEntretienCourant(ongletId, entretienCourantDto);
         return ResponseEntity.ok().build();
     }
     @PostMapping(REST_MOBILIER_ELECTROMENAGER)
