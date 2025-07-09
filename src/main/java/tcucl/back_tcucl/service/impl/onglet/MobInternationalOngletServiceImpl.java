@@ -77,7 +77,7 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
         MobInternationalResultatDto resultat = new MobInternationalResultatDto();
 
         //Récupération de la liste de voyages
-        List<Voyage> voyages = onglet.getVoyage();
+        List<Voyage> voyages = onglet.getVoyages();
 
         //Récupération du nombre de Salariés et d'étudiants
         GeneralOnglet generalOnglet = onglet.getOngletDeClass(GeneralOnglet.class);
@@ -164,14 +164,15 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
         // On parcourt toutes les voyages pour calculer les sommes et les émissions de GES du voyage actuel
         voyages.forEach(voyage -> {
             // On va créer des variables pour toutes les colonnes afin de s'y retrouver
-            Float CprosAvion = (float) voyage.getProsAvion();
-            Float DprosTrain = (float) voyage.getProsTrain();
-            Float EstagesEtudiantsAvion = (float) voyage.getStagesEtudiantsAvion();
-            Float FstagesEtudiantsTrain = (float) voyage.getStagesEtudiantsTrain();
-            Float GsemestresEtudiantsAvion = (float) voyage.getSemestresEtudiantsAvion();
-            Float HsemestresEtudiantsTrain = (float) voyage.getSemestresEtudiantsTrain();
-            Float GformationContinueAvion = (float) voyage.getFormationContinueAvion(); //A dupliquer
-            Float HformationContinueTrain = (float) voyage.getFormationContinueTrain(); //A dupliquer
+            Float CprosAvion = voyage.getProsAvion() != null ? voyage.getProsAvion().floatValue() : 0f;
+            Float DprosTrain = voyage.getProsTrain() != null ? voyage.getProsTrain().floatValue() : 0f;
+            Float EstagesEtudiantsAvion = voyage.getStagesEtudiantsAvion() != null ? voyage.getStagesEtudiantsAvion().floatValue() : 0f;
+            Float FstagesEtudiantsTrain = voyage.getStagesEtudiantsTrain() != null ? voyage.getStagesEtudiantsTrain().floatValue() : 0f;
+            Float GsemestresEtudiantsAvion = voyage.getSemestresEtudiantsAvion() != null ? voyage.getSemestresEtudiantsAvion().floatValue() : 0f;
+            Float HsemestresEtudiantsTrain = voyage.getSemestresEtudiantsTrain() != null ? voyage.getSemestresEtudiantsTrain().floatValue() : 0f;
+            Float GformationContinueAvion = voyage.getFormationContinueAvion() != null ? voyage.getFormationContinueAvion().floatValue() : 0f; //a dupliquer
+            Float HformationContinueTrain = voyage.getFormationContinueTrain() != null ? voyage.getFormationContinueTrain().floatValue() : 0f; // a dupliquer
+
 
             Float IDistanceMoyenneVolDOiseau = (float) voyage.getPays().getDistanceMoyenneVolOiseau();
             Float JegesMoyenAvion = facteurEmissionService.findByCategorieAndType(
@@ -484,7 +485,7 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
         MobInternationalOnglet mobInternationalOngletById = mobInternationalOngletManager.getMobInternationalOngletById(ongletId);
 
         // Récupération de la liste des voyages
-        List<Voyage> voyagesById = mobInternationalOngletById.getVoyage();
+        List<Voyage> voyagesById = mobInternationalOngletById.getVoyages();
 
         // Si on n'est pas en mode modeAjout, on vide la liste des voyages
         if (!modeAjout) {

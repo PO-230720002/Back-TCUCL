@@ -38,7 +38,7 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
     @Override
     public Voyage getVoyageById(Long ongletId, Long voyageId) {
         MobInternationalOnglet mobInternationalOnglet = getMobInternationalOngletById(ongletId);
-        return mobInternationalOnglet.getVoyage().stream()
+        return mobInternationalOnglet.getVoyages().stream()
                 .filter(m -> m.getId().equals(voyageId))
                 .findFirst()
                 .orElseThrow(() -> new ElementNontrouveException("Voyage", voyageId));
@@ -55,7 +55,7 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
 
         if (mobInternationalOngletDto.getVoyageVersUneDestinationMobInternationale() != null) {
             // On supprime les voyages existants et on les remplace par les nouveaux
-            mobInternationalOnglet.getVoyage().clear();
+            mobInternationalOnglet.getVoyages().clear();
             for (VoyageDto voyageDto : mobInternationalOngletDto.getVoyageVersUneDestinationMobInternationale()) {
                 mobInternationalOnglet.ajouterVoyageViaDto(voyageDto);
             }
@@ -72,8 +72,8 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
     public void ajouterVoyage(Long ongletId, VoyageDto voyageDto) {
         MobInternationalOnglet mobInternationalOnglet = getMobInternationalOngletById(ongletId);
 
-        // Vérification si le voyage existe déjà
-        Voyage existingVoyage = mobInternationalOnglet.getVoyage()
+        // Vérification si le voyage (destination) existe déjà
+        Voyage existingVoyage = mobInternationalOnglet.getVoyages()
                 .stream()
                 .filter(v -> v.getPays().equals(voyageDto.getNomPays()))
                 .findFirst()
@@ -97,13 +97,13 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
     public void supprimerVoyage(Long ongletId, Long voyageId) {
         MobInternationalOnglet mobInternationalOnglet = getMobInternationalOngletById(ongletId);
 
-        Voyage voyage = mobInternationalOnglet.getVoyage()
+        Voyage voyage = mobInternationalOnglet.getVoyages()
                 .stream()
                 .filter(v -> v.getId().equals(voyageId))
                 .findFirst()
                 .orElseThrow(() -> new ElementNontrouveException("Voyage", voyageId));
 
-        mobInternationalOnglet.getVoyage().remove(voyage);
+        mobInternationalOnglet.getVoyages().remove(voyage);
 
         
         Set<ConstraintViolation<MobInternationalOnglet>> violations = validator.validate(mobInternationalOnglet);
@@ -117,7 +117,7 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
     public void updateVoyagePartiel(Long ongletId, Long voyageId, VoyageDto voyageDto) {
         MobInternationalOnglet mobInternationalOnglet = getMobInternationalOngletById(ongletId);
 
-        Voyage voyage = mobInternationalOnglet.getVoyage()
+        Voyage voyage = mobInternationalOnglet.getVoyages()
                 .stream()
                 .filter(v -> v.getId().equals(voyageId))
                 .findFirst()
@@ -140,7 +140,7 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
         if (voyageDto.getFormationContinueTrain() != null)
             voyage.setFormationContinueTrain(voyageDto.getFormationContinueTrain());
 
-        mobInternationalOnglet.getVoyage().add(voyage);
+        mobInternationalOnglet.getVoyages().add(voyage);
 
         
         Set<ConstraintViolation<MobInternationalOnglet>> violations = validator.validate(mobInternationalOnglet);
