@@ -32,4 +32,13 @@ public enum EnumEmissionFugitive_TypeMachine {
         }
         throw new IllegalArgumentException("Code invalide : " + code);
     }
+
+    public static EnumEmissionFugitive_TypeMachine fromLibelle(String libelle) {
+        for (EnumEmissionFugitive_TypeMachine e : values()) {
+            if (e.libelle == libelle) {
+                return e;
+            }
+        }
+        throw new IllegalArgumentException("Code invalide : " + libelle);
+    }
 }

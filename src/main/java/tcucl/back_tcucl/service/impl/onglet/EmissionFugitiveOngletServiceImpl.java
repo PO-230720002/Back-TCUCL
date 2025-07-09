@@ -8,6 +8,7 @@ import tcucl.back_tcucl.entity.facteurEmission.FacteurEmission;
 import tcucl.back_tcucl.entity.facteurEmission.FacteurEmissionParametre;
 import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.entity.onglet.emissionFugitive.MachineEmissionFugitive;
+import tcucl.back_tcucl.entity.onglet.emissionFugitive.enums.EnumEmissionFugitive_TypeFluide;
 import tcucl.back_tcucl.manager.EmissionFugitiveOngletManager;
 import tcucl.back_tcucl.service.EmissionFugitiveOngletService;
 import tcucl.back_tcucl.service.FacteurEmissionService;
@@ -66,7 +67,7 @@ public class EmissionFugitiveOngletServiceImpl implements EmissionFugitiveOnglet
                         machine -> {
                             FacteurEmission facteurEmission = facteurEmissionService.findByCategorieAndType(
                                     FacteurEmissionParametre.EMISSIONS_FUGITIVES,
-                                    machine.getTypeFluide().toString()
+                                    machine.getTypeFluide().getLibelle()
                             );
 
                             Float quantiteFluide = machine.getQuantiteFluideKg();
