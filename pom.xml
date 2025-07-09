@@ -124,6 +124,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>tcucl.back_tcucl.BackTcuclApplication</mainClass>
+					<executable>true</executable>
 				</configuration>
 				<executions>
 					<execution>
