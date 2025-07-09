@@ -124,7 +124,7 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
 
         Float emissionGesSemestreEurope = mobInternationalOngletService
                 .getMobInternationalResultat(mobInternationalOngletId)
-                .getEmissionGesSemestreEurope();
+                .getEmissionGesSemestresEtudiantsEurope();
         emissionGesSemestreEurope = (emissionGesSemestreEurope != null) ? emissionGesSemestreEurope : 0.0f;
 
         Float emissionGesProHorsEurope = mobInternationalOngletService
@@ -139,7 +139,7 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
 
         Float emissionGesSemestresHorsEurope = mobInternationalOngletService
                 .getMobInternationalResultat(mobInternationalOngletId)
-                .getEmissionGesSemestresHorsEurope();
+                .getEmissionGesSemestresEtudiantsHorsEurope();
         emissionGesSemestresHorsEurope = (emissionGesSemestresHorsEurope != null) ? emissionGesSemestresHorsEurope : 0.0f;
 
         Float mobiliteInternationalGlobal = emissionGesProEurope + emissionGesStageEurope + emissionGesSemestreEurope +
