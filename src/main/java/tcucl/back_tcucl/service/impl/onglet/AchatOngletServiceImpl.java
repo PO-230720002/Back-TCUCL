@@ -243,8 +243,6 @@ public class AchatOngletServiceImpl implements AchatOngletService {
                         + resultat.getChaussure_nb()
         );
 
-        //todo textile et habillage en euro n'est pas dans l'app mais dans les facteurs
-
         // RESTAURATION
         switch (onglet.getAchatRestauration().getMethodeCalcul()){
             case METHODE_RAPIDE -> {

@@ -30,7 +30,6 @@ public class Entite {
     // 3. SANTE
     // 4. LOGEMENT
     // 5. RESTAURATION
-    // 6.
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "notes_permanentes_id")

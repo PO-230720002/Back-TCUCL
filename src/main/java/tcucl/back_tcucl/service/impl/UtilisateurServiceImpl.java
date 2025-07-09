@@ -90,6 +90,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
         //Génération du mot de passe aléatoire
         String mdpAleatoire = genererMdpAleatoire();
+        // devTodo à supprimer en prod
         logger.info("Mot de passe généré: " + mdpAleatoire);  // Log du mot de passe généré
 
         //Création de l'utilisateur
