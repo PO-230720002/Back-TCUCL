@@ -70,7 +70,6 @@ public class Voyage {
     }
 
     public Integer getProsAvion() {
-
         return prosAvion;
     }
 

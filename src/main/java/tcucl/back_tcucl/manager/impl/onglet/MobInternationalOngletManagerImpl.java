@@ -135,6 +135,10 @@ public class MobInternationalOngletManagerImpl implements MobInternationalOnglet
             voyage.setSemestresEtudiantsAvion(voyageDto.getSemestresEtudiantsAvion());
         if (voyageDto.getSemestresEtudiantsTrain() != null)
             voyage.setSemestresEtudiantsTrain(voyageDto.getSemestresEtudiantsTrain());
+        if(voyageDto.getFormationContinueAvion() != null) // A dupliquer si ajout de colonne
+            voyage.setFormationContinueAvion(voyageDto.getFormationContinueAvion());
+        if (voyageDto.getFormationContinueTrain() != null)
+            voyage.setFormationContinueTrain(voyageDto.getFormationContinueTrain());
 
         mobInternationalOnglet.getVoyage().add(voyage);
 
