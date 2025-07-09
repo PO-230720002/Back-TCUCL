@@ -5,7 +5,7 @@ import jakarta.validation.constraints.AssertTrue;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.enums.EnumMobInternationale_Pays;
 
 @Entity
-@Table(name = "voyage_mob_internationale")
+@Table(name = "voyage_mob_Integerernationale")
 public class Voyage {
 
     @Id
@@ -18,8 +18,19 @@ public class Voyage {
     private Integer stagesEtudiantsTrain;
     private Integer semestresEtudiantsAvion;
     private Integer semestresEtudiantsTrain;
+    private Integer formationContinueAvion; //A dupliquer si ajout de colonne et créer les getter/setter
+    private Integer formationContinueTrain; //A dupliquer si ajout de colonne et créer les getter/setter
 
-    public Voyage(EnumMobInternationale_Pays nomPays, Integer prosAvion, Integer prosTrain, Integer stagesEtudiantsAvion, Integer stagesEtudiantsTrain, Integer semestresEtudiantsAvion, Integer semestresEtudiantsTrain) {
+    public Voyage(EnumMobInternationale_Pays nomPays,
+                  Integer prosAvion,
+                  Integer prosTrain,
+                  Integer stagesEtudiantsAvion,
+                  Integer stagesEtudiantsTrain,
+                  Integer semestresEtudiantsAvion,
+                  Integer semestresEtudiantsTrain,
+                  Integer formationContinueAvion,  //A dupliquer si ajout de colonne
+                  Integer formationContinueTrain //A dupliquer si ajout de colonne
+    ) {
         this.valeurEnumMobInternationale_Pays = nomPays.getCode();
         this.prosAvion = prosAvion;
         this.prosTrain = prosTrain;
@@ -27,6 +38,8 @@ public class Voyage {
         this.stagesEtudiantsTrain = stagesEtudiantsTrain;
         this.semestresEtudiantsAvion = semestresEtudiantsAvion;
         this.semestresEtudiantsTrain = semestresEtudiantsTrain;
+        this.formationContinueAvion = formationContinueAvion; //A dupliquer si ajout de colonne
+        this.formationContinueTrain = formationContinueTrain; //A dupliquer si ajout de colonne
     }
 
     public Voyage() {
@@ -35,7 +48,7 @@ public class Voyage {
     @AssertTrue(message = "Les champs train ne doivent pas être remplis pour ce pays.")
     public Boolean assertTrainExistForThisDestination() {
         if (!EnumMobInternationale_Pays.fromCode(this.valeurEnumMobInternationale_Pays).getIsAccessibleEnTrain()) {
-            return prosTrain == 0 && stagesEtudiantsTrain == 0 && semestresEtudiantsTrain == 0;
+            return prosTrain == 0 && stagesEtudiantsTrain == 0 && semestresEtudiantsTrain == 0 && formationContinueTrain == 0; // ajouter la valeur de la nouvelle colonne pour le train
         }
         return true;
     }
@@ -61,7 +74,7 @@ public class Voyage {
         return prosAvion;
     }
 
-    public void setProsAvion(int prosAvion) {
+    public void setProsAvion(Integer prosAvion) {
         this.prosAvion = prosAvion;
     }
 
@@ -69,7 +82,7 @@ public class Voyage {
         return prosTrain;
     }
 
-    public void setProsTrain(int prosTrain) {
+    public void setProsTrain(Integer prosTrain) {
         this.prosTrain = prosTrain;
     }
 
@@ -77,7 +90,7 @@ public class Voyage {
         return stagesEtudiantsAvion;
     }
 
-    public void setStagesEtudiantsAvion(int stagesEtudiantsAvion) {
+    public void setStagesEtudiantsAvion(Integer stagesEtudiantsAvion) {
         this.stagesEtudiantsAvion = stagesEtudiantsAvion;
     }
 
@@ -85,7 +98,7 @@ public class Voyage {
         return stagesEtudiantsTrain;
     }
 
-    public void setStagesEtudiantsTrain(int stagesEtudiantsTrain) {
+    public void setStagesEtudiantsTrain(Integer stagesEtudiantsTrain) {
         this.stagesEtudiantsTrain = stagesEtudiantsTrain;
     }
 
@@ -93,7 +106,7 @@ public class Voyage {
         return semestresEtudiantsAvion;
     }
 
-    public void setSemestresEtudiantsAvion(int semestresEtudiantsAvion) {
+    public void setSemestresEtudiantsAvion(Integer semestresEtudiantsAvion) {
         this.semestresEtudiantsAvion = semestresEtudiantsAvion;
     }
 
@@ -101,8 +114,25 @@ public class Voyage {
         return semestresEtudiantsTrain;
     }
 
-    public void setSemestresEtudiantsTrain(int semestresEtudiantsTrain) {
+    public void setSemestresEtudiantsTrain(Integer semestresEtudiantsTrain) {
         this.semestresEtudiantsTrain = semestresEtudiantsTrain;
     }
+
+    public Integer getFormationContinueAvion() {
+        return formationContinueAvion;
+    }
+
+    public void setFormationContinueAvion(Integer formationContinueAvion) {
+        this.formationContinueAvion = formationContinueAvion;
+    }
+
+    public Integer getFormationContinueTrain() {
+        return formationContinueTrain;
+    }
+
+    public void setFormationContinueTrain(Integer formationContinueTrain) {
+        this.formationContinueTrain = formationContinueTrain;
+    }
+
 
 }

@@ -17,6 +17,8 @@ public class VoyageDto {
     private Integer stagesEtudiantsTrain;
     private Integer semestresEtudiantsAvion;
     private Integer semestresEtudiantsTrain;
+    private Integer formationContinueAvion;  //A dupliquer si ajout de colonne et ajouter getter/setter
+    private Integer formationContinueTrain; //A dupliquer si ajout de colonne et ajouter getter/setter
 
     public VoyageDto() {}
 
@@ -29,6 +31,8 @@ public class VoyageDto {
         this.stagesEtudiantsTrain = entity.getStagesEtudiantsTrain();
         this.semestresEtudiantsAvion = entity.getSemestresEtudiantsAvion();
         this.semestresEtudiantsTrain = entity.getSemestresEtudiantsTrain();
+        this.formationContinueAvion = entity.getFormationContinueAvion(); //A dupliquer si ajout de colonne
+        this.formationContinueTrain = entity.getFormationContinueTrain(); //A dupliquer si ajout de colonne
     }
 
     public Long getId() {
@@ -95,4 +99,19 @@ public class VoyageDto {
         this.semestresEtudiantsTrain = semestresEtudiantsTrain;
     }
 
+    public Integer getFormationContinueAvion() {
+        return formationContinueAvion;
+    }
+
+    public void setFormationContinueAvion(Integer formationContinueAvion) {
+        this.formationContinueAvion = formationContinueAvion;
+    }
+
+    public Integer getFormationContinueTrain() {
+        return formationContinueTrain;
+    }
+
+    public void setFormationContinueTrain(Integer formationContinueTrain) {
+        this.formationContinueTrain = formationContinueTrain;
+    }
 }
