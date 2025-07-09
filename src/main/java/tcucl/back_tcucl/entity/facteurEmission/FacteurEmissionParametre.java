@@ -243,7 +243,7 @@ public class FacteurEmissionParametre {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
-        public static final String PERFLUOROPROPANE_R21_ = "Perfluoropropane = R21_";
+        public static final String PERFLUOROPROPANE_R21 = "Perfluoropropane = R21";
 
         public static class PERFLUOROPROPANE_R21__ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
@@ -255,7 +255,7 @@ public class FacteurEmissionParametre {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
         }
 
-        public static final String PERFLUOROCYCLOBUTANE_R31_ = "Perfluorocyclobutane = R31_";
+        public static final String PERFLUOROCYCLOBUTANE_R31_ = "Perfluorocyclobutane = R31";
 
         public static class PERFLUOROCYCLOBUTANE_R31__ {
             public static final String KG_FUITE = "kgCO2e/kg de fuite fluide";
