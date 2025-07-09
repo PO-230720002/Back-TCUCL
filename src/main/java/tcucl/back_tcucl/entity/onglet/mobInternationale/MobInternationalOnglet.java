@@ -32,7 +32,7 @@ public class MobInternationalOnglet extends Onglet {
     
 
     public void ajouterVoyageViaDto(VoyageDto voyageDto) {
-
+        // ajouter une colonne rajouter nouvelle colonne train et avion
         Voyage voyage = new Voyage();
         voyage.setPays(voyageDto.getNomPays());
         voyage.setProsAvion(voyageDto.getProsAvion());
@@ -41,6 +41,8 @@ public class MobInternationalOnglet extends Onglet {
         voyage.setStagesEtudiantsTrain(voyageDto.getStagesEtudiantsTrain());
         voyage.setSemestresEtudiantsAvion(voyageDto.getSemestresEtudiantsAvion());
         voyage.setSemestresEtudiantsTrain(voyageDto.getSemestresEtudiantsTrain());
+        voyage.setFormationContinueAvion(voyageDto.getFormationContinueAvion());
+        voyage.setFormationContinueTrain(voyageDto.getFormationContinueTrain());
 
         this.voyage.add(voyage);
     }

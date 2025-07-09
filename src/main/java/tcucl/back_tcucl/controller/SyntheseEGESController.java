@@ -17,7 +17,7 @@ public class SyntheseEGESController {
     }
 
     @GetMapping(REST_ENTITE_ID)
-    @PreAuthorize("hasRole('ROLE_ENTITE_' + #entiteId)")
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN') or hasRole('ROLE_ENTITE_' + #entiteId)")
     public ResponseEntity<?> getSyntheseEGESResultat(@PathVariable(value = "entiteId") Long entiteId, @RequestParam(name = "annee") Integer annee) {
         return ResponseEntity.ok(syntheseEGESService.getSyntheseEGESResultat(entiteId, annee));
     }

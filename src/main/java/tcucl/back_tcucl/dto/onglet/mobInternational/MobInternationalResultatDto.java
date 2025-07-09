@@ -6,6 +6,8 @@ import java.util.Map;
 
 public class MobInternationalResultatDto {
 
+    // En cas d'ajout de colonne dupliquer tout les bloc indiquer comme "à dupliquer" puis générer les getter/setter
+
     private Map<EnumMobInternationale_Pays, Float> emissionGesParPays;
 
     private Float emissionGesProEuropeTrain=0f;
@@ -18,11 +20,16 @@ public class MobInternationalResultatDto {
     private Float emissionGesStageEurope=0f;
     private Float emissionGesStagesHorsEurope=0f;
 
-    private Float emissionGesSemestresEuropeTrain=0f;
-    private Float emissionGesSemestresEuropeAvion=0f;
-    private Float emissionGesSemestreEurope=0f;
-    private Float emissionGesSemestresHorsEurope=0f;
+    private Float emissionGesSemestresEtudiantsEuropeTrain =0f;
+    private Float emissionGesSemestresEtudiantsEuropeAvion =0f;
+    private Float emissionGesSemestresEtudiantsEurope =0f;
+    private Float emissionGesSemestresEtudiantsHorsEurope =0f;
 
+    // Dupliquer tout le bloc
+    private Float emissionGesFormationContinueEuropeTrain=0f;
+    private Float emissionGesFormationContinueEuropeAvion=0f;
+    private Float emissionGesFormationContinueEurope=0f;
+    private Float emissionGesFormationContinueHorsEurope=0f;
 
 
     private Float prosProportionDeDeparts=0f;
@@ -51,6 +58,16 @@ public class MobInternationalResultatDto {
     private Float semestresDistanceMoyenneEuropeTrain=0f;
     private Float semestresIntensiteCarboneDesDeplacemeents_gCo2eParKm=0f;
     private Float semestresIntensiteCarboneDesDeplacemeents_kgCo2eParDepart=0f;
+
+    // Dupliquer tout le bloc
+    private Float FormationContinueProportionDeDeparts=0f;
+    private Float FormationContinuePartEuropeVsNonEurope=0f;
+    private Float FormationContinueDistanceMoyenneHorsEurope=0f;
+    private Float FormationContinuePartTrainEnEurope=0f;
+    private Float FormationContinueDistancemoyenneEuropeAvion=0f;
+    private Float FormationContinueDistanceMoyenneEuropeTrain=0f;
+    private Float FormationContinueIntensiteCarboneDesDeplacemeents_gCo2eParKm=0f;
+    private Float FormationContinueIntensiteCarboneDesDeplacemeents_kgCo2eParDepart=0f;
 
 
     public MobInternationalResultatDto() {
@@ -135,36 +152,36 @@ public class MobInternationalResultatDto {
         this.emissionGesStagesHorsEurope = emissionGesStagesHorsEurope;
     }
 
-    public Float getEmissionGesSemestresEuropeTrain() {
-        return emissionGesSemestresEuropeTrain;
+    public Float getEmissionGesSemestresEtudiantsEuropeTrain() {
+        return emissionGesSemestresEtudiantsEuropeTrain;
     }
 
-    public void setEmissionGesSemestresEuropeTrain(Float emissionGesSemestresEuropeTrain) {
-        this.emissionGesSemestresEuropeTrain = emissionGesSemestresEuropeTrain;
+    public void setEmissionGesSemestresEtudiantsEuropeTrain(Float emissionGesSemestresEtudiantsEuropeTrain) {
+        this.emissionGesSemestresEtudiantsEuropeTrain = emissionGesSemestresEtudiantsEuropeTrain;
     }
 
-    public Float getEmissionGesSemestresEuropeAvion() {
-        return emissionGesSemestresEuropeAvion;
+    public Float getEmissionGesSemestresEtudiantsEuropeAvion() {
+        return emissionGesSemestresEtudiantsEuropeAvion;
     }
 
-    public void setEmissionGesSemestresEuropeAvion(Float emissionGesSemestresEuropeAvion) {
-        this.emissionGesSemestresEuropeAvion = emissionGesSemestresEuropeAvion;
+    public void setEmissionGesSemestresEtudiantsEuropeAvion(Float emissionGesSemestresEtudiantsEuropeAvion) {
+        this.emissionGesSemestresEtudiantsEuropeAvion = emissionGesSemestresEtudiantsEuropeAvion;
     }
 
-    public Float getEmissionGesSemestreEurope() {
-        return emissionGesSemestreEurope;
+    public Float getEmissionGesSemestresEtudiantsEurope() {
+        return emissionGesSemestresEtudiantsEurope;
     }
 
-    public void setEmissionGesSemestreEurope(Float emissionGesSemestreEurope) {
-        this.emissionGesSemestreEurope = emissionGesSemestreEurope;
+    public void setEmissionGesSemestresEtudiantsEurope(Float emissionGesSemestresEtudiantsEurope) {
+        this.emissionGesSemestresEtudiantsEurope = emissionGesSemestresEtudiantsEurope;
     }
 
-    public Float getEmissionGesSemestresHorsEurope() {
-        return emissionGesSemestresHorsEurope;
+    public Float getEmissionGesSemestresEtudiantsHorsEurope() {
+        return emissionGesSemestresEtudiantsHorsEurope;
     }
 
-    public void setEmissionGesSemestresHorsEurope(Float emissionGesSemestresHorsEurope) {
-        this.emissionGesSemestresHorsEurope = emissionGesSemestresHorsEurope;
+    public void setEmissionGesSemestresEtudiantsHorsEurope(Float emissionGesSemestresEtudiantsHorsEurope) {
+        this.emissionGesSemestresEtudiantsHorsEurope = emissionGesSemestresEtudiantsHorsEurope;
     }
 
     public Float getProsProportionDeDeparts() {
@@ -357,5 +374,102 @@ public class MobInternationalResultatDto {
 
     public void setSemestresIntensiteCarboneDesDeplacemeents_kgCo2eParDepart(Float semestresIntensiteCarboneDesDeplacemeents_kgCo2eParDepart) {
         this.semestresIntensiteCarboneDesDeplacemeents_kgCo2eParDepart = semestresIntensiteCarboneDesDeplacemeents_kgCo2eParDepart;
+    }
+
+
+    public Float getEmissionGesFormationContinueEuropeTrain() {
+        return emissionGesFormationContinueEuropeTrain;
+    }
+
+    public void setEmissionGesFormationContinueEuropeTrain(Float emissionGesFormationContinueEuropeTrain) {
+        this.emissionGesFormationContinueEuropeTrain = emissionGesFormationContinueEuropeTrain;
+    }
+
+    public Float getEmissionGesFormationContinueEuropeAvion() {
+        return emissionGesFormationContinueEuropeAvion;
+    }
+
+    public void setEmissionGesFormationContinueEuropeAvion(Float emissionGesFormationContinueEuropeAvion) {
+        this.emissionGesFormationContinueEuropeAvion = emissionGesFormationContinueEuropeAvion;
+    }
+
+    public Float getEmissionGesFormationContinueEurope() {
+        return emissionGesFormationContinueEurope;
+    }
+
+    public void setEmissionGesFormationContinueEurope(Float emissionGesFormationContinueEurope) {
+        this.emissionGesFormationContinueEurope = emissionGesFormationContinueEurope;
+    }
+
+    public Float getEmissionGesFormationContinueHorsEurope() {
+        return emissionGesFormationContinueHorsEurope;
+    }
+
+    public void setEmissionGesFormationContinueHorsEurope(Float emissionGesFormationContinueHorsEurope) {
+        this.emissionGesFormationContinueHorsEurope = emissionGesFormationContinueHorsEurope;
+    }
+
+    public Float getFormationContinueProportionDeDeparts() {
+        return FormationContinueProportionDeDeparts;
+    }
+
+    public void setFormationContinueProportionDeDeparts(Float formationContinueProportionDeDeparts) {
+        FormationContinueProportionDeDeparts = formationContinueProportionDeDeparts;
+    }
+
+    public Float getFormationContinuePartEuropeVsNonEurope() {
+        return FormationContinuePartEuropeVsNonEurope;
+    }
+
+    public void setFormationContinuePartEuropeVsNonEurope(Float formationContinuePartEuropeVsNonEurope) {
+        FormationContinuePartEuropeVsNonEurope = formationContinuePartEuropeVsNonEurope;
+    }
+
+    public Float getFormationContinueDistanceMoyenneHorsEurope() {
+        return FormationContinueDistanceMoyenneHorsEurope;
+    }
+
+    public void setFormationContinueDistanceMoyenneHorsEurope(Float formationContinueDistanceMoyenneHorsEurope) {
+        FormationContinueDistanceMoyenneHorsEurope = formationContinueDistanceMoyenneHorsEurope;
+    }
+
+    public Float getFormationContinuePartTrainEnEurope() {
+        return FormationContinuePartTrainEnEurope;
+    }
+
+    public void setFormationContinuePartTrainEnEurope(Float formationContinuePartTrainEnEurope) {
+        FormationContinuePartTrainEnEurope = formationContinuePartTrainEnEurope;
+    }
+
+    public Float getFormationContinueDistancemoyenneEuropeAvion() {
+        return FormationContinueDistancemoyenneEuropeAvion;
+    }
+
+    public void setFormationContinueDistancemoyenneEuropeAvion(Float formationContinueDistancemoyenneEuropeAvion) {
+        FormationContinueDistancemoyenneEuropeAvion = formationContinueDistancemoyenneEuropeAvion;
+    }
+
+    public Float getFormationContinueDistanceMoyenneEuropeTrain() {
+        return FormationContinueDistanceMoyenneEuropeTrain;
+    }
+
+    public void setFormationContinueDistanceMoyenneEuropeTrain(Float formationContinueDistanceMoyenneEuropeTrain) {
+        FormationContinueDistanceMoyenneEuropeTrain = formationContinueDistanceMoyenneEuropeTrain;
+    }
+
+    public Float getFormationContinueIntensiteCarboneDesDeplacemeents_gCo2eParKm() {
+        return FormationContinueIntensiteCarboneDesDeplacemeents_gCo2eParKm;
+    }
+
+    public void setFormationContinueIntensiteCarboneDesDeplacemeents_gCo2eParKm(Float formationContinueIntensiteCarboneDesDeplacemeents_gCo2eParKm) {
+        FormationContinueIntensiteCarboneDesDeplacemeents_gCo2eParKm = formationContinueIntensiteCarboneDesDeplacemeents_gCo2eParKm;
+    }
+
+    public Float getFormationContinueIntensiteCarboneDesDeplacemeents_kgCo2eParDepart() {
+        return FormationContinueIntensiteCarboneDesDeplacemeents_kgCo2eParDepart;
+    }
+
+    public void setFormationContinueIntensiteCarboneDesDeplacemeents_kgCo2eParDepart(Float formationContinueIntensiteCarboneDesDeplacemeents_kgCo2eParDepart) {
+        FormationContinueIntensiteCarboneDesDeplacemeents_kgCo2eParDepart = formationContinueIntensiteCarboneDesDeplacemeents_kgCo2eParDepart;
     }
 }
