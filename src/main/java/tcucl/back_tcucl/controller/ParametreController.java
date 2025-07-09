@@ -39,7 +39,7 @@ public class ParametreController {
     }
 
 
-    @PreAuthorize("@permissionService.utilisateurOuAdminPeutChangerMdp(authentication, #changePasswordDto)")
+    @PreAuthorize("@permissionService.utilisateurPeutChangerMdp(authentication, #changePasswordDto)")
     @PostMapping(REST_CHANGE_MDP)
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto changePasswordDto) {
         parametreService.changePassword(changePasswordDto);
