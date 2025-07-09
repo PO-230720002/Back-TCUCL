@@ -3,6 +3,8 @@ package tcucl.back_tcucl.service.impl;
 import org.springframework.stereotype.Service;
 import tcucl.back_tcucl.dto.ListIdDto;
 import tcucl.back_tcucl.dto.SyntheseEGESResultatDto;
+import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_UniteBois;
+import tcucl.back_tcucl.entity.onglet.energie.enums.EnumEnergie_UniteFioul;
 import tcucl.back_tcucl.service.*;
 
 
@@ -68,6 +70,7 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
         Float emissionFugitivesGlobal = emissionFugitiveOngletService
                 .getEmissionFugitiveResult(emissionFugitiveOngletId)
                 .getTotalEmissionGES();
+        emissionFugitivesGlobal = (emissionFugitivesGlobal != null) ? emissionFugitivesGlobal : 0.0f;
         syntheseEGESResultatDto.setEmissionFugitivesGlobal(emissionFugitivesGlobal);
         syntheseEGESResultatDto.setEmissionFugitivesParUsager(syntheseEGESResultatDto.getEmissionFugitivesGlobal() * 1000 / (nbEtudiant + nbSalarie));
 
@@ -76,6 +79,7 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
         Float energieGlobal = energieOngletService
                 .getEnergieResultat(energieOngletId)
                 .getTotalPosteFluides();
+        energieGlobal = (energieGlobal != null) ? energieGlobal : 0.0f;
         syntheseEGESResultatDto.setEnergieGlobal(energieGlobal);
         syntheseEGESResultatDto.setEnergieParUsager(syntheseEGESResultatDto.getEnergieGlobal() * 1000 / (nbEtudiant + nbSalarie));
 
@@ -84,6 +88,7 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
         Float mobiliteDomicileTravailGlobal = mobiliteDomicileTravailOngletService
                 .getMobiliteDomicileTravailResultat(mobiliteDomicileTravailOngletId)
                 .getTotalPosteMobiliteFrance();
+        mobiliteDomicileTravailGlobal = (mobiliteDomicileTravailGlobal != null) ? mobiliteDomicileTravailGlobal : 0.0f;
         syntheseEGESResultatDto.setMobiliteDomicileTravailGlobal(mobiliteDomicileTravailGlobal);
         syntheseEGESResultatDto.setMobiliteDomicileTravailParUsager(syntheseEGESResultatDto.getMobiliteDomicileTravailGlobal() * 1000 / (nbEtudiant + nbSalarie));
 
@@ -91,35 +96,54 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
         Long autreMobFrOngletId = onglets.getAutreMobFrOnglet();
         Long vehiculeOngletId = onglets.getVehiculeOnglet();
 
-        Float autreMobiliteFrGlobal = autreMobFrOngletService
+        Float autreMobFrTotal = autreMobFrOngletService
                 .getAutreMobFrResultat(autreMobFrOngletId)
-                .getTotalPosteMobiliteFrance()
-                + vehiculeOngletService
+                .getTotalPosteMobiliteFrance();
+        autreMobFrTotal = (autreMobFrTotal != null) ? autreMobFrTotal : 0.0f;
+
+        Float vehiculeTotal = vehiculeOngletService
                 .getVehiculeResult(vehiculeOngletId)
                 .getTotalEmissionGES();
+        vehiculeTotal = (vehiculeTotal != null) ? vehiculeTotal : 0.0f;
+
+        Float autreMobiliteFrGlobal = autreMobFrTotal + vehiculeTotal;
         syntheseEGESResultatDto.setAutreMobiliteFrGlobal(autreMobiliteFrGlobal);
         syntheseEGESResultatDto.setAutreMobiliteFrParUsager(syntheseEGESResultatDto.getAutreMobiliteFrGlobal() * 1000 / (nbEtudiant + nbSalarie));
 
         // Mobilité internationale
         Long mobInternationalOngletId = onglets.getMobInternationalOnglet();
-        Float mobiliteInternationalGlobal = mobInternationalOngletService
+        Float emissionGesProEurope = mobInternationalOngletService
                 .getMobInternationalResultat(mobInternationalOngletId)
-                .getEmissionGesProEurope()
-                + mobInternationalOngletService
+                .getEmissionGesProEurope();
+        emissionGesProEurope = (emissionGesProEurope != null) ? emissionGesProEurope : 0.0f;
+
+        Float emissionGesStageEurope = mobInternationalOngletService
                 .getMobInternationalResultat(mobInternationalOngletId)
-                .getEmissionGesStageEurope()
-                + mobInternationalOngletService
+                .getEmissionGesStageEurope();
+        emissionGesStageEurope = (emissionGesStageEurope != null) ? emissionGesStageEurope : 0.0f;
+
+        Float emissionGesSemestreEurope = mobInternationalOngletService
                 .getMobInternationalResultat(mobInternationalOngletId)
-                .getEmissionGesSemestreEurope()
-                + mobInternationalOngletService
+                .getEmissionGesSemestreEurope();
+        emissionGesSemestreEurope = (emissionGesSemestreEurope != null) ? emissionGesSemestreEurope : 0.0f;
+
+        Float emissionGesProHorsEurope = mobInternationalOngletService
                 .getMobInternationalResultat(mobInternationalOngletId)
-                .getEmissionGesProHorsEurope()
-                + mobInternationalOngletService
+                .getEmissionGesProHorsEurope();
+        emissionGesProHorsEurope = (emissionGesProHorsEurope != null) ? emissionGesProHorsEurope : 0.0f;
+
+        Float emissionGesStagesHorsEurope = mobInternationalOngletService
                 .getMobInternationalResultat(mobInternationalOngletId)
-                .getEmissionGesStagesHorsEurope()
-                + mobInternationalOngletService
+                .getEmissionGesStagesHorsEurope();
+        emissionGesStagesHorsEurope = (emissionGesStagesHorsEurope != null) ? emissionGesStagesHorsEurope : 0.0f;
+
+        Float emissionGesSemestresHorsEurope = mobInternationalOngletService
                 .getMobInternationalResultat(mobInternationalOngletId)
                 .getEmissionGesSemestresHorsEurope();
+        emissionGesSemestresHorsEurope = (emissionGesSemestresHorsEurope != null) ? emissionGesSemestresHorsEurope : 0.0f;
+
+        Float mobiliteInternationalGlobal = emissionGesProEurope + emissionGesStageEurope + emissionGesSemestreEurope +
+                emissionGesProHorsEurope + emissionGesStagesHorsEurope + emissionGesSemestresHorsEurope;
         syntheseEGESResultatDto.setMobiliteInternationalGlobal(mobiliteInternationalGlobal);
         syntheseEGESResultatDto.setMobiliteInternationalParUsager(syntheseEGESResultatDto.getMobiliteInternationalGlobal() * 1000 / (nbEtudiant + nbSalarie));
 
@@ -127,18 +151,27 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
         Long batimentImmobilisationMobilierOngletId = onglets.getBatimentImmobilisationMobilierOnglet();
         Long parkingVoirieOngletId = onglets.getParkingVoirieOnglet();
 
-        Float batimentParkingGlobal = batimentImmobilisationMobilierOngletService
+        Float totalPosteBatiment = batimentImmobilisationMobilierOngletService
                 .getBatimentImmobilisationMobilierResult(batimentImmobilisationMobilierOngletId)
-                .getTotalPosteBatiment()
-                + batimentImmobilisationMobilierOngletService
+                .getTotalPosteBatiment();
+        totalPosteBatiment = (totalPosteBatiment != null) ? totalPosteBatiment : 0.0f;
+
+        Float totalPosteEntretien = batimentImmobilisationMobilierOngletService
                 .getBatimentImmobilisationMobilierResult(batimentImmobilisationMobilierOngletId)
-                .getTotalPosteEntretien()
-                + batimentImmobilisationMobilierOngletService
+                .getTotalPosteEntretien();
+        totalPosteEntretien = (totalPosteEntretien != null) ? totalPosteEntretien : 0.0f;
+
+        Float totalPosteMobilier = batimentImmobilisationMobilierOngletService
                 .getBatimentImmobilisationMobilierResult(batimentImmobilisationMobilierOngletId)
-                .getTotalPosteMobilier()
-                + parkingVoirieOngletService
+                .getTotalPosteMobilier();
+        totalPosteMobilier = (totalPosteMobilier != null) ? totalPosteMobilier : 0.0f;
+
+        Float totalEmissionGESParking = parkingVoirieOngletService
                 .getParkingVoirieResult(parkingVoirieOngletId)
                 .getTotalEmissionGES();
+        totalEmissionGESParking = (totalEmissionGESParking != null) ? totalEmissionGESParking : 0.0f;
+
+        Float batimentParkingGlobal = totalPosteBatiment + totalPosteEntretien + totalPosteMobilier + totalEmissionGESParking;
         syntheseEGESResultatDto.setBatimentParkingGlobal(batimentParkingGlobal);
         syntheseEGESResultatDto.setBatimentParkingParUsager(syntheseEGESResultatDto.getBatimentParkingGlobal() * 1000 / (nbEtudiant + nbSalarie));
 
@@ -147,31 +180,44 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
         Float numeriqueGlobal = numeriqueOngletService
                 .getNumeriqueResultat(numeriqueOngletId)
                 .getTotalNumerique();
+        numeriqueGlobal = (numeriqueGlobal != null) ? numeriqueGlobal : 0.0f;
         syntheseEGESResultatDto.setNumeriqueGlobal(numeriqueGlobal);
         syntheseEGESResultatDto.setNumeriqueParUsager(syntheseEGESResultatDto.getNumeriqueGlobal() * 1000 / (nbEtudiant + nbSalarie));
 
         // Autres immobilisations
         Long autreImmobilisationOngletId = onglets.getAutreImmobilisationOnglet();
-        Float autreImmobilisationGlobal = autreImmobilisationOngletService
+        Float totalPostePhotovoltaique = autreImmobilisationOngletService
                 .getAutreImmobilisationResultat(autreImmobilisationOngletId)
-                .getTotalPostePhotovoltaique()
-                + autreImmobilisationOngletService
+                .getTotalPostePhotovoltaique();
+        totalPostePhotovoltaique = (totalPostePhotovoltaique != null) ? totalPostePhotovoltaique : 0.0f;
+
+        Float totalPosteBatimentAutre = autreImmobilisationOngletService
                 .getAutreImmobilisationResultat(autreImmobilisationOngletId)
                 .getTotalPosteBatiment();
+        totalPosteBatimentAutre = (totalPosteBatimentAutre != null) ? totalPosteBatimentAutre : 0.0f;
+
+        Float autreImmobilisationGlobal = totalPostePhotovoltaique + totalPosteBatimentAutre;
         syntheseEGESResultatDto.setAutreImmobilisationGlobal(autreImmobilisationGlobal);
         syntheseEGESResultatDto.setAutreImmobilisationParUsager(syntheseEGESResultatDto.getAutreImmobilisationGlobal() * 1000 / (nbEtudiant + nbSalarie));
 
         // Achats
         Long achatOngletId = onglets.getAchatOnglet();
-        Float achatGlobal = achatOngletService
+        Float totalPosteAchat = achatOngletService
                 .getAchatResultat(achatOngletId)
-                .getTotalPosteAchat()
-                + achatOngletService
+                .getTotalPosteAchat();
+        totalPosteAchat = (totalPosteAchat != null) ? totalPosteAchat : 0.0f;
+
+        Float totalPosteTextile = achatOngletService
                 .getAchatResultat(achatOngletId)
-                .getTotalPosteTextile()
-                + achatOngletService
+                .getTotalPosteTextile();
+        totalPosteTextile = (totalPosteTextile != null) ? totalPosteTextile : 0.0f;
+
+        Float totalPosteRestauration = achatOngletService
                 .getAchatResultat(achatOngletId)
                 .getTotalPosteRestauration();
+        totalPosteRestauration = (totalPosteRestauration != null) ? totalPosteRestauration : 0.0f;
+
+        Float achatGlobal = totalPosteAchat + totalPosteTextile + totalPosteRestauration;
         syntheseEGESResultatDto.setAchatGlobal(achatGlobal);
         syntheseEGESResultatDto.setAchatParUsager(syntheseEGESResultatDto.getAchatGlobal() * 1000 / (nbEtudiant + nbSalarie));
 
@@ -180,6 +226,7 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
         Float dechetGlobal = dechetOngletService
                 .getDechetResultat(dechetOngletId)
                 .getTotalProduit();
+        dechetGlobal = (dechetGlobal != null) ? dechetGlobal : 0.0f;
         syntheseEGESResultatDto.setDechetGlobal(dechetGlobal);
         syntheseEGESResultatDto.setDechetParUsager(syntheseEGESResultatDto.getDechetGlobal() * 1000 / (nbEtudiant + nbSalarie));
 
@@ -205,24 +252,105 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
                 + syntheseEGESResultatDto.getAchatParUsager()
                 + syntheseEGESResultatDto.getDechetParUsager());
 
-        syntheseEGESResultatDto.setEmissionDirecteMoteurThermique(vehiculeOngletService.getVehiculeResult(vehiculeOngletId).getTotalEmissionGESPetrole());
-        syntheseEGESResultatDto.setEmissionDirecteFugitives(emissionFugitiveOngletService.getEmissionFugitiveResult(emissionFugitiveOngletId).getTotalEmissionGES());
-        syntheseEGESResultatDto.setEmissionIndirecteConsoVapeurChaleurFroid(energieOngletService.getEnergieResultat(energieOngletId).getConsoReseauVille());
-        syntheseEGESResultatDto.setAchatProduitOuService(achatOngletService.getAchatResultat(achatOngletId).getTotalPosteAchat()
-                + achatOngletService.getAchatResultat(achatOngletId).getTotalPosteTextile()
-                + achatOngletService.getAchatResultat(achatOngletId).getTotalPosteRestauration()
-                + energieOngletService.getEnergieResultat(energieOngletId).getConsoEau());
-        syntheseEGESResultatDto.setImmobilisationBien(batimentImmobilisationMobilierOngletService.getBatimentImmobilisationMobilierResult(batimentImmobilisationMobilierOngletId).getTotalPosteBatiment()
-                + batimentImmobilisationMobilierOngletService.getBatimentImmobilisationMobilierResult(batimentImmobilisationMobilierOngletId).getTotalPosteMobilier()
-                + batimentImmobilisationMobilierOngletService.getBatimentImmobilisationMobilierResult(batimentImmobilisationMobilierOngletId).getTotalPosteEntretien()
-                + parkingVoirieOngletService.getParkingVoirieResult(parkingVoirieOngletId).getTotalEmissionGES()
-                + numeriqueOngletService.getNumeriqueResultat(numeriqueOngletId).getTotalNumerique()
-                + autreImmobilisationOngletService.getAutreImmobilisationResultat(autreImmobilisationOngletId).getTotalPostePhotovoltaique()
-                + autreImmobilisationOngletService.getAutreImmobilisationResultat(autreImmobilisationOngletId).getTotalPosteBatiment()
-                + vehiculeOngletService.getVehiculeResult(vehiculeOngletId).getTotalEmissionGESFabrication());
-        syntheseEGESResultatDto.setDechet(dechetOngletService.getDechetResultat(dechetOngletId).getTotalProduit());
-        syntheseEGESResultatDto.setDeplacementProfessionnel(autreMobFrOngletService.getAutreMobFrResultat(autreMobFrOngletId).getTotalPosteMobiliteFrance() + mobiliteInternationalGlobal);
-        syntheseEGESResultatDto.setDeplacementDomicileTravail(mobiliteDomicileTravailOngletService.getMobiliteDomicileTravailResultat(mobiliteDomicileTravailOngletId).getTotalPosteMobiliteFrance());
+        float amontFioul = 0;
+        if ((energieOngletService.getEnergieOngletById(energieOngletId).getUniteFioul() == EnumEnergie_UniteFioul.TONNE)) {
+            amontFioul = 676;
+        } else if ((energieOngletService.getEnergieOngletById(energieOngletId).getUniteFioul() == EnumEnergie_UniteFioul.MWH_PCS)) {
+            amontFioul = 37;
+        } else {
+            amontFioul = 571;
+        }
+
+        float amontBois = 0;
+        if ((energieOngletService.getEnergieOngletById(energieOngletId).getUniteBois() == EnumEnergie_UniteBois.TONNE)) {
+            amontBois = 51.1F;
+        } else if ((energieOngletService.getEnergieOngletById(energieOngletId).getUniteBois() == EnumEnergie_UniteBois.MWH_PCS)) {
+            amontBois = 16.4F;
+        }
+
+        // Récupération des valeurs avec gestion des null pour les calculs d'émissions
+        Float consoGaz = energieOngletService.getEnergieResultat(energieOngletId).getConsoGaz();
+        consoGaz = (consoGaz != null) ? consoGaz : 0.0f;
+
+        Float consoFioul = energieOngletService.getEnergieResultat(energieOngletId).getConsoFioul();
+        consoFioul = (consoFioul != null) ? consoFioul : 0.0f;
+
+        Float consoBois = energieOngletService.getEnergieResultat(energieOngletId).getConsoBois();
+        consoBois = (consoBois != null) ? consoBois : 0.0f;
+
+        Float consoGazOnglet = energieOngletService.getEnergieOngletById(energieOngletId).getConsoGaz();
+        consoGazOnglet = (consoGazOnglet != null) ? consoGazOnglet : 0.0f;
+
+        Float consoFioulOnglet = energieOngletService.getEnergieOngletById(energieOngletId).getConsoFioul();
+        consoFioulOnglet = (consoFioulOnglet != null) ? consoFioulOnglet : 0.0f;
+
+        Float consoBoisOnglet = energieOngletService.getEnergieOngletById(energieOngletId).getConsoBois();
+        consoBoisOnglet = (consoBoisOnglet != null) ? consoBoisOnglet : 0.0f;
+
+        Float consoElecChauffage = energieOngletService.getEnergieResultat(energieOngletId).getConsoElecChauffage();
+        consoElecChauffage = (consoElecChauffage != null) ? consoElecChauffage : 0.0f;
+
+        Float consoElecSpecifique = energieOngletService.getEnergieResultat(energieOngletId).getConsoElecSpecifique();
+        consoElecSpecifique = (consoElecSpecifique != null) ? consoElecSpecifique : 0.0f;
+
+        Float consoElecChauffageOnglet = energieOngletService.getEnergieOngletById(energieOngletId).getConsoElecChauffage();
+        consoElecChauffageOnglet = (consoElecChauffageOnglet != null) ? consoElecChauffageOnglet : 0.0f;
+
+        Float consoElecSpecifiqueOnglet = energieOngletService.getEnergieOngletById(energieOngletId).getConsoElecSpecifique();
+        consoElecSpecifiqueOnglet = (consoElecSpecifiqueOnglet != null) ? consoElecSpecifiqueOnglet : 0.0f;
+
+        Float consoReseauVille = energieOngletService.getEnergieResultat(energieOngletId).getConsoReseauVille();
+        consoReseauVille = (consoReseauVille != null) ? consoReseauVille : 0.0f;
+
+        Float consoReseauVilleOnglet = energieOngletService.getEnergieOngletById(energieOngletId).getConsoReseauVille();
+        consoReseauVilleOnglet = (consoReseauVilleOnglet != null) ? consoReseauVilleOnglet : 0.0f;
+
+        Float consoEau = energieOngletService.getEnergieResultat(energieOngletId).getConsoEau();
+        consoEau = (consoEau != null) ? consoEau : 0.0f;
+
+        Float totalEmissionGESPetrole = vehiculeOngletService.getVehiculeResult(vehiculeOngletId).getTotalEmissionGESPetrole();
+        totalEmissionGESPetrole = (totalEmissionGESPetrole != null) ? totalEmissionGESPetrole : 0.0f;
+
+        Float totalEmissionGESElectrique = vehiculeOngletService.getVehiculeResult(vehiculeOngletId).getTotalEmissionGESElectrique();
+        totalEmissionGESElectrique = (totalEmissionGESElectrique != null) ? totalEmissionGESElectrique : 0.0f;
+
+        Float totalEmissionGESFabrication = vehiculeOngletService.getVehiculeResult(vehiculeOngletId).getTotalEmissionGESFabrication();
+        totalEmissionGESFabrication = (totalEmissionGESFabrication != null) ? totalEmissionGESFabrication : 0.0f;
+
+        Float totalEvite = dechetOngletService.getDechetResultat(dechetOngletId).getTotalEvite();
+        totalEvite = (totalEvite != null) ? totalEvite : 0.0f;
+
+        syntheseEGESResultatDto.setEmissionDirecteCombustion((float) (consoGaz + consoFioul + consoBois
+                - (consoGazOnglet * 0.385 / 1000)
+                - (consoFioulOnglet * amontFioul / 1000)
+                - (consoBoisOnglet * amontBois / 1000)));
+
+        syntheseEGESResultatDto.setEmissionDirecteMoteurThermique(totalEmissionGESPetrole);
+        syntheseEGESResultatDto.setEmissionDirecteFugitives(emissionFugitivesGlobal);
+
+        syntheseEGESResultatDto.setEmissionIndirecteConsoElec((float) (consoElecChauffage + consoElecSpecifique
+                - (consoElecChauffageOnglet * 23.8 / 1000)
+                - (consoElecSpecifiqueOnglet * 13.8 / 1000)
+                + totalEmissionGESElectrique));
+
+        syntheseEGESResultatDto.setEmissionIndirecteConsoVapeurChaleurFroid(consoReseauVille);
+
+        syntheseEGESResultatDto.setEmissionNonIncluseDansDirectOuIndirecte((float) ((consoGazOnglet * 0.385 / 1000)
+                + (consoFioulOnglet * amontFioul / 1000)
+                + (consoBoisOnglet * amontBois / 1000)
+                + (consoReseauVilleOnglet * 0 / 1000)
+                + (consoElecChauffageOnglet * 23.8 / 1000)
+                + (consoElecSpecifiqueOnglet * 13.8 / 1000)
+                + (consoReseauVilleOnglet * 0 / 1000)));
+
+        syntheseEGESResultatDto.setAchatProduitOuService(totalPosteAchat + totalPosteTextile + totalPosteRestauration + consoEau);
+
+        syntheseEGESResultatDto.setImmobilisationBien(totalPosteBatiment + totalPosteMobilier + totalPosteEntretien
+                + totalEmissionGESParking + numeriqueGlobal + totalPostePhotovoltaique + totalPosteBatimentAutre + totalEmissionGESFabrication);
+
+        syntheseEGESResultatDto.setDechet(dechetGlobal);
+        syntheseEGESResultatDto.setDeplacementProfessionnel(autreMobFrTotal + mobiliteInternationalGlobal);
+        syntheseEGESResultatDto.setDeplacementDomicileTravail(mobiliteDomicileTravailGlobal);
 
         syntheseEGESResultatDto.setBilanCarboneTotalScope(syntheseEGESResultatDto.getEmissionDirecteCombustion()
                 + syntheseEGESResultatDto.getEmissionDirecteMoteurThermique()
@@ -236,9 +364,8 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
                 + syntheseEGESResultatDto.getDeplacementProfessionnel()
                 + syntheseEGESResultatDto.getDeplacementDomicileTravail());
 
-        syntheseEGESResultatDto.setEmissionEvitee(dechetOngletService.getDechetResultat(dechetOngletId).getTotalEvite());
+        syntheseEGESResultatDto.setEmissionEvitee(totalEvite);
 
         return syntheseEGESResultatDto;
     }
-
 }
