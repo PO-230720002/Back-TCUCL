@@ -39,7 +39,6 @@ public class ControllerConstante {
     public static final String REST_SUPPRIMER_UTILISATEUR = "/supprimer-utilisateur";
     public static final String REST_MODIFIER_UTILISATEUR_ADMIN = "/modifier-utilisateur-admin";
     public static final String REST_MODIFIER_EST_ADMIN = "/modifier-est-admin";
-    public static final String REST_AJOUTER_ANNEE = "/ajouter-annee";
     public static final String REST_CREER_ENTITE = "/creer-entite";
     public static final String REST_IMPORT_FACTEURS_EMISSION = "/import-facteurs-emission";
     public static final String REST_CREER_ANNEE_SUIVANTE = "/creer-annee-suivante";

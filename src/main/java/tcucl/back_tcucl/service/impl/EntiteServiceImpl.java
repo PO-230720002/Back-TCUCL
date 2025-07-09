@@ -52,15 +52,6 @@ public class EntiteServiceImpl implements EntiteService {
         }
     }
 
-//    @Override
-//    public Entite ajouterAnneeEntite(Long entiteId, Integer anneeUniversitaire) {
-//        Entite entiteById = entiteManager.getEntitebyId(entiteId);
-//        Annee annee = new Annee(anneeUniversitaire);
-//        annee.setEntite(entiteById);
-//        entiteById.getAnnees().add(annee);
-//        return entiteManager.save(entiteById);
-//    }
-
     @Override
     public List<Entite> getAllEntites() {
         return entiteManager.getAllEntites();
