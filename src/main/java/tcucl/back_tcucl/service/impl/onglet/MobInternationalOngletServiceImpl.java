@@ -364,30 +364,30 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
         // SECOND TABLEAU
         // Proportion de departs
         if (nbSalaries != 0f) {
-            resultat.setProsProportionDeDeparts(C9D124sumProsDepart.get() / nbSalaries); // a dupliquer si ajout de colonne (attention : si relatif aux étudiants voir au if en dessous)
+            resultat.setProsProportionDeDeparts((C9D124sumProsDepart.get() / nbSalaries) * 100); // a dupliquer si ajout de colonne (attention : si relatif aux étudiants voir au if en dessous)
         } else {
             throw new AucunSalarieEnregistre();
         }
         if (nbEtudiants != 0f) {
-            resultat.setStagesProportionDeDeparts(E9F124sumStagesEtudiantsDepart.get() / nbEtudiants);
-            resultat.setSemestresProportionDeDeparts(G9H124sumSemestresEtudiantsDepart.get() / nbEtudiants);
-            resultat.setFormationContinueProportionDeDeparts(G9H124sumFormationContinueDepart.get() / nbEtudiants); // a dupliquer si ajout de colonne (attention : si relatif aux salariés voir au if au dessus)
+            resultat.setStagesProportionDeDeparts((E9F124sumStagesEtudiantsDepart.get() / nbEtudiants) * 100);
+            resultat.setSemestresProportionDeDeparts((G9H124sumSemestresEtudiantsDepart.get() / nbEtudiants) * 100);
+            resultat.setFormationContinueProportionDeDeparts((G9H124sumFormationContinueDepart.get() / nbEtudiants) * 100); // a dupliquer si ajout de colonne (attention : si relatif aux salariés voir au if au dessus)
         } else {
             throw new AucunEtudiantEnregistre();
         }
 
         // Part Europe vs Non Europe
         if (C9D124sumProsDepart.get() != 0f) {
-            resultat.setProsPartEuropeVsNonEurope(C9D39sumProsDepartEurope.get() / C9D124sumProsDepart.get());
+            resultat.setProsPartEuropeVsNonEurope((C9D39sumProsDepartEurope.get() / C9D124sumProsDepart.get()) * 100);
         }
         if (E9F124sumStagesEtudiantsDepart.get() != 0f) {
-            resultat.setStagesPartEuropeVsNonEurope(E9F39sumStagesEtudiantsDepartEurope.get() / E9F124sumStagesEtudiantsDepart.get());
+            resultat.setStagesPartEuropeVsNonEurope((E9F39sumStagesEtudiantsDepartEurope.get() / E9F124sumStagesEtudiantsDepart.get()) * 100);
         }
         if (G9H124sumSemestresEtudiantsDepart.get() != 0f) {
-            resultat.setSemestresPartEuropeVsNonEurope(G9H39sumSemestresEtudiantsDepartEurope.get() / G9H124sumSemestresEtudiantsDepart.get());
+            resultat.setSemestresPartEuropeVsNonEurope((G9H39sumSemestresEtudiantsDepartEurope.get() / G9H124sumSemestresEtudiantsDepart.get()) * 100);
         }
         if (G9H124sumFormationContinueDepart.get() != 0f) {
-            resultat.setFormationContinuePartEuropeVsNonEurope(G9H39sumFormationContinueDepartEurope.get() / G9H124sumFormationContinueDepart.get()); //A dupliquer
+            resultat.setFormationContinuePartEuropeVsNonEurope((G9H39sumFormationContinueDepartEurope.get() / G9H124sumFormationContinueDepart.get()) * 100); //A dupliquer
         }
 
         // Distance Moyenne Hors Europe
@@ -406,16 +406,16 @@ public class MobInternationalOngletServiceImpl implements MobInternationalOnglet
 
         // Part Train Europe
         if (C9D39sumProsDepartEurope.get() != 0f) {
-            resultat.setProsPartTrainEnEurope(D9D39sumProsDepartEuropeTrain.get() / C9D39sumProsDepartEurope.get());
+            resultat.setProsPartTrainEnEurope((D9D39sumProsDepartEuropeTrain.get() / C9D39sumProsDepartEurope.get()) * 100);
         }
         if (E9F39sumStagesEtudiantsDepartEurope.get() != 0f) {
-            resultat.setStagesPartTrainEnEurope(F9F39sumStagesEtudiantsDepartEuropeTrain.get() / E9F39sumStagesEtudiantsDepartEurope.get());
+            resultat.setStagesPartTrainEnEurope((F9F39sumStagesEtudiantsDepartEuropeTrain.get() / E9F39sumStagesEtudiantsDepartEurope.get()) * 100);
         }
         if (G9H39sumSemestresEtudiantsDepartEurope.get() != 0f) {
-            resultat.setSemestresPartTrainEnEurope(H9H39sumSemestresEtudiantsDepartEuropeTrain.get() / G9H39sumSemestresEtudiantsDepartEurope.get());
+            resultat.setSemestresPartTrainEnEurope((H9H39sumSemestresEtudiantsDepartEuropeTrain.get() / G9H39sumSemestresEtudiantsDepartEurope.get()) * 100);
         }
         if (G9H39sumFormationContinueDepartEurope.get() != 0f) {
-            resultat.setFormationContinuePartTrainEnEurope(H9H39sumFormationContinueDepartEuropeTrain.get() / G9H39sumFormationContinueDepartEurope.get()); //A dupliquer
+            resultat.setFormationContinuePartTrainEnEurope((H9H39sumFormationContinueDepartEuropeTrain.get() / G9H39sumFormationContinueDepartEurope.get()) * 100); //A dupliquer
         }
 
         // Distance Moyenne Europe Avion

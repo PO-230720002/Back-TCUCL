@@ -140,28 +140,28 @@ public class AutreMobFrOngletServiceImpl implements AutreMobFrOngletService {
 
 
         autreMobFrResultatDto.setPartModaleVoitureThermiqueSalarie(
-                autreMobFrOnglet.getSalarieDistanceTotale_VoitureThermique() / distanceTotaleSalaries);
+                (autreMobFrOnglet.getSalarieDistanceTotale_VoitureThermique() / distanceTotaleSalaries) * 100);
         autreMobFrResultatDto.setPartModaleVoitureElectriqueSalarie(
-                autreMobFrOnglet.getSalarieDistanceTotale_VoitureElectrique() / distanceTotaleSalaries);
+                (autreMobFrOnglet.getSalarieDistanceTotale_VoitureElectrique() / distanceTotaleSalaries) * 100);
         autreMobFrResultatDto.setPartModaleAvionSalarie(
-                autreMobFrOnglet.getSalarieDistanceTotale_Avion() / distanceTotaleSalaries);
+                (autreMobFrOnglet.getSalarieDistanceTotale_Avion() / distanceTotaleSalaries) * 100);
         autreMobFrResultatDto.setPartModaleModesDouxSalarie(
-                (autreMobFrOnglet.getSalarieDistanceTotale_France_TrainRegional()
+                ((autreMobFrOnglet.getSalarieDistanceTotale_France_TrainRegional()
                         + autreMobFrOnglet.getSalarieDistanceTotale_France_TrainGrandesLignes()
                         + autreMobFrOnglet.getSalarieDistanceTotale_Autocar()
-                ) / distanceTotaleSalaries);
+                ) / distanceTotaleSalaries) * 100);
 
         autreMobFrResultatDto.setPartModaleVoitureThermiqueEtudiant(
-                autreMobFrOnglet.getEtudiantDistanceTotale_VoitureThermique() / distanceTotaleEtudiants);
+                (autreMobFrOnglet.getEtudiantDistanceTotale_VoitureThermique() / distanceTotaleEtudiants) * 100);
         autreMobFrResultatDto.setPartModaleVoitureElectriqueEtudiant(
-                autreMobFrOnglet.getEtudiantDistanceTotale_VoitureElectrique() / distanceTotaleEtudiants);
+                (autreMobFrOnglet.getEtudiantDistanceTotale_VoitureElectrique() / distanceTotaleEtudiants) * 100);
         autreMobFrResultatDto.setPartModaleAvionEtudiant(
-                autreMobFrOnglet.getEtudiantDistanceTotale_Avion() / distanceTotaleEtudiants);
+                (autreMobFrOnglet.getEtudiantDistanceTotale_Avion() / distanceTotaleEtudiants) * 100);
         autreMobFrResultatDto.setPartModaleModesDouxEtudiant(
-                (autreMobFrOnglet.getEtudiantDistanceTotale_France_TrainRegional()
+                ((autreMobFrOnglet.getEtudiantDistanceTotale_France_TrainRegional()
                         + autreMobFrOnglet.getEtudiantDistanceTotale_France_TrainGrandesLignes()
                         + autreMobFrOnglet.getEtudiantDistanceTotale_Autocar()
-                ) / distanceTotaleEtudiants);
+                ) / distanceTotaleEtudiants) * 100);
 
 
         autreMobFrResultatDto.setIntensiteCarboneMoyenSalarie(autreMobFrResultatDto.getTotalSalaries()*1000000f/distanceTotaleSalaries);

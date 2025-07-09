@@ -10,7 +10,6 @@ import tcucl.back_tcucl.exceptionPersonnalisee.AucunEtudiantEnregistre;
 import tcucl.back_tcucl.exceptionPersonnalisee.AucunSalarieEnregistre;
 import tcucl.back_tcucl.manager.MobiliteDomicileTravailOngletManager;
 import tcucl.back_tcucl.service.FacteurEmissionService;
-import tcucl.back_tcucl.service.GeneralOngletService;
 import tcucl.back_tcucl.service.MobiliteDomicileTravailOngletService;
 
 @Service
@@ -265,41 +264,41 @@ public class MobiliteDomicileTravailOngletServiceImpl implements MobiliteDomicil
         );
 
 
-        mobiliteResultatDto.setPartModaleVoitureThermiqueSalaries((float)
-                (mobiliteOnglet.getVoitureThermiqueSalarieKm()
+        mobiliteResultatDto.setPartModaleVoitureThermiqueSalaries(
+                ((mobiliteOnglet.getVoitureThermiqueSalarieKm()
                         + mobiliteOnglet.getVoitureHybrideEtudiantKm()
-                        + mobiliteOnglet.getMotoSalarieKm()) / sommeDistanceSalarie
+                        + mobiliteOnglet.getMotoSalarieKm()) / sommeDistanceSalarie ) * 100
         );
-        mobiliteResultatDto.setPartModaleVoitureThermiqueEtudiants((float)
-                (mobiliteOnglet.getVoitureThermiqueEtudiantKm()
+        mobiliteResultatDto.setPartModaleVoitureThermiqueEtudiants(
+                ((mobiliteOnglet.getVoitureThermiqueEtudiantKm()
                         + mobiliteOnglet.getVoitureHybrideEtudiantKm()
-                        + mobiliteOnglet.getMotoEtudiantKm()) / sommeDistanceEtudiant
+                        + mobiliteOnglet.getMotoEtudiantKm()) / sommeDistanceEtudiant ) * 100
         );
 
-        mobiliteResultatDto.setPartModaleVoitureElectriqueSalaries((float)
-                (mobiliteOnglet.getVoitureElectriqueSalarieKm()) / sommeDistanceSalarie
+        mobiliteResultatDto.setPartModaleVoitureElectriqueSalaries(
+                ((mobiliteOnglet.getVoitureElectriqueSalarieKm()) / sommeDistanceSalarie ) * 100
         );
         mobiliteResultatDto.setPartModaleVoitureElectriqueEtudiants((float)
-                (mobiliteOnglet.getVoitureElectriqueEtudiantKm()) / sommeDistanceEtudiant
+                ((mobiliteOnglet.getVoitureElectriqueEtudiantKm()) / sommeDistanceEtudiant ) * 100
         );
 
-        mobiliteResultatDto.setPartModaleModesDouxSalaries((float)
-                (mobiliteOnglet.getTrainRegionalSalarieKm()
+        mobiliteResultatDto.setPartModaleModesDouxSalaries(
+                ((mobiliteOnglet.getTrainRegionalSalarieKm()
                         + mobiliteOnglet.getBusSalarieKm()
                         + mobiliteOnglet.getMetroTramwaySalarieKm()
                         + mobiliteOnglet.getVeloSalarieKm()
                         + mobiliteOnglet.getTrottinetteElectriqueSalarieKm()
                         + mobiliteOnglet.getVeloElectriqueSalarieKm()
-                        + mobiliteOnglet.getMarcheAPiedSalarieKm()) / sommeDistanceSalarie
+                        + mobiliteOnglet.getMarcheAPiedSalarieKm()) / sommeDistanceSalarie ) * 100
         );
-        mobiliteResultatDto.setPartModaleModesDouxEtudiants((float)
-                (mobiliteOnglet.getTrainRegionalEtudiantKm()
+        mobiliteResultatDto.setPartModaleModesDouxEtudiants(
+                ((mobiliteOnglet.getTrainRegionalEtudiantKm()
                         + mobiliteOnglet.getBusEtudiantKm()
                         + mobiliteOnglet.getMetroTramwayEtudiantKm()
                         + mobiliteOnglet.getVeloEtudiantKm()
                         + mobiliteOnglet.getTrottinetteElectriqueEtudiantKm()
                         + mobiliteOnglet.getVeloElectriqueEtudiantKm()
-                        + mobiliteOnglet.getMarcheAPiedEtudiantKm()) / sommeDistanceEtudiant
+                        + mobiliteOnglet.getMarcheAPiedEtudiantKm()) / sommeDistanceEtudiant ) * 100
         );
 
         mobiliteResultatDto.setIntensiteCarboneMoyenSalaries(
