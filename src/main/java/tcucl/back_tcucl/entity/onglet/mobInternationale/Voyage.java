@@ -5,7 +5,7 @@ import jakarta.validation.constraints.AssertTrue;
 import tcucl.back_tcucl.entity.onglet.mobInternationale.enums.EnumMobInternationale_Pays;
 
 @Entity
-@Table(name = "voyage_mob_Integerernationale")
+@Table(name = "voyage_mob_internationale")
 public class Voyage {
 
     @Id
