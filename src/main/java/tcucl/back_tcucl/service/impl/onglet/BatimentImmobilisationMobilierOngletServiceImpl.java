@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class BatimentImmobilisationMobilierOngletServiceImpl implements BatimentImmobilisationMobilierOngletService {
@@ -51,7 +50,7 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
 
     @Transactional
     @Override
-    public void ajouterBatiment(Long ongletId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto, Integer anneeMaxAjout) {
+    public void ajouterBatiment(Long ongletId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto) {
         // On récupère l'année actuel
         BatimentImmobilisationMobilierOnglet currentOnglet = batimentImmobilisationMobilierOngletManager.getBatimentImmobilisationMobilierOngletById(ongletId);
 
@@ -69,7 +68,7 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
                 .stream()
                 // On filtre pour récupérer les années
                 // >= annéeActuelle  &&   <= anneeMaxAjout
-                .filter(annee -> annee.getAnneeValeur() <= anneeMaxAjout && annee.getAnneeValeur() >= currentOnglet.getAnnee().getAnneeValeur())
+                .filter(annee -> annee.getAnneeValeur() >= currentOnglet.getAnnee().getAnneeValeur())
                 //Sur chacune des années on récupère l'Onglet de batiment immobilisation mobilier
                 .map(Annee::getBatimentImmobilisationMobilierOnglet)
                 // On ajoute sur chacun des onglets le batiment à ajouter
@@ -90,7 +89,7 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
 
     @Transactional
     @Override
-    public void ajouterEntretienCourant(Long ongletId, EntretienCourantDto entretienCourantDto, Integer anneeMaxAjout) {
+    public void ajouterEntretienCourant(Long ongletId, EntretienCourantDto entretienCourantDto) {
         // On récupère l'année actuel
         BatimentImmobilisationMobilierOnglet currentOnglet = batimentImmobilisationMobilierOngletManager.getBatimentImmobilisationMobilierOngletById(ongletId);
 
@@ -108,7 +107,7 @@ public class BatimentImmobilisationMobilierOngletServiceImpl implements Batiment
                 .stream()
                 // On filtre pour récupérer les années
                 // >= annéeActuelle  &&   <= anneeMaxAjout
-                .filter(annee -> annee.getAnneeValeur() <= anneeMaxAjout && annee.getAnneeValeur() >= currentOnglet.getAnnee().getAnneeValeur())
+                .filter(annee -> annee.getAnneeValeur() >= currentOnglet.getAnnee().getAnneeValeur())
                 //Sur chacune des années on récupère l'Onglet de batiment immobilisation mobilier
                 .map(Annee::getBatimentImmobilisationMobilierOnglet)
                 // On ajoute sur chacun des onglets le batiment à ajouter

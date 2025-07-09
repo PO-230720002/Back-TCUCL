@@ -9,13 +9,13 @@ public interface BatimentImmobilisationMobilierOngletService {
 
     void updateBatimentImmobilisationMobilierOnglet(Long ongletId, BatimentImmobilisationMobilierOngletDto batimentImmobilisationMobilierOngletDto);
 
-    void ajouterBatiment(Long ongletId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto, Integer anneeMaxAjout);
+    void ajouterBatiment(Long ongletId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto);
 
     void supprimerBatiment(Long ongletId, Long batimentId);
 
     void updateBatimentPartiel(Long ongletId, Long batimentId, BatimentExistantOuNeufConstruitDto batimentExistantOuNeufConstruitDto);
 
-    void ajouterEntretienCourant(Long ongletId, EntretienCourantDto entretienCourantDto,Integer anneeMaxAjout);
+    void ajouterEntretienCourant(Long ongletId, EntretienCourantDto entretienCourantDto);
 
     void supprimerEntretienCourant(Long ongletId, Long entretienCourantId);
 
