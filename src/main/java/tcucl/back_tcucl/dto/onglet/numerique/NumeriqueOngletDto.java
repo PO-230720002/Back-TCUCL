@@ -30,6 +30,11 @@ public class NumeriqueOngletDto {
         this.estTermine = numeriqueOnglet.getEstTermine();
         this.note = numeriqueOnglet.getNote();
 
+        this.useMethodSimplifiee = numeriqueOnglet.getUseMethodSimplifiee();
+        this.TraficCloudUtilisateur = numeriqueOnglet.getTraficCloudUtilisateur();
+        this.TraficTipUtilisateur = numeriqueOnglet.getTraficTipUtilisateur();
+        this.PartTraficFranceEtranger = numeriqueOnglet.getPartTraficFranceEtranger();
+
         if (numeriqueOnglet.getEquipementNumeriqueList() != null) {
             this.equipementNumeriqueList = numeriqueOnglet.getEquipementNumeriqueList().stream()
                     .map(EquipementNumeriqueDto::new)
