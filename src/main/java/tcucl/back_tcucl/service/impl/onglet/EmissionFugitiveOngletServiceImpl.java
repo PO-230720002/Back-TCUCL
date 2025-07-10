@@ -8,7 +8,6 @@ import tcucl.back_tcucl.entity.facteurEmission.FacteurEmission;
 import tcucl.back_tcucl.entity.facteurEmission.FacteurEmissionParametre;
 import tcucl.back_tcucl.entity.onglet.emissionFugitive.EmissionFugitiveOnglet;
 import tcucl.back_tcucl.entity.onglet.emissionFugitive.MachineEmissionFugitive;
-import tcucl.back_tcucl.entity.onglet.emissionFugitive.enums.EnumEmissionFugitive_TypeFluide;
 import tcucl.back_tcucl.manager.EmissionFugitiveOngletManager;
 import tcucl.back_tcucl.service.EmissionFugitiveOngletService;
 import tcucl.back_tcucl.service.FacteurEmissionService;
@@ -20,10 +19,8 @@ import java.util.stream.Collectors;
 @Service
 public class EmissionFugitiveOngletServiceImpl implements EmissionFugitiveOngletService {
 
-
     private final EmissionFugitiveOngletManager emissionFugitiveOngletManager;
     private final FacteurEmissionService facteurEmissionService;
-
 
     public EmissionFugitiveOngletServiceImpl(EmissionFugitiveOngletManager emissionFugitiveOngletManager, FacteurEmissionService facteurEmissionService) {
         this.emissionFugitiveOngletManager = emissionFugitiveOngletManager;
@@ -75,7 +72,7 @@ public class EmissionFugitiveOngletServiceImpl implements EmissionFugitiveOnglet
 
                             if (Boolean.TRUE.equals(machine.getTauxDeFuiteConnu()) && machine.getTauxDeFuite() != null) {
                                 tauxFuite = machine.getTauxDeFuite();
-                            } else if (machine.getTauxDeFuite() != null) {
+                            } else if (machine.getTauxDeFuite() == null && machine.getTypeMachine()!= null) {
                                 FacteurEmission tauxDeFuite = facteurEmissionService.findByCategorieAndType(
                                         FacteurEmissionParametre.EMISSIONS_FUGITIVES,
                                         machine.getTypeMachine().getLibelle()
@@ -83,13 +80,11 @@ public class EmissionFugitiveOngletServiceImpl implements EmissionFugitiveOnglet
 
                                 tauxFuite = tauxDeFuite.getFacteurEmission();
                             }
-
-                            float fuiteKg = (quantiteFluide != null ? quantiteFluide : 0f) * (tauxFuite / 100f);
+                            float fuiteKg = (quantiteFluide != null ? quantiteFluide : 0f) * tauxFuite;
 
                             return (facteurEmission.getFacteurEmission() * fuiteKg) / 1000f;
                         }
                 ));
-
         float total = emissionsParMachine.values().stream()
                 .reduce(0f, Float::sum);
 
@@ -99,7 +94,4 @@ public class EmissionFugitiveOngletServiceImpl implements EmissionFugitiveOnglet
 
         return resultatDto;
     }
-
-
-
 }
