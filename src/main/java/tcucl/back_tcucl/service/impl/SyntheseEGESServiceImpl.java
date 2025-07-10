@@ -230,27 +230,27 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
         syntheseEGESResultatDto.setDechetGlobal(dechetGlobal);
         syntheseEGESResultatDto.setDechetParUsager(syntheseEGESResultatDto.getDechetGlobal() * 1000 / (nbEtudiant + nbSalarie));
 
-        syntheseEGESResultatDto.setBilanCarboneTotalGlobal(syntheseEGESResultatDto.getEmissionFugitivesGlobal()
-                + syntheseEGESResultatDto.getEnergieGlobal()
-                + syntheseEGESResultatDto.getMobiliteDomicileTravailGlobal()
-                + syntheseEGESResultatDto.getAutreMobiliteFrGlobal()
-                + syntheseEGESResultatDto.getMobiliteInternationalGlobal()
-                + syntheseEGESResultatDto.getBatimentParkingGlobal()
-                + syntheseEGESResultatDto.getNumeriqueGlobal()
-                + syntheseEGESResultatDto.getAutreImmobilisationGlobal()
-                + syntheseEGESResultatDto.getAchatGlobal()
-                + syntheseEGESResultatDto.getDechetGlobal());
+        syntheseEGESResultatDto.setBilanCarboneTotalGlobal((!syntheseEGESResultatDto.getEmissionFugitivesGlobal().isNaN() ? syntheseEGESResultatDto.getEmissionFugitivesGlobal() : 0.0f)
+                + (!syntheseEGESResultatDto.getEnergieGlobal().isNaN() ? syntheseEGESResultatDto.getEnergieGlobal() : 0.0f)
+                + (!syntheseEGESResultatDto.getMobiliteDomicileTravailGlobal().isNaN() ? syntheseEGESResultatDto.getMobiliteDomicileTravailGlobal() : 0.0f)
+                + (!syntheseEGESResultatDto.getAutreMobiliteFrGlobal().isNaN() ? syntheseEGESResultatDto.getAutreMobiliteFrGlobal() : 0.0f)
+                + (!syntheseEGESResultatDto.getMobiliteInternationalGlobal().isNaN() ? syntheseEGESResultatDto.getMobiliteInternationalGlobal() : 0.0f)
+                + (!syntheseEGESResultatDto.getBatimentParkingGlobal().isNaN() ? syntheseEGESResultatDto.getBatimentParkingGlobal() : 0.0f)
+                + (!syntheseEGESResultatDto.getNumeriqueGlobal().isNaN() ? syntheseEGESResultatDto.getNumeriqueGlobal() : 0.0f)
+                + (!syntheseEGESResultatDto.getAutreImmobilisationGlobal().isNaN() ? syntheseEGESResultatDto.getAutreImmobilisationGlobal() : 0.0f)
+                + (!syntheseEGESResultatDto.getAchatGlobal().isNaN() ? syntheseEGESResultatDto.getAchatGlobal() : 0.0f)
+                + (!syntheseEGESResultatDto.getDechetGlobal().isNaN() ? syntheseEGESResultatDto.getDechetGlobal() : 0.0f));
 
-        syntheseEGESResultatDto.setBilanCarboneTotalParUsager(syntheseEGESResultatDto.getEmissionFugitivesParUsager()
-                + syntheseEGESResultatDto.getEnergieParUsager()
-                + syntheseEGESResultatDto.getMobiliteDomicileTravailParUsager()
-                + syntheseEGESResultatDto.getAutreMobiliteFrParUsager()
-                + syntheseEGESResultatDto.getMobiliteInternationalParUsager()
-                + syntheseEGESResultatDto.getBatimentParkingParUsager()
-                + syntheseEGESResultatDto.getNumeriqueParUsager()
-                + syntheseEGESResultatDto.getAutreImmobilisationParUsager()
-                + syntheseEGESResultatDto.getAchatParUsager()
-                + syntheseEGESResultatDto.getDechetParUsager());
+        syntheseEGESResultatDto.setBilanCarboneTotalParUsager((!syntheseEGESResultatDto.getEmissionFugitivesParUsager().isNaN() ? syntheseEGESResultatDto.getEmissionFugitivesParUsager() : 0.0f)
+                + (!syntheseEGESResultatDto.getEnergieParUsager().isNaN() ? syntheseEGESResultatDto.getEnergieParUsager() : 0.0f)
+                + (!syntheseEGESResultatDto.getMobiliteDomicileTravailParUsager().isNaN() ? syntheseEGESResultatDto.getMobiliteDomicileTravailParUsager() : 0.0f)
+                + (!syntheseEGESResultatDto.getAutreMobiliteFrParUsager().isNaN() ? syntheseEGESResultatDto.getAutreMobiliteFrParUsager() : 0.0f)
+                + (!syntheseEGESResultatDto.getMobiliteInternationalParUsager().isNaN() ? syntheseEGESResultatDto.getMobiliteInternationalParUsager() : 0.0f)
+                + (!syntheseEGESResultatDto.getBatimentParkingParUsager().isNaN() ? syntheseEGESResultatDto.getBatimentParkingParUsager() : 0.0f)
+                + (!syntheseEGESResultatDto.getNumeriqueParUsager().isNaN() ? syntheseEGESResultatDto.getNumeriqueParUsager() : 0.0f)
+                + (!syntheseEGESResultatDto.getAutreImmobilisationParUsager().isNaN() ? syntheseEGESResultatDto.getAutreImmobilisationParUsager() : 0.0f)
+                + (!syntheseEGESResultatDto.getAchatParUsager().isNaN() ? syntheseEGESResultatDto.getAchatParUsager() : 0.0f)
+                + (!syntheseEGESResultatDto.getDechetParUsager().isNaN() ? syntheseEGESResultatDto.getDechetParUsager() : 0.0f));
 
         float amontFioul = 0;
         if ((energieOngletService.getEnergieOngletById(energieOngletId).getUniteFioul() == EnumEnergie_UniteFioul.TONNE)) {
@@ -352,17 +352,17 @@ public class SyntheseEGESServiceImpl implements SyntheseEGESService {
         syntheseEGESResultatDto.setDeplacementProfessionnel(autreMobFrTotal + mobiliteInternationalGlobal);
         syntheseEGESResultatDto.setDeplacementDomicileTravail(mobiliteDomicileTravailGlobal);
 
-        syntheseEGESResultatDto.setBilanCarboneTotalScope(syntheseEGESResultatDto.getEmissionDirecteCombustion()
-                + syntheseEGESResultatDto.getEmissionDirecteMoteurThermique()
-                + syntheseEGESResultatDto.getEmissionDirecteFugitives()
-                + syntheseEGESResultatDto.getEmissionIndirecteConsoElec()
-                + syntheseEGESResultatDto.getEmissionIndirecteConsoVapeurChaleurFroid()
-                + syntheseEGESResultatDto.getEmissionNonIncluseDansDirectOuIndirecte()
-                + syntheseEGESResultatDto.getAchatProduitOuService()
-                + syntheseEGESResultatDto.getImmobilisationBien()
-                + syntheseEGESResultatDto.getDechet()
-                + syntheseEGESResultatDto.getDeplacementProfessionnel()
-                + syntheseEGESResultatDto.getDeplacementDomicileTravail());
+        syntheseEGESResultatDto.setBilanCarboneTotalScope((!syntheseEGESResultatDto.getEmissionDirecteCombustion().isNaN() ? syntheseEGESResultatDto.getEmissionDirecteCombustion() : 0.0f)
+                + (!syntheseEGESResultatDto.getEmissionDirecteMoteurThermique().isNaN() ? syntheseEGESResultatDto.getEmissionDirecteMoteurThermique() : 0.0f)
+                + (!syntheseEGESResultatDto.getEmissionDirecteFugitives().isNaN() ? syntheseEGESResultatDto.getEmissionDirecteFugitives() : 0.0f)
+                + (!syntheseEGESResultatDto.getEmissionIndirecteConsoElec().isNaN() ? syntheseEGESResultatDto.getEmissionIndirecteConsoElec() : 0.0f)
+                + (!syntheseEGESResultatDto.getEmissionIndirecteConsoVapeurChaleurFroid().isNaN() ? syntheseEGESResultatDto.getEmissionIndirecteConsoVapeurChaleurFroid() : 0.0f)
+                + (!syntheseEGESResultatDto.getEmissionNonIncluseDansDirectOuIndirecte().isNaN() ? syntheseEGESResultatDto.getEmissionNonIncluseDansDirectOuIndirecte() : 0.0f)
+                + (!syntheseEGESResultatDto.getAchatProduitOuService().isNaN() ? syntheseEGESResultatDto.getAchatProduitOuService() : 0.0f)
+                + (!syntheseEGESResultatDto.getImmobilisationBien().isNaN() ? syntheseEGESResultatDto.getImmobilisationBien() : 0.0f)
+                + (!syntheseEGESResultatDto.getDechet().isNaN() ? syntheseEGESResultatDto.getDechet() : 0.0f)
+                + (!syntheseEGESResultatDto.getDeplacementProfessionnel().isNaN() ? syntheseEGESResultatDto.getDeplacementProfessionnel() : 0.0f)
+                + (!syntheseEGESResultatDto.getDeplacementDomicileTravail().isNaN() ? syntheseEGESResultatDto.getDeplacementDomicileTravail() : 0.0f));
 
         syntheseEGESResultatDto.setEmissionEvitee(totalEvite);
 
