@@ -62,18 +62,12 @@ public class AuthentificationServiceImpl implements AuthentificationService {
             if (authentication.isAuthenticated()) {
                 Map<String, Object> authData = new HashMap<>();
 
-                // si c'est sa première connexion, il n'est pas connecté
-                // afin de le forcer à changer son mot de passe
-                if (utilisateur.getEstPremiereConnexion()) {
-                    authData.put(MESSAGE, MESSAGE_PREMIERE_CONNEXION);
-                }else {
                     authData.put(JETON, jwtUtils.generateToken(connexionDto.getEmail()));
                     logger.info("Token JWT généré pour l'utilisateur: " + connexionDto.getEmail());
 
                     UtilisateurDto utilisateurDto = new UtilisateurDto(utilisateur);
 
                     authData.put("user", utilisateurDto);
-                }
 
                 return authData;
             } else {
