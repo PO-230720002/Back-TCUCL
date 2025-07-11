@@ -22,7 +22,7 @@ public class NumeriqueOnglet extends Onglet {
     private Boolean useMethodSimplifiee = false;
     private Float TraficCloudUtilisateur = 0f;
     private Float TraficTipUtilisateur = 0f;
-    private Float PartTraficFranceEtranger = 0.55f;
+    private Float PartTraficFranceEtranger = 0.55f; // Valeur par défaut, peut être modifiée
 
     public NumeriqueOnglet() {
         super();
