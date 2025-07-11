@@ -54,7 +54,7 @@ public class ControllerConstante {
     public static final String REST_MESSAGE_CHANGE_STATUT_ADMIN = "";
     public static final String REST_MESSAGE_ENTITE_CREEE = "";
     public static final String REST_MESSAGE_ANNEE_ENTITE_AJOUTEE = "L'année a bien été ajoutée à l'entité.";
-    public static final String REST_MESSAGE_IMPORT_FACTEURS_EMISSION = "Importation réussie.";
+    public static final String REST_MESSAGE_IMPORT_FACTEURS_EMISSION = "";
     public static final String REST_MESSAGE_ANNEE_SUIVANTE_CREEE = "Nouvelle année créée pour toutes les organisations inscrites.";
 
     //   *******************************************
@@ -80,7 +80,7 @@ public class ControllerConstante {
     public static final String REST_VOYAGE = "/voyage";
     public static final String REST_VOYAGE_ID = "/{voyageId}";
     public static final String REST_IMPORT_VOYAGES = "/import-voyage";
-    public static final String REST_MESSAGE_IMPORT_VOYAGE = "Importation des voyages réussie.";
+    public static final String REST_MESSAGE_IMPORT_VOYAGE = "";
 
 
     //   ---------    Parking   ----------
