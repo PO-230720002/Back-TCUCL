@@ -47,12 +47,12 @@ public class ControllerConstante {
     public static final String REST_ALL_ENTITE_NOM_ID = "/all-entite-nom-id";
 
     //messages
-    public static final String REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT = "Le compte utilisateur a bien créé.";
-    public static final String REST_MESSAGE_UTILISATEUR_MODIFIE = "L'utilisateur a été correctement mis à jour.";
-    public static final String REST_MESSAGE_UTILISATEUR_SUPPRIME = "L'utilisateur a été correctement supprimé.";
-    public static final String REST_MESSAGE_MDP_BIEN_MIS_A_JOUR = "Le mot de passe a bien été mis à jour.";
-    public static final String REST_MESSAGE_CHANGE_STATUT_ADMIN = "Le statut administrateur de l'utilisateur a bien été mis à jour.";
-    public static final String REST_MESSAGE_ENTITE_CREEE = "L'entité a bien été créé.";
+    public static final String REST_MESSAGE_UTILISATEUR_BIEN_INSCRIT = "";
+    public static final String REST_MESSAGE_UTILISATEUR_MODIFIE = "";
+    public static final String REST_MESSAGE_UTILISATEUR_SUPPRIME = "";
+    public static final String REST_MESSAGE_MDP_BIEN_MIS_A_JOUR = "";
+    public static final String REST_MESSAGE_CHANGE_STATUT_ADMIN = "";
+    public static final String REST_MESSAGE_ENTITE_CREEE = "";
     public static final String REST_MESSAGE_ANNEE_ENTITE_AJOUTEE = "L'année a bien été ajoutée à l'entité.";
     public static final String REST_MESSAGE_IMPORT_FACTEURS_EMISSION = "Importation réussie.";
     public static final String REST_MESSAGE_ANNEE_SUIVANTE_CREEE = "Nouvelle année créée pour toutes les organisations inscrites.";
