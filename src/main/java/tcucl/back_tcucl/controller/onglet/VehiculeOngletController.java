@@ -11,7 +11,7 @@ import tcucl.back_tcucl.service.VehiculeOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_VEHICULE_ONGLET + REST_ONGLET_ID)
+@RequestMapping(REST_API + REST_VEHICULE_ONGLET + REST_ONGLET_ID)
 public class VehiculeOngletController {
 
     private final VehiculeOngletService vehiculeOngletService;

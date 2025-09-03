@@ -10,7 +10,7 @@ import tcucl.back_tcucl.service.AchatOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_ACHAT_ONGLET + REST_ONGLET_ID)
+@RequestMapping(REST_API + REST_ACHAT_ONGLET + REST_ONGLET_ID)
 public class AchatController {
 
     private final AchatOngletService achatOngletService;

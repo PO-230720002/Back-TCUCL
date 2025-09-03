@@ -13,7 +13,7 @@ import tcucl.back_tcucl.service.MobInternationalOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_MOB_INTERNATIONALE_ONGLET + REST_ONGLET_ID)
+@RequestMapping(REST_API + REST_MOB_INTERNATIONALE_ONGLET + REST_ONGLET_ID)
 public class MobInternationalOngletController {
 
     private final MobInternationalOngletService mobInternationalOngletService;

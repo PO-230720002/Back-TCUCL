@@ -8,7 +8,7 @@ import tcucl.back_tcucl.service.AnneeService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_GENERAL + REST_ENTITE_ID)
+@RequestMapping(REST_API + REST_GENERAL + REST_ENTITE_ID)
 public class GeneralController {
 
     private final AnneeService anneeService;

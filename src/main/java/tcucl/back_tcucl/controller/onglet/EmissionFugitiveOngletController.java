@@ -11,7 +11,7 @@ import tcucl.back_tcucl.service.EmissionFugitiveOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_EMISSION_FUGITIVE_ONGLET+REST_ONGLET_ID)
+@RequestMapping(REST_API + REST_EMISSION_FUGITIVE_ONGLET+REST_ONGLET_ID)
 public class EmissionFugitiveOngletController {
 
     private final EmissionFugitiveOngletService emissionFugitiveOngletService;

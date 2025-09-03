@@ -17,7 +17,7 @@ import static tcucl.back_tcucl.Constante.SUPERADMIN_FALSE;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_PARAMETRE)
+@RequestMapping(REST_API + REST_PARAMETRE)
 public class ParametreController {
 
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ParametreController.class);

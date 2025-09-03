@@ -11,7 +11,7 @@ import tcucl.back_tcucl.service.NumeriqueOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_NUMERIQUE_ONGLET + REST_ONGLET_ID)
+@RequestMapping(REST_API + REST_NUMERIQUE_ONGLET + REST_ONGLET_ID)
 public class NumeriqueController {
 
     private final NumeriqueOngletService numeriqueOngletService;

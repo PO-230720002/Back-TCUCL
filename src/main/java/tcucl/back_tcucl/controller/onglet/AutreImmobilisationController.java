@@ -10,7 +10,7 @@ import tcucl.back_tcucl.service.AutreImmobilisationOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_AUTRE_IMMOBILISATION + REST_ONGLET_ID)
+@RequestMapping(REST_API + REST_AUTRE_IMMOBILISATION + REST_ONGLET_ID)
 public class AutreImmobilisationController {
 
 

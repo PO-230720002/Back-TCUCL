@@ -8,7 +8,7 @@ import tcucl.back_tcucl.service.SyntheseEGESService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_SYNTHESE_EGES)
+@RequestMapping(REST_API + REST_SYNTHESE_EGES)
 public class SyntheseEGESController {
     private final SyntheseEGESService syntheseEGESService;
 

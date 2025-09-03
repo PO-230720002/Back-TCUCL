@@ -5,7 +5,10 @@ public class ControllerConstante {
     public ControllerConstante() {
     }
 
+
+
     //    GENERAL
+    public static final String REST_API = "/api";
     public static final String REST_ONGLET_ID = "/{ongletId}";
     public static final String REST_UTILISATEUR_ID = "/{utilisateurId}";
     public static final String REST_ENTITE_ID = "/{entiteId}";

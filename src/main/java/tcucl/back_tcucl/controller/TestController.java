@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tcucl.back_tcucl.entity.facteurEmission.FacteurEmissionParametre;
 
+import static tcucl.back_tcucl.controller.ControllerConstante.REST_API;
+
 @RestController
-@RequestMapping("/test")
+@RequestMapping(REST_API + "/test")
 public class TestController {
 
     @GetMapping

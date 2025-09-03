@@ -10,7 +10,7 @@ import tcucl.back_tcucl.service.AutreMobFrOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_AUTRE_MOB_FR + REST_ONGLET_ID)
+@RequestMapping(REST_API + REST_AUTRE_MOB_FR + REST_ONGLET_ID)
 public class AutreMobFrController {
 
     private final AutreMobFrOngletService autreMobFrOngletService;

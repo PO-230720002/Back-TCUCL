@@ -11,7 +11,7 @@ import tcucl.back_tcucl.service.ParkingVoirieOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_PARKING_VOIRIE_ONGLET + REST_ONGLET_ID)
+@RequestMapping(REST_API + REST_PARKING_VOIRIE_ONGLET + REST_ONGLET_ID)
 public class ParkingVoirieOngletController {
 
     private final ParkingVoirieOngletService parkingVoirieOngletService;

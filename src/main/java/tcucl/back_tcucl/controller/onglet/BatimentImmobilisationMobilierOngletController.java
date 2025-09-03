@@ -13,7 +13,7 @@ import tcucl.back_tcucl.service.BatimentImmobilisationMobilierOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_BATIMENT_IMMOBILISATION_MOBILIER_ONGLET+REST_ONGLET_ID)
+@RequestMapping(REST_API + REST_BATIMENT_IMMOBILISATION_MOBILIER_ONGLET+REST_ONGLET_ID)
 public class BatimentImmobilisationMobilierOngletController {
 
     private final BatimentImmobilisationMobilierOngletService batimentImmobilisationMobilierOngletService;

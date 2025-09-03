@@ -10,7 +10,7 @@ import tcucl.back_tcucl.service.MobiliteDomicileTravailOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_MOBILITE_DOMICILE_TRAVAIL_ONGLET + REST_ONGLET_ID)
+@RequestMapping(REST_API + REST_MOBILITE_DOMICILE_TRAVAIL_ONGLET + REST_ONGLET_ID)
 public class MobiliteDomicileTravailOngletController {
 
     private final MobiliteDomicileTravailOngletService mobiliteDomicileTravailOngletService;

@@ -12,7 +12,7 @@ import static tcucl.back_tcucl.Constante.SUPERADMIN_FALSE;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_AUTH)
+@RequestMapping(REST_API + REST_AUTH)
 public class AuthController {
 
     private final AuthentificationService authentificationService;

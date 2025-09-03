@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_TRAJECTOIRE + REST_ENTITE_ID)
+@RequestMapping(REST_API + REST_TRAJECTOIRE + REST_ENTITE_ID)
 public class TrajectoireController {
 
     @PreAuthorize("hasRole('ROLE_SUPERADMIN') or hasRole('ROLE_ENTITE_' + #entiteId)")

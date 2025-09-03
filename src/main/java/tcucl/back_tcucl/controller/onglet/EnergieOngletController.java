@@ -10,7 +10,7 @@ import tcucl.back_tcucl.service.EnergieOngletService;
 import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 @RestController
-@RequestMapping(REST_ENERGIE_ONGLET + REST_ONGLET_ID)
+@RequestMapping(REST_API + REST_ENERGIE_ONGLET + REST_ONGLET_ID)
 public class EnergieOngletController {
 
     private final EnergieOngletService energieOngletService;
