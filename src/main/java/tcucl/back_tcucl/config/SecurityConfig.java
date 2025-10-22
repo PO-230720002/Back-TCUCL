@@ -11,15 +11,13 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import static tcucl.back_tcucl.controller.ControllerConstante.REST_API;
+import static tcucl.back_tcucl.controller.ControllerConstante.REST_AUTH;
+import static tcucl.back_tcucl.controller.ControllerConstante.REST_CHANGE_MDP_PREMIERE_CONNEXION;
+import static tcucl.back_tcucl.controller.ControllerConstante.REST_CONNEXION;
 import tcucl.back_tcucl.filter.JwtFilter;
 import tcucl.back_tcucl.service.impl.CustomUserDetailsServiceImpl;
-
-import java.util.Arrays;
-
-import static tcucl.back_tcucl.controller.ControllerConstante.*;
 
 
 @EnableMethodSecurity
@@ -45,15 +43,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> {
-                }) // ✅ Ajout obligatoire pour que CORS fonctionne avec Spring Security
+                // todo_toProd Supprimer Cors en Prod
+                // .cors(cors -> {
+                // })
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(REST_AUTH + REST_CONNEXION, REST_AUTH + REST_CHANGE_MDP_PREMIERE_CONNEXION,
-                                        // devTodo commenter les endpoints non sécurisés en production
-                                        "/test/**", // ici
-                                        "/swagger-ui/**", // ici
-                                        "/v3/api-docs/**" // ici
+                        auth.requestMatchers(REST_API + REST_AUTH + REST_CONNEXION, REST_API + REST_AUTH + REST_CHANGE_MDP_PREMIERE_CONNEXION
+                                    //     todo_toProd Supprimer les endpoints non sécurisés et de tests en production 
+                                    //    ,REST_API + "/test/**" 
+                                    //    ,REST_API + "/test"
+                                    //    ,"/swagger-ui/**"
+                                    //    ,"/v3/api-docs/**"
                                 ).permitAll()
                                 .anyRequest().authenticated()
                 )
@@ -62,15 +62,16 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+    // todo_toProd Supprimer Cors en Prod
+    // @Bean
+    // public CorsConfigurationSource corsConfigurationSource() {
+    //     CorsConfiguration configuration = new CorsConfiguration();
+    //     configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+    //     configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+    //     configuration.setAllowedHeaders(Arrays.asList("*"));
+    //     configuration.setAllowCredentials(true);
+    //     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    //     source.registerCorsConfiguration("/**", configuration);
+    //     return source;
+    // }
 }

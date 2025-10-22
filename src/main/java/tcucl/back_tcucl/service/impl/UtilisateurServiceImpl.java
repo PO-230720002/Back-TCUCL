@@ -1,24 +1,30 @@
 package tcucl.back_tcucl.service.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import tcucl.back_tcucl.dto.*;
-import tcucl.back_tcucl.dto.securite.UtilisateurSecuriteDto;
-import tcucl.back_tcucl.exceptionPersonnalisee.EmailDejaPrisException;
-import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisAncienMdpException;
-import tcucl.back_tcucl.manager.UtilisateurManager;
-import org.springframework.stereotype.Service;
-import tcucl.back_tcucl.entity.Utilisateur;
-import tcucl.back_tcucl.service.EmailService;
-import tcucl.back_tcucl.service.EntiteService;
-import tcucl.back_tcucl.service.UtilisateurService;
-
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.Random;
 
-import static tcucl.back_tcucl.Constante.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import static tcucl.back_tcucl.Constante.CHARACTERE_AUTORISE;
+import static tcucl.back_tcucl.Constante.PREMIERE_CONNEXION_FALSE;
+import static tcucl.back_tcucl.Constante.PREMIERE_CONNEXION_TRUE;
+import static tcucl.back_tcucl.Constante.ROLE_USER;
+import tcucl.back_tcucl.dto.ChangePasswordDto;
+import tcucl.back_tcucl.dto.InscriptionDto_SuperAdmin;
+import tcucl.back_tcucl.dto.ModificationUtilisateurParAdminDto;
+import tcucl.back_tcucl.dto.ModificationUtilisateurParUtilisateurDto;
+import tcucl.back_tcucl.dto.securite.UtilisateurSecuriteDto;
+import tcucl.back_tcucl.entity.Utilisateur;
+import tcucl.back_tcucl.exceptionPersonnalisee.EmailDejaPrisException;
+import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisAncienMdpException;
+import tcucl.back_tcucl.manager.UtilisateurManager;
+import tcucl.back_tcucl.service.EmailService;
+import tcucl.back_tcucl.service.EntiteService;
+import tcucl.back_tcucl.service.UtilisateurService;
 
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
@@ -90,8 +96,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
         //Génération du mot de passe aléatoire
         String mdpAleatoire = genererMdpAleatoire();
-        // devTodo à supprimer en prod
-        logger.info("Mot de passe généré: " + mdpAleatoire);  // Log du mot de passe généré
+        // todo_toProd Supprimer ce log en prod
+        // logger.info("Mot de passe généré: " + mdpAleatoire);  // Log du mot de passe généré
 
         //Création de l'utilisateur
         Utilisateur nouvelUtilisateur = new Utilisateur(
