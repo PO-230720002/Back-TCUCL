@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import static tcucl.back_tcucl.Constante.ERREUR_AUTHENTIFICATION;
-import static tcucl.back_tcucl.Constante.ERREUR_INTERNE;
 import tcucl.back_tcucl.exceptionPersonnalisee.EmailDejaPrisException;
 import tcucl.back_tcucl.exceptionPersonnalisee.EntiteDejaExistantAvecNomTypeException;
 import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisAncienMdpException;
@@ -71,10 +70,10 @@ public class GestionnaireErreurController {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {
         // todo_toProd  A Décommenter en prod afin de ne pas afficher les messages d'erreurs
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ERREUR_INTERNE);
+        // return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ERREUR_INTERNE);
 
         // todo_toProd A Commenter en prod afin d'afficher les messages'    
-        // ex.printStackTrace();
-        // return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        ex.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
     }
 }
