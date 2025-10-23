@@ -1,19 +1,20 @@
 package tcucl.back_tcucl.controller;
 
-import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.ConstraintViolation;
-import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import tcucl.back_tcucl.exceptionPersonnalisee.*;
 
-import java.util.stream.Collectors;
-
-import static tcucl.back_tcucl.Constante.*;
+import static tcucl.back_tcucl.Constante.ERREUR_AUTHENTIFICATION;
+import static tcucl.back_tcucl.Constante.ERREUR_INTERNE;
+import tcucl.back_tcucl.exceptionPersonnalisee.EmailDejaPrisException;
+import tcucl.back_tcucl.exceptionPersonnalisee.EntiteDejaExistantAvecNomTypeException;
+import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisAncienMdpException;
+import tcucl.back_tcucl.exceptionPersonnalisee.MauvaisIdentifiantsException;
+import tcucl.back_tcucl.exceptionPersonnalisee.NonTrouveGeneralCustomException;
+import tcucl.back_tcucl.exceptionPersonnalisee.ValidationCustomException;
+import tcucl.back_tcucl.exceptionPersonnalisee.VoyageDejaExistantException;
 
 @RestControllerAdvice
 public class GestionnaireErreurController {
@@ -56,6 +57,7 @@ public class GestionnaireErreurController {
 
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<String> handleAuthenticationException(AuthenticationException ex) {
+        System.out.print(ex.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ERREUR_AUTHENTIFICATION);
     }
 
@@ -68,10 +70,11 @@ public class GestionnaireErreurController {
     //Tout le reste
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {
-        // devTodo  à changer en prod afin de ne pas afficher les messages d'erreurs
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ERREUR_INTERNE);
-        ex.printStackTrace();
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        // todo_toProd  A Décommenter en prod afin de ne pas afficher les messages d'erreurs
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ERREUR_INTERNE);
 
+        // todo_toProd A Commenter en prod afin d'afficher les messages'    
+        // ex.printStackTrace();
+        // return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
     }
 }

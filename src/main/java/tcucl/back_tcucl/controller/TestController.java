@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import tcucl.back_tcucl.entity.facteurEmission.FacteurEmissionParametre;
 
 import static tcucl.back_tcucl.controller.ControllerConstante.REST_API;
 
@@ -14,11 +13,12 @@ import static tcucl.back_tcucl.controller.ControllerConstante.REST_API;
 public class TestController {
 
     @GetMapping
-    public int testget() {
-        return 0;
+    public String testget() {
+        return "Test Fonctionnel";
     }
 
     @PostMapping("/{value}]")
-    public void testPost(@PathVariable int value) {
+    public String testPost(@PathVariable Object value) {
+        return ("Test fonctionnel.\n Valeur reçue : " + value.toString());
     }
 }
